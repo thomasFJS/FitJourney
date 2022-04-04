@@ -1,0 +1,71 @@
+site_name: Atelier TD
+theme:
+  name : material
+  palette:
+    scheme: slate
+    primary: purple
+markdown_extensions:
+  - md_in_html
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - tables
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  - pymdownx.snippets 
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_div_format
+
+extra_css:
+  - https://unpkg.com/mermaid@8.5.1/dist/mermaid.css
+extra_javascript:
+  - https://unpkg.com/mermaid@8.5.1/dist/mermaid.min.js
+
+
+plugins:
+  - search
+      # - pdf-with-js:
+      #     enable: true
+  - with-pdf:
+      author: Thomas Fujise
+      copyright: CFPT 2022
+      #
+      #cover: false
+      #back_cover: true
+      cover_title: Travail de semestre
+      cover_subtitle: Thomas Fujise
+      cover_logo: img/logo.png
+      #custom_template_path: TEMPLATES PATH
+      #
+      toc_title: Table des matières
+        #heading_shift: false
+      toc_level: 3
+        #ordered_chapter_level: 2
+        #excludes_children:
+        #    - 'release-notes/:upgrading'
+        #    - 'release-notes/:changelog'
+        #
+        #exclude_pages:
+        #    - 'bugs/'
+        #    - 'appendix/contribute/'
+        #convert_iframe:
+        #    - src: IFRAME SRC
+        #      img: POSTER IMAGE URL
+        #      text: ALTERNATE TEXT
+        #    - src: ...
+        #two_columns_level: 3
+        #
+        #render_js: true
+        #headless_chrome_path: headless-chromium
+        #
+        #output_path: any-place/document.pdf
+        #enabled_if_env: ENABLE_PDF_EXPORT
+        #
+        #debug_html: true
+        #show_anchors: true
+        #verbose: true
