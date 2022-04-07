@@ -1,3 +1,3 @@
 # Travail de diplôme Technicien ES 
 
-## CoachingTools
+## FitJourney
