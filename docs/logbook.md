@@ -30,3 +30,13 @@ Pour un client 2 manières d'avoir un compte :
 
 * Par le formulaire d'enregistrement au préalable, le coach n'aura qu'a séléctionner le profile client lors de la prise en charge.
 * Par le coach (un coach peut créer un compte lors de l'ajout d'une prise en charge d'un client, le compte sera créer avec les infos basiques qui seront demandées (Nom, prénom, date de naissance, adresse) et un mot de passe est généré pour permettre au client de se connecter plus tard)
+
+J'ai ajouté la structure de l'application et initialisé les blueprints.
+(Les blueprints permettent de séparer l'application en plusieurs modules qui sont ensuite importé au même endroit)
+
+J'ai créer un fichier de config qui permet d'avoir 2 mode : 
+
+* Debug
+* Production 
+
+Qui permet d'avoir des paramètres différents. J'ai également ajouté un fichier run qui permet de lancer l'application. Il charge la configuration correspondant au mode actuel (Debug/Production) et run l'application Flask.
