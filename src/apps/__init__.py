@@ -29,9 +29,9 @@ def register_blueprints(app):
     """
     Register all blueprints
     """
-    for module_name in ('authentication', 'home'):
+    for module_name in ('authentication','home'):
         module = import_module('apps.{}.routes'.format(module_name))
-        app.register_blueprints(module.blueprint)
+        app.register_blueprint(module.blueprint)
 
 def config_database(app):
     """
@@ -42,7 +42,7 @@ def config_database(app):
         db.create_all()
 
     @app.teardown_request
-    def shutdown_session(exception=None):
+    def remove_session(exception=None):
         db.session.remove()
 
 def create_app(config):
@@ -50,5 +50,5 @@ def create_app(config):
     app.config.from_object(config)
     register_extensions(app)
     register_blueprints(app)
-    configure_database(app)
+    config_database(app)
     return app

@@ -1,0 +1,44 @@
+<!--
+=========================================================
+Author          :           Thomas Fujise
+Date            :           11.04.2022
+File            :           base.html
+Version         :           1.0.0
+Brief           :           HTML base for each page of the application
+=========================================================
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  <title>
+        FitJourney - {% block title %} {% endblock %}
+  </title>
+
+  {% include "includes/css.html" %}
+  <!-- Specific CSS HERE -->
+  {% block stylesheets %}{% endblock stylesheets %}
+
+</head>
+
+<body class="">
+
+  <div class="main-content" id="panel">
+
+    {% include "includes/nav.html" %}
+
+    {% block content %}{% endblock content %}
+
+  </div>
+
+  {% include "includes/scripts.html" %}
+
+  <!-- Specific JS HERE --> 
+  {% block javascripts %}{% endblock javascripts %}
+
+</body>
+
+</html>

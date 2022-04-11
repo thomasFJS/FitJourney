@@ -21,11 +21,11 @@ class Config(object):
 
     SQLALCHEMY_DATABASE_URI = '{}://{}:{}@{}:{}/{}'.format(
         config('DB_ENGINE', default='mysql+pymysql'),
-        config('DB_USERNAME', default=''),
-        config('DB_PASS', default=''),
+        config('DB_USERNAME', default='dbflask_dba'),
+        config('DB_PASS', default='Super2012'),
         config('DB_HOST', default='localhost'),
         config('DB_PORT', default='3306'),
-        config('DB_NAME', default='')
+        config('DB_NAME', default='db_flask')
     )
 
 

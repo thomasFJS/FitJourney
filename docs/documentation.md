@@ -16,7 +16,7 @@ This document contains all the steps of the project, which was carried out withi
 
 ## Introduction
 Il existe très peu d'outil qui permet à un coach sportif de gérer sa salle de sport avec le suivi de tous ses clients. 
-### Choix du sujet 
+
 
 ## Cahier des charges
 
