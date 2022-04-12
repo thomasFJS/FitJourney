@@ -63,3 +63,10 @@ Il faut également que je fasse le diagramme qui m'a été conseillé par M.Mar�
 
 Pour la sécurité des mot de passe j'ai déjà rajouté 2 méthodes pour permettre de hasher et de verifier les mots de passe. J'utilise la librairie Python hashlib qui me permet d'hasher les mots de passe avec un salt. Pour éviter d'enregistrer le salt en base, le salt est hashé en *sha256* et est placé avant le mot de passe dans la chaine. Comme un *sha256* a toujours 64 charactères, pour vérifier le mot de passe je saute les 64 premiers charactères de la chaine pour pouvoir comparer avec la saisie de l'utilisateurs.
 
+J'ai pu faire un diagramme explicatif des différents processus lors de l'utilisation de mon application en fonction de notre rôle (Nouveau client, client, coach)
+
+[Image]()
+
+J'ai également terminé le login (le register ne devrait pas prendre beaucoup de temps). J'ai eu quelques soucis pour inclure les formulaires avec FlaskForm (avec les imports python). J'ai ajouté une navbar pour mes pages qui servira pour la navigation dans l'application. J'ai juste encore quelques soucis avec le css mais ce n'est pas du tout prioritaire pour le moment. 
+
+J'ai regardé pour utiliser un outil de génération de documentation, je pense utiliser Pdoc qui à l'air assez complet et qui permet de générer la documentation sur les librairies/modules inclus dans le projet.
