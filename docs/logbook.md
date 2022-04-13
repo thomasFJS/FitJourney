@@ -65,7 +65,7 @@ Pour la sécurité des mots de passe j'ai déjà rajouté 2 méthodes pour perme
 
 J'ai pu faire un diagramme explicatif des différents processus lors de l'utilisation de mon application en fonction de notre rôle (Client, coach)
 
-[Image](./diagram/diagram.png)
+[Image](./img/diagram.png)
 
 J'ai également terminé le login (le register ne devrait pas prendre beaucoup de temps). J'ai eu quelques soucis pour inclure les formulaires avec FlaskForm (avec les imports python). J'ai ajouté une navbar pour mes pages qui servira pour la navigation dans l'application. J'ai juste encore quelques soucis avec le css mais ce n'est pas du tout prioritaire pour le moment. 
 
