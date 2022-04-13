@@ -20,13 +20,18 @@ from apps.authentication.models import Users
 from apps.authentication.util import verify_pass
 
 
-
+#Default route
 @blueprint.route('/')
 def route_default():
     return redirect(url_for('home_blueprint.index'))
 
+
+#Login route
 @blueprint.route('/login', methods=['GET', 'POST'])
 def login():
+    """
+    Display login page with the login form 
+    """
     login_form = LoginForm()
     if 'login' in request.form:
 
@@ -36,7 +41,7 @@ def login():
 
         #Locate the user
         user = Users.query.filter_by(email=email).first()
-
+        print(user.password)
         #Check password
         if user and verify_pass(password, user.password):
             login_user(user)
@@ -49,3 +54,41 @@ def login():
         return render_template('accounts/login.html',form=login_form)
     
     return redirect(url_for('home_blueprint.index'))
+
+
+#Register route
+@blueprint.route('/register', methods=['GET', 'POST'])
+def register():
+    """
+    Display Register page with the register form 
+    """
+    register_form = RegisterForm()
+
+    if 'register' in request.form:
+
+        email = request.form['email']
+        username = request.form['username']
+        #surname = request.form['surname']
+        #birthdate = request.form['birthdate']
+
+        #Check if user already exists
+        user = Users.query.filter_by(email=email).first()
+
+        if user:
+            return render_template('accounts/register.html', msg='Email Already registered', success=False, form=register_form)
+
+        #Else we create the user
+        user = Users(**request.form)
+        db.session.add(user)
+        db.session.commit()
+
+        return render_template('accounts/register.html', msg='User has been created please <a href="/login"> login</a> ', success=True, form=register_form)
+
+    else:
+        return render_template('accounts/register.html', form=register_form)
+
+
+@blueprint.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('authentication_blueprint.login'))

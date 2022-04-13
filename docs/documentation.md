@@ -17,14 +17,21 @@ This document contains all the steps of the project, which was carried out withi
 ## Introduction
 Il existe très peu d'outil qui permet à un coach sportif de gérer sa salle de sport avec le suivi de tous ses clients. 
 
+## Analyse de l'existant
 
 ## Cahier des charges
 
-## Analyse de l'existant
+
 
 ## Analyse fonctionnelle
 
 ## Analyse Organique
+
+### Mise en place
+
+#### GitHub
+#### Trello
+#### Python Flask
 
 ### Maquettage
 Pour préparer les interfaces, j'ai réalisé des maquettes avec l'outil Figma. Les maquettes m'ont permis de mettre à plat les éléments nécessaires pour les interfaces et ont évité de perdre trop de temps lors de la création des interfaces.

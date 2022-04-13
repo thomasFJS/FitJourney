@@ -27,6 +27,7 @@ class Config(object):
         config('DB_PORT', default='3306'),
         config('DB_NAME', default='db_flask')
     )
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 
 class ProductionConfig(Config):

@@ -10,7 +10,7 @@ from flask import Blueprint
 
 
 blueprint = Blueprint(
-    'authetication_blueprint',
+    'authentication_blueprint',
     __name__,
     url_prefix=''
 )

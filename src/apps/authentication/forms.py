@@ -25,13 +25,13 @@ class RegisterForm(FlaskForm):
     """
     Create a register form
     """ 
-    name = StringField('Name', id='name_register', validators=[DataRequired()])
+    username = StringField('Userame', id='name_register', validators=[DataRequired()])
 
     surname = StringField('Surname', id='surname_register', validators=[DataRequired()])
 
     email = StringField('Email', id="email_rgister", validators=[DataRequired(), Email()])
 
-    date_of_birth = DateField('Date of Birth', id="date_register", validators=[DataRequired()])
+    birthdate = DateField('Birthdate', id="date_register", validators=[DataRequired()])
 
     password = PasswordField('Password', id='password_register', validators=[DataRequired(), EqualTo('confirm_password', message='Passwords Must Match!')])
 
