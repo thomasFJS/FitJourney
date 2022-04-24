@@ -15,7 +15,9 @@ FitJourney is a WEB application made with Flask Python framework. It relies main
 This document contains all the steps of the project, which was carried out within the diploma project of the IT Technician formation of Thomas Fujise
 
 ## Introduction
-Il existe très peu d'outil qui permet à un coach sportif de gérer sa salle de sport avec le suivi de tous ses clients. 
+Il existe très peu d'outil qui permet à un coach sportif de gérer sa salle de sport avec le suivi de tous ses clients. C'est pourquoi, j'ai décidé de créer une application qui permettrait de gérer une salle de sports ainsi que le suivi des membres. Ayant passé un diplôme de coach sportif l'année passée, j'étais à l'aise avec les besoins qu'un professionnel aurait en cas d'utilisation de l'application.
+
+Cette application permet de gérer la salle de sport avec les cartes de membres qui permettent l'accès à la salle ou encore les montres connectés pour enregistrés les données d'entrainements des clients. Elle permet également le suivi des clients.
 
 ## Analyse de l'existant
 
@@ -28,8 +30,6 @@ Il existe très peu d'outil qui permet à un coach sportif de gérer sa salle de
 ## Analyse Organique
 
 ### Mise en place
-
-### Environnement
 
 #### GitHub
 ![Logo Github](./img/github.svg){width=200 align="right"}
@@ -58,9 +58,25 @@ J'ai créé 5 colonnes :
 * Testing (Les tâches en cours de test)
 * Done (Les tâches terminées)
 
-
 #### Python Flask
-Flask est un micro-framework python qui permet la création d'applications web évolutives. Flask dépend de la boite à outils WSGI de [Werkzeug](https://werkzeug.palletsprojects.com/en/2.0.x/) et du moteur de templates [Jinja](https://jinja.palletsprojects.com/en/3.0.x/).
+Flask est un micro-framework Python qui permet la création d'applications web évolutives. Flask dépend de la boite à outils WSGI de [Werkzeug](https://werkzeug.palletsprojects.com/en/2.0.x/) et du moteur de templates [Jinja](https://jinja.palletsprojects.com/en/3.0.x/). Flask était le framework qui répondait le plus à mes besoins, avec l'utilisation de l'API Polar qui est également en Python.
+
+##### Installation Flask
+En premier lieu, il faut disposer d'une version à jour de PIP afin d'installer Python Flask avec la commande :
+
+```
+pip install Flask
+```
+
+##### Utilisation Flask
+Pour lancer une application Flask, il faut utiliser la méthode de l'objet Flask : 
+```
+.run()
+```
+ou lancer directement l'application à l'aide de la commande : 
+```
+Flask run
+```
 
 ##### Micro framework
 Un micro framework est un framework qui tente de fournir uniquement les composants absoluments nécessaires à un développeur pour la création d'une application. Par exemple dans le cas d'une application Web, un micro framework peut être spécifiquement conçu pour la construction d'API pour un autre service/application.
@@ -69,6 +85,17 @@ Le terme *micro* dans le micro framework signifie que Flask vise à garder le co
 
 En définissant uniquement le moteur de templates et un système de routes, Flask laisse le choix de personnaliser (en ajoutant des packages) pour la gestion des formulaires par exemple.
 
+### Environnement
+
+ 
+### Diagramme d'utilisation
+![Use diagram](./img/diagram.png)
+Diagramme de l'utilisation de l'application pour les 2 types d'utilisateurs.
+### Base de données
+#### UML
+#### Accès
+#### Données de tests
+#### Tables
 ### Maquettage
 Pour préparer les interfaces, j'ai réalisé des maquettes avec l'outil Figma. Les maquettes m'ont permis de mettre à plat les éléments nécessaires pour les interfaces et ont évité de perdre trop de temps lors de la création des interfaces.
 
