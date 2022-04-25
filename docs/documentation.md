@@ -27,75 +27,6 @@ Cette application permet de gérer la salle de sport avec les cartes de membres 
 
 ## Analyse fonctionnelle
 
-## Analyse Organique
-
-### Mise en place
-
-#### GitHub
-![Logo Github](./img/github.svg){width=200 align="right"}
-
-Pour pouvoir garder un suivi constant de mon projet, j'ai choisis d'utiliser GitHub comme outil de contrôle de version.
-
-Voici comment est structuré le github :
-
-![Arborescence Github](./img/github_arborescence.PNG)
-
-* Le dossier docs/ contient les fichiers de documentation et de journal de bord
-* Le dossier src/ contient tout le code source de l'application
- 
-#### Trello
-![Logo Trello](./img/trello.png){width=200 align="right"}
-
-Trello est un outil de gestion de projet en ligne, inspiré par la méthode Kanban. Il repose sur une organisation des projets en planches listant des cartes, chacune représentant des tâches. 
-
-Afin de créer une roadmap pour mon projet, j'ai utilisé Trello pour lister les différentes étapes de mon projet. J'ai ensuite pu définir les échéances pour chaque tâches/étapes avec mon planning prévisionnel.
-
-J'ai créé 5 colonnes :
-
-* Backlog (Liste de toutes les tâches)
-* To-Do (Les tâches qui ont été validées et qui sont à faire)
-* Doing (Les tâches en cours)
-* Testing (Les tâches en cours de test)
-* Done (Les tâches terminées)
-
-#### Python Flask
-Flask est un micro-framework Python qui permet la création d'applications web évolutives. Flask dépend de la boite à outils WSGI de [Werkzeug](https://werkzeug.palletsprojects.com/en/2.0.x/) et du moteur de templates [Jinja](https://jinja.palletsprojects.com/en/3.0.x/). Flask était le framework qui répondait le plus à mes besoins, avec l'utilisation de l'API Polar qui est également en Python.
-
-##### Installation Flask
-En premier lieu, il faut disposer d'une version à jour de PIP afin d'installer Python Flask avec la commande :
-
-```
-pip install Flask
-```
-
-##### Utilisation Flask
-Pour lancer une application Flask, il faut utiliser la méthode de l'objet Flask : 
-```
-.run()
-```
-ou lancer directement l'application à l'aide de la commande : 
-```
-Flask run
-```
-
-##### Micro framework
-Un micro framework est un framework qui tente de fournir uniquement les composants absoluments nécessaires à un développeur pour la création d'une application. Par exemple dans le cas d'une application Web, un micro framework peut être spécifiquement conçu pour la construction d'API pour un autre service/application.
-
-Le terme *micro* dans le micro framework signifie que Flask vise à garder le code de base simple mais extensible. Flask ne prendra pas beaucoup de décisions, par exemple quelle base de données utiliser. Les décisions qu'il prend, telles que le moteur de templates à utiliser, sont faciles à modifier. Tout le reste est libre, de sorte que Flask puisse répondre à tous nos besoins et à tous ce que vous ne voulez pas en même temps.
-
-En définissant uniquement le moteur de templates et un système de routes, Flask laisse le choix de personnaliser (en ajoutant des packages) pour la gestion des formulaires par exemple.
-
-### Environnement
-
- 
-### Diagramme d'utilisation
-![Use diagram](./img/diagram.png)
-Diagramme de l'utilisation de l'application pour les 2 types d'utilisateurs.
-### Base de données
-#### UML
-#### Accès
-#### Données de tests
-#### Tables
 ### Maquettage
 Pour préparer les interfaces, j'ai réalisé des maquettes avec l'outil Figma. Les maquettes m'ont permis de mettre à plat les éléments nécessaires pour les interfaces et ont évité de perdre trop de temps lors de la création des interfaces.
 
@@ -173,3 +104,79 @@ La page ajout de client permet au coach d'effectuer la prise en charge d'un clie
 ![Coach payment](./mockups/Interface_mockups/payment.jpg)
 
 La page paiement permet de valider le paiement d'un client (Aucune transaction n'est effectué par l'application)
+### Sitemap
+
+## Analyse Organique
+
+### Mise en place / Envirronement
+
+#### Visual Studio Code
+
+
+#### GitHub
+![Logo Github](./img/github.svg){width=200 align="right"}
+
+Pour pouvoir garder un suivi constant de mon projet, j'ai choisis d'utiliser GitHub comme outil de contrôle de version.
+
+Voici comment est structuré le github :
+
+![Arborescence Github](./img/github_arborescence.PNG)
+
+* Le dossier docs/ contient les fichiers de documentation et de journal de bord
+* Le dossier src/ contient tout le code source de l'application
+ 
+#### Trello
+![Logo Trello](./img/trello.png){width=200 align="right"}
+
+Trello est un outil de gestion de projet en ligne, inspiré par la méthode Kanban. Il repose sur une organisation des projets en planches listant des cartes, chacune représentant des tâches. 
+
+Afin de créer une roadmap pour mon projet, j'ai utilisé Trello pour lister les différentes étapes de mon projet. J'ai ensuite pu définir les échéances pour chaque tâches/étapes avec mon planning prévisionnel.
+
+J'ai créé 5 colonnes :
+
+* Backlog (Liste de toutes les tâches)
+* To-Do (Les tâches qui ont été validées et qui sont à faire)
+* Doing (Les tâches en cours)
+* Testing (Les tâches en cours de test)
+* Done (Les tâches terminées)
+
+#### Python Flask
+Flask est un micro-framework Python qui permet la création d'applications web évolutives. Flask dépend de la boite à outils WSGI de [Werkzeug](https://werkzeug.palletsprojects.com/en/2.0.x/) et du moteur de templates [Jinja](https://jinja.palletsprojects.com/en/3.0.x/). Flask était le framework qui répondait le plus à mes besoins, avec l'utilisation de l'API Polar qui est également en Python.
+
+##### Installation Flask
+En premier lieu, il faut disposer d'une version à jour de PIP afin d'installer Python Flask avec la commande :
+
+```
+pip install Flask
+```
+
+##### Utilisation Flask
+Pour lancer une application Flask, il faut utiliser la méthode de l'objet Flask : 
+```
+.run()
+```
+ou lancer directement l'application à l'aide de la commande : 
+```
+Flask run
+```
+
+##### Micro framework
+Un micro framework est un framework qui tente de fournir uniquement les composants absoluments nécessaires à un développeur pour la création d'une application. Par exemple dans le cas d'une application Web, un micro framework peut être spécifiquement conçu pour la construction d'API pour un autre service/application.
+
+Le terme *micro* dans le micro framework signifie que Flask vise à garder le code de base simple mais extensible. Flask ne prendra pas beaucoup de décisions, par exemple quelle base de données utiliser. Les décisions qu'il prend, telles que le moteur de templates à utiliser, sont faciles à modifier. Tout le reste est libre, de sorte que Flask puisse répondre à tous nos besoins et à tous ce que vous ne voulez pas en même temps.
+
+En définissant uniquement le moteur de templates et un système de routes, Flask laisse le choix de personnaliser (en ajoutant des packages) pour la gestion des formulaires par exemple.
+
+
+### Use case
+![Use case](./img/use_case.png)
+### Diagramme d'utilisation
+![Use diagram](./img/diagram.png)
+Diagramme de l'utilisation de l'application pour les 2 types d'utilisateurs.
+### Base de données
+#### MCD
+#### MLD
+#### Accès
+#### Données de tests
+#### Tables
+#### SQLAlchemy
