@@ -41,7 +41,6 @@ def login():
 
         #Locate the user
         user = Users.query.filter_by(email=email).first()
-        print(user.password)
         #Check password
         if user and verify_pass(password, user.password):
             login_user(user)
@@ -64,12 +63,10 @@ def register():
     """
     register_form = RegisterForm()
 
-    if 'register' in request.form:
+    if register_form.validate_on_submit():
 
         email = request.form['email']
-        username = request.form['username']
-        #surname = request.form['surname']
-        #birthdate = request.form['birthdate']
+        #name = request.form['name']
 
         #Check if user already exists
         user = Users.query.filter_by(email=email).first()

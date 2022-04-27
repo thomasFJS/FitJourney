@@ -47,7 +47,15 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-single-02"></i></span>
                     </div>
-                    {{ form.username(placeholder="Username",class="form-control") }}
+                    {{ form.name(placeholder="Name",class="form-control") }}
+                  </div>
+                </div>
+                <div class="form-group mb-3">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-single-02"></i></span>
+                    </div>
+                    {{ form.surname(placeholder="Surname",class="form-control") }}
                   </div>
                 </div>
                 <div class="form-group mb-3">
@@ -58,17 +66,34 @@
                     {{ form.email(placeholder="Email",class="form-control") }}
                   </div>
                 </div>
+                <div class="form-group mb-3">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-single-02"></i></span>
+                    </div>
+                    {{ form.birthdate(placeholder="Date of Birth",class="form-control") }}
+                  </div>
+                </div>
                 <div class="form-group">
                   <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                     </div>
-                    {{ form.password(placeholder="Password",class="form-control",type="password") }}
+                    
+                    {{ form.password(placeholder="Password",class="form-control") }}
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                    </div>
+                    {{ form.confirm_password(placeholder="Confirm Password",class="form-control") }}
                   </div>
                 </div>
 
                 <div class="text-center">
-                  <button type="submit" name="register" class="btn btn-primary my-4">Register</button>
+                  {{ form.register(class="btn btn-primary my-4") }}
                 </div>
               </form>
             {% endif %}

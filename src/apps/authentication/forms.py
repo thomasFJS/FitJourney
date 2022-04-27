@@ -7,8 +7,9 @@ Brief   :        Authentication forms
 """
 
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, PasswordField, DateField, BooleanField, ValidationError
+from wtforms import StringField, SubmitField, PasswordField, BooleanField, ValidationError
 from wtforms.validators import Email, DataRequired, EqualTo, Length
+from wtforms.fields.html5 import DateField, EmailField
 
 
 class LoginForm(FlaskForm):
@@ -19,21 +20,22 @@ class LoginForm(FlaskForm):
 
     password = PasswordField('Password', id='pwd_login', validators=[DataRequired()])
     
-    submit = SubmitField("Submit")
+    login = SubmitField("login")
 
 class RegisterForm(FlaskForm):
     """
     Create a register form
     """ 
-    username = StringField('Userame', id='name_register', validators=[DataRequired()])
+    name = StringField('Name', id='name_register', validators=[DataRequired()])
 
     surname = StringField('Surname', id='surname_register', validators=[DataRequired()])
 
-    email = StringField('Email', id="email_rgister", validators=[DataRequired(), Email()])
+    email = EmailField('Email', id="email_rgister", validators=[DataRequired(), Email()])
 
     birthdate = DateField('Birthdate', id="date_register", validators=[DataRequired()])
 
     password = PasswordField('Password', id='password_register', validators=[DataRequired(), EqualTo('confirm_password', message='Passwords Must Match!')])
 
-    confirm_password = PasswordField('Confirm Password', id='password2_register', validators=[DataRequired()])
+    confirm_password = PasswordField('Confirm Password', id='password2_register')
 
+    register = SubmitField("register")
