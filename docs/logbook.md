@@ -134,3 +134,11 @@ J'ai trouvé pourquoi les mots de passe ne se vérifiaient pas, je passais direc
 
 J'ai réussi à adapter le login et le register avec les bons champs, il ne manque plus qu'a ajouter l'affichage des erreurs.
 
+M.Jossi est passé pour l'évaluation intermédiaire. Globalement tout est ok, j'ai juste prit un léger retard avec toute la mise en place du système que j'avais légèrement sous-estimé. Pour la documentation, j'ai quelques points a ajouter/modifier :
+
+* Ajouter les sitemaps 
+* Modifier le MCD (Pas de flèches, revoir les cardinalitées, double relations pour coach/client)
+* Ajouter Installation pour le projet en général (pas seulement Python Flask)
+* Ajouter l'aborescence du dossier source (explication détaillé)
+
+J'ai pu terminé la modification du MCD, je vais l'envoyer à M.Jossi pour qu'il puisse vérifier. Il faut maintenant que j'avance sur la documentation.
