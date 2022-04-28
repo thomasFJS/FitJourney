@@ -67,22 +67,45 @@ La page profil permet au client de modifier ses informations personnelles. Plusi
 * 1 bouton pour modifier le mot de passe 
 * 1 bouton pour importer une photo de profil.
 
- Il a également accès à des statistiques sur les données des entrainements qu'il a effectué cette semaine (En dessous des informations de son compte).
+ Il a également accès à des statistiques sur les données des entrainements qu'il a effectués cette semaine (en rouge) et la liste des bilans généraux et de session que l'utilisateur a posté (en vert). Il a la possibilité d'ajouter un nouveau bilan général en cliquant sur le bouton au-dessus.
+
+
+##### Page Ajout Bilan 
+![Add coaching reports page](./mockups/Interface_mockups/client_coach_report.jpg)
+
+La page "Ajout Bilan" permet au client de noter, soit la qualité du suivi effectué par le coach, soit une session effectuée. 
+
+Dans la zone rouge, l'élément qui est évalué (un coach ou une session).
+
+Dans la zone bleue, les différents éléments à noter ainsi qu'une zone pour ajouter un commentaire.
+
+##### Page Bilan
+![Coaching report page](./mockups/Interface_mockups/general_report.jpg)
+
+La page "Bilan" permet de voir le bilan ajouté, soit un bilan sur le suivi de manière générale, soit un bilan sur une session effectuée.
+
+Dans la zone rouge, on peut voir de quel type de bilan il s'agit (Bilan général sur le coaching ou bilan d'une session). 
+
+Dans la zone verte, on retrouve le client et la date à laquel le bilan a été posté.
+
+Dans la zone bleue, on retrouve les éléments qui ont été noté par le client.
 
 ##### Page liste de nos entrainements
 ![List Workouts](./mockups/Interface_mockups/workouts_list.jpg)
 
-Cette page affiche la liste de toutes les entrainements effectués par le client. L'utilisateur peut cliquer sur chaque élément de la liste pour avoir les détails de l'entrainement
+Cette page affiche la liste de tous les entrainements effectués par le client. L'utilisateur peut cliquer sur chaque élément de la liste pour avoir les détails de l'entrainement.
 
 ##### Page détails entrainement
 ![Detail workout](./mockups/Interface_mockups/workout_details.jpg)
 
-Cette page affiche les détails d'un entrainement avec les données récupéré à l'aide de la smartwatch. On peut retrouver des informations comme : 
+Cette page affiche les détails d'un entrainement avec les données récupérées à l'aide de la smartwatch. On peut retrouver des informations comme : 
 
 * Le nombre de calories brûlées
 * Les pulsations cardiaques par minute avec un graphique montrant l'évolution durant l'entrainement
 * La durée de l'entrainement 
 * Le type d'entrainement
+
+Le client peut ajouter un bilan en cliquant sur le bouton (encadré en rouge) pour donner son ressenti sur la séance.
 
 ##### Page prochaine session
 ![Next session](./mockups/Interface_mockups/client_next_session.jpg)
@@ -91,38 +114,61 @@ Cette page affiche les prochaines sessions d'entrainements avec un coach du clie
 
 
 #### En tant que coach
-Si on se connecte à l'application en tant que coach, on a alors accès à 5 pages supplémentaire.
+Si on se connecte à l'application en tant que coach, on a alors accès à 5 autres pages.
 
 ##### Page tableau de bord
 ![Coach dashboard](./mockups/Interface_mockups/coach_dashboard.jpg)
 
-La page tableau de bord permet au coach de voir la liste des clients dont il effectue le suivi. Le coach peut cliquer sur le nom d'un de ses clients pour afficher le profil du client concerné. Il a également accès à un bouton pour ajouter un nouveau client.
-Les informations de la prochaine session avec un client sont disponible en dessous de la liste des clients. 
+La page tableau de bord permet au coach de voir la liste des clients (en rouge) dont il effectue le suivi. Le coach peut cliquer sur le nom d'un de ses clients pour afficher le profil du client concerné. 
+
+Il a également accès à un bouton pour ajouter un nouveau client (en bleu).
+Les informations de la prochaine session avec un client sont disponibles au-dessus de la liste des clients (en vert). 
 
 ##### Page Ajout de client 
 ![Coach Add Client](./mockups/Interface_mockups/add_client.jpg)
 
-La page ajout de client permet au coach d'effectuer la prise en charge d'un nouveau client. Le coach peut séléctionner un compte déjà existant (si le client en a déjà créé un) ou créer un nouveau compte client. Si le coach séléctionne un compte déjà existant les champs se remplisse automatiquement.
+La page ajout de client permet au coach d'effectuer la prise en charge d'un nouveau client. Si le client possède déjà un compte, le coach peut séléctionner un compte déjà existant (en vert) ou créer un nouveau compte client. 
+
+Si le coach séléctionne un compte déjà existant les champs se remplisse automatiquement. Il faudra uniquement séléctionner le type d'abonnement souhaité (en rouge)
 
 ##### Page profil client
 ![Client profil](./mockups/Interface_mockups/profile_with_coach_option.jpg)
 
-La page profil client permet au coach de visionner le profil de ses clients. Plusieurs boutons supplémentaires sont disponibles :
+La page profil client permet au coach de visionner le profil de ses clients (en bleu). Plusieurs boutons sont disponibles :
 
-* 1 bouton pour le changement de la carte de membre
-* 1 bouton pour le renouvellement de l'abonnement
-* 1 bouton pour l'annulation de l'abonnement 
-* Importation des programmes
+* 1 bouton pour le changement de la carte de membre (Bouton bleu)
+* 1 bouton pour le renouvellement de l'abonnement (Bouton vert)
+* 1 bouton pour l'annulation de l'abonnement (Bouton rouge)
 
-##### Page Paiement
+Il peut également voir les graphiques/statistiques disponibles sur le profil.
+
+Le coach peut ajouter les nouveaux programmes du client (en rouge) à l'aide des boutons d'importation (1 bouton pour le programme d'entrainement et 1 bouton pour le programme de nutrition). Les anciens programmes sont disponibles en cliquant sur les boutons du programme souhaité (bouton vert et orange), leurs dates d'importation sont affichées à côté.
+
+Dans la zone verte, on peut retrouver les différents bilan de satisfaction que le client a ajouté. En haut de cette zone, un bouton d'ajout de bilan est disponible. Il va permettre d'effectuer le bilan du client et d'ajouter les nouvelles informations (Poids, Masse graisseuse, etc)
+
+##### Page Bilan client
+![Bilan client](./mockups/Interface_mockups/coach_report.jpg)
+
+
+La page Bilan client permet au coach d'ajouter le bilan d'un client.
+
+Dans la zone rouge, on retrouve les infos qui changent le moins voire jamais (Nom, taille ou encore l'âge).
+
+Dans la zone bleue, les informations importantes qui ont pu être récupérées suite à la pesée.
+
+Dans la zone verte, il est possible d'ajouter des photos du physique du client pour pouvoir éventuellement avoir des avant/après en guise de comparaison.
+
+##### Page Abonnement
 ![Coach payment](./mockups/Interface_mockups/payment.jpg)
 
-La page paiement permet de valider le paiement d'un client (Aucune transaction n'est effectué par l'application). Le coach peut séléctionner le type d'abonnement que le client souhaite prendre, la date d'échéance du nouvel abonnement séléctionné ainsi que son coût seront affichés.
+La page abonnement permet de valider le paiement d'un client (Aucune transaction n'est effectué par l'application). Le coach peut séléctionner le type d'abonnement que le client souhaite prendre, la date d'échéance du nouvel abonnement séléctionné ainsi que son coût seront affichés.
 
 ##### Page Calendrier
 ![Coach calendar](./mockups/Interface_mockups/coach_calendar.jpg)
 
-La page calendrier permet au coach d'avoir accès à un calendrier et de visionner les rendez-vous enregistré à la date séléctionné. Un bouton pour ajouter une nouvelle session avec un client est disponible. Le coach doit seulement renseigner :
+La page calendrier permet au coach d'avoir accès à un calendrier et de visionner les rendez-vous enregistré à la date séléctionné. Les sessions enregistrés sont affichés dans la zone rouge, avec quelques détails sur la séance.
+
+Dans la zone verte, un bouton pour ajouter une nouvelle session avec un client est disponible. Le coach doit renseigner :
 
 * Le nom du client (Liste déroulante parmis ses clients)
 * L'heure de la session

@@ -169,3 +169,4 @@ Pour le bilan, les données que le coach devra renseigner à l'aide d'une balanc
 * Protein
 * Body Age
 
+J'ai pu terminé les nouvelles maquettes, j'ai rajouter une page bilan de session pour l'utilisateur ainsi qu'une page bilan "général" pour noter la qualité du coaching. Du côté coach, j'ai rajouté la page pour effectuer le bilan général avec les informations mentionnées au-dessus. 
