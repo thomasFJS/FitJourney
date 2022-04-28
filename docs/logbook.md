@@ -140,5 +140,32 @@ M.Jossi est passé pour l'évaluation intermédiaire. Globalement tout est ok, j
 * Modifier le MCD (Pas de flèches, revoir les cardinalitées, double relations pour coach/client)
 * Ajouter Installation pour le projet en général (pas seulement Python Flask)
 * Ajouter l'aborescence du dossier source (explication détaillé)
+* Revoir l'ordre des maquettes (ordre logique)
+* Explication des boutons sur les maquettes
+* Use case dans l'analyse fonctionnelle 
+* Schéma pour montrer comment l'application va intéragir avec l'API
 
 J'ai pu terminé la modification du MCD, je vais l'envoyer à M.Jossi pour qu'il puisse vérifier. Il faut maintenant que j'avance sur la documentation.
+
+### Jeudi, 28 Avril 2022
+J'ai commencé à revoir la description de mes maquettes. Je me suis rendu compte de quelques incohérence sur certaines maquettes comme sur le tableau de bord du coach, la prochaine session était affiché tout en bas de la page. Il était donc plus cohérent d'afficher cette information tout en haut et de mettre la liste de client en bas.
+
+J'ai également eu une réflexion sur les bilans. J'avais totalement oublié de penser au bilan qui est un élément essentiel du coaching. Je vais donc revoir les maquettes et je pourrai donc modifier le MCD quand je retournerai dessus plus tard.
+Je pense rajouter 2 "types" de bilan, un bilan *général* qui sert à évaluer le ressenti du client par rapport à sa prise en charge, le suivi de manière général. Le deuxième type de bilan serait un bilan par session (qui ne serait pas obligatoire, au début cela peut ne pas déranger mais si le client effectu beaucoup de séance cela peut vite devenir répétitif) où le client note son ressenti sur la séance. Pour le coach, un bilan est effectué de manière soit hebdomadaire, soit mensuelle pour enregistrer les nouvelles mesures (poids, mensu, chrono, cela dépend du type de coaching).
+
+Pour le bilan, les données que le coach devra renseigner à l'aide d'une balance connecté qui permets leurs acquisition sont : 
+
+* Poids
+* BMI (Body Mass Index / IMC)
+* Body Fat % 
+* Water % 
+* Mucle Mass % 
+* Bone Mass 
+* BMR
+* Fat Visceral
+* Lean Body Mass
+* Body Fat Mass
+* Muscle Mass
+* Protein
+* Body Age
+

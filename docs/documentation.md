@@ -40,14 +40,20 @@ L'application FitJourney propose 3 niveaux d'accès :
 Lorsqu'on arrive sur l'application sans être authentifié, seuls 3 pages sont accessibles. 
 ##### Page d'accueil
 ![Home Page](./mockups/Interface_mockups/home.jpg)
-La page d'accueil est très basique et propose les boutons permettant de s'enregistrer ou de se connecter.
-##### Page de connexion 
-![Login Page](./mockups/Interface_mockups/sign_in.jpg)
-La page de connexion permet aux utilisateurs de se connecter. Un lien est disponible si le mot de passe a été oublié.
+La page d'accueil est très basique et propose 2 boutons :
+
+* 1 bouton de connexion
+* 1 bouton pour s'enregistrer
 
 ##### Page d'enregistrement
 ![Register Page](./mockups/Interface_mockups/sign_up.jpg)
 La page d'enregistrement permet aux utilisateurs de s'enregistrer, une option est disponible pour permettre la création d'un nouveau compte coach. 
+
+##### Page de connexion 
+![Login Page](./mockups/Interface_mockups/sign_in.jpg)
+La page de connexion permet aux utilisateurs de se connecter. Un lien est disponible si le mot de passe a été oublié.
+
+
 
 #### En tant que client 
 Si on se connecte à l'application en tant que client, 4 pages supplémentaires sont disponibles.
@@ -55,17 +61,28 @@ Si on se connecte à l'application en tant que client, 4 pages supplémentaires 
 ##### Page profile
 ![Profile Page](./mockups/Interface_mockups/profile.jpg)
 
-La page profil permet au client de modifier ses informations personnelles. Il a également accès à des statistiques sur les données des entrainements qu'il a effectué cette semaine.
+La page profil permet au client de modifier ses informations personnelles. Plusieurs boutons sont disponibles : 
+
+* 1 bouton "Update" pour appliquer les modifications effectuées sur les informations du compte
+* 1 bouton pour modifier le mot de passe 
+* 1 bouton pour importer une photo de profil.
+
+ Il a également accès à des statistiques sur les données des entrainements qu'il a effectué cette semaine (En dessous des informations de son compte).
 
 ##### Page liste de nos entrainements
 ![List Workouts](./mockups/Interface_mockups/workouts_list.jpg)
 
-Cette page affiche la liste de toutes les entrainements effectués par le client. 
+Cette page affiche la liste de toutes les entrainements effectués par le client. L'utilisateur peut cliquer sur chaque élément de la liste pour avoir les détails de l'entrainement
 
 ##### Page détails entrainement
 ![Detail workout](./mockups/Interface_mockups/workout_details.jpg)
 
-Cette page affiche les détails d'un entrainement avec les données récupéré avec la smartwatch.
+Cette page affiche les détails d'un entrainement avec les données récupéré à l'aide de la smartwatch. On peut retrouver des informations comme : 
+
+* Le nombre de calories brûlées
+* Les pulsations cardiaques par minute avec un graphique montrant l'évolution durant l'entrainement
+* La durée de l'entrainement 
+* Le type d'entrainement
 
 ##### Page prochaine session
 ![Next session](./mockups/Interface_mockups/client_next_session.jpg)
@@ -76,34 +93,44 @@ Cette page affiche les prochaines sessions d'entrainements avec un coach du clie
 #### En tant que coach
 Si on se connecte à l'application en tant que coach, on a alors accès à 5 pages supplémentaire.
 
-##### Page profile client
-![Client profile](./mockups/Interface_mockups/profile_with_coach_option.jpg)
-
-La page profile client permet au coach de visionner le profil de ses clients. Des options supplémentaires sont disponibles :
-
-* Changement de la carte de membre
-* Renouvellement/Annulation de l'abonnement
-* Importation des programmes
-
 ##### Page tableau de bord
 ![Coach dashboard](./mockups/Interface_mockups/coach_dashboard.jpg)
 
-La page tableau de bord permet au coach de voir la liste des clients qu'ils dont il effectue le suivi. Il voit également la prochaine session avec un client.
-
-##### Page Calendrier
-![Coach calendar](./mockups/Interface_mockups/coach_calendar.jpg)
-
-La page calendrier permet au coach d'avoir accès à un calendrier pour visionner les rendez-vous déjà enregistrer et en ajouter de nouveau.
+La page tableau de bord permet au coach de voir la liste des clients dont il effectue le suivi. Le coach peut cliquer sur le nom d'un de ses clients pour afficher le profil du client concerné. Il a également accès à un bouton pour ajouter un nouveau client.
+Les informations de la prochaine session avec un client sont disponible en dessous de la liste des clients. 
 
 ##### Page Ajout de client 
 ![Coach Add Client](./mockups/Interface_mockups/add_client.jpg)
 
-La page ajout de client permet au coach d'effectuer la prise en charge d'un client. Le coach peut séléctionner un compte déjà existant (si le client en a déjà créé un) ou créer un nouveau compte client.
+La page ajout de client permet au coach d'effectuer la prise en charge d'un nouveau client. Le coach peut séléctionner un compte déjà existant (si le client en a déjà créé un) ou créer un nouveau compte client. Si le coach séléctionne un compte déjà existant les champs se remplisse automatiquement.
+
+##### Page profil client
+![Client profil](./mockups/Interface_mockups/profile_with_coach_option.jpg)
+
+La page profil client permet au coach de visionner le profil de ses clients. Plusieurs boutons supplémentaires sont disponibles :
+
+* 1 bouton pour le changement de la carte de membre
+* 1 bouton pour le renouvellement de l'abonnement
+* 1 bouton pour l'annulation de l'abonnement 
+* Importation des programmes
 
 ##### Page Paiement
 ![Coach payment](./mockups/Interface_mockups/payment.jpg)
 
-La page paiement permet de valider le paiement d'un client (Aucune transaction n'est effectué par l'application)
+La page paiement permet de valider le paiement d'un client (Aucune transaction n'est effectué par l'application). Le coach peut séléctionner le type d'abonnement que le client souhaite prendre, la date d'échéance du nouvel abonnement séléctionné ainsi que son coût seront affichés.
+
+##### Page Calendrier
+![Coach calendar](./mockups/Interface_mockups/coach_calendar.jpg)
+
+La page calendrier permet au coach d'avoir accès à un calendrier et de visionner les rendez-vous enregistré à la date séléctionné. Un bouton pour ajouter une nouvelle session avec un client est disponible. Le coach doit seulement renseigner :
+
+* Le nom du client (Liste déroulante parmis ses clients)
+* L'heure de la session
+* La durée
+* Le type de session 
+
+
+
 ### Sitemap
 
 ## Analyse Organique
