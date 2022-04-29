@@ -27,6 +27,58 @@ Cette application permet de gérer la salle de sport avec les cartes de membres 
 
 ## Analyse fonctionnelle
 
+### Cas d'utilisations
+2 cas d'utilisations sont possibles avec l'application.
+
+#### Client 
+
+Le cas d'utilisation pour client : 
+
+![Client use case](./img/client_use_case.png)
+
+Le client n'a que 2 possibilitées sur l'application : 
+
+* S'enregistrer
+
+* Se connecter
+
+Si le client se connecte à l'application, il a alors accès à plusieurs fonctionnalitées :
+
+* Visualiser/Télécharger ses programmes (Entrainement et Nutrition)
+* Laisser un retour sur une session effectué
+* Laisser un retour sur le coaching de manière générale
+
+
+#### Coach
+
+Le cas d'utilisation pour coach :
+
+![Coach use case](./img/coach_use_case.png)
+
+Le coach à lui également 2 possibilitées en arrivant sur l'application (Enregistrement et connexion).
+
+Une fois connecté, le coach à accès à une multitude de fonctionnalitées :
+
+* Ajout d'un nouveau client
+* Ajouter une session avec un client (Prise de rendez-vous)
+
+Il a également accès à des fonctionnalitées pour gérer ses clients : 
+
+* Importation des programmes (entrainement et nutrition)
+* Renouveller l'abonnement souscrit par le client
+* Effectuer un bilan avec un client 
+
+### Sitemap
+La sitemap de l'application possède 2 alternatives, 1 pour les clients et 1 pour les coachs.
+
+#### Sitemap Client 
+
+![Sitemap client](./img/Sitemap_client.png)
+
+#### Sitemap Coach
+
+![Sitemap coach](./img/Sitemap_coach.png) 
+
 ### Maquettage
 Pour préparer les interfaces, j'ai réalisé des maquettes avec l'outil Figma. Les maquettes m'ont permis de mettre à plat les éléments nécessaires pour les interfaces et ont évité de perdre trop de temps lors de la création des interfaces.
 
@@ -177,7 +229,8 @@ Dans la zone verte, un bouton pour ajouter une nouvelle session avec un client e
 
 
 
-### Sitemap
+
+
 
 ## Analyse Organique
 
@@ -241,8 +294,7 @@ Le terme *micro* dans le micro framework signifie que Flask vise à garder le co
 En définissant uniquement le moteur de templates et un système de routes, Flask laisse le choix de personnaliser (en ajoutant des packages) pour la gestion des formulaires par exemple.
 
 
-### Use case
-![Use case](./img/use_case.png)
+
 ### Diagramme d'utilisation
 ![Use diagram](./img/diagram.png)
 Diagramme de l'utilisation de l'application pour les 2 types d'utilisateurs.

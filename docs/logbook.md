@@ -170,3 +170,28 @@ Pour le bilan, les données que le coach devra renseigner à l'aide d'une balanc
 * Body Age
 
 J'ai pu terminé les nouvelles maquettes, j'ai rajouter une page bilan de session pour l'utilisateur ainsi qu'une page bilan "général" pour noter la qualité du coaching. Du côté coach, j'ai rajouté la page pour effectuer le bilan général avec les informations mentionnées au-dessus. 
+
+### Vendredi, 29 Avril 2022
+Maintenant que j'ai rajouté les bilans et les avis je vais revoir le MCD. Je décide de séparer les informations physiques de la table utilisateur et d'ajouter une date dans la table information physique pour avoir un historique de l'évolution. Il faut également que j'ajoute 2 tables pour les avis (Coaching et sessions). 
+
+Au niveau MCD, je pense que les 2 tables avis doivent être reliées à une table mère "Reviews" qui serait associée à la table *Users*. Je demanderai à M.Jossi lorsque je lui enverrai mon MCD pour qu'il puisse vérifier et me donner son avis. 
+
+En utilisant une table mère pour les avis, je dois remonter le champ "commentaire" car c'est un champ commun entre les 2 tables avis. (Les champs d'évaluation pour les avis ne pourront donc pas être modifié sachant qu'ils représentent des champs définis dans la base de données)
+
+Je vais encore revoir les cardinalités du MCD et je pourrai ensuite l'envoyer à M.Jossi. 
+
+Voici le nouveau MCD :
+
+![MCD 2.0](./img/MCD_2.0.png)
+
+J'ai revu également les cas d'utilisations que j'avais réalisé, j'ai décider de faire 2 schéma différent pour le client et le coach.
+
+![Client use case](./img/client_use_case.png)
+
+![Coach use case](./img/coach_use_case.png)
+
+J'ai pu avancer sur la documentation, il faut encore que : 
+
+* J'ajoute les navbars dans la section maquette
+* J'explique les 2 sitemaps
+* J'ajoute le MCD 
