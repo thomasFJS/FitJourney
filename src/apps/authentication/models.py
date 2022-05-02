@@ -13,9 +13,9 @@ from apps import db, login_manager
 from apps.authentication.util import hash_pass
 
 
-class Users(db.Model, UserMixin):
+class User(db.Model, UserMixin):
 
-    __tablename__ = 'Users'
+    __tablename__ = 'USER'
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64))
@@ -27,11 +27,9 @@ class Users(db.Model, UserMixin):
     logo = db.Column(db.String(250), nullable=True)
     address = db.Column(db.String(64), nullable=True)
     npa = db.Column(db.String(32), nullable=True)
-    height = db.Column(db.Numeric, nullable=True)
-    weight = db.Column(db.Numeric, nullable=True)
     is_active = db.Column(db.Boolean)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
-    role = db.Column(db.Integer, db.ForeignKey('roles.id'))
+    role = db.Column(db.Integer, db.ForeignKey('ROLE.id'))
 
     def __init__(self, **kwargs):
         for property, value in kwargs.items():
@@ -49,18 +47,46 @@ class Users(db.Model, UserMixin):
         return str(self.email)
 
 
-class Roles(db.Model):
-    __tablename__ = 'roles'
+class PhysicalInfo(db.Model):
+    __tablename__ = "PHYSICAL_INFO"
+
+    user_id = db.Column(db.Integer, db.ForeignKey('USER.id'), primary_key=True)
+
+    height = db.Column(db.Numeric, nullable=False)
+    weight = db.Column(db.Numeric, nullable=False)
+    age = db.Column(db.Integer, nullable=False)
+    bmi = db.Column(db.Numeric, nullable=False)
+    bmr = db.Column(db.Numeric, nullable=False)
+    bodyfat_percentage = db.Column(db.Numeric, nullable=False)
+    muscle_mass_percentage = db.Column(db.Numeric, nullable=False)
+    bone_mass_percentage = db.Column(db.Numeric, nullable=False)
+    water_percentage = db.Column(db.Numeric, nullable=False)
+    protein_percentage = db.Column(db.Numeric, nullable=False)
+    bone_mass = db.Column(db.Numeric, nullable=False)
+    muscle_mass = db.Column(db.Numeric, nullable=False)
+    bodyfat_mass = db.Column(db.Numeric, nullable=False)
+    leanbody_mass = db.Column(db.Numeric, nullable=False)
+    fat_visceral = db.Column(db.Numeric, nullable=False)
+    body_age = db.Column(db.Integer, nullable=False)
+    date = db.Column(db.Date, nullable=False)
+    front_photo = db.Column(db.String(250), nullable=True)
+    right_side_photo = db.Column(db.String(250), nullable=True)
+    left_side_photo = db.Column(db.String(250), nullable=True)
+    back_photo = db.Column(db.String(250), nullable=True)
+
+
+class Role(db.Model):
+    __tablename__ = 'ROLE'
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(32))
 
-class Workouts(db.Model):
-    __tablename__ = 'workouts'
+class Workout(db.Model):
+    __tablename__ = 'WORKOUT'
 
     id = db.Column(db.Integer, primary_key=True)
-    workout_type = db.Column(db.Integer, db.ForeignKey('workoutsType.id'))
-    client_id = db.Column(db.Integer, db.ForeignKey('Users.id'))
+    workout_type = db.Column(db.Integer, db.ForeignKey('WORKOUT_TYPE.id'))
+    client_id = db.Column(db.Integer, db.ForeignKey('USER.id'))
     date = db.Column(db.DateTime)
     duration = db.Column(db.Time)
     heart_rate_max = db.Column(db.Numeric)
@@ -71,66 +97,90 @@ class Workouts(db.Model):
     distance = db.Column(db.Numeric, nullable=True)
     pace_avg = db.Column(db.Time, nullable=True)
 
-class WorkoutsType(db.Model):
-    __tablename__ = 'workoutsType'
+class WorkoutType(db.Model):
+    __tablename__ = 'WORKOUT_TYPE'
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(32))
     description = db.Column(db.String(250))
     logo = db.Column(db.String(250))
 
-class Programs(db.Model):
-    __tablename__ = 'programs'
+class Program(db.Model):
+    __tablename__ = 'PROGRAM'
 
     id = db.Column(db.Integer, primary_key=True)
     type = db.Column(db.String(32))
     pdf = db.Column(db.LargeBinary)
-    client_id = db.Column(db.Integer, db.ForeignKey('Users.id'))
-    coach_id = db.Column(db.Integer, db.ForeignKey('Users.id'))
+    client_id = db.Column(db.Integer, db.ForeignKey('USER.id'))
+    coach_id = db.Column(db.Integer, db.ForeignKey('USER.id'))
 
-class Sessions(db.Model):
-    __tablename__ = 'sessions'
+class Session(db.Model):
+    __tablename__ = 'SESSION'
 
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.Date)
     time = db.Column(db.Time)
     duration = db.Column(db.Time)
-    workout_type = db.Column(db.Integer, db.ForeignKey('workoutsType.id'))
-    client_id = db.Column(db.Integer, db.ForeignKey('Users.id'))
-    coach_id = db.Column(db.Integer, db.ForeignKey('Users.id'))
+    workout_type = db.Column(db.Integer, db.ForeignKey('WORKOUT_TYPE.id'))
+    client_id = db.Column(db.Integer, db.ForeignKey('USER.id'))
+    coach_id = db.Column(db.Integer, db.ForeignKey('USER.id'))
 
-class Subscriptions(db.Model):
-    __tablename__ = 'subscriptions'
+class Subscription(db.Model):
+    __tablename__ = 'SUBSCRIPTION'
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(64))
     cost = db.Column(db.Integer)
     duration = db.Column(db.Integer)    
     
-class Purchases(db.Model):
-    __tablename__ = 'purchases'
+class Purchase(db.Model):
+    __tablename__ = 'PURCHASE'
 
     id = db.Column(db.Integer, primary_key=True)
-    client_id = db.Column(db.Integer, db.ForeignKey('Users.id'))
+    client_id = db.Column(db.Integer, db.ForeignKey('USER.id'))
     date = db.Column(db.DateTime)
-    subscription_id = db.Column(db.Integer, db.ForeignKey('subscriptions.id'))
+    subscription_id = db.Column(db.Integer, db.ForeignKey('SUBSCRIPTION.id'))
 
 class CoachedBy(db.Model):
-    __tablename__ = 'coachedBy'
+    __tablename__ = 'COACHEDBY'
 
-    client_id = db.Column(db.Integer, db.ForeignKey('Users.id'), primary_key=True)
-    coach_id = db.Column(db.Integer, db.ForeignKey('Users.id'), primary_key=True)
+    client_id = db.Column(db.Integer, db.ForeignKey('USER.id'), primary_key=True)
+    coach_id = db.Column(db.Integer, db.ForeignKey('USER.id'), primary_key=True)
     starting_date = db.Column(db.DateTime)
     end_date = db.Column(db.DateTime, nullable=True)
 
+class CoachingReview(db.Model):
+    __tablename__ = 'COACHING_REVIEW'
+
+    id = db.Column(db.Integer, primary_key=True)
+    satisfaction = db.Column(db.Integer, nullable=False)
+    support = db.Column(db.Integer, nullable=False)
+    disponibility = db.Column(db.Integer, nullable=False)
+    is_continuing = db.Column(db.Boolean, nullable=False)
+    comment = db.Column(db.String(250), nullable=True)
+    client_id = db.Column(db.Integer, db.ForeignKey('USER.id'))
+
+class SessionReview(db.Model):
+    __tablename__ = 'SESSION_REVIEW'
+
+    id = db.Column(db.Integer, primary_key=True)
+    difficulty = db.Column(db.Integer, nullable=False)
+    feel = db.Column(db.Integer, nullable=False)
+    fatigue = db.Column(db.Integer, nullable=False)
+    energy = db.Column(db.Integer, nullable=False)
+    comment = db.Column(db.String(250), nullable=True)
+    client_id = db.Column(db.Integer, db.ForeignKey('USER.id'))
+
+
+
 @login_manager.user_loader
 def user_loader(id):
-    return Users.query.filter_by(id=id).first()
+    return User.query.filter_by(id=id).first()
 
 
 @login_manager.request_loader
 def request_loader(request):
     email = request.form.get('email')
-    user = Users.query.filter_by(email=email).first()
+    user = User.query.filter_by(email=email).first()
     return user if user else None
 

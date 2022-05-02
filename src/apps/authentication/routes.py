@@ -16,7 +16,7 @@ from flask_login import (
 from apps import db, login_manager
 from apps.authentication import blueprint
 from apps.authentication.forms import LoginForm, RegisterForm
-from apps.authentication.models import Users
+from apps.authentication.models import User
 from apps.authentication.util import verify_pass
 
 
@@ -40,9 +40,10 @@ def login():
         password = request.form['password']
 
         #Locate the user
-        user = Users.query.filter_by(email=email).first()
+        user = User.query.filter_by(email=email).first()
         #Check password
         if user and verify_pass(password, user.password):
+            
             login_user(user)
             return redirect(url_for('authentication_blueprint.route_default'))
 
@@ -69,13 +70,13 @@ def register():
         #name = request.form['name']
 
         #Check if user already exists
-        user = Users.query.filter_by(email=email).first()
+        user = User.query.filter_by(email=email).first()
 
         if user:
             return render_template('accounts/register.html', msg='Email Already registered', success=False, form=register_form)
 
         #Else we create the user
-        user = Users(**request.form)
+        user = User(**request.form)
         db.session.add(user)
         db.session.commit()
 
@@ -89,3 +90,24 @@ def register():
 def logout():
     logout_user()
     return redirect(url_for('authentication_blueprint.login'))
+
+# Errors
+
+@login_manager.unauthorized_handler
+def unauthorized_handler():
+    return render_template('home/page-403.html'), 403
+
+
+@blueprint.errorhandler(403)
+def access_forbidden(error):
+    return render_template('home/page-403.html'), 403
+
+
+@blueprint.errorhandler(404)
+def not_found_error(error):
+    return render_template('home/page-404.html'), 404
+
+
+@blueprint.errorhandler(500)
+def internal_error(error):
+    return render_template('home/page-500.html'), 500

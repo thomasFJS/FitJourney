@@ -193,5 +193,28 @@ J'ai revu également les cas d'utilisations que j'avais réalisé, j'ai décider
 J'ai pu avancer sur la documentation, il faut encore que : 
 
 * J'ajoute les navbars dans la section maquette
+* J'explique plus en détail l'arborescence de l'application
+* J'ajoute l'explication de l'installation générale du projet
 * J'explique les 2 sitemaps
 * J'ajoute le MCD 
+* J'ajoute un schéma pour expliquer l'utilisation de l'API par l'application.
+
+### Lundi, 2 Mai 2022
+
+Aujourd'hui je vais continuer d'avancer sur la documentation et je vais également reprendre le code maintenant que j'ai un MCD plutôt correcte. M.Jossi a pu regarder la nouvelle version du MCD que je lui avais envoyé. Je dois refaire quelques modifications pour respecter les standards Ecole (nom des entités en majuscule singulier) et mettre les verbe d'association à l'indicatif si possible.
+
+M. Jossi est passé me voir, il m'a aidé à éclaircir le passage du MCD au MLD avec la table mère *REVIEW*. Nous avons décider de ne pas prendre la table mère et de garder uniquement les tables filles car il n'y avait qu'un seul champ en commun.
+
+J'ai du retoucher encore une fois mes maquettes pour revoir les navbars, j'ai également refait le sitemap du côté coach car j'avais oublié quelques chemins. J'ai rajouté la documentation sur les navbars de l'application.
+
+J'ai implémenté le MCD avec SQLAlchemy pour créer les tables.
+
+J'ai rajouté des routes pour afficher une page d'erreur en fonction de l'erreur qui survient :
+
+* 403 pour un accès non autorisé
+* 404 si la page n'est pas trouvée
+* 500 si c'est un problème avec le serveur
+
+J'ai également créé une route dynamique pour tous les templates dans le dossier templates/home, toutes les pages sont accessibles uniquement si l'utilisateur est connecté (@login_required)
+
+Je rencontre un problème, je n'arrive pas à accéder aux pages car même une fois le login passé le login manager ne détecte pas la connexion (Il agit comme si l'utilisateur n'était pas connecté)

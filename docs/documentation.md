@@ -73,7 +73,7 @@ La sitemap de l'application possède 2 alternatives, 1 pour les clients et 1 pou
 
 #### Sitemap Client 
 
-![Sitemap client](./img/Sitemap_client.png)
+![Sitemap client](./img/Sitemap_client.png) 
 
 #### Sitemap Coach
 
@@ -90,6 +90,16 @@ L'application FitJourney propose 3 niveaux d'accès :
 
 #### En tant que visiteur 
 Lorsqu'on arrive sur l'application sans être authentifié, seuls 3 pages sont accessibles. 
+
+##### Barre de navigation
+![Navbar visitor](./mockups/Interface_mockups/navbar_visitor.jpg)
+La barre de navigation disponible en tant que visiteur. Elle est visible sur le côté gauche de l'écran à la vertical. Sans être connecté à l'application seul 2 boutons sont disponibles :
+
+* Accueil
+* Login
+
+
+
 ##### Page d'accueil
 ![Home Page](./mockups/Interface_mockups/home.jpg)
 La page d'accueil est très basique et propose 2 boutons :
@@ -110,7 +120,16 @@ La page de connexion permet aux utilisateurs de se connecter. Un lien est dispon
 #### En tant que client 
 Si on se connecte à l'application en tant que client, 4 pages supplémentaires sont disponibles.
 
-##### Page profile
+##### Barre de navigation 
+![Navbar client](./mockups/Interface_mockups/navbar_client.jpg)
+
+La barre de navigation disponible en tant que client verticalement à gauche de l'écran. 3 boutons de navigation supplémentaires sont disponibles :
+
+* [Profil](#page-profil)
+* [Agenda](#page-prochaine-session)
+* [Entrainement](#page-liste-entrainements)
+
+##### Page profil
 ![Profile Page](./mockups/Interface_mockups/profile.jpg)
 
 La page profil permet au client de modifier ses informations personnelles. Plusieurs boutons sont disponibles : 
@@ -142,7 +161,7 @@ Dans la zone verte, on retrouve le client et la date à laquel le bilan a été 
 
 Dans la zone bleue, on retrouve les éléments qui ont été noté par le client.
 
-##### Page liste de nos entrainements
+##### Page liste entrainements
 ![List Workouts](./mockups/Interface_mockups/workouts_list.jpg)
 
 Cette page affiche la liste de tous les entrainements effectués par le client. L'utilisateur peut cliquer sur chaque élément de la liste pour avoir les détails de l'entrainement.
@@ -167,6 +186,13 @@ Cette page affiche les prochaines sessions d'entrainements avec un coach du clie
 
 #### En tant que coach
 Si on se connecte à l'application en tant que coach, on a alors accès à 5 autres pages.
+
+##### Barre de navigation 
+![Navbar coach](./mockups/Interface_mockups/navbar_coach.jpg)
+
+La barre de navigation disponible en tant que client verticalement à gauche de l'écran. 1 bouton supplémentaire est disponible :
+
+* [Dashboard](#page-tableau-de-bord)
 
 ##### Page tableau de bord
 ![Coach dashboard](./mockups/Interface_mockups/coach_dashboard.jpg)
