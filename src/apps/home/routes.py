@@ -7,9 +7,17 @@ Brief   :        Set all the application routes
 """
 
 from apps.home import blueprint
-from flask import render_template, request
+from flask import render_template, redirect, request, url_for, flash
 from flask_login import login_required
 from jinja2 import TemplateNotFound
+
+from flask_login import (
+    current_user
+)
+
+from apps import db, login_manager
+from apps.authentication.models import User
+from apps.home.forms import UpdateForm
 
 
 @blueprint.route('/index')
@@ -17,24 +25,44 @@ from jinja2 import TemplateNotFound
 def index():
     return render_template('home/index.html', segment='index')
 
-@blueprint.route('/<template>')
+# Create Profile Page
+@blueprint.route('/profile', methods=['GET', 'POST'])
 @login_required
-def route_template(template):
-    try:
-        if not template.endswith('.html'):
-            template += '.html'
+def profile():
+	update_form = UpdateForm(request.form)
+	id = current_user.id
+	name_to_update = User.query.get_or_404(id)
+	if request.method == "POST":
+		name_to_update.name = request.form['name']
+		name_to_update.surname = request.form['surname']
+		name_to_update.email = request.form['email']
+		name_to_update.birthdate = request.form['birthdate']
+		name_to_update.address = request.form['address']
+		name_to_update.city = request.form['city']
+		name_to_update.country = request.form['country']
+		name_to_update.npa = request.form['npa']
+		
+		try:
+			db.session.commit()
+			flash("Account Updated successfully !")
+			return render_template("home/profile.html",
+					form=update_form,
+					name_to_update= name_to_update
+			)		
+		except:
+			flash("Error! Looks like there was a problem.. try again!")
+			return render_template("home/profile.html",
+					form=update_form,
+					name_to_update=name_to_update
+					)
+	else:
+		return render_template("home/profile.html", segment='profile',
+				form=update_form,
+				name_to_update = name_to_update,
+				id = id)
 
-        # Detect the current page
-        segment = get_segment(request)
+	return render_template("home/profile.html", segment='profile')
 
-        # Serve the file if exists from app/templates/home/FILE.html
-        return render_template("home/"+ template, segment=segment)
-
-    except TemplateNotFound:
-        return render_template('home/page-404.html'), 404
-
-    except:
-        return render_template('home/page-500.html'), 500
 
 
 # Extract current page name from request

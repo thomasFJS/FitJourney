@@ -230,3 +230,23 @@ Donc je ne sais pas pourquoi en faisant hériter ma classe de *UserMixin* cela n
 
 [Documentation Flask Login ](https://flask-login.readthedocs.io/en/latest/#your-user-class)
 
+J'ai très rapidement retouché le MCD pour enlever encore les id qui ne sont pas obligatoire et j'ai juste rajouter un champ *City* et *Country* pour la table USER.
+
+![MCD 4.0](./img/MCD_4.0.png)
+
+J'ai commencé à avancer sur la page profil du client. 
+
+A la base j'avais séparé l'application en 2 gros dossiers :
+
+* authentication/
+* home/
+
+*home/* était sensé contenir toutes l'application hormis l'authentification, je pense séparer ce dossier en 2 parties :
+
+* client/
+* coach/
+
+Je vais alors avoir quelques fichiers en double mais ils seront bien précis par rapport à leurs utilitées.
+
+Chaque dossier doit contenir les fichiers : *routes.py*, *forms.py*, *init.py* qui seront bien sûr différents pour chaque dossier. 
+

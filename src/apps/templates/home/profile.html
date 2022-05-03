@@ -4,10 +4,137 @@
 
 {% block content %}
 
-<h1 class="display-2 text-white"> 
-    Hellodsdeouvchruvjerbvujeb {{ current_user.surname }}
-</h1>
-   
+
+
+<div class="container-fluid mt--8" style="margin: auto;">
+    {% for message in get_flashed_messages() %}
+	
+	<div class="alert alert-primary alert-dismissible fade show" role="alert">
+	  {{ message }}
+	  <button type="button" class="btn btn-secondary" data-bs-dismiss="alert" aria-label="Close">Close</button>
+	</div>
+
+{% endfor %}
+    <div class="row">
+
+      <div class="col-xl-8 order-xl-2">
+        <div class="card">
+          <div class="card-header">
+            <div class="row align-items-center">
+              <div class="col-8">
+                <h3 class="mb-0">Edit profile </h3>
+              </div>
+              <div class="col-4 text-right">
+                <a href="#!" class="btn btn-sm btn-primary">Settings</a>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <form action="/profile" method="POST" enctype="multipart/form-data">
+                {{ form.hidden_tag() }}
+              <h6 class="heading-small text-muted mb-4">User information</h6>
+              <div class="pl-lg-4">
+                <div class="row">
+                    <div class="col-lg-4">
+                      <div class="form-group">
+                        <label class="form-control-label" for="name_update">First name</label>
+                        {{ form.name(placeholder="Name",class="form-control",type="text", value=current_user.name) }}
+                      </div>
+                    </div>
+                    <div class="col-lg-4">
+                      <div class="form-group">
+                        <label class="form-control-label" for="surname_update">Last name</label>
+                        {{ form.surname(placeholder="Surname", class="form-control", type="text", value=current_user.surname)}}
+                      </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <div class="card-profile-image">
+                                <a href="#">
+                                   <img src="/static/assets/img/theme/team-4.jpg" class="rounded-circle">
+                                </a>
+                            </div>
+                        </div>
+                      </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label class="form-control-label" for="birthdate_update"> Birthdate</label>
+                      {{ form.birthdate(placeholder="Birthdate", class="form-control", type="date", value=current_user.birthdate)}}
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label class="form-control-label" for="email_update">Email address</label>
+                      {{ form.email(placeholder="Email", class="form-control", type="email", value=current_user.email)}}
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                  <label class="form-control-label" for="input-file"></label>
+                  {{ form.profile_pic(class="form-control", type="file") }}
+                </div>
+            </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-control-label" for="card_update">Card ID #</label>
+                            {{ form.card_id(placeholder="Card ID", class="form-control", type="number", value=current_user.card_id, disabled=true)}}
+                        </div>
+                    </div>
+                </div>
+              </div>
+              <hr class="my-4" />
+              <!-- Address -->
+              <h6 class="heading-small text-muted mb-4">Contact information</h6>
+              <div class="pl-lg-4">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label class="form-control-label" for="address_update">Address</label>
+                      {{ form.address(placeholder="Address", class="form-control", type="text", value=current_user.address if current_user.address != None)}}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label class="form-control-label" for="city_update">City</label>
+                      {{ form.city(placeholder="City", class="form-control", type="text", value=current_user.city if current_user.city != None)}}
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label class="form-control-label" for="country_update">Country</label>
+                      {{ form.country(placeholder="Country", class="form-control", type="text", value=current_user.country if current_user.country != None)}}
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-country">Postal code</label>
+                      {{ form.npa(placeholder="Postal code", class="form-control", type="number", value=current_user.npa if current_user.npa != None)}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <hr class="my-4" />
+              <div class="pl-lg-4">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                        {{ form.update(class="btn btn-primary btn-block") }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  
 
 {% endblock content %}
 

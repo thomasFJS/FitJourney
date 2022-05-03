@@ -33,7 +33,7 @@ def login():
     Display login page with the login form 
     """
     login_form = LoginForm()
-    if 'login' in request.form:
+    if login_form.validate_on_submit():
 
         #read form data
         email = request.form['email']

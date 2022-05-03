@@ -3,42 +3,13 @@ Author  :        Thomas Fujise
 Date    :        12.04.2022
 File    :        forms.py
 Version :        1.0.0
-Brief   :        Authentication forms 
+Brief   :        Application forms 
 """
 
 from flask_wtf import FlaskForm
 from wtforms import FileField, StringField, SubmitField, PasswordField, IntegerField, BooleanField, ValidationError
 from wtforms.validators import Email, DataRequired, EqualTo, Length
 from wtforms.fields.html5 import DateField, EmailField
-
-
-class LoginForm(FlaskForm):
-    """
-    Create a login form
-    """
-    email = StringField('email', id='email_login', validators=[DataRequired()])
-
-    password = PasswordField('Password', id='pwd_login', validators=[DataRequired()])
-    
-    login = SubmitField("login")
-
-class RegisterForm(FlaskForm):
-    """
-    Create a register form
-    """ 
-    name = StringField('Name', id='name_register', validators=[DataRequired()])
-
-    surname = StringField('Surname', id='surname_register', validators=[DataRequired()])
-
-    email = EmailField('Email', id="email_rgister", validators=[DataRequired(), Email()])
-
-    birthdate = DateField('Birthdate', id="date_register", validators=[DataRequired()])
-
-    password = PasswordField('Password', id='password_register', validators=[DataRequired(), EqualTo('confirm_password', message='Passwords Must Match!')])
-
-    confirm_password = PasswordField('Confirm Password', id='password2_register')
-
-    register = SubmitField("register")
 
 
 class UpdateForm(FlaskForm):
@@ -56,7 +27,7 @@ class UpdateForm(FlaskForm):
 
     profile_pic = FileField('Profile Pic', id="profile_pic_update")
 
-    card_id = IntegerField()
+    card_id = IntegerField('Card ID', id='card_update')
 
     address = StringField('Address', id='address_update')
 
