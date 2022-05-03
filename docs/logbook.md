@@ -218,3 +218,15 @@ J'ai rajouté des routes pour afficher une page d'erreur en fonction de l'erreur
 J'ai également créé une route dynamique pour tous les templates dans le dossier templates/home, toutes les pages sont accessibles uniquement si l'utilisateur est connecté (@login_required)
 
 Je rencontre un problème, je n'arrive pas à accéder aux pages car même une fois le login passé le login manager ne détecte pas la connexion (Il agit comme si l'utilisateur n'était pas connecté)
+
+
+### Mardi, 3 Mai 2022
+
+J'ai continué de regarder mon problème avec le login_manager hier soir, je n'ai toujours pas trouvé de solution.
+
+Ce matin en relisant, la documentation de Flask Login, j'ai essayé d'ajouter les méthodes que la classe User doit implémenter pour que le Login manager fonctionne. Cette fois le Login manager fonctionne avec les méthodes implémentées à la main, le problème est que pour éviter de dévoir les implémenter à la main j'avais fait hériter ma classe User d'*UserMixin* qui permet l'implémentation par défaut des propriétés et méthodes nécessaires.
+
+Donc je ne sais pas pourquoi en faisant hériter ma classe de *UserMixin* cela ne fonctionne pas mais quand j'implémente les propriétés et méthode à la main le Login manager fonctionne.
+
+[Documentation Flask Login ](https://flask-login.readthedocs.io/en/latest/#your-user-class)
+
