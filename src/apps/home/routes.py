@@ -16,7 +16,7 @@ from flask_login import (
 )
 
 from apps import db, login_manager
-from apps.authentication.models import User
+from apps.authentication.models import User, PhysicalInfo
 from apps.home.forms import UpdateForm
 
 
@@ -31,35 +31,36 @@ def index():
 def profile():
 	update_form = UpdateForm(request.form)
 	id = current_user.id
-	name_to_update = User.query.get_or_404(id)
+	user = User.query.get_or_404(id)
+	physicalInfo = PhysicalInfo.query.filter_by(user_id=id).order_by(PhysicalInfo.date).first()
+	current_user.physicalInfo = physicalInfo
+
 	if request.method == "POST":
-		name_to_update.name = request.form['name']
-		name_to_update.surname = request.form['surname']
-		name_to_update.email = request.form['email']
-		name_to_update.birthdate = request.form['birthdate']
-		name_to_update.address = request.form['address']
-		name_to_update.city = request.form['city']
-		name_to_update.country = request.form['country']
-		name_to_update.npa = request.form['npa']
+		user.name = request.form['name']
+		user.surname = request.form['surname']
+		user.email = request.form['email']
+		user.birthdate = request.form['birthdate']
+		user.address = request.form['address']
+		user.city = request.form['city']
+		user.country = request.form['country']
+		user.npa = request.form['npa']
 		
 		try:
 			db.session.commit()
 			flash("Account Updated successfully !")
 			return render_template("home/profile.html",
-					form=update_form,
-					name_to_update= name_to_update
+					form=update_form
 			)		
 		except:
 			flash("Error! Looks like there was a problem.. try again!")
 			return render_template("home/profile.html",
-					form=update_form,
-					name_to_update=name_to_update
+					form=update_form
 					)
 	else:
 		return render_template("home/profile.html", segment='profile',
 				form=update_form,
-				name_to_update = name_to_update,
-				id = id)
+				id = id,
+				physicalInfo=physicalInfo)
 
 	return render_template("home/profile.html", segment='profile')
 
