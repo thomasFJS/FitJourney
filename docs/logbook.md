@@ -251,3 +251,6 @@ Je vais alors avoir quelques fichiers en double mais ils seront bien précis par
 Chaque dossier doit contenir les fichiers : *routes.py*, *forms.py*, *init.py* qui seront bien sûr différents pour chaque dossier. 
 
 J'ai pu terminer la base de la page profil, les informations du client sont affichés et peuvent être modifié. Il faut encore que je rajoute le "widget" pour les retours ainsi que l'option pour changer le mot de passe.
+
+
+### Mercredi, 4 Mai 2022

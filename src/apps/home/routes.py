@@ -10,13 +10,14 @@ from apps.home import blueprint
 from flask import render_template, redirect, request, url_for, flash
 from flask_login import login_required
 from jinja2 import TemplateNotFound
+from dateutil.relativedelta import relativedelta
 
 from flask_login import (
     current_user
 )
 
 from apps import db, login_manager
-from apps.authentication.models import User, PhysicalInfo
+from apps.authentication.models import User, PhysicalInfo, Subscription, Purchase
 from apps.home.forms import UpdateForm
 
 
@@ -32,8 +33,30 @@ def profile():
 	update_form = UpdateForm(request.form)
 	id = current_user.id
 	user = User.query.get_or_404(id)
+
+	# SQL request to get the last physical information of the user
+
+	# SELECT * 
+	# FROM `PHYSICAL_INFO`
+	# WHERE `PHYSICAL_INFO`.USER_ID = %(CLIENT_ID_1)S
+	# ORDER BY `PHYSICAL_INFO`.DATE
 	physicalInfo = PhysicalInfo.query.filter_by(user_id=id).order_by(PhysicalInfo.date).first()
+
+	# SQL Request to get the last subsciption purchase date and the duration of the subscription purchased
+	#
+	# SELECT `SUBSCRIPTION`.DURATION AS `SUBSCRIPTION_DURATION`, `PURCHASE`.DATE AS `PURCHASE_DATE` 
+	# FROM `PURCHASE` 
+	# INNER JOIN `SUBSCRIPTION` ON `PURCHASE`.SUBSCRIPTION_ID = `SUBSCRIPTION`.ID 
+	# WHERE `PURCHASE`.CLIENT_ID = %(CLIENT_ID_1)S 
+	# ORDER BY `PURCHASE`.DATE
+
+	subscription = db.session.query(Subscription.duration, Purchase.date).join(Subscription, Purchase.subscription_id==Subscription.id).filter(Purchase.client_id==id).order_by(Purchase.date).first()
+	
+	# Set the physical value to the user
 	current_user.physicalInfo = physicalInfo
+
+	#Define subscription end date by adding the duration of the subscription in months to the purchase date.
+	current_user.subscriptionEnd = (subscription[1] + relativedelta(months=subscription[0])).date()
 
 	if request.method == "POST":
 		user.name = request.form['name']
