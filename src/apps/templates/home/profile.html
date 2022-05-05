@@ -15,9 +15,12 @@
 	</div>
 
 {% endfor %}
-    <div class="row">
 
-      <div class="col-xl-8 order-xl-2">
+  
+
+    <div class="row">
+  
+      <div class="col-xl-8 ">
         <div class="card">
           <div class="card-header">
             <div class="row align-items-center">
@@ -51,7 +54,7 @@
                         <div class="form-group">
                             <div class="card-profile-image">
                                 <a href="#">
-                                   <img src="/static/assets/img/theme/team-4.jpg" class="rounded-circle">
+                                   <img src="/static/assets/img/theme/team-1.jpg" class="rounded-circle">
                                 </a>
                             </div>
                         </div>
@@ -154,8 +157,32 @@
           </div>
         </div>
       </div>
+      <div class="card card-body h-auto" style="width: 18rem; float: right;">
+        <h5 class="card-header">Reports</h5>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Type</th>
+                    <th scope="col">Date</th>
+                </tr>
+            </thead>
+            
+            {% for report in current_user.reports %}
+            <br>
+            <tr >
+                <td>
+                    {{ report.type }}
+                </td>
+                <td>
+                    {{ report.date }}
+                </td>
+            </tr>
+            {% endfor %}
+          
+      </div>
     </div>
-  
+
+
 
 {% endblock content %}
 

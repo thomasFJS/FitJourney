@@ -254,3 +254,78 @@ J'ai pu terminer la base de la page profil, les informations du client sont affi
 
 
 ### Mercredi, 4 Mai 2022
+
+J'ai pu ajouter les requêtes SQL pour afficher les données sur la page profil comme la fin de l'abonnement qui a été souscrit en dernier.
+
+Il faut que je commence le Poster car le rendu est fixé à Lundi et je dois également poursuivre l'avancement de ma documentation pour le rendu intermédiaire qui a lieu Mardi.
+
+Les points que je dois encore ajouter :
+
+* Expliquer plus en détail l'arborescence de l'application
+* Ajouter l'explication de l'installation générale du projet
+* Détailler les 2 sitemaps
+* Remplir la section Base de données
+* (Ajouter un schéma pour expliquer l'utilisation de l'API par l'application.)
+
+Je peux éventuellement aussi commencer à documenter quelques fichiers comme les routes ou encore les blueprints que j'utilise.
+
+J'ai pu avancer sur mon poster, M.Bonvin nous a proposé de passer demain pour voir les posters et donner un retour.
+
+Pour revenir à l'application, je dois faire une requête SQL pour récupérer les retours du client. Le problème est que les retours sont dans 2 tables différentes. J'ai cherché pendant un petit moment pour trouver une solution, et je me suis rappelé des UNION en SQL qui me permettent exactement de faire ce dont j'ai besoin. Le seul problème est que les champs gardent le nom du premier SELECT.
+
+Donc lorsque je récupère les retours client d'un client en particulier, je les récupère dans un objet *CoachingReview* même si les données proviennent de la table *SessionReview* (Car le premier SELECT de l'UNION est celui de CoachingReview). Il faut que je trouve comment rajouter des *AS* dans ma requête SQL.
+
+### Jeudi, 5 Mai 2022
+
+J'ai trouvé le moyen de renommer les champs avec la méthode *label()*. J'ai donc renommé les champs du premier SELECT pour avoir des propriétés plus génériques. Je peux maintenant terminer l'affichage des retours client. 
+
+Finallement, je vais revoir la base de données pour optimiser la récupération des retours. Actuellement, il n'est déjà pas possible de savoir de quel type est le retour car pas de champs et pour savoir quel coach était assigné au client il faut vérifier dans 2 autres tables pour la date du coaching etc. Je pense finalement garder la table intermédiaire dans le MLD, une table "REVIEW" qui comporte les points communs entre les 2 (client_id, coach_id, date, comment, type) et garder les 2 tables fille qui comporteront les champs spécifiques à chacune. J'ai mis l'ID d'une review dans la table *REVIEW* et cet ID sera la clé primaire et étrangère des tables filles.
+
+Une fois la table intermédiaire ajoutée, je pourrai terminer l'affichage des retours ainsi que la l'affichage de leurs détails. 
+
+Je suis bloqué sur un problème, je n'arrive pas à joindre une table récupérer à l'aide d'un *UNION* avec SQL Alchemy.
+
+Voici la requête en SQL :
+
+```
+SELECT R.id, R.comment, R.date , R.type, I.Field1 
+FROM REVIEW AS R 
+JOIN (SELECT C.id AS ID, C.satisfaction AS Field1 FROM COACHING_REVIEW AS C UNION SELECT S.id, S.difficulty FROM SESSION_REVIEW AS S) AS I ON I.ID = R.id
+WHERE id_client = 1
+```
+
+J'arrive à faire l'UNION avec tous les champs, seulement lorsque je veux join la table à une autre table je n'arrive pas à determiner la jointure (le *ON* ) car je ne peux pas accèder aux colonnes de la table "UNION".
+
+La première requête qui va chercher toutes les reviews de coaching :
+
+```
+q1 = db.session.query(CoachingReview.id, CoachingReview.satisfaction.label("Field1"), CoachingReview.support.label("Field2"), CoachingReview.disponibility.label("Field3"), CoachingReview.is_continuing.label("Field4"))
+	
+```
+
+La deuxième requête qui va chercher toutes les reviews de sessions :
+```
+q2 = db.session.query(SessionReview.id, SessionReview.difficulty, SessionReview.feel, SessionReview.fatigue, SessionReview.energy)
+```
+
+L'union entre les deux :
+```
+q3 = q1.union(q2)
+```
+
+Et la requête qui relie les infos de la table mère *REVIEW* aux données récupérés dans l'UNION :
+```
+	query = db.session.query(Review.id, Review.comment, Review.date, Review.type).join(q3,Review.id==q3.c.id).filter(Review.client_id==id)
+
+```
+
+La variable *q3* qui contient le résultat de l'UNION est sensé posséder les colonnes de cette table accessible depuis *q3.c* mais j'ai l'erreur : 
+```
+AttributeError : id 
+```
+
+En debugant les objets SQL Alchemy, j'ai trouvé pourquoi je n'arrivais pas à accéder aux champs. Les champs avaient un alias généré automatiquement. Pour régler ce problème, j'ai rajouter un nouvel alias à chaque champs et désormais tout fonctionne.
+
+Les reviews du clients sont maintenant affichés sur sa page profil, je peux maintenant ajouter la page de détails lorsqu'on clique sur la review.
+
+Demain je vais beaucoup travailler sur la documentation car le rendu intermédiaire à lieu lundi et il faudrait que j'ai documenté toutes les fonctionnalitées déjà effectué.

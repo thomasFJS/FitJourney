@@ -166,26 +166,29 @@ class CoachedBy(db.Model):
 class CoachingReview(db.Model):
     __tablename__ = 'COACHING_REVIEW'
 
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, db.ForeignKey('REVIEW.id') , primary_key=True)
     satisfaction = db.Column(db.Integer, nullable=False)
     support = db.Column(db.Integer, nullable=False)
     disponibility = db.Column(db.Integer, nullable=False)
     is_continuing = db.Column(db.Boolean, nullable=False)
-    comment = db.Column(db.String(250), nullable=True)
-    client_id = db.Column(db.Integer, db.ForeignKey('USER.id'))
 
 class SessionReview(db.Model):
     __tablename__ = 'SESSION_REVIEW'
 
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, db.ForeignKey('REVIEW.id') ,primary_key=True)
     difficulty = db.Column(db.Integer, nullable=False)
     feel = db.Column(db.Integer, nullable=False)
     fatigue = db.Column(db.Integer, nullable=False)
     energy = db.Column(db.Integer, nullable=False)
+
+class Review(db.Model):
+    __tablename__ = 'REVIEW'
+
+    id = db.Column(db.Integer, primary_key=True)
     comment = db.Column(db.String(250), nullable=True)
-    client_id = db.Column(db.Integer, db.ForeignKey('USER.id'))
-
-
+    date = db.Column(db.DateTime)
+    type = db.Column(db.String(15), nullable=False)
+    id_client = db.Column(db.Integer, db.ForeignKey('USER.id'))
 
 @login_manager.user_loader
 def user_loader(id):

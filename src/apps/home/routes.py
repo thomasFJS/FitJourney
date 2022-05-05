@@ -17,9 +17,10 @@ from flask_login import (
 )
 
 from apps import db, login_manager
-from apps.authentication.models import User, PhysicalInfo, Subscription, Purchase
+from apps.authentication.models import User, PhysicalInfo, Subscription, Purchase, CoachingReview, SessionReview, Review
 from apps.home.forms import UpdateForm
 
+from sqlalchemy import union
 
 @blueprint.route('/index')
 @login_required
@@ -52,6 +53,21 @@ def profile():
 
 	subscription = db.session.query(Subscription.duration, Purchase.date).join(Subscription, Purchase.subscription_id==Subscription.id).filter(Purchase.client_id==id).order_by(Purchase.date).first()
 	
+	#Queries to get all Review from user 
+	q1 = db.session.query(CoachingReview.id, CoachingReview.satisfaction.label("Field1"), CoachingReview.support.label("Field2"), CoachingReview.disponibility.label("Field3"), CoachingReview.is_continuing.label("Field4"))
+	q2 = db.session.query(SessionReview.id, SessionReview.difficulty, SessionReview.feel, SessionReview.fatigue, SessionReview.energy)
+
+	#UNION with the 2 queries 
+	q3 = union(q1,q2).alias()
+
+	#q4 = aliased(q3, name="If")
+
+	query = db.session.query(Review.id, Review.comment, Review.date, Review.type).select_from(q3).join(Review,Review.id==q3.c.COACHING_REVIEW_id).filter(Review.id_client==id)
+
+
+	#Set all the reports
+	current_user.reports = query
+
 	# Set the physical value to the user
 	current_user.physicalInfo = physicalInfo
 
