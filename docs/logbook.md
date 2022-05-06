@@ -329,3 +329,11 @@ En debugant les objets SQL Alchemy, j'ai trouvé pourquoi je n'arrivais pas à a
 Les reviews du clients sont maintenant affichés sur sa page profil, je peux maintenant ajouter la page de détails lorsqu'on clique sur la review.
 
 Demain je vais beaucoup travailler sur la documentation car le rendu intermédiaire à lieu lundi et il faudrait que j'ai documenté toutes les fonctionnalitées déjà effectué.
+
+### Vendredi, 6 Mai 2022
+
+Je viens d'ajouter le changement d'image de profile. Sachant que l'application n'est pas destiné à contenir des milliers d'utilisateurs, j'ai créer un dossier "profile/" dans le dossier "img/" de l'application. Toutes les photos de profile seront enregistrées ici avec un UUID comme nom de fichier. Le nom de fichier est enregistré dans la base de données. 
+
+J'ai avancé un peu sur la page Workouts, il faut que je modifie la création des champs de la table 'WORKOUT' car les valeurs sont arrondies et n'ont pas de décimals.
+
+J'ai pu terminer l'affichage des workouts effectués par le client. Cet après-midi, je vais avancer sur la documentation technique et le poster.

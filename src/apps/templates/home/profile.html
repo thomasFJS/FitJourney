@@ -54,7 +54,15 @@
                         <div class="form-group">
                             <div class="card-profile-image">
                                 <a href="#">
-                                   <img src="/static/assets/img/theme/team-1.jpg" class="rounded-circle">
+                                    {% if current_user.profile_pic %}
+
+                                    <img src="{{ url_for('static', filename='/assets/img/profile/' + current_user.profile_pic)}}"  align="right" id="profile_pic" class="rounded-circle">
+                                    
+                                    {% else %}
+                            
+                                    <img src="{{ url_for('static', filename='/assets/img/profile/default_profile_pic.png')}}" align="right" id="profile_pic" class="rounded-circle">
+                            
+                                    {% endif %}
                                 </a>
                             </div>
                         </div>
@@ -169,7 +177,7 @@
             
             {% for report in current_user.reports %}
             <br>
-            <tr >
+            <tr>
                 <td>
                     {{ report.type }}
                 </td>

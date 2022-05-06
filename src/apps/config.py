@@ -19,7 +19,7 @@ class Config(object):
 
     SECRET_KEY = config('SECRET_KEY', default='S3cr3t_k3y')
 
-    UPLOAD_FOLDER = config('UPLOAD_FOLDER', default='static/assets/img/')
+    UPLOAD_FOLDER = config('UPLOAD_FOLDER', default='apps/static/assets/img/profile')
 
     SQLALCHEMY_DATABASE_URI = '{}://{}:{}@{}:{}/{}'.format(
         config('DB_ENGINE', default='mysql+pymysql'),

@@ -1,0 +1,64 @@
+{% extends 'layout/base.html' %}
+
+{% block title %} Workouts {% endblock title %}
+
+{% block content %}
+
+
+
+<div class="container-fluid mt--8" style="margin: auto;">
+    {% for message in get_flashed_messages() %}
+	
+	<div class="alert alert-primary alert-dismissible fade show" role="alert">
+	  {{ message }}
+	  <button type="button" class="btn btn-secondary" data-bs-dismiss="alert" aria-label="Close">Close</button>
+	</div>
+
+{% endfor %}
+
+  
+
+    <div class="row">
+  
+      <div class="card card-body h-auto" style="width: 18rem; float: right;">
+        <h5 class="card-header">Workouts</h5>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Type</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Duration</th>
+                    <th scope="col">Calories Burned</th>
+                    <th scope="col">Avg Heart Rate</th>
+                </tr>
+            </thead>
+            {% for workout in workouts %}
+            <br>
+            <tr>
+                <td>
+                    {{ workout.title }}
+                </td>
+                <td>
+                    {{ workout.date }}
+                </td>
+                <td>
+                    {{ workout.duration }}
+                </td>
+                <td>
+                    {{ workout.calories }}
+                </td>
+                <td>
+                    {{ workout.heart_rate_avg }}
+                </td>
+            </tr>
+            {% endfor %}
+          
+      </div>
+    </div>
+
+
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}{% endblock javascripts %}
