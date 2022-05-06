@@ -325,9 +325,23 @@ En définissant uniquement le moteur de templates et un système de routes, Flas
 ![Use diagram](./img/diagram.png)
 Diagramme de l'utilisation de l'application pour les 2 types d'utilisateurs.
 ### Base de données
+Pour permettre le stockage des données, j'ai créé une base de données nomées "fitjourney". Cette base de données me permet d'enregistrer et stocker toutes les données requis pour le bon fonctionnement de l'application. 
 #### MCD
+Au lieu de créer la base de données directement, j'ai commencer par créer un MCD pour définir tous les besoins de l'application au niveau de la base de données. Pour faire mon MCD, je suis allé sur LucidChart qui est une plateforme de collaboration en ligne permettant la création de diagrammes et la visualisation de données et autres schémas conceptuels.
+
+![MCD](./img/MCD_4.0.png)
+
 #### MLD
+Une fois les besoins identifiés à l'aide du MCD, j'ai pu utiliser SQL Alchemy pour créer ma base de données directement. 
+
+![MLD](./img/MLD_1.PNG)
+#### SQLAlchemy
+SQL Alchemy est un ORM (mapping objet-relationnel) écrit en Python, il utilise le pattern [Data Mapper](#data-mapper)
+
+#### Data Mapper 
+Data Mapper est un pattern qui sépare les objets en mémoire de la base de données. Il consiste à transférer les données entre les deux et à les isoler l'une de l'autre. Avec le pattern *Data Mapper*, les objets en mémoire ne doivent même pas savoir qu'une base de données est présente, ils n'ont pas besoin de code d'interface SQL, et certainement pas de connaissance du schéma de la base de données. (Le schéma de la base ded onnées ignore toujours les objets qui l'utilisent). 
+
+![Data Mapper](./img/DataMapper.PNG)
 #### Accès
 #### Données de tests
 #### Tables
-#### SQLAlchemy

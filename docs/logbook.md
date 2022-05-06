@@ -332,8 +332,18 @@ Demain je vais beaucoup travailler sur la documentation car le rendu intermédia
 
 ### Vendredi, 6 Mai 2022
 
-Je viens d'ajouter le changement d'image de profile. Sachant que l'application n'est pas destiné à contenir des milliers d'utilisateurs, j'ai créer un dossier "profile/" dans le dossier "img/" de l'application. Toutes les photos de profile seront enregistrées ici avec un UUID comme nom de fichier. Le nom de fichier est enregistré dans la base de données. 
+Je viens d'ajouter le changement d'image de profil. Sachant que l'application n'est pas destinée à contenir des milliers d'utilisateurs, j'ai créé un dossier "profile/" dans le dossier "img/" de l'application. Toutes les photos de profil seront enregistrées ici avec un UUID comme nom de fichier. Le nom de fichier est enregistré dans la base de données. 
 
 J'ai avancé un peu sur la page Workouts, il faut que je modifie la création des champs de la table 'WORKOUT' car les valeurs sont arrondies et n'ont pas de décimals.
 
 J'ai pu terminer l'affichage des workouts effectués par le client. Cet après-midi, je vais avancer sur la documentation technique et le poster.
+
+Pour le moment, il me manque encore l'ajout des reviews par le client ainsi que l'affichage détaillé des reviews et des workouts et l'affichage des graphiques avec Chart.JS. Une fois cela terminé, j'aurai terminé le côté client. 
+
+La partie des graphiques avec Chart.JS sera je pense que la partie la plus "compliquée". Pour le reste de l'application, tous le côté coach est uniquement composé de formulaire et des mêmes pages que le côté client mais avec des options supplémentaires. 
+
+J'ai pris la décision de laisser un peu de côté l'aspect "esthétique" de l'application car n'étant vraiment en avance je veux me concentrer principalement sur les fonctionnalités de l'application.
+
+J'ai pu avancé un peu sur la documentation de la base de données. Je vais devoir revoir mon poster ce week-end, M.Bonvin m'a fait un retour : Je n'explique pas ce que mon application fait et je fais plus de pub pour Polar qu'autre chose. 
+
+![Poster](./img/Poster_V1.png)
