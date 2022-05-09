@@ -1,7 +1,7 @@
 # Documentation technique 
 
 ## Résumé 
-FitJourney est une application permettant, d'une part, à un coach sportif de gérer le suivi de tous ses clients avec des données d'entrainements récupérées à l'aide de montres connectés Polar. D'autre part, elle permet aux clients d'accéder à leurs programmes d'entrainements et de nutrition. L'application permet également aux clients de visionner le détail de chacune de leurs séances.
+FitJourney est une application permettant, d'une part, à un coach sportif de gérer et effectuer le suivi de tous ses clients avec des données d'entrainements récupérées à l'aide de montres connectés Polar. D'autre part, elle permet aux clients d'accéder à leurs programmes d'entrainements et de nutrition. L'application permet également aux clients de visionner le détail de chacune de leurs séances.
 
 FitJourney est une application WEB réalisée avec le framework Flask du langage Python, elle repose principalement sur l'API Polar Accesslink qui permet l'utilisation des données des montres connectées
 
@@ -263,7 +263,10 @@ Dans la zone verte, un bouton pour ajouter une nouvelle session avec un client e
 ### Mise en place / Envirronement
 
 #### Visual Studio Code
+J'ai choisi d'utiliser Visual Studio code pour éditer mon code, il est directement relié à mon repo sur Github. Je peux donc directement depuis Visual Studio Code commit tous les changements que j'effectue.
 
+#### Mkdocs 
+Mkdocs permet de générer un site statique pour la documentation. Il prend en compte tous les fichiers Markdown (.md) dans le dossier *docs/*, et un fichier de configuration YAML qui se trouve à la racine du projet. Mkdocs me permet de visionner mes fichiers Markdown en direct et à l'aide de l'extension *with-pdf*, de générer un fichier PDF de me tous mes fichiers Markdown.
 
 #### GitHub
 ![Logo Github](./img/github.svg){width=200 align="right"}
@@ -292,8 +295,12 @@ J'ai créé 5 colonnes :
 * Testing (Les tâches en cours de test)
 * Done (Les tâches terminées)
 
-#### Python Flask
+### Technologies utilisées
+
+#### Python Flask (backend)
 Flask est un micro-framework Python qui permet la création d'applications web évolutives. Flask dépend de la boite à outils WSGI de [Werkzeug](https://werkzeug.palletsprojects.com/en/2.0.x/) et du moteur de templates [Jinja](https://jinja.palletsprojects.com/en/3.0.x/). Flask était le framework qui répondait le plus à mes besoins, avec l'utilisation de l'API Polar qui est également en Python.
+
+![Flask Logo](./img/flask.png)
 
 ##### Installation Flask
 En premier lieu, il faut disposer d'une version à jour de PIP afin d'installer Python Flask avec la commande :
@@ -319,11 +326,106 @@ Le terme *micro* dans le micro framework signifie que Flask vise à garder le co
 
 En définissant uniquement le moteur de templates et un système de routes, Flask laisse le choix de personnaliser (en ajoutant des packages) pour la gestion des formulaires par exemple.
 
+##### Choix dans le projet
+Dans le cadre de ce projet, j'ai préféré utiliser Flask comme framework à la place d'un autre car j'utilise l'API Polar Accesslink qui est fait en Python. Je souhaitais garder le même langage pour éviter de partir dans tous les sens.
 
+##### Architecture (Blueprint)
+Afin de bien structurer mon projet, j'ai décidé d'utiliser les Flask Blueprint. Chaque Flask Blueprint est un objet et fonctionne de manière très similaire à une application Flask. Ils peuvent tous les deux avoir des ressources, comme des fichiers statiques, des templates et des vues qui sont associés aux routes.
 
-### Diagramme d'utilisation
-![Use diagram](./img/diagram.png)
-Diagramme de l'utilisation de l'application pour les 2 types d'utilisateurs.
+Malgré tous, un Flask Blueprint n'est pas exactement comme une application Flask car il a besoin d'être enregistré dans l'application pour être lancé. Lorsqu'on enregistre un Blueprint à l'application, on étend l'application avec le contenu du Blueprint. Les Blueprints enregistrent toutes les opérations à exécuter et ne les exécutes qu'une fois enregistré dans l'application
+
+Les Blueprints m'ont permis de découper l'application en plusieurs parties et de structurer mon projet de la manière suivante : 
+
+```
+run.py
+|
+apps/
+|
+├── authentication/
+|   ├── __init__.py
+|   ├── forms.py
+|   ├── models.py
+|   ├── routes.py
+|   └── util.py
+|
+├── client/
+|   ├── __init__.py
+|   ├── forms.py
+|   └── routes.py
+|
+├── coach/
+|   ├── __init__.py
+|   ├── forms.py
+|   └── routes.py
+|
+├── static/assets/
+|   ├── css/
+|   ├── fonts/
+|   ├── img/
+|   ├── js/
+|   └── vendor/.py
+|
+├── templates/
+|   ├── accounts/
+|   ├── client/
+|   ├── coach/
+|   ├── includes/
+|   └── layout/
+|
+|── __init__.py
+└── config.py
+
+```
+
+#### Fichier "run.py"
+Le fichier run.py est le seul fichier qui est en dehors du dossier principal de l'application. Il permet de créer et de lancer l'application Flask. On peut lancer directement l'application en exécutant ce script.
+
+```
+python3 ./run.py
+```
+
+#### Dossier "Apps"
+Le dossier *Apps* est le dossier principal de l'application. Il comprend l'ensemble du code source du projet excepté le fichier "run.py". Il comprend lui-même plusieurs sous-dossiers expliqués dans les chapitres suivants.
+
+#### Dossier "authentication"
+Le dossier *authentication* représente le Blueprint *authentication_blueprint*. On retrouve tous les fichiers utilisés pour l'implémentation des fonctionnalités d'authentification. Avec Flask, j'implémente un ORM nommé SQL Alchmey qui implémente le design pattern *Data Mapper* pour lire les données de la base de données. Chacune des tables est représentée par un modèle qui est utilisé pour interagir avec la table en question.
+
+Sachant que l'application *FitJourney* n'a pas de fonctionnalités disponible avant que l'utilisateur ne s'authentifie, le fichier "models.py" se trouve dans ce dossier, on y retrouve notamment tous les modèles.
+
+#### Dossier "client"
+Le dossier *client* représente le Blueprint *client_blueprint*. On retrouve tous les fichiers utilisés pour l'implémentation des fonctionnalités client. 
+Il contient un fichier de routes, avec toutes les routes disponible en tant que client sur l'application et un fichier "forms.py" qui contient tous les fomulaires qui peuvent être disponible en tant que client.
+
+#### Dossier "coach"
+Le dossier *coach* représente le Blueprint *coach_blueprint*. On retouve tous les fichier utilisés pour l'implémentation des fonctionnalités coach. Comme le dossier "client" il contient également un fichier de routes et un fichier "forms" pour les formulaires.
+
+#### Dossier "static/assets"
+Le dossier "assets" qui se trouve dans le dossier "static" contient tous les dossiers "support" de l'application comme le CSS ou encore le javascript.
+
+#### Dossier "assets/css"
+Le dosssier "css" contient tous les fichiers CSS de l'application. Il contient également un dossier "bootstrap" contenant des fichiers de style de l'ensemble Bootstrap
+
+#### Dossier "assets/fonts"
+Le dossier "fonts" contient les fichiers de police d'écriture utilisés dans l'application
+
+#### Dossier "assets/img"
+Le dossier "img" contient toutes les images de l'application dont notamment les photos de profil des utilisateurs.
+
+#### Dossier "assets/js"
+Le dossier "js" contient tous les fichiers JavaScript nécessaire pour l'application.
+
+#### Dossier "assets/vendor"
+Le dossier "vendor" contient toutes les bibliothèque tierce qui sont nécessaire au projet (ressources externe). C'est généralement dans ce dossier ou sont stocker les dependance à télécharger avec un packet manager.
+
+#### Dossier "templates"
+Le dossier templates est structuré en plusieurs parties. Il contient les fichiers .html de l'application. Chaque Blueprint de l'application possède son dossier ici qui contient les templates nécessaire pour les vues. En plus des dossiers représentant les Blueprints, un dossier includes est disponible. Il contient les parties à inclure sur les différentes pages de l'application comme la barre de navigation ou encore les importations de fichiers CSS ou JavaScript. Il y a également un dossier layout qui contient un fichier de base .html qui contient la structure HTML de l'application.
+
+#### Fichier "__init.py"
+Le fichier "init" est un fichier python contenant les méthode d'initialisation de l'application. C'est notamment ici que les blueprints sont enregistrés dans l'application.
+
+#### Fichier "config.py"
+Le fichier "config" est un fichier python contenant la configuration de l'application. Il contient toutes les constantes nécessaire au fonctionnement de l'application
+
 ### Base de données
 Pour permettre le stockage des données, j'ai créé une base de données nomées "fitjourney". Cette base de données me permet d'enregistrer et stocker toutes les données requis pour le bon fonctionnement de l'application. 
 #### MCD
@@ -336,12 +438,55 @@ Une fois les besoins identifiés à l'aide du MCD, j'ai pu utiliser SQL Alchemy 
 
 ![MLD](./img/MLD_1.PNG)
 #### SQLAlchemy
-SQL Alchemy est un ORM (mapping objet-relationnel) écrit en Python, il utilise le pattern [Data Mapper](#data-mapper)
+SQL Alchemy est un ORM (mapping objet-relationnel) écrit en Python, il utilise le pattern [Data Mapper](#data-mapper) et me permet de créer directement mes tables.
+
+Exemple d'initialisation d'une table avec SQL Alchemy : 
+
+![Table SQLAlchemy](./img/table_sqlalchemy.png)
 
 #### Data Mapper 
-Data Mapper est un pattern qui sépare les objets en mémoire de la base de données. Il consiste à transférer les données entre les deux et à les isoler l'une de l'autre. Avec le pattern *Data Mapper*, les objets en mémoire ne doivent même pas savoir qu'une base de données est présente, ils n'ont pas besoin de code d'interface SQL, et certainement pas de connaissance du schéma de la base de données. (Le schéma de la base ded onnées ignore toujours les objets qui l'utilisent). 
+Data Mapper est un pattern qui sépare les objets en mémoire de la base de données. Il consiste à transférer les données entre les deux et à les isoler l'une de l'autre. Avec le pattern *Data Mapper*, les objets en mémoire ne doivent même pas savoir qu'une base de données est présente, ils n'ont pas besoin de code d'interface SQL, et certainement pas de connaissance du schéma de la base de données. (Le schéma de la base de données ignore toujours les objets qui l'utilisent). 
 
 ![Data Mapper](./img/DataMapper.PNG)
 #### Accès
 #### Données de tests
 #### Tables
+
+##### Table *USER*
+La table *USER* contient tous les utilisateurs de l'application, les coachs ainsi que les clients. les champs *email* et *card_id* sont uniques. Le champ *card_id* représente l'ID de la carte de membre (RFID) qui est attribuée à l'utilisateur.
+
+##### Table *PHYSICAL_INFO*
+La table *PHYSICAL_INFO* contient toutes les informations physiques récupérées par le coach lors d'un bilan ou d'une prise en charge. La date permet de garder un historique pour visualiser la progression du client. La plupart des données insérées dans cette table peuvent être récupérées à l'aide d'une balance connectée.
+
+##### Table *COACHEDBY*
+Cette table permet de différencier un coach d'un client et permet de retrouver tous les clients d'un coach. Les dates de début et de fin permettent de retrouver des anciens coachs/clients si plusieurs coachs travaillent dans la salle de sport.
+
+##### Table *PROGRAM*
+La table *PROGRAM* contient les programmes d'entrainement et de nutrition ajouté par un coach.
+
+##### Table *ROLE*
+La table *ROLE* contient tous les rôles de l'application. Elle permet de définir les accès que possèdent les utilisateurs.
+
+##### Table *PURCHASE*
+La table *PURCHASE* contient l'historique de toutes les transactions effectuées. Elle permet de retrouver le type d'abonnement que chaque client a souscrit.
+
+##### Table *SUBSCRIPTION*
+La table *SUBSCRIPTION* contient tous les différents types d'abonnement disponible. Elle permet de connaître la durée et le coût des abonnements souscrient par les clients.
+
+##### Table *SESSION*
+La table *SESSION* contient l'historique de toutes les sessions effectuées par les coachs avec la date et l'heure de la session ainsi que sa durée. Pour rappel, une session représente un rendez-vous avec un coach. Cela peut être pour un entrainement ou encore un bilan.
+
+##### Table *WORKOUT_TYPE*
+Cette table contient les différents type d'entrainement. Elle permet d'identifier les entraînements effectués par les clients.
+
+##### Table *WORKOUT*
+La table *WORKOUT* contient toutes les données d'entraînements des séances effectuées. La majorité des données sont obtenues à l'aide des capteurs sur les montres connectées. Les données contenues dans cette table permettent de vérifier l'efficacité et l'intensité de la séance et peuvent être utilisés pour des comparaisons.
+
+##### Table *REVIEW*
+La table *REVIEW* est la table "mère" des 2 tables : *COACHING_REVIEW* et *SESSION_REVIEW*. Elle permet de relier les reviews aux clients.
+
+##### Table *COACHING_REVIEW*
+Cette table contient tous les retours client sur le coaching effectué par le coach. Les champs disponibles ont la satisfaction, le support le coach lui apporte, la disponibilité du coach en cas de besoin et si le client souhaite continuer son suivi.
+
+##### Table *SESSION_REVIEW*
+Cette table contient tous les retours client sur les sessions qu'il effectue avec un coach. Les champs disponibles sont la difficulté, le ressenti de la séance, le niveau de fatigue à la fin de la séance et l'énergie que le client avait en arrivant.

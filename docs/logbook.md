@@ -347,3 +347,33 @@ J'ai pris la décision de laisser un peu de côté l'aspect "esthétique" de l'a
 J'ai pu avancé un peu sur la documentation de la base de données. Je vais devoir revoir mon poster ce week-end, M.Bonvin m'a fait un retour : Je n'explique pas ce que mon application fait et je fais plus de pub pour Polar qu'autre chose. 
 
 ![Poster](./img/Poster_V1.png)
+
+
+### Lundi, 9 Mai 2022
+
+Aujourd'hui à 17h, nous avons le rendu intermédiaire. Nous devons rendre le poster, le résumé et l'abstract ainsi que l'état actuel de la documentation technique.
+
+J'ai pu refaire un nouveau Poster plus explicit de ce qu'est mon application :
+
+![Poster V2](./img/Poster_V2.png)
+
+Je l'ai montré à M.Garcia qui m'a fait la remarque qu'il n'y avait pas vraiment d'ordre de procéder pour l'application (Trop d'images misent un peu partout sans sens particulier). Je vais donc reordrer les images et je devrai être pas mal.
+
+J'ai pu avancer ma documentation technique un peu, il faut encore que j'ajoute :
+
+* L'arborescence
+* L'installation
+
+et que je commence à expliquer les différentes routes de l'application.
+
+Je viens de rencontrer un problème, lors du rendu en PDF avec Mkdocs, j'ai plusieurs images qui s'affichaient sur le site statique mais qui ne sont pas visible sur le PDF.
+
+M.Jossi est passé pour voir l'avancement du projet, nous ferons un point pour l'évaluation intermédiaire Mercredi. Il m'a également fait la remarque que mon poster contenait trop d'images un peu partout. Je vais épurer mon poster et continuer d'avancer sur la documentation.
+
+J'ai pu ajouter l'arborescence (qui n'est pas terminée vu que le projet ne l'est pas encore). 
+
+Il faudrait encore que j'ajoute des tests utilisateurs dans la documentation pour les parties déjà terminées. 
+
+J'ai pu modifier et alléger mon poster :
+
+![Poster V3](./img/Poster_V3.png)
