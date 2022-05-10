@@ -377,3 +377,24 @@ Il faudrait encore que j'ajoute des tests utilisateurs dans la documentation pou
 J'ai pu modifier et alléger mon poster :
 
 ![Poster V3](./img/Poster_V3.png)
+
+### Mardi, 10 Mai 2022
+
+Aujourd'hui je vais avancer sur mon projet. Il faut que j'ajoute l'affichage des détails d'une review lorsque l'utilisateur clique dessus.
+
+Je rencontre un problème, je voulais à la base passer la review (objet) en paramètre GET pour pouvoir récupérer les infos sur la page review. Mais lorsque je passe l'objet en paramètre il arrive de l'autre côté sous forme de chaine (string). Je ne peux donc pas récupérer les données comme je le souhaite car seul les valeurs sont dans la chaine, il n'y pas les indexs.
+
+Je vois deux possibilité : 
+
+Soit je passe l'id en paramètre et je vais refaire une requête pour chercher les infos (je vais devoir en faire deux car je ne peux pas savoir le type de la review à l'avance et en fonction du type la requête est différente)
+
+Soit j'arrive à récupérer un objet en paramètre.
+
+Je vais essayer de trouver un moyen de passer l'objet mais si je perds trop de temps je ferai l'option avec les deux requêtes.
+
+J'ai pu passer les valeurs en paramètre, au lieu de passer l'objet j'ai passé toutes les valeurs séparéments. En avançant je viens de me rendre qu'il faut que j'ajoute un champ dans les 2 tables "COACHING_REVIEW" et "SESSION_REVIEW". Il faut que j'ai l'id de la session/coach concercné par la review.
+
+
+J'ai rajouté les champs "target_id" aux deux tables de reviews. J'ai mis à jour les diagrammes.
+
+J'ai pu terminer l'affichage des 2 types de reviews, je pourrai revoir encore le style éventuellement plus tard si j'ai le temps.

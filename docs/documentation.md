@@ -433,12 +433,12 @@ Pour permettre le stockage des données, j'ai créé une base de données nomée
 #### MCD
 Au lieu de créer la base de données directement, j'ai commencer par créer un MCD pour définir tous les besoins de l'application au niveau de la base de données. Pour faire mon MCD, je suis allé sur LucidChart qui est une plateforme de collaboration en ligne permettant la création de diagrammes et la visualisation de données et autres schémas conceptuels.
 
-![MCD](./img/MCD_4.0.png)
+![MCD](./img/MCD_5.0.png)
 
 #### MLD
 Une fois les besoins identifiés à l'aide du MCD, j'ai pu utiliser SQL Alchemy pour créer ma base de données directement. 
 
-![MLD](./img/MLD_1.PNG)
+![MLD](./img/MLD_2.PNG)
 #### SQLAlchemy
 SQL Alchemy est un ORM (mapping objet-relationnel) écrit en Python, il utilise le pattern [Data Mapper](#data-mapper) et me permet de créer directement mes tables.
 

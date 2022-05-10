@@ -170,7 +170,8 @@ class CoachingReview(db.Model):
     satisfaction = db.Column(db.Integer, nullable=False)
     support = db.Column(db.Integer, nullable=False)
     disponibility = db.Column(db.Integer, nullable=False)
-    is_continuing = db.Column(db.Boolean, nullable=False)
+    advice = db.Column(db.Integer, nullable=False)
+    target_id = db.Column(db.Integer, db.ForeignKey('USER.id'))
 
 class SessionReview(db.Model):
     __tablename__ = 'SESSION_REVIEW'
@@ -180,6 +181,7 @@ class SessionReview(db.Model):
     feel = db.Column(db.Integer, nullable=False)
     fatigue = db.Column(db.Integer, nullable=False)
     energy = db.Column(db.Integer, nullable=False)
+    target_id = db.Column(db.Integer, db.ForeignKey('SESSION.id'))
 
 class Review(db.Model):
     __tablename__ = 'REVIEW'

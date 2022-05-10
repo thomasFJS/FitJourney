@@ -9,7 +9,7 @@ Brief   :        Set all the application routes
 # APP
 from apps.client import blueprint
 from apps import db, login_manager
-from apps.authentication.models import User, PhysicalInfo, Subscription, Purchase, CoachingReview, SessionReview, Review, Workout, WorkoutType
+from apps.authentication.models import User, PhysicalInfo, Subscription, Purchase, CoachingReview, SessionReview, Review, Workout, WorkoutType, Session
 from apps.client.forms import UpdateForm
 from apps.config import Config
 
@@ -63,19 +63,19 @@ def profile():
 	subscription = db.session.query(Subscription.duration, Purchase.date).join(Subscription, Purchase.subscription_id==Subscription.id).filter(Purchase.client_id==id).order_by(Purchase.date).first()
 	
 	#Queries to get all Review from user 
-	q1 = db.session.query(CoachingReview.id, CoachingReview.satisfaction.label("Field1"), CoachingReview.support.label("Field2"), CoachingReview.disponibility.label("Field3"), CoachingReview.is_continuing.label("Field4"))
-	q2 = db.session.query(SessionReview.id, SessionReview.difficulty, SessionReview.feel, SessionReview.fatigue, SessionReview.energy)
+	coachingReview = db.session.query(CoachingReview.id, CoachingReview.satisfaction.label("Field1"), CoachingReview.support.label("Field2"), CoachingReview.disponibility.label("Field3"), CoachingReview.advice.label("Field4"), CoachingReview.target_id.label("target_id"))
+	sessionReview = db.session.query(SessionReview.id, SessionReview.difficulty, SessionReview.feel, SessionReview.fatigue, SessionReview.energy, SessionReview.target_id)
 
 	#UNION with the 2 queries 
-	q3 = union(q1,q2).alias()
+	reviewsUnion = union(coachingReview,sessionReview).alias()
 
 	#q4 = aliased(q3, name="If")
 
-	query = db.session.query(Review.id, Review.comment, Review.date, Review.type).select_from(q3).join(Review,Review.id==q3.c.COACHING_REVIEW_id).filter(Review.id_client==id)
+	query = db.session.query(Review.id, Review.comment, Review.date, Review.type, reviewsUnion.c.Field1, reviewsUnion.c.Field2, reviewsUnion.c.Field3, reviewsUnion.c.Field4, Review.id_client, reviewsUnion.c.target_id).select_from(reviewsUnion).join(Review,Review.id==reviewsUnion.c.COACHING_REVIEW_id).filter(Review.id_client==id).order_by(Review.date.desc())
 
 
-	#Set all the reports
-	current_user.reports = query
+	#Set all the reviews
+	current_user.reviews = query
 
 	# Set the physical value to the user
 	current_user.physicalInfo = physicalInfo
@@ -133,6 +133,31 @@ def profile():
 
 	return render_template("client/profile.html", segment='profile')
 
+
+@blueprint.route('/review/', methods=['GET'])
+@login_required
+def review():	
+
+	# Put all parameters into dict 
+	reviewDetails = request.args.to_dict()
+
+	# Client who post the review
+	client = db.session.query(User.name, User.surname).filter(User.id==reviewDetails['Client']).first()
+
+	target = {}
+	# Target of the review may be session or a coach depends on review type
+	if reviewDetails['Type'] == "SESSION":
+		targetQuery = db.session.query(WorkoutType.title, Session.date, Session.time, Session.duration).join(WorkoutType, WorkoutType.id==Session.workout_type).filter(Session.id==reviewDetails['Target']).first()
+		target['Type'] = targetQuery.title
+		target['Date'] = targetQuery.date
+		target['Time'] = targetQuery.time
+		target['Duration'] = targetQuery.duration
+	elif reviewDetails['Type'] == "COACHING":
+		targetQuery = db.session.query(User.name, User.surname).filter(User.id==reviewDetails['Target']).first()
+		target['Name'] = targetQuery.name
+		target['Surname'] = targetQuery.surname
+
+	return render_template('client/review.html', segment='review', review=reviewDetails, client=client, target=target)
 
 
 # Create Workouts Page

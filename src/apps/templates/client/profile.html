@@ -176,14 +176,17 @@
                 </tr>
             </thead>
             
-            {% for report in current_user.reports %}
+            {% for review in current_user.reviews %}
             <br>
             <tr>
                 <td>
-                    {{ report.type }}
+                    {{ review.type }}
                 </td>
                 <td>
-                    {{ report.date }}
+                    {{ review.date }}
+                </td>
+                <td>
+                  <a href="{{ url_for('client_blueprint.review', Type=review.type, Date=review.date, Field1=review.Field1, Field2=review.Field2, Field3=review.Field3, Field4=review.Field4, Comment=review.comment, Client=review.id_client, Target=review.target_id) }}">Details</a>
                 </td>
             </tr>
             {% endfor %}
