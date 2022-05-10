@@ -9,7 +9,7 @@ Brief   :        Home blueprint initialization
 from flask import Blueprint
 
 blueprint = Blueprint(
-    'home_blueprint',
+    'client_blueprint',
     __name__,
     url_prefix=''
 )

@@ -29,7 +29,7 @@ def register_blueprints(app):
     """
     Register all blueprints
     """
-    for module_name in ('authentication','home'):
+    for module_name in ('authentication','client'):
         module = import_module('apps.{}.routes'.format(module_name))
         app.register_blueprint(module.blueprint)
 

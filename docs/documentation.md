@@ -262,6 +262,8 @@ Dans la zone verte, un bouton pour ajouter une nouvelle session avec un client e
 
 ### Mise en place / Envirronement
 
+#### Installation (reprise du projet)
+
 #### Visual Studio Code
 J'ai choisi d'utiliser Visual Studio code pour éditer mon code, il est directement relié à mon repo sur Github. Je peux donc directement depuis Visual Studio Code commit tous les changements que j'effectue.
 

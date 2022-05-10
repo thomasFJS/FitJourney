@@ -23,7 +23,7 @@ from apps.authentication.util import verify_pass
 #Default route
 @blueprint.route('/')
 def route_default():
-    return redirect(url_for('home_blueprint.index'))
+    return redirect(url_for('client_blueprint.index'))
 
 
 #Login route

@@ -3,7 +3,7 @@ Author  :        Thomas Fujise
 Date    :        12.04.2022
 File    :        forms.py
 Version :        1.0.0
-Brief   :        Application forms 
+Brief   :        Client forms 
 """
 
 from flask_wtf import FlaskForm

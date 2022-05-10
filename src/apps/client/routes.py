@@ -7,10 +7,10 @@ Brief   :        Set all the application routes
 """
 
 # APP
-from apps.home import blueprint
+from apps.client import blueprint
 from apps import db, login_manager
 from apps.authentication.models import User, PhysicalInfo, Subscription, Purchase, CoachingReview, SessionReview, Review, Workout, WorkoutType
-from apps.home.forms import UpdateForm
+from apps.client.forms import UpdateForm
 from apps.config import Config
 
 # FLASK
@@ -34,7 +34,7 @@ from werkzeug.utils import secure_filename
 @blueprint.route('/index')
 @login_required
 def index():
-    return render_template('home/index.html', segment='index')
+    return render_template('client/index.html', segment='index')
 
 # Create Profile Page
 @blueprint.route('/profile', methods=['GET', 'POST'])
@@ -111,27 +111,27 @@ def profile():
 				db.session.commit()
 				saver.save(os.path.join(Config.UPLOAD_FOLDER, pic_name))
 				flash("Account Updated successfully !")
-				return render_template("home/profile.html",
+				return render_template("client/profile.html",
 						form=update_form
 				)		
 			except:
 				flash("Error! Looks like there was a problem.. try again!")
-				return render_template("home/profile.html",
+				return render_template("client/profile.html",
 						form=update_form
 						)
 		else:
 			db.session.commit()
 			flash("User Updated successfully !")
-			return render_template("home/profile.html", 
+			return render_template("client/profile.html", 
 					form=update_form
 					)
 	else:
-		return render_template("home/profile.html", segment='profile',
+		return render_template("client/profile.html", segment='profile',
 				form=update_form,
 				id = id,
 				physicalInfo=physicalInfo)
 
-	return render_template("home/profile.html", segment='profile')
+	return render_template("client/profile.html", segment='profile')
 
 
 
@@ -144,7 +144,7 @@ def workouts():
 	# Get all data from workout 
 	workouts = db.session.query(WorkoutType.title, Workout.date, Workout.duration, Workout.heart_rate_max, Workout.heart_rate_min, 
 				Workout.heart_rate_avg, Workout.calories, Workout.active_calories, Workout.distance, Workout.pace_avg).join(WorkoutType, Workout.workout_type == WorkoutType.id).filter(Workout.client_id==id).order_by(Workout.date.desc())
-	return render_template('home/workouts.html', segment='workouts', workouts=workouts)
+	return render_template('client/workouts.html', segment='workouts', workouts=workouts)
 
 # Extract current page name from request
 def get_segment(request):
