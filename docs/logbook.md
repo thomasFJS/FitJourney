@@ -403,7 +403,7 @@ J'ai pu terminer l'affichage des 2 types de reviews, je pourrai revoir encore le
 
 Nous allons faire le point intermédiaire aujourd'hui avec M.Jossi, je pense toujours avoir un peu de retard sur le projet de manière générale.
 
-Je rencontre un problème lors de l'ajout des charts sur la page profil. J'ai fait une requête pour obtenir les types d'entrainements qu'a effectué un client ainsi que le nombre de séance effectués pour chaque type. Je sépare donc ces valeurs en 2 tableaux (Pour pouvoir ensuite les passer dans le Javascript et utiliser les valeurs avec Chart.JS). Seulement une fois passer du côté HTML j'ai un problème, pour tableau qui contient les valeurs numérique (int) tout vas bien mais pour le tableau qui contient le titre des exercices (string) les apostrophe contenu dans le tableau pour détérminer les strings sont remplacé par : *&#34;*
+Je rencontre un problème lors de l'ajout des charts sur la page profil. J'ai fait une requête pour obtenir les types d'entrainements qui ont été effectués un client ainsi que le nombre de séance effectué pour chaque type. Je sépare donc ces valeurs en 2 tableaux (Pour pouvoir ensuite les passer dans le Javascript et utiliser les valeurs avec Chart.JS). Seulement une fois passer du côté HTML j'ai un problème, pour tableau qui contient les valeurs numériques (int) tout va bien mais pour le tableau qui contient le titre des exercices (string) les apostrophes contenues dans le tableau pour déterminer les strings sont remplacé par : *&#34;*
 
 Tableau avant (backend python)
 ```
@@ -417,6 +417,10 @@ Tableau après (frontend html)
 
 Le problème est que je ne peux même pas remplacer les caractères indésirables car ce n'est pas une chaine mais un tableau.
 
-Pour résoudre ce problème, j'ai fait une boucle qui parcours le tableau reçu sur le côté template et j'ai remplis un tableau javascript avec les valeurs. J'ai ensuite remplacé les caractères indésirables des valeurs et tout fonctionnait.
+Pour résoudre ce problème, j'ai fait une boucle qui parcourt le tableau reçu sur le côté template et j'ai rempli un tableau javascript avec les valeurs. J'ai ensuite remplacé les caractères indésirables des valeurs et tout fonctionnait.
 
-En me faisant une réflexion sur l'application, je me suis rendu compte que je vais devoir modifier une maquette. Sur la maquette d'interface pour la page détail d'un entrainement, j'ai affiché un graphique qui représentait l'évolution des battements de coeur durant la séance. Malheureusement l'API Polar ne permets pas de récolter les données de toutes la séance, on obtient uniquement le bpm max, min et moyen (pas de quoi afficher un graphique représentant la séance entière).
+En me faisant une réflexion sur l'application, je me suis rendu compte que je vais devoir modifier une maquette. Sur la maquette d'interface pour la page détail d'un entrainement, j'ai affiché un graphique qui représentait l'évolution des battements de coeur durant la séance. Malheureusement l'API Polar ne permet pas de récolter les données de toute la séance, on obtient uniquement le bpm max, min et moyen (pas de quoi afficher un graphique représentant la séance entière).
+
+J'ai fait le point intermédiaire avec M.Jossi, dans l'ensemble je suis sur le bon chemin. Il ne faut pas que je me relâche mais j'avance dans la bonne direction. J'ai toujours un peu de retard mais je ne me fais pas trop de soucis pour l'instant. Il faut que je commence à découper le code python (séparer en fonction pour chaque requête effectuée) et il faut également que j'ajoute le guide d'installation dans la documentation. M.Jossi m'a également fait la remarque qu'il faudrait que je précise les entrées obligatoires dans les formulaires présents sur les maquettes.
+
+J'ai pu commencer l'ajout du deuxième graphique de la page profil avec Chart.JS qui représentera le nombre d'entrainements effectués par mois.

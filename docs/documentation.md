@@ -435,7 +435,7 @@ Au lieu de créer la base de données directement, j'ai commencer par créer un 
 
 ![MCD](./img/MCD_5.0.png)
 
-#### MLD
+#### Modèle physique
 Une fois les besoins identifiés à l'aide du MCD, j'ai pu utiliser SQL Alchemy pour créer ma base de données directement. 
 
 ![MLD](./img/MLD_2.PNG)
