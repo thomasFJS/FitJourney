@@ -73,21 +73,28 @@ def profile():
 	# Query to get field from Review table and from the review union made before
 	reviewsQuery = db.session.query(Review.id, Review.comment, Review.date, Review.type, reviewsUnion.c.Field1, reviewsUnion.c.Field2, reviewsUnion.c.Field3, reviewsUnion.c.Field4, Review.id_client, reviewsUnion.c.target_id).select_from(reviewsUnion).join(Review,Review.id==reviewsUnion.c.COACHING_REVIEW_id).filter(Review.id_client==id).order_by(Review.date.desc())
 
+	# Query to get each workout type and how many client have made
+	workoutTypeCountQuery = db.session.query(WorkoutType.title, func.count(Workout.workout_type).label("count")).join(Workout, Workout.workout_type==WorkoutType.id).filter(Workout.client_id==id).group_by(Workout.workout_type)
 
-	workoutCountQuery = db.session.query(WorkoutType.title, func.count(Workout.workout_type).label("count")).join(Workout, Workout.workout_type==WorkoutType.id).filter(Workout.client_id==id).group_by(Workout.workout_type)
-
+	# Split values in 2 array to use them in js 
 	workoutTypeList = []
 	workoutTypeCount = []
 
-	for workoutCount in workoutCountQuery:
-		workoutTypeList.append('"' +workoutCount.title+ '"')
-		workoutTypeCount.append(workoutCount.count)
-	# Set the workout count
-	print(json.dumps(workoutTypeList))
+	for workoutTypeCount in workoutTypeCountQuery:
+		workoutTypeList.append('"' +workoutTypeCount.title+ '"')
+		workoutTypeCount.append(workoutTypeCount.count)
+
+	# SELECT Month(WORKOUT.date), Count(*) FROM WORKOUT WHERE client_id = 1 GROUP BY MONTH(WORKOUT.date);
+	
+
+
+	# Set the 2 array for workout type
 	current_user.workoutTypeList = workoutTypeList
 	current_user.workoutTypeCount = workoutTypeCount
+
 	#Set all the reviews
 	current_user.reviews = reviewsQuery
+
 	# Set the physical value to the user
 	current_user.physicalInfo = physicalInfo
 

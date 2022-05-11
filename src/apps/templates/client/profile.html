@@ -208,9 +208,18 @@
             </div>
           </div>
           <div class="card-body">
+            <div class="row">
+            <div class="col-lg-6">
             <div class="chart-container" style="max-width: 25rem; position: relative;">
-              <canvas id="stats"></canvas>
+              <canvas id="workoutTypes"></canvas>
             </div>
+          </div>
+            <div class="col-lg-6">
+              <div class="chart-container" style="max-width: 25rem; position: relative;">
+                <canvas id="stats"></canvas>
+              </div>
+            </div>
+          </div>
           </div>
         </div>
       </div>
@@ -226,7 +235,39 @@
   {% for workoutType in current_user.workoutTypeList %}
     workoutList.push('{{workoutType}}'.replaceAll('&#34;',''));
   {% endfor %}
-  const ctx = document.getElementById('stats').getContext('2d');
+  const ctx = document.getElementById('workoutTypes').getContext('2d');
+  const ctx2 = document.getElementById('stats').getContext('2d');
+  const myChart2 = new Chart(ctx2, {
+			type: 'line',
+			data: {
+				labels: [
+					'Jan',
+					'Feb',
+					'Mar',
+					'Apr',
+					'Mai',
+					'Jun',
+					'Jul'
+				],
+				datasets: [{
+					label: 'Number of workouts',
+					data: [10, 12, 23, 8, 22, 20, 21],
+					fill: false,
+					borderColor: 'rgb(128, 0, 128)',
+					tension: 0.1
+				}]
+			},
+			options: {
+				r: {
+					suggestedMin: 0
+				},
+				elements: {
+				line: {
+					borderWidth: 3
+				}
+			}
+			}
+		});
   const myChart = new Chart(ctx, {
     type: 'doughnut',
     data: {

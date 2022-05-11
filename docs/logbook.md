@@ -418,3 +418,5 @@ Tableau après (frontend html)
 Le problème est que je ne peux même pas remplacer les caractères indésirables car ce n'est pas une chaine mais un tableau.
 
 Pour résoudre ce problème, j'ai fait une boucle qui parcours le tableau reçu sur le côté template et j'ai remplis un tableau javascript avec les valeurs. J'ai ensuite remplacé les caractères indésirables des valeurs et tout fonctionnait.
+
+En me faisant une réflexion sur l'application, je me suis rendu compte que je vais devoir modifier une maquette. Sur la maquette d'interface pour la page détail d'un entrainement, j'ai affiché un graphique qui représentait l'évolution des battements de coeur durant la séance. Malheureusement l'API Polar ne permets pas de récolter les données de toutes la séance, on obtient uniquement le bpm max, min et moyen (pas de quoi afficher un graphique représentant la séance entière).
