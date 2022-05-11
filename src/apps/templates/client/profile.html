@@ -190,15 +190,60 @@
                 </td>
             </tr>
             {% endfor %}
-          
+          </table>
       </div>
     </div>
 
+    <div class="row">
+      <div class="col-xl-12">
+        <div class="card" style="max-width: 114rem;"">
+          <div class="card-header">
+            <div class="row align-items-center">
+              <div class="col-8">
+                <h3 class="mb-0">Analytics</h3>
+              </div>
+              <div class="col-4 text-right">
+                <a href="#!" class="btn btn-sm btn-warning">Statistic</a>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="chart-container" style="max-width: 25rem; position: relative;">
+              <canvas id="stats"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
 
 {% endblock content %}
 
 <!-- Specific JS goes HERE --> 
 {% block javascripts %}
+<script>
+  var workoutList = []
+  {% for workoutType in current_user.workoutTypeList %}
+    workoutList.push('{{workoutType}}'.replaceAll('&#34;',''));
+  {% endfor %}
+  const ctx = document.getElementById('stats').getContext('2d');
+  const myChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: workoutList,
+      datasets: [{
+        label: 'Stats',
+        data: {{ current_user.workoutTypeCount }},
+        backgroundColor: [
+          'rgb(255, 99, 132)',
+          'rgb(54, 162, 235)',
+          'rgb(255, 205, 86)'
+        ],
+        hoverOffset: 4
+      }]
 
+    }
+  });
+  
+  </script>
 {% endblock javascripts %}

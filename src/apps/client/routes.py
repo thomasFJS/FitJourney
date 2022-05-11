@@ -23,12 +23,13 @@ from flask_login import (
 )
 
 # SQL ALCHEMY 
-from sqlalchemy import union
+from sqlalchemy import union, func
 
 # UTILS
 from dateutil.relativedelta import relativedelta
 import uuid as uuid
 import os
+import json
 from werkzeug.utils import secure_filename
 
 @blueprint.route('/index')
@@ -69,14 +70,24 @@ def profile():
 	#UNION with the 2 queries 
 	reviewsUnion = union(coachingReview,sessionReview).alias()
 
-	#q4 = aliased(q3, name="If")
+	# Query to get field from Review table and from the review union made before
+	reviewsQuery = db.session.query(Review.id, Review.comment, Review.date, Review.type, reviewsUnion.c.Field1, reviewsUnion.c.Field2, reviewsUnion.c.Field3, reviewsUnion.c.Field4, Review.id_client, reviewsUnion.c.target_id).select_from(reviewsUnion).join(Review,Review.id==reviewsUnion.c.COACHING_REVIEW_id).filter(Review.id_client==id).order_by(Review.date.desc())
 
-	query = db.session.query(Review.id, Review.comment, Review.date, Review.type, reviewsUnion.c.Field1, reviewsUnion.c.Field2, reviewsUnion.c.Field3, reviewsUnion.c.Field4, Review.id_client, reviewsUnion.c.target_id).select_from(reviewsUnion).join(Review,Review.id==reviewsUnion.c.COACHING_REVIEW_id).filter(Review.id_client==id).order_by(Review.date.desc())
 
+	workoutCountQuery = db.session.query(WorkoutType.title, func.count(Workout.workout_type).label("count")).join(Workout, Workout.workout_type==WorkoutType.id).filter(Workout.client_id==id).group_by(Workout.workout_type)
 
+	workoutTypeList = []
+	workoutTypeCount = []
+
+	for workoutCount in workoutCountQuery:
+		workoutTypeList.append('"' +workoutCount.title+ '"')
+		workoutTypeCount.append(workoutCount.count)
+	# Set the workout count
+	print(json.dumps(workoutTypeList))
+	current_user.workoutTypeList = workoutTypeList
+	current_user.workoutTypeCount = workoutTypeCount
 	#Set all the reviews
-	current_user.reviews = query
-
+	current_user.reviews = reviewsQuery
 	# Set the physical value to the user
 	current_user.physicalInfo = physicalInfo
 

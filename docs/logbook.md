@@ -398,3 +398,23 @@ J'ai pu passer les valeurs en paramètre, au lieu de passer l'objet j'ai passé 
 J'ai rajouté les champs "target_id" aux deux tables de reviews. J'ai mis à jour les diagrammes.
 
 J'ai pu terminer l'affichage des 2 types de reviews, je pourrai revoir encore le style éventuellement plus tard si j'ai le temps.
+
+### Mercredi, 11 Mai 2022
+
+Nous allons faire le point intermédiaire aujourd'hui avec M.Jossi, je pense toujours avoir un peu de retard sur le projet de manière générale.
+
+Je rencontre un problème lors de l'ajout des charts sur la page profil. J'ai fait une requête pour obtenir les types d'entrainements qu'a effectué un client ainsi que le nombre de séance effectués pour chaque type. Je sépare donc ces valeurs en 2 tableaux (Pour pouvoir ensuite les passer dans le Javascript et utiliser les valeurs avec Chart.JS). Seulement une fois passer du côté HTML j'ai un problème, pour tableau qui contient les valeurs numérique (int) tout vas bien mais pour le tableau qui contient le titre des exercices (string) les apostrophe contenu dans le tableau pour détérminer les strings sont remplacé par : *&#34;*
+
+Tableau avant (backend python)
+```
+['Weightlifting', 'Cycling']
+```
+
+Tableau après (frontend html)
+```
+[&#34;Weightlifting&#34;,&#34;Cycling&#34;]
+```
+
+Le problème est que je ne peux même pas remplacer les caractères indésirables car ce n'est pas une chaine mais un tableau.
+
+Pour résoudre ce problème, j'ai fait une boucle qui parcours le tableau reçu sur le côté template et j'ai remplis un tableau javascript avec les valeurs. J'ai ensuite remplacé les caractères indésirables des valeurs et tout fonctionnait.
