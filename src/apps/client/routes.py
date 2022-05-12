@@ -80,13 +80,22 @@ def profile():
 	workoutTypeList = []
 	workoutTypeCount = []
 
-	for workoutTypeCount in workoutTypeCountQuery:
-		workoutTypeList.append('"' +workoutTypeCount.title+ '"')
-		workoutTypeCount.append(workoutTypeCount.count)
+	for wtCount in workoutTypeCountQuery:
+		workoutTypeList.append('"' +wtCount.title+ '"')
+		workoutTypeCount.append(wtCount.count)
 
 	# SELECT Month(WORKOUT.date), Count(*) FROM WORKOUT WHERE client_id = 1 GROUP BY MONTH(WORKOUT.date);
-	
+	workoutCountPerMonthQuery = db.session.query(func.month(Workout.date).label("month"), func.count(Workout.id).label("count")).filter(Workout.client_id==id).group_by(func.month(Workout.date))
+	# Create a year array with 12 values (each value represent a month)
+	nbWorkoutPerMonth = [0,0,0,0,0,0,0,0,0,0,0,0]
+	for i in range(12):
+		for wtCountbyMonth in workoutCountPerMonthQuery:
+			if i == wtCountbyMonth.month-1: # If month got result from query set the value else keep 0 
+				nbWorkoutPerMonth[i] = wtCountbyMonth.count
+				break
 
+	# Set the number of workout per month
+	current_user.nbWorkoutPerMonth = nbWorkoutPerMonth
 
 	# Set the 2 array for workout type
 	current_user.workoutTypeList = workoutTypeList

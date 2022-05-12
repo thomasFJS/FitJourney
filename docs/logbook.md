@@ -424,3 +424,7 @@ En me faisant une réflexion sur l'application, je me suis rendu compte que je v
 J'ai fait le point intermédiaire avec M.Jossi, dans l'ensemble je suis sur le bon chemin. Il ne faut pas que je me relâche mais j'avance dans la bonne direction. J'ai toujours un peu de retard mais je ne me fais pas trop de soucis pour l'instant. Il faut que je commence à découper le code python (séparer en fonction pour chaque requête effectuée) et il faut également que j'ajoute le guide d'installation dans la documentation. M.Jossi m'a également fait la remarque qu'il faudrait que je précise les entrées obligatoires dans les formulaires présents sur les maquettes.
 
 J'ai pu commencer l'ajout du deuxième graphique de la page profil avec Chart.JS qui représentera le nombre d'entrainements effectués par mois.
+
+### Jeudi, 12 Mai 2022
+
+J'ai pu terminer le passage des valeurs pour le deuxième graphique (pour le nombre d'entrainements par mois). Je n'ai pas pu avancer l'après-midi car il y a eu l'après-midi "poster" ou tous les élèves CFC ont venu voir les projets.
