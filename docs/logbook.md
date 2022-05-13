@@ -431,7 +431,13 @@ J'ai pu terminer le passage des valeurs pour le deuxième graphique (pour le nom
 
 ### Vendredi, 13 Mai 2022
 
-J'ai reçu un mail inquiétant de la part de Polar. Ils annoncent une maintenance le 18 Juin, je ne sais pas pour combien de temps. Sachant que la défense du diplôme à lieu le 20, je vais devoir prendre des précautions et faire une sorte de "Mock" de l'API Polar et simuler la récupération des données au cas ou. Je vais quand même leurs envoyer un mail, pour connaitre la durée de la maintenance et savoir si des changements majeures auront lieu (des changements qui risque de rendre obsolète mon application).
+J'ai reçu un mail inquiétant de la part de Polar. Ils annoncent une maintenance le 18 Juin, je ne sais pas pour combien de temps. Sachant que la défense du diplôme a lieu le 20, je vais devoir prendre des précautions et faire une sorte de "Mock" de l'API Polar et simuler la récupération des données au cas où. Je vais quand même leurs envoyer un mail, pour connaitre la durée de la maintenance et savoir si des changements majeurs auront lieu (des changements qui risquent de rendre obsolète mon application).
 
 
-J'ai remarqué que les données utilisées pour le graphique qui affiche le nombre d'entrainements par mois ne prends pas en compte l'année (Si j'ai fait des entrainements en Mai 2021 et Mai 2022 il prendra la somme des 2). Je vais rajouter le critère de l'année actuelle dans la requête SQL.
+J'ai remarqué que les données utilisées pour le graphique qui affiche le nombre d'entrainements par mois ne prends pas en compte l'année (si j'ai fait des entrainements en Mai 2021 et Mai 2022 il prendra la somme des 2). Je vais rajouter le critère de l'année actuelle dans la requête SQL.
+
+J'ai pu ajouter les statistiques de la semaine à côté des deux graphiques. Il faut encore que j'affiche le total d'heures d'entrainements de la semaine, la difficulté est qu'il faut que j'utilise la fonction SQL SUM() sur des champs du type TIME (ce qui n'est pas faisable en SQL). Pour solutionner ce léger problème j'ai utilisé la fonction SQL exctract qui m'a permis d'extraire les heures, minutes et secondes de chaque durée et ainsi les additionners. 
+
+J'ai également pu ajouter la page "Prochaine sessions" qui affichent la liste des prochaines sessions avec un coach. Pour ressembler le plus possible à la maquette j'ai ajouté dans le dossier *static/assets/img/sports* des logos de beaucoup de sports qui serviront d'illustrations pour le type de séance qui est prévu pour la session.
+
+Je vais pouvoir maintenant commencer à séparer en différentes fonctions les requêtes SQL pour rendre plus lisible le fichier de routes
