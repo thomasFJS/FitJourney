@@ -32,10 +32,24 @@ import os
 import json
 from werkzeug.utils import secure_filename
 
+from datetime import date
+
 @blueprint.route('/index')
 @login_required
 def index():
-    return render_template('client/index.html', segment='index')
+	id = current_user.id
+	user = User.query.get_or_404(id)
+
+	# Get the next sessions
+	#  SELECT SESSION.date, SESSION.time, SESSION.duration, WORKOUT_TYPE.title, USER.name, USER.surname
+	#  FROM SESSION 
+	#  JOIN WORKOUT_TYPE ON SESSION.workout_type = WORKOUT_TYPE.id 
+	#  JOIN USER ON USER.id = SESSION.coach_id 
+	#  WHERE SESSION.client_id = 1 AND SESSION.date > curdate() 
+	#  ORDER BY SESSION.date
+
+	nextSessions = db.session.query(Session.date, Session.time, Session.duration, WorkoutType.title, WorkoutType.logo, User.name, User.surname).join(WorkoutType, Session.workout_type==WorkoutType.id).join(User, Session.coach_id==User.id).filter(Session.client_id==id).filter(Session.date>date.today()).order_by(Session.date)
+	return render_template('client/index.html', segment='index', nextSessions=nextSessions)
 
 # Create Profile Page
 @blueprint.route('/profile', methods=['GET', 'POST'])
@@ -84,8 +98,8 @@ def profile():
 		workoutTypeList.append('"' +wtCount.title+ '"')
 		workoutTypeCount.append(wtCount.count)
 
-	# SELECT Month(WORKOUT.date), Count(*) FROM WORKOUT WHERE client_id = 1 GROUP BY MONTH(WORKOUT.date);
-	workoutCountPerMonthQuery = db.session.query(func.month(Workout.date).label("month"), func.count(Workout.id).label("count")).filter(Workout.client_id==id).group_by(func.month(Workout.date))
+	# SELECT Month(WORKOUT.date), Count(*) FROM WORKOUT WHERE client_id = 1 AND YEAR(CURDATE()) = YEAR(WORKOUT.date) GROUP BY MONTH(WORKOUT.date);
+	workoutCountPerMonthQuery = db.session.query(func.month(Workout.date).label("month"), func.count(Workout.id).label("count")).filter(Workout.client_id==id).filter(func.year(date.today())==func.year(Workout.date)).group_by(func.month(Workout.date))
 	# Create a year array with 12 values (each value represent a month)
 	nbWorkoutPerMonth = [0,0,0,0,0,0,0,0,0,0,0,0]
 	for i in range(12):
@@ -93,6 +107,25 @@ def profile():
 			if i == wtCountbyMonth.month-1: # If month got result from query set the value else keep 0 
 				nbWorkoutPerMonth[i] = wtCountbyMonth.count
 				break
+
+	
+	# SELECT AVG(heart_rate_avg) FROM WORKOUT WHERE WORKOUT.client_id = 1 AND WEEK(WORKOUT.date) = WEEK(CURDATE()) - 1;
+	# Get the average of heart rate during this week
+	avgHeartRate = db.session.query(func.avg(Workout.heart_rate_avg).label("avg")).filter(Workout.client_id==id).filter(func.week(Workout.date)==func.week(date.today()) -1)
+
+	# SELECT AVG(calories) FROM WORKOUT WHERE WORKOUT.client_id = 1 AND WEEK(WORKOUT.date) = WEEK(CURDATE()) - 1;
+	# Get the average of calories burned this week
+	avgCalories = db.session.query(func.avg(Workout.calories).label("avg")).filter(Workout.client_id==id).filter(func.week(Workout.date)==func.week(date.today()) -1)
+
+	# SELECT SUM(my_time) FROM (SELECT extract(hour from duration) * 60 * 60 + extract(minute from duration) + extract(second from duration) as my_time FROM WORKOUT WHERE client_id = 1  AND WEEK(WORKOUT.date) = WEEK(CURDATE()) - 1) as timeduration
+	
+
+	
+	# Set the average heartRate for all workout made this week
+	current_user.avgHeartRate = avgHeartRate[0]
+
+	# Set the average heartRate for all workout made this week
+	current_user.avgCalories = avgCalories[0]
 
 	# Set the number of workout per month
 	current_user.nbWorkoutPerMonth = nbWorkoutPerMonth

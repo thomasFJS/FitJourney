@@ -6,22 +6,51 @@
 
 {% block content %}
 
-<div class="container-xxl flex-grow-1 container-p-y">
-    <div class="row">
-      <div class="col-lg-8 mb-4 order-0">
-        <div class="card">
-          <div class="d-flex align-items-end row">
-            <div class="col-sm-7">
-              <div class="card-body">
-                <h5 class="card-title text-primary">Home </h5>
-
-
-              </div>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
+<div class="row">
+  <div class="card card-body h-auto" style="width: 18rem; float: right;">
+    <h5 class="card-header">Next sessions</h5>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">Type</th>
+                <th scope="col">Hour</th>
+                <th scope="col">Duration</th>
+                <th scope="col">Date</th>
+                <th scope="col">Notif</th>
+            </tr>
+        </thead>
+        {% for session in nextSessions %}
+        <br>
+        <tr>
+            <td>
+              {% if session.logo %}
+                <img src="{{ url_for('static', filename='/assets/img/sports/' + session.logo)}}" alt="{{session.logo}}" class="rounded mx-auto d-block">                  
+              {% endif %}               
+            </td>
+            <td>
+                {{ session.title }}
+            </td>
+            <td>
+                {{ session.date }}
+            </td>
+            <td>
+                {{ session.duration }}
+            </td>
+            <td>
+                {{ session.time }}
+            </td>
+            <td>
+              <button type="button" class="btn btn-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell" viewBox="0 0 16 16">
+                  <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"></path>
+                </svg>
+              </button>
+            </td>
+        </tr>
+        {% endfor %}
+        </table>
+  </div>
 </div>
 
 {% endblock content %}

@@ -428,3 +428,10 @@ J'ai pu commencer l'ajout du deuxième graphique de la page profil avec Chart.JS
 ### Jeudi, 12 Mai 2022
 
 J'ai pu terminer le passage des valeurs pour le deuxième graphique (pour le nombre d'entrainements par mois). Je n'ai pas pu avancer l'après-midi car il y a eu l'après-midi "poster" ou tous les élèves CFC ont venu voir les projets.
+
+### Vendredi, 13 Mai 2022
+
+J'ai reçu un mail inquiétant de la part de Polar. Ils annoncent une maintenance le 18 Juin, je ne sais pas pour combien de temps. Sachant que la défense du diplôme à lieu le 20, je vais devoir prendre des précautions et faire une sorte de "Mock" de l'API Polar et simuler la récupération des données au cas ou. Je vais quand même leurs envoyer un mail, pour connaitre la durée de la maintenance et savoir si des changements majeures auront lieu (des changements qui risque de rendre obsolète mon application).
+
+
+J'ai remarqué que les données utilisées pour le graphique qui affiche le nombre d'entrainements par mois ne prends pas en compte l'année (Si j'ai fait des entrainements en Mai 2021 et Mai 2022 il prendra la somme des 2). Je vais rajouter le critère de l'année actuelle dans la requête SQL.
