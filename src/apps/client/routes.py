@@ -118,7 +118,7 @@ def profile():
 	avgCalories = db.session.query(func.avg(Workout.calories).label("avg")).filter(Workout.client_id==id).filter(func.week(Workout.date)==func.week(date.today()) -1)
 
 	# SELECT SUM(my_time) FROM (SELECT extract(hour from duration) * 60 * 60 + extract(minute from duration) + extract(second from duration) as my_time FROM WORKOUT WHERE client_id = 1  AND WEEK(WORKOUT.date) = WEEK(CURDATE()) - 1) as timeduration
-	
+	# TODO
 
 	
 	# Set the average heartRate for all workout made this week
@@ -227,9 +227,23 @@ def workouts():
 	id = current_user.id
 	user = User.query.get_or_404(id)
 	# Get all data from workout 
-	workouts = db.session.query(WorkoutType.title, Workout.date, Workout.duration, Workout.heart_rate_max, Workout.heart_rate_min, 
+	workouts = db.session.query(WorkoutType.title, WorkoutType.logo, Workout.date, Workout.duration, Workout.heart_rate_max, Workout.heart_rate_min, 
 				Workout.heart_rate_avg, Workout.calories, Workout.active_calories, Workout.distance, Workout.pace_avg).join(WorkoutType, Workout.workout_type == WorkoutType.id).filter(Workout.client_id==id).order_by(Workout.date.desc())
 	return render_template('client/workouts.html', segment='workouts', workouts=workouts)
+
+
+@blueprint.route('/workout')
+@login_required
+def workout():
+	# put all parameters into dict 
+	workoutDetails = request.args.to_dict()
+
+	return render_template('client/workout.html', segment="workout", workoutDetails=workoutDetails)
+
+@blueprint.route('/add_review')
+@login_required
+def add_review():
+	return render_template('client/workout.html', segment="workout", workoutDetails=workoutDetails)
 
 # Extract current page name from request
 def get_segment(request):

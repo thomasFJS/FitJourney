@@ -440,4 +440,8 @@ J'ai pu ajouter les statistiques de la semaine à côté des deux graphiques. Il
 
 J'ai également pu ajouter la page "Prochaine sessions" qui affichent la liste des prochaines sessions avec un coach. Pour ressembler le plus possible à la maquette j'ai ajouté dans le dossier *static/assets/img/sports* des logos de beaucoup de sports qui serviront d'illustrations pour le type de séance qui est prévu pour la session.
 
-Je vais pouvoir maintenant commencer à séparer en différentes fonctions les requêtes SQL pour rendre plus lisible le fichier de routes
+Je vais pouvoir maintenant commencer à séparer en différentes fonctions les requêtes SQL pour rendre plus lisible le fichier de routes.
+
+Pour le côté client, il ne manque plus que l'affichage détaillé des entrainements et l'option changement de mot de passe. Je pourrai ensuite commencer le côté coach. Pour la documentation je vais commencer à documenter les endpoints du côté client.
+
+### Lundi, 16 Mai 2022

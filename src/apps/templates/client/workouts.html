@@ -26,6 +26,7 @@
                     <th scope="col">Duration</th>
                     <th scope="col">Calories Burned</th>
                     <th scope="col">Avg Heart Rate</th>
+                    <th scope="col">Details</th>
                 </tr>
             </thead>
             {% for workout in workouts %}
@@ -45,6 +46,9 @@
                 </td>
                 <td>
                     {{ workout.heart_rate_avg }}
+                </td>
+                <td>
+                    <a href="{{ url_for('client_blueprint.workout', Logo=workout.logo, Type=workout.title, Date=workout.date, Heart_rate_avg=workout.heart_rate_avg, Calories=workout.calories, Duration=workout.duration, Heart_rate_max=workout.heart_rate_max, Client=workout.id_client) }}">Details</a>
                 </td>
             </tr>
             {% endfor %}
