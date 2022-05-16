@@ -445,3 +445,12 @@ Je vais pouvoir maintenant commencer à séparer en différentes fonctions les r
 Pour le côté client, il ne manque plus que l'affichage détaillé des entrainements et l'option changement de mot de passe. Je pourrai ensuite commencer le côté coach. Pour la documentation je vais commencer à documenter les endpoints du côté client.
 
 ### Lundi, 16 Mai 2022
+Aujourd'hui, j'ai pu terminer la page détails d'entrainements, je ne me suis pas trop attardé sur le style mais la page est fonctionnelle. J'ai pu ensuite poursuivre avec la page ajout de review, je vais en faire une seule qui s'adaptera en fonction des champs qui lui sont envoyés. 
+
+Je remarque qu'il faut que je modifie la maquette d'ajout de review sur le coaching car j'avais modifié un champ et sur la maquette l'ancien champ est toujours présent. 
+
+J'ai eu une réflexion lors de l'élaboration de la page d'ajout de review, ne faut-il pas ajouter une review sur les entrainements plutôt que les sessions ? 
+
+Car les sessions ne sont pas toujours des entrainements et cela ne sert à rien d'ajouter une review sur un rendez-vous pour un bilan. Il faut donc que je modifie les noms de table, les relations ainsi que les clés étrangères.
+
+J'ai pu terminer la page d'ajout de review à 90%, il ne manque plus qu'à modifier la base de données pour que les revies soient sur les entrainements et plus les sessions et la page sera fonctionnelle pour l'ajout de review sur les entrainements. J'ajouterai les reviews coaching demain.
