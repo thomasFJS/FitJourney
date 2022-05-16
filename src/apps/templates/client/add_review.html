@@ -1,0 +1,93 @@
+{% extends 'layout/base.html' %}
+
+{% block title %} Add review {% endblock title %}
+
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="container-fluid mt--8" style="margin: auto;">
+  {% for message in get_flashed_messages() %}
+
+<div class="alert alert-primary alert-dismissible fade show" role="alert">
+  {{ message }}
+  <button type="button" class="btn btn-secondary" data-bs-dismiss="alert" aria-label="Close">Close</button>
+</div>
+
+{% endfor %}
+
+<div class="row">
+  <div class="card card-body h-auto" style="width: 18rem; float: right;">
+    <form action="/add_review" method="POST" >
+    <h5 class="card-header">Add review</h5>
+    <div class="row justify-content-center" >
+        <div class="col-lg-4">
+            <div class="card border-light mb-3" style="max-width: 18rem;">
+                <div class="card-header">Field 1</div>
+                <div class="card-body">
+                  <h5 class="card-title">{{ form.Field1(class="form-control form-range", type="range", min="0", max="10",  oninput="outputUpdate(id, value)")}}<output for="Field1" id="Field1-value">{{form.Field1.data }}</output></h5>
+                </div>
+              </div>
+              </div>
+            
+              <div class="col-lg-4">
+                <div class="card border-light mb-3" style="max-width: 18rem;">
+                    <div class="card-header">Field 2</div>
+                    <div class="card-body">
+                      <h5 class="card-title">{{ form.Field2(class="form-control form-range", type="range", min="0", max="10",  oninput="outputUpdate(id, value)")}}<output for="Field2" id="Field2-value">{{form.Field2.data }}</output></h5>
+                    </div>
+                  </div>
+              </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-4">
+        <div class="card border-light mb-3" style="max-width: 18rem;">
+            <div class="card-header">Field 3</div>
+            <div class="card-body">
+              <h5 class="card-title">{{ form.Field3(class="form-control form-range", type="range", min="0", max="10",  oninput="outputUpdate(id, value)")}}<output for="Field3" id="Field3-value">{{form.Field3.data }}</output></h5>
+            </div>
+          </div>
+          </div>
+        
+          <div class="col-lg-4">
+            <div class="card border-light mb-3" style="max-width: 18rem;">
+                <div class="card-header">Field 4</div>
+                <div class="card-body">
+                  <h5 class="card-title">{{ form.Field4(class="form-control form-range", type="range", min="0", max="10",  oninput="outputUpdate(id, value)")}}<output for="Field4" id="Field4-value">{{form.Field4.data }}</output></h5>
+                </div>
+              </div>
+          </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="card border-light mb-3" style="max-width: 54rem;">
+            <div class="card-header">Comment</div>
+            <div class="card-body">
+              <h5 class="card-title">{{ form.Comment(class="form-control")}}</h5>
+            </div>
+          </div>
+      </div>
+
+    </div>
+    <div class="pl-lg-4">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+              {{ form.Submit(class="btn btn-primary btn-block") }}
+          </div>
+        </div>
+      </div>
+    </div>
+    </form>
+  </div>
+</div>
+
+{% endblock content %}
+{% block javascripts %}
+<script>
+  // Update output value for each range input
+    function outputUpdate(id, val){
+        document.getElementById(id.concat("-value")).value = val;
+    }
+</script>
+{% endblock javascripts %}

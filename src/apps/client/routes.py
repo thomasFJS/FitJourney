@@ -10,7 +10,7 @@ Brief   :        Set all the application routes
 from apps.client import blueprint
 from apps import db, login_manager
 from apps.authentication.models import User, PhysicalInfo, Subscription, Purchase, CoachingReview, SessionReview, Review, Workout, WorkoutType, Session
-from apps.client.forms import UpdateForm
+from apps.client.forms import UpdateForm, AddReviewForm
 from apps.config import Config
 
 # FLASK
@@ -243,7 +243,8 @@ def workout():
 @blueprint.route('/add_review')
 @login_required
 def add_review():
-	return render_template('client/workout.html', segment="workout", workoutDetails=workoutDetails)
+	add_review_form = AddReviewForm(request.form)
+	return render_template('client/add_review.html', segment="add_review", form=add_review_form)
 
 # Extract current page name from request
 def get_segment(request):

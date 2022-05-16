@@ -7,9 +7,9 @@ Brief   :        Client forms
 """
 
 from flask_wtf import FlaskForm
-from wtforms import FileField, StringField, SubmitField, PasswordField, IntegerField, BooleanField, ValidationError
+from wtforms import FileField, StringField, SubmitField, PasswordField, IntegerField, BooleanField, ValidationError, SelectField, TextAreaField
 from wtforms.validators import Email, DataRequired, EqualTo, Length
-from wtforms.fields.html5 import DateField, EmailField
+from wtforms.fields.html5 import DateField, EmailField, IntegerRangeField
 
 
 class UpdateForm(FlaskForm):
@@ -44,3 +44,21 @@ class UpdateForm(FlaskForm):
     npa = StringField('NPA', id='npa_update')
 
     update = SubmitField("Update")
+
+
+class AddReviewForm(FlaskForm):
+    """
+    Create form to add review 
+    """
+
+    Field1 = IntegerRangeField('Field1', id='Field1', default=0)
+
+    Field2 = IntegerRangeField('Field2', id='Field2', default=0)
+
+    Field3 = IntegerRangeField('Field3', id='Field3', default=0)
+
+    Field4 = IntegerRangeField('Field4', id='Field4', default=0)
+
+    Comment = TextAreaField('Comment', id='Comment')
+
+    Submit = SubmitField("Submit")
