@@ -19,22 +19,22 @@
 <div class="row">
   <div class="card card-body h-auto" style="width: 18rem; float: right;">
     <form action="/add_review" method="POST" >
-    <h5 class="card-header">Add review</h5>
+    <h5 class="card-header">Add review {{form.type(class="form-control", value=reviewFields.type)}}{{form.target(class="form-control", value=reviewFields.target)}}</h5>
     <div class="row justify-content-center" >
         <div class="col-lg-4">
             <div class="card border-light mb-3" style="max-width: 18rem;">
-                <div class="card-header">Field 1</div>
+                <div class="card-header">{{reviewFields.field1}}</div>
                 <div class="card-body">
-                  <h5 class="card-title">{{ form.Field1(class="form-control form-range", type="range", min="0", max="10",  oninput="outputUpdate(id, value)")}}<output for="Field1" id="Field1-value">{{form.Field1.data }}</output></h5>
+                  <h5 class="card-title">{{ form.field1(class="form-control form-range", type="range", min="0", max="10",  oninput="outputUpdate(id, value)")}}<output for="field1" id="field1-value">{{form.field1.data }}</output></h5>
                 </div>
               </div>
               </div>
             
               <div class="col-lg-4">
                 <div class="card border-light mb-3" style="max-width: 18rem;">
-                    <div class="card-header">Field 2</div>
+                    <div class="card-header">{{reviewFields.field2}}</div>
                     <div class="card-body">
-                      <h5 class="card-title">{{ form.Field2(class="form-control form-range", type="range", min="0", max="10",  oninput="outputUpdate(id, value)")}}<output for="Field2" id="Field2-value">{{form.Field2.data }}</output></h5>
+                      <h5 class="card-title">{{ form.field2(class="form-control form-range", type="range", min="0", max="10",  oninput="outputUpdate(id, value)")}}<output for="field2" id="field2-value">{{form.field2.data }}</output></h5>
                     </div>
                   </div>
               </div>
@@ -42,18 +42,18 @@
     <div class="row justify-content-center">
       <div class="col-lg-4">
         <div class="card border-light mb-3" style="max-width: 18rem;">
-            <div class="card-header">Field 3</div>
+            <div class="card-header">{{reviewFields.field3}}</div>
             <div class="card-body">
-              <h5 class="card-title">{{ form.Field3(class="form-control form-range", type="range", min="0", max="10",  oninput="outputUpdate(id, value)")}}<output for="Field3" id="Field3-value">{{form.Field3.data }}</output></h5>
+              <h5 class="card-title">{{ form.field3(class="form-control form-range", type="range", min="0", max="10",  oninput="outputUpdate(id, value)")}}<output for="field3" id="field3-value">{{form.field3.data }}</output></h5>
             </div>
           </div>
           </div>
         
           <div class="col-lg-4">
             <div class="card border-light mb-3" style="max-width: 18rem;">
-                <div class="card-header">Field 4</div>
+                <div class="card-header">{{reviewFields.field4}}</div>
                 <div class="card-body">
-                  <h5 class="card-title">{{ form.Field4(class="form-control form-range", type="range", min="0", max="10",  oninput="outputUpdate(id, value)")}}<output for="Field4" id="Field4-value">{{form.Field4.data }}</output></h5>
+                  <h5 class="card-title">{{ form.field4(class="form-control form-range", type="range", min="0", max="10",  oninput="outputUpdate(id, value)")}}<output for="field4" id="field4-value">{{form.field4.data }}</output></h5>
                 </div>
               </div>
           </div>
@@ -63,7 +63,7 @@
         <div class="card border-light mb-3" style="max-width: 54rem;">
             <div class="card-header">Comment</div>
             <div class="card-body">
-              <h5 class="card-title">{{ form.Comment(class="form-control")}}</h5>
+              <h5 class="card-title">{{ form.comment(class="form-control")}}</h5>
             </div>
           </div>
       </div>
@@ -73,7 +73,7 @@
       <div class="row">
         <div class="col-md-12">
           <div class="form-group">
-              {{ form.Submit(class="btn btn-primary btn-block") }}
+              {{ form.submit(class="btn btn-primary btn-block") }}
           </div>
         </div>
       </div>

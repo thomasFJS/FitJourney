@@ -227,7 +227,7 @@ def workouts():
 	id = current_user.id
 	user = User.query.get_or_404(id)
 	# Get all data from workout 
-	workouts = db.session.query(WorkoutType.title, WorkoutType.logo, Workout.date, Workout.duration, Workout.heart_rate_max, Workout.heart_rate_min, 
+	workouts = db.session.query(WorkoutType.title, WorkoutType.logo,Workout.id, Workout.date, Workout.duration, Workout.heart_rate_max, Workout.heart_rate_min, 
 				Workout.heart_rate_avg, Workout.calories, Workout.active_calories, Workout.distance, Workout.pace_avg).join(WorkoutType, Workout.workout_type == WorkoutType.id).filter(Workout.client_id==id).order_by(Workout.date.desc())
 	return render_template('client/workouts.html', segment='workouts', workouts=workouts)
 
@@ -238,13 +238,30 @@ def workout():
 	# put all parameters into dict 
 	workoutDetails = request.args.to_dict()
 
-	return render_template('client/workout.html', segment="workout", workoutDetails=workoutDetails)
+	workoutReview = db.session.query(SessionReview).statement.columns.keys()
 
-@blueprint.route('/add_review')
+	return render_template('client/workout.html', segment="workout", workoutDetails=workoutDetails, workoutReview=workoutReview)
+
+@blueprint.route('/add_review', methods=['POST', 'GET'])
 @login_required
 def add_review():
+	id = current_user.id
 	add_review_form = AddReviewForm(request.form)
-	return render_template('client/add_review.html', segment="add_review", form=add_review_form)
+
+	# put all parameters into dict 
+	reviewFields = request.args.to_dict()
+	print(reviewFields)
+	if request.method == 'POST':
+		newReview = Review(comment=request.form['comment'], date=date.today(),type=request.form['type'],id_client=id)
+		db.session.add(newReview)
+		db.session.commit()
+		if request.form['type'] == "SESSION":
+			newSessionReview = SessionReview(id= newReview.id,difficulty=request.form['field1'], feel=request.form['field2'], fatigue=request.form['field3'], energy=request.form['field4'], target_id=request.form['target'])
+			db.session.add(newSessionReview)
+			db.session.commit()
+
+		
+	return render_template('client/add_review.html', segment="add_review", form=add_review_form, reviewFields=reviewFields)
 
 # Extract current page name from request
 def get_segment(request):

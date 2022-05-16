@@ -7,7 +7,7 @@ Brief   :        Client forms
 """
 
 from flask_wtf import FlaskForm
-from wtforms import FileField, StringField, SubmitField, PasswordField, IntegerField, BooleanField, ValidationError, SelectField, TextAreaField
+from wtforms import FileField, StringField, SubmitField, PasswordField, IntegerField, BooleanField, ValidationError, SelectField, TextAreaField, HiddenField
 from wtforms.validators import Email, DataRequired, EqualTo, Length
 from wtforms.fields.html5 import DateField, EmailField, IntegerRangeField
 
@@ -51,14 +51,18 @@ class AddReviewForm(FlaskForm):
     Create form to add review 
     """
 
-    Field1 = IntegerRangeField('Field1', id='Field1', default=0)
+    field1 = IntegerRangeField('Field1', id='field1', default=0)
 
-    Field2 = IntegerRangeField('Field2', id='Field2', default=0)
+    field2 = IntegerRangeField('Field2', id='field2', default=0)
 
-    Field3 = IntegerRangeField('Field3', id='Field3', default=0)
+    field3 = IntegerRangeField('Field3', id='field3', default=0)
 
-    Field4 = IntegerRangeField('Field4', id='Field4', default=0)
+    field4 = IntegerRangeField('Field4', id='field4', default=0)
 
-    Comment = TextAreaField('Comment', id='Comment')
+    comment = TextAreaField('Comment', id='comment')
+    
+    type = HiddenField('Type', id='type')
 
-    Submit = SubmitField("Submit")
+    target = HiddenField('Target', id='target')
+
+    submit = SubmitField("Submit")
