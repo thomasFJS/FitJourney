@@ -433,7 +433,7 @@ Pour permettre le stockage des données, j'ai créé une base de données nomée
 #### MCD
 Au lieu de créer la base de données directement, j'ai commencer par créer un MCD pour définir tous les besoins de l'application au niveau de la base de données. Pour faire mon MCD, je suis allé sur LucidChart qui est une plateforme de collaboration en ligne permettant la création de diagrammes et la visualisation de données et autres schémas conceptuels.
 
-![MCD](./img/MCD_5.0.png)
+![MCD](./img/MCD_6.0.png)
 
 #### Modèle physique
 Une fois les besoins identifiés à l'aide du MCD, j'ai pu utiliser SQL Alchemy pour créer ma base de données directement. 

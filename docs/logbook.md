@@ -454,3 +454,7 @@ J'ai eu une réflexion lors de l'élaboration de la page d'ajout de review, ne f
 Car les sessions ne sont pas toujours des entrainements et cela ne sert à rien d'ajouter une review sur un rendez-vous pour un bilan. Il faut donc que je modifie les noms de table, les relations ainsi que les clés étrangères.
 
 J'ai pu terminer la page d'ajout de review à 90%, il ne manque plus qu'à modifier la base de données pour que les revies soient sur les entrainements et plus les sessions et la page sera fonctionnelle pour l'ajout de review sur les entrainements. J'ajouterai les reviews coaching demain.
+
+### Mardi, 17 Mai 2022
+
+Je vais commencer par modifier la base de données pour passer de "SESSION_REVIEW" à "WORKOUT_REVIEW" car comme réfléchi hier, il est plus intéressant de pouvoir mettre une review sur un entrainement que sur une session car certain workout ne sont pas une session et le retour sur ces entrainements peuvent intéressé le coach.

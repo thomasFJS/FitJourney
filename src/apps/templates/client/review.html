@@ -34,8 +34,8 @@
             <div class="card border-light mb-3" style="max-width: 36rem;">
                 <div class="card-header">Review on</div>
                 <div class="card-body">
-                    {% if review['Type'] == 'SESSION'  %}
-                    <h5 class="card-title">{{target['Type'] + " - " + target['Date'].strftime("%x")+ " - " + target['Time'].strftime("%X") + " - " + target['Duration'].strftime("%X")}}</h5>
+                    {% if review['Type'] == 'WORKOUT'  %}
+                    <h5 class="card-title">{{target['Type'] + " - " + target['Date'].strftime("%m/%d/%Y, %H:%M:%S") + " - " + target['Duration'].strftime("%X")}}</h5>
                     {% elif review['Type'] == 'COACHING'  %}
                     <h5 class="card-title">{{target['Name'] + " " + target['Surname']}}</h5>
                     {% endif %}

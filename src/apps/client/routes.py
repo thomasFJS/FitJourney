@@ -9,7 +9,7 @@ Brief   :        Set all the application routes
 # APP
 from apps.client import blueprint
 from apps import db, login_manager
-from apps.authentication.models import User, PhysicalInfo, Subscription, Purchase, CoachingReview, SessionReview, Review, Workout, WorkoutType, Session
+from apps.authentication.models import User, PhysicalInfo, Subscription, Purchase, CoachingReview, WorkoutReview, Review, Workout, WorkoutType, Session
 from apps.client.forms import UpdateForm, AddReviewForm
 from apps.config import Config
 
@@ -32,7 +32,7 @@ import os
 import json
 from werkzeug.utils import secure_filename
 
-from datetime import date
+from datetime import date, datetime
 
 @blueprint.route('/index')
 @login_required
@@ -78,11 +78,11 @@ def profile():
 	subscription = db.session.query(Subscription.duration, Purchase.date).join(Subscription, Purchase.subscription_id==Subscription.id).filter(Purchase.client_id==id).order_by(Purchase.date).first()
 	
 	#Queries to get all Review from user 
-	coachingReview = db.session.query(CoachingReview.id, CoachingReview.satisfaction.label("Field1"), CoachingReview.support.label("Field2"), CoachingReview.disponibility.label("Field3"), CoachingReview.advice.label("Field4"), CoachingReview.target_id.label("target_id"))
-	sessionReview = db.session.query(SessionReview.id, SessionReview.difficulty, SessionReview.feel, SessionReview.fatigue, SessionReview.energy, SessionReview.target_id)
+	coachingReviewQuery = db.session.query(CoachingReview.id, CoachingReview.satisfaction.label("Field1"), CoachingReview.support.label("Field2"), CoachingReview.disponibility.label("Field3"), CoachingReview.advice.label("Field4"), CoachingReview.target_id.label("target_id"))
+	workoutReviewQuery = db.session.query(WorkoutReview.id, WorkoutReview.difficulty, WorkoutReview.feel, WorkoutReview.fatigue, WorkoutReview.energy, WorkoutReview.target_id)
 
 	#UNION with the 2 queries 
-	reviewsUnion = union(coachingReview,sessionReview).alias()
+	reviewsUnion = union(coachingReviewQuery,workoutReviewQuery).alias()
 
 	# Query to get field from Review table and from the review union made before
 	reviewsQuery = db.session.query(Review.id, Review.comment, Review.date, Review.type, reviewsUnion.c.Field1, reviewsUnion.c.Field2, reviewsUnion.c.Field3, reviewsUnion.c.Field4, Review.id_client, reviewsUnion.c.target_id).select_from(reviewsUnion).join(Review,Review.id==reviewsUnion.c.COACHING_REVIEW_id).filter(Review.id_client==id).order_by(Review.date.desc())
@@ -206,11 +206,10 @@ def review():
 
 	target = {}
 	# Target of the review may be session or a coach depends on review type
-	if reviewDetails['Type'] == "SESSION":
-		targetQuery = db.session.query(WorkoutType.title, Session.date, Session.time, Session.duration).join(WorkoutType, WorkoutType.id==Session.workout_type).filter(Session.id==reviewDetails['Target']).first()
+	if reviewDetails['Type'] == "WORKOUT":
+		targetQuery = db.session.query(WorkoutType.title, Workout.date, Workout.duration).join(WorkoutType, WorkoutType.id==Workout.workout_type).filter(Workout.id==reviewDetails['Target']).first()
 		target['Type'] = targetQuery.title
 		target['Date'] = targetQuery.date
-		target['Time'] = targetQuery.time
 		target['Duration'] = targetQuery.duration
 	elif reviewDetails['Type'] == "COACHING":
 		targetQuery = db.session.query(User.name, User.surname).filter(User.id==reviewDetails['Target']).first()
@@ -238,7 +237,7 @@ def workout():
 	# put all parameters into dict 
 	workoutDetails = request.args.to_dict()
 
-	workoutReview = db.session.query(SessionReview).statement.columns.keys()
+	workoutReview = db.session.query(WorkoutReview).statement.columns.keys()
 
 	return render_template('client/workout.html', segment="workout", workoutDetails=workoutDetails, workoutReview=workoutReview)
 
@@ -252,12 +251,12 @@ def add_review():
 	reviewFields = request.args.to_dict()
 	print(reviewFields)
 	if request.method == 'POST':
-		newReview = Review(comment=request.form['comment'], date=date.today(),type=request.form['type'],id_client=id)
+		newReview = Review(comment=request.form['comment'], date=datetime.now(),type=request.form['type'],id_client=id)
 		db.session.add(newReview)
 		db.session.commit()
-		if request.form['type'] == "SESSION":
-			newSessionReview = SessionReview(id= newReview.id,difficulty=request.form['field1'], feel=request.form['field2'], fatigue=request.form['field3'], energy=request.form['field4'], target_id=request.form['target'])
-			db.session.add(newSessionReview)
+		if request.form['type'] == "WORKOUT":
+			newWorkoutReview = WorkoutReview(id= newReview.id,difficulty=request.form['field1'], feel=request.form['field2'], fatigue=request.form['field3'], energy=request.form['field4'], target_id=request.form['target'])
+			db.session.add(newWorkoutReview)
 			db.session.commit()
 
 		

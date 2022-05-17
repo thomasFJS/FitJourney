@@ -173,15 +173,15 @@ class CoachingReview(db.Model):
     advice = db.Column(db.Integer, nullable=False)
     target_id = db.Column(db.Integer, db.ForeignKey('USER.id'))
 
-class SessionReview(db.Model):
-    __tablename__ = 'SESSION_REVIEW'
+class WorkoutReview(db.Model):
+    __tablename__ = 'WORKOUT_REVIEW'
 
     id = db.Column(db.Integer, db.ForeignKey('REVIEW.id') ,primary_key=True)
     difficulty = db.Column(db.Integer, nullable=False)
     feel = db.Column(db.Integer, nullable=False)
     fatigue = db.Column(db.Integer, nullable=False)
     energy = db.Column(db.Integer, nullable=False)
-    target_id = db.Column(db.Integer, db.ForeignKey('SESSION.id'))
+    target_id = db.Column(db.Integer, db.ForeignKey('WORKOUT.id'))
 
 class Review(db.Model):
     __tablename__ = 'REVIEW'
