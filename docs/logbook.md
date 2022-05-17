@@ -468,3 +468,14 @@ J'ai ajouté la possibilité d'ajouter les review du coaching. Il faudrait que j
 Il faut que j'ajoute une redirection automatique lorsque la review ajouté.
 
 Je ne sais pas si c'est un problème mais vu qu'avant de vérifier si la review d'entrainement existe je remplis la table *REVIEW* cela augmente l'id de 1 et si la review existe tout est rollback mais l'auto incrément garde l'incrément de 1.
+
+Lors de la création de la page pour changer le mot de passe, je rencontre un problème. J'avais ajouté dans le model *User* une fonction qui permet de hash le password qui est défini sur la propriété "password" mais lorsque je change la propriété le mot de passe n'est pas hashé et si je le hash manuellement le programme plante.
+
+La modification de mot de passe est désormais fonctionnel mais je rencontre maintenant un autre problème le *logout* ne fonctionne plus
+
+Je n'arrive plus à logout l'utilisateur connecté, dans la route du login il y a une condition :
+
+```
+if not current_user.is_authenticated
+```
+sauf que même après avoir utilisé la fonction logout_user de Flask Login, je ne passe jamais dans cette condition.

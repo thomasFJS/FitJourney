@@ -12,6 +12,7 @@ from flask_login import (
     login_user,
     logout_user
 )
+from flask_login import login_required
 
 from apps import db, login_manager
 from apps.authentication import blueprint
@@ -49,11 +50,10 @@ def login():
 
         # Something is not ok (user or password)
         return render_template('accounts/login.html', msg='Wrong user or password', form=login_form)
-    
     if not current_user.is_authenticated:
         return render_template('accounts/login.html',form=login_form)
     
-    return redirect(url_for('home_blueprint.index'))
+    return redirect(url_for('client_blueprint.index'))
 
 
 #Register route
@@ -87,8 +87,11 @@ def register():
 
 
 @blueprint.route('/logout')
+@login_required
 def logout():
-    logout_user()
+
+    logout_user()   
+
     return redirect(url_for('authentication_blueprint.login'))
 
 # Errors

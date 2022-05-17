@@ -7,7 +7,7 @@ Brief   :        Client forms
 """
 
 from flask_wtf import FlaskForm
-from wtforms import FileField, StringField, SubmitField, PasswordField, IntegerField, BooleanField, ValidationError, SelectField, TextAreaField, HiddenField
+from wtforms import FileField, StringField, SubmitField, PasswordField, IntegerField, BooleanField, ValidationError, SelectField, TextAreaField, HiddenField, PasswordField
 from wtforms.validators import Email, DataRequired, EqualTo, Length
 from wtforms.fields.html5 import DateField, EmailField, IntegerRangeField
 
@@ -66,3 +66,16 @@ class AddReviewForm(FlaskForm):
     target = HiddenField('Target', id='target')
 
     submit = SubmitField("Submit")
+
+class ChangePasswordForm(FlaskForm):
+    """
+    Create form to change password
+    """
+
+    oldPassword = PasswordField('Old Password', id='oldPassword')
+
+    newPassword = PasswordField('New Password', id='newPassword')
+
+    confirmPassword = PasswordField('Confirm New Password', id='confirmPassword')
+    
+    change = SubmitField("Change")

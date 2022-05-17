@@ -10,8 +10,9 @@ Brief   :        Set all the application routes
 from apps.client import blueprint
 from apps import db, login_manager
 from apps.authentication.models import User, PhysicalInfo, Subscription, Purchase, CoachingReview, WorkoutReview, Review, Workout, WorkoutType, Session, CoachedBy
-from apps.client.forms import UpdateForm, AddReviewForm
+from apps.client.forms import UpdateForm, AddReviewForm, ChangePasswordForm
 from apps.config import Config
+from apps.authentication.util import verify_pass, hash_pass
 
 # FLASK
 from flask import render_template, redirect, request, url_for, flash
@@ -305,6 +306,33 @@ def add_review():
 		
 	return render_template('client/add_review.html', segment="add_review", form=add_review_form, reviewFields=reviewFields)
 
+
+@blueprint.route('/change_password', methods=['POST', 'GET'])
+@login_required
+def change_password():
+	form = ChangePasswordForm(request.form)
+
+	if request.method == 'POST':
+		user = User.query.filter_by(id=current_user.id).first()
+		if verify_pass(request.form['oldPassword'], user.password):
+			if request.form['newPassword'] == request.form['confirmPassword'] and request.form['newPassword'] != None:
+
+				try:
+					print(user.password)
+					user.password = hash_pass(request.form['newPassword'])
+					#user.password = hash_pass(request.form['newPassword'])
+					print(user.password)
+					db.session.flush()
+					db.session.commit()
+					flash("Password updated")
+					return redirect( url_for('client_blueprint.profile') )
+				except: 
+					flash("Error, please try again")
+			else :
+				flash ("Passwords must match !")
+		else:
+			flash("Old password isn't correct !")
+	return render_template('client/change_password.html', segment="change_password", form=form)
 # Extract current page name from request
 def get_segment(request):
 
