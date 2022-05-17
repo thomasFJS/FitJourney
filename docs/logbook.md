@@ -458,3 +458,7 @@ J'ai pu terminer la page d'ajout de review à 90%, il ne manque plus qu'à modif
 ### Mardi, 17 Mai 2022
 
 Je vais commencer par modifier la base de données pour passer de "SESSION_REVIEW" à "WORKOUT_REVIEW" car comme réfléchi hier, il est plus intéressant de pouvoir mettre une review sur un entrainement que sur une session car certain workout ne sont pas une session et le retour sur ces entrainements peuvent intéressé le coach.
+
+J'ai pu tout modifier, il faut maintenant que je fasse en sorte qu'un entrainement ne peut avoir qu'une seul review pour éviter que l'utilisateur en publie plusieurs. 
+
+J'ai également fait la modification de la maquette d'ajout de review sur le coaching le 4 champs n'étant plus un select mais un slider comme les autres champs.

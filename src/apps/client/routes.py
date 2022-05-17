@@ -9,7 +9,7 @@ Brief   :        Set all the application routes
 # APP
 from apps.client import blueprint
 from apps import db, login_manager
-from apps.authentication.models import User, PhysicalInfo, Subscription, Purchase, CoachingReview, WorkoutReview, Review, Workout, WorkoutType, Session
+from apps.authentication.models import User, PhysicalInfo, Subscription, Purchase, CoachingReview, WorkoutReview, Review, Workout, WorkoutType, Session, CoachedBy
 from apps.client.forms import UpdateForm, AddReviewForm
 from apps.config import Config
 
@@ -121,6 +121,13 @@ def profile():
 	# TODO
 
 	
+	# Get Coaching review fields name 
+	coachingReviewFields = db.session.query(CoachingReview).statement.columns.keys()
+
+	# Get coach id 
+	coachId = db.session.query(CoachedBy.coach_id).filter(CoachedBy.client_id==id).order_by(CoachedBy.end_date.desc()).first()
+
+
 	# Set the average heartRate for all workout made this week
 	current_user.avgHeartRate = avgHeartRate[0]
 
@@ -172,24 +179,32 @@ def profile():
 				saver.save(os.path.join(Config.UPLOAD_FOLDER, pic_name))
 				flash("Account Updated successfully !")
 				return render_template("client/profile.html",
-						form=update_form
+						form=update_form,
+						reviewFields=coachingReviewFields,
+						reviewTargetId=coachId
 				)		
 			except:
 				flash("Error! Looks like there was a problem.. try again!")
 				return render_template("client/profile.html",
-						form=update_form
+						form=update_form,
+						reviewFields=coachingReviewFields,
+						reviewTargetId=coachId
 						)
 		else:
 			db.session.commit()
 			flash("User Updated successfully !")
 			return render_template("client/profile.html", 
-					form=update_form
+					form=update_form,
+					reviewFields=coachingReviewFields,
+					reviewTargetId=coachId
 					)
 	else:
 		return render_template("client/profile.html", segment='profile',
 				form=update_form,
 				id = id,
-				physicalInfo=physicalInfo)
+				physicalInfo=physicalInfo,
+				reviewFields=coachingReviewFields,
+				reviewTargetId=coachId)
 
 	return render_template("client/profile.html", segment='profile')
 
@@ -257,8 +272,13 @@ def add_review():
 		if request.form['type'] == "WORKOUT":
 			newWorkoutReview = WorkoutReview(id= newReview.id,difficulty=request.form['field1'], feel=request.form['field2'], fatigue=request.form['field3'], energy=request.form['field4'], target_id=request.form['target'])
 			db.session.add(newWorkoutReview)
-			db.session.commit()
+			flash("Your workout review is added")
+		elif request.form['type'] == "COACHING" :
+			newCoachingReview = CoachingReview(id=newReview.id,satisfaction=request.form['field1'], support=request.form['field2'], disponibility=request.form['field3'], advice=request.form['field4'], target_id=request.form['target'])
+			db.session.add(newCoachingReview)
+			flash("Your coaching review is added")
 
+		db.session.commit()
 		
 	return render_template('client/add_review.html', segment="add_review", form=add_review_form, reviewFields=reviewFields)
 

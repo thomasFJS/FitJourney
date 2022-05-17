@@ -166,7 +166,16 @@
         </div>
       </div>
       <div class="card card-body h-auto" style="width: 18rem; float: right;">
-        <h5 class="card-header">Reports</h5>
+        <div class="card-header">
+        <div class="row align-items-center">
+          <div class="col-8">
+            <h3 class="mb-0">Reports </h3>
+          </div>
+          <div class="col-4 text-right">
+            <a href="{{ url_for('client_blueprint.add_review', field1=reviewFields[1], field2=reviewFields[2], field3=reviewFields[3], field4=reviewFields[4] , type="COACHING", target=reviewTargetId) }}" class="btn btn-sm btn-secondary">Add new review</a>
+          </div>
+        </div>
+      </div>
         <table class="table">
             <thead>
                 <tr>
@@ -185,7 +194,7 @@
                     {{ review.date }}
                 </td>
                 <td>
-                  <a href="{{ url_for('client_blueprint.review', Type=review.type, Date=review.date, Field1=review.Field1, Field2=review.Field2, Field3=review.Field3, Field4=review.Field4, Comment=review.comment, Client=review.id_client, Target=review.target_id) }}">Details</a>
+                  <a class="btn btn-sm btn-primary" href="{{ url_for('client_blueprint.review', Type=review.type, Date=review.date, Field1=review.Field1, Field2=review.Field2, Field3=review.Field3, Field4=review.Field4, Comment=review.comment, Client=review.id_client, Target=review.target_id) }}">Details</a>
                 </td>
             </tr>
             {% endfor %}
