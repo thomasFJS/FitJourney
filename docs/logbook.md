@@ -457,8 +457,14 @@ J'ai pu terminer la page d'ajout de review à 90%, il ne manque plus qu'à modif
 
 ### Mardi, 17 Mai 2022
 
-Je vais commencer par modifier la base de données pour passer de "SESSION_REVIEW" à "WORKOUT_REVIEW" car comme réfléchi hier, il est plus intéressant de pouvoir mettre une review sur un entrainement que sur une session car certain workout ne sont pas une session et le retour sur ces entrainements peuvent intéressé le coach.
+Je vais commencer par modifier la base de données pour passer de "SESSION_REVIEW" à "WORKOUT_REVIEW" car comme réfléchi hier, il est plus intéressant de pouvoir mettre une review sur un entrainement que sur une session car certains workouts ne sont pas une session et le retour sur ces entrainements peuvent intéresser le coach.
 
-J'ai pu tout modifier, il faut maintenant que je fasse en sorte qu'un entrainement ne peut avoir qu'une seul review pour éviter que l'utilisateur en publie plusieurs. 
+J'ai pu tout modifier, il faut maintenant que je fasse en sorte qu'un entrainement ne puisse avoir qu'une seule review pour éviter que l'utilisateur en publie plusieurs. 
 
-J'ai également fait la modification de la maquette d'ajout de review sur le coaching le 4 champs n'étant plus un select mais un slider comme les autres champs.
+J'ai également fait la modification de la maquette d'ajout de review sur le coaching les 4 champs n'étant plus un select mais un slider comme les autres champs.
+
+J'ai ajouté la possibilité d'ajouter les review du coaching. Il faudrait que j'ajoute en tout cas pour l'ajout de review sur le coaching un petit carré qui montre le coach en question. Pour l'ajout de review sur un entrainement cela n'est pas forcément nécessaire sachant qu'il faut être sur la page de détail de l'entrainement pour ajouter une review.
+
+Il faut que j'ajoute une redirection automatique lorsque la review ajouté.
+
+Je ne sais pas si c'est un problème mais vu qu'avant de vérifier si la review d'entrainement existe je remplis la table *REVIEW* cela augmente l'id de 1 et si la review existe tout est rollback mais l'auto incrément garde l'incrément de 1.

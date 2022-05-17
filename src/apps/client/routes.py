@@ -267,18 +267,41 @@ def add_review():
 	print(reviewFields)
 	if request.method == 'POST':
 		newReview = Review(comment=request.form['comment'], date=datetime.now(),type=request.form['type'],id_client=id)
-		db.session.add(newReview)
-		db.session.commit()
+		db.session.add(newReview)	
+		db.session.flush()
 		if request.form['type'] == "WORKOUT":
-			newWorkoutReview = WorkoutReview(id= newReview.id,difficulty=request.form['field1'], feel=request.form['field2'], fatigue=request.form['field3'], energy=request.form['field4'], target_id=request.form['target'])
-			db.session.add(newWorkoutReview)
-			flash("Your workout review is added")
-		elif request.form['type'] == "COACHING" :
-			newCoachingReview = CoachingReview(id=newReview.id,satisfaction=request.form['field1'], support=request.form['field2'], disponibility=request.form['field3'], advice=request.form['field4'], target_id=request.form['target'])
-			db.session.add(newCoachingReview)
-			flash("Your coaching review is added")
+			exists = db.session.query(WorkoutReview.target_id).filter(WorkoutReview.target_id==request.form['target']).first() is not None
+			if exists :
+				db.session.rollback()
+				flash("You already add a review on this workout")
+				return redirect( url_for('client_blueprint.workouts') )
+			else :
+				# Try to add and commit the workout review 
+				try:
+					newWorkoutReview = WorkoutReview(id= newReview.id,difficulty=request.form['field1'], feel=request.form['field2'], fatigue=request.form['field3'], energy=request.form['field4'], target_id=request.form['target'])
+					db.session.add(newWorkoutReview)
+					db.session.commit()
+					flash("Your workout review is added")
+				except :
+					db.session.rollback()
+					flash("Error, please try again")
+				
+				return redirect( url_for('client_blueprint.workouts') )
 
-		db.session.commit()
+		elif request.form['type'] == "COACHING" :
+			
+			# Try to add and commit the coaching review 
+			try:
+				newCoachingReview = CoachingReview(id=newReview.id,satisfaction=request.form['field1'], support=request.form['field2'], disponibility=request.form['field3'], advice=request.form['field4'], target_id=request.form['target'])
+				db.session.add(newCoachingReview)
+				db.session.commit()
+				flash("Your coaching review is added")
+			except:
+				flash("Error, please try again")
+
+			
+			return redirect( url_for('client_blueprint.profile') )
+		
 		
 	return render_template('client/add_review.html', segment="add_review", form=add_review_form, reviewFields=reviewFields)
 
