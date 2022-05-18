@@ -18,11 +18,11 @@ class User(db.Model, UserMixin):
     __tablename__ = 'USER'
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(64))
-    surname = db.Column(db.String(64))
-    email = db.Column(db.String(64), unique=True)
-    password = db.Column(db.LargeBinary)
-    birthdate = db.Column(db.Date)
+    name = db.Column(db.String(64), nullable=False)
+    surname = db.Column(db.String(64), nullable=False)
+    email = db.Column(db.String(64), unique=True, nullable=False)
+    password = db.Column(db.LargeBinary, nullable=False)
+    birthdate = db.Column(db.Date, nullable=False)
     card_id = db.Column(db.Integer, unique=True)
     profile_pic = db.Column(db.String(250), nullable=True)
     city = db.Column(db.String(64), nullable=True)

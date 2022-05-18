@@ -479,3 +479,13 @@ Je n'arrive plus à logout l'utilisateur connecté, dans la route du login il y 
 if not current_user.is_authenticated
 ```
 sauf que même après avoir utilisé la fonction logout_user de Flask Login, je ne passe jamais dans cette condition.
+
+### Mercredi, 18 Mai 2022
+
+Je suis resté bloqué sur mon problème de logout presque toute la matinée, je ne trouvais absolument aucune solution logique. M. Zanardi est venu voir mon problème et nous avons debuger le logout. Nous avons découvert qu'une fois logout Flask Login se connectait automatiquement à un utilisateur "test" que j'avais créé dans la base de données sans mot de passe et sans email. 
+
+Ces champs devront être non null car ils sont obligatoires à l'inscription.
+
+Je ne sais pas ni pourquoi ni comment mais Flask Login se connectait par défaut à l'utilisateur sans email. Je pouvais donc après m'être déconnecté accéder aux pages sous *@login_required*. En supprimant cet utilisateur *test*, j'ai remarqué que tout fonctionnait comme il faut car Flask login ne pouvait plus se connecter automatiquement à cet utilisateur sans email.
+
+La partie client est donc terminé, il va falloir que j'effectue quelques tests mais dans l'ensemble tout à l'air fonctionnel. Je vais débuter la partie coach en reprenant déjà les pages clients qui ont des options *coach* et j'ajouterai les nouvelles pages après.

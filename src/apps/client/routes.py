@@ -58,6 +58,7 @@ def index():
 def profile():
 	update_form = UpdateForm(request.form)
 	id = current_user.id
+	print(current_user)
 	user = User.query.get_or_404(id)
 
 	# SQL request to get the last physical information of the user
@@ -150,6 +151,7 @@ def profile():
 
 	#Define subscription end date by adding the duration of the subscription in months to the purchase date.
 	current_user.subscriptionEnd = (subscription[1] + relativedelta(months=subscription[0])).date()
+	
 
 	if request.method == "POST":
 		user.name = request.form['name']
@@ -239,6 +241,7 @@ def review():
 @blueprint.route('/workouts')
 @login_required
 def workouts():
+	print(current_user)
 	id = current_user.id
 	user = User.query.get_or_404(id)
 	# Get all data from workout 
