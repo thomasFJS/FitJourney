@@ -32,24 +32,14 @@ import uuid as uuid
 import os
 import json
 from werkzeug.utils import secure_filename
-
 from datetime import date, datetime
+
+from apps.client.util import *
 
 @blueprint.route('/index')
 @login_required
 def index():
-	id = current_user.id
-	user = User.query.get_or_404(id)
-
-	# Get the next sessions
-	#  SELECT SESSION.date, SESSION.time, SESSION.duration, WORKOUT_TYPE.title, USER.name, USER.surname
-	#  FROM SESSION 
-	#  JOIN WORKOUT_TYPE ON SESSION.workout_type = WORKOUT_TYPE.id 
-	#  JOIN USER ON USER.id = SESSION.coach_id 
-	#  WHERE SESSION.client_id = 1 AND SESSION.date > curdate() 
-	#  ORDER BY SESSION.date
-
-	nextSessions = db.session.query(Session.date, Session.time, Session.duration, WorkoutType.title, WorkoutType.logo, User.name, User.surname).join(WorkoutType, Session.workout_type==WorkoutType.id).join(User, Session.coach_id==User.id).filter(Session.client_id==id).filter(Session.date>date.today()).order_by(Session.date)
+	nextSessions = get_next_session(current_user.id)
 	return render_template('client/index.html', segment='index', nextSessions=nextSessions)
 
 # Create Profile Page
@@ -87,8 +77,8 @@ def profile():
 	reviewsUnion = union(coachingReviewQuery,workoutReviewQuery).alias()
 
 	# Query to get field from Review table and from the review union made before
-	reviewsQuery = db.session.query(Review.id, Review.comment, Review.date, Review.type, reviewsUnion.c.Field1, reviewsUnion.c.Field2, reviewsUnion.c.Field3, reviewsUnion.c.Field4, Review.id_client, reviewsUnion.c.target_id).select_from(reviewsUnion).join(Review,Review.id==reviewsUnion.c.COACHING_REVIEW_id).filter(Review.id_client==id).order_by(Review.date.desc())
-
+	#reviewsQuery = db.session.query(Review.id, Review.comment, Review.date, Review.type, reviewsUnion.c.Field1, reviewsUnion.c.Field2, reviewsUnion.c.Field3, reviewsUnion.c.Field4, Review.id_client, reviewsUnion.c.target_id).select_from(reviewsUnion).join(Review,Review.id==reviewsUnion.c.COACHING_REVIEW_id).filter(Review.id_client==id).order_by(Review.date.desc())
+	reviewsQuery = db.session.query(Review.id, Review.type, Review.date).filter(Review.id_client==id).order_by(Review.date.desc())
 	# Query to get each workout type and how many client have made
 	workoutTypeCountQuery = db.session.query(WorkoutType.title, func.count(Workout.workout_type).label("count")).join(Workout, Workout.workout_type==WorkoutType.id).filter(Workout.client_id==id).group_by(Workout.workout_type)
 
@@ -218,23 +208,25 @@ def review():
 
 	# Put all parameters into dict 
 	reviewDetails = request.args.to_dict()
-
+	print(reviewDetails['Id'])
+	review = get_review_details(reviewDetails['Id'], reviewDetails['Type'])
+	print(review.target_id)
 	# Client who post the review
-	client = db.session.query(User.name, User.surname).filter(User.id==reviewDetails['Client']).first()
+	client = get_review_author(review.id_client)
 
 	target = {}
 	# Target of the review may be session or a coach depends on review type
 	if reviewDetails['Type'] == "WORKOUT":
-		targetQuery = db.session.query(WorkoutType.title, Workout.date, Workout.duration).join(WorkoutType, WorkoutType.id==Workout.workout_type).filter(Workout.id==reviewDetails['Target']).first()
+		targetQuery = db.session.query(WorkoutType.title, Workout.date, Workout.duration).join(WorkoutType, WorkoutType.id==Workout.workout_type).filter(Workout.id==review.target_id).first()
 		target['Type'] = targetQuery.title
 		target['Date'] = targetQuery.date
 		target['Duration'] = targetQuery.duration
 	elif reviewDetails['Type'] == "COACHING":
-		targetQuery = db.session.query(User.name, User.surname).filter(User.id==reviewDetails['Target']).first()
+		targetQuery = db.session.query(User.name, User.surname).filter(User.id==review.target_id).first()
 		target['Name'] = targetQuery.name
 		target['Surname'] = targetQuery.surname
-
-	return render_template('client/review.html', segment='review', review=reviewDetails, client=client, target=target)
+	print(target)
+	return render_template('client/review.html', segment='review', review=review, client=client, target=target)
 
 
 # Create Workouts Page

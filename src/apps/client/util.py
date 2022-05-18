@@ -1,0 +1,75 @@
+"""
+Author  :        Thomas Fujise
+Date    :        18.05.2022
+File    :        util.py
+Version :        1.0.0
+Brief   :        All the functions needed to get datas for templates
+"""
+
+# APP
+from apps.client import blueprint
+from apps import db, login_manager
+from apps.authentication.models import User, PhysicalInfo, Subscription, Purchase, CoachingReview, WorkoutReview, Review, Workout, WorkoutType, Session, CoachedBy
+from apps.client.forms import UpdateForm, AddReviewForm, ChangePasswordForm
+from apps.config import Config
+from apps.authentication.util import verify_pass, hash_pass
+
+# FLASK
+from flask import render_template, redirect, request, url_for, flash
+from flask_login import login_required
+from jinja2 import TemplateNotFound
+
+from flask_login import (
+    current_user
+)
+
+# SQL ALCHEMY 
+from sqlalchemy import union, func
+
+# UTILS
+from dateutil.relativedelta import relativedelta
+import uuid as uuid
+import os
+import json
+from werkzeug.utils import secure_filename
+
+from datetime import date, datetime
+
+def get_next_session(userId): # Get the next sessions
+
+    # Parameter(s) :
+    # userId -> the id of the user 
+
+    # The query used : 
+	#  SELECT SESSION.date, SESSION.time, SESSION.duration, WORKOUT_TYPE.title, USER.name, USER.surname
+	#  FROM SESSION 
+	#  JOIN WORKOUT_TYPE ON SESSION.workout_type = WORKOUT_TYPE.id 
+	#  JOIN USER ON USER.id = SESSION.coach_id 
+	#  WHERE SESSION.client_id = 1 AND SESSION.date > curdate() 
+	#  ORDER BY SESSION.date
+    result = db.session.query(Session.date, Session.time, Session.duration, WorkoutType.title, WorkoutType.logo, User.name, User.surname).join(WorkoutType, Session.workout_type==WorkoutType.id).join(User, Session.coach_id==User.id).filter(Session.client_id==userId).filter(Session.date>date.today()).order_by(Session.date)
+    
+    return result
+
+def get_review_author(clientId): # Get the client who add the review with his id
+
+    # Parameter(s):
+    # clientId -> the id of the client who post the review.
+
+    result = db.session.query(User.name, User.surname).filter(User.id==clientId).first()
+
+    return result
+
+
+def get_review_details(reviewId, reviewType): # Get the details of the a workout review
+    #Queries to get all Review from user 
+	#coachingReviewQuery = db.session.query(CoachingReview.id, CoachingReview.satisfaction.label("Field1"), CoachingReview.support.label("Field2"), CoachingReview.disponibility.label("Field3"), CoachingReview.advice.label("Field4"), CoachingReview.target_id.label("target_id"))
+	#workoutReviewQuery = db.session.query(WorkoutReview.id, WorkoutReview.difficulty, WorkoutReview.feel, WorkoutReview.fatigue, WorkoutReview.energy, WorkoutReview.target_id)
+
+	#UNION with the 2 queries 
+	#reviewsUnion = union(coachingReviewQuery,workoutReviewQuery).alias()
+
+	# Query to get field from Review table and from the review union made before
+	#reviewsQuery = db.session.query(Review.id, Review.comment, Review.date, Review.type, reviewsUnion.c.Field1, reviewsUnion.c.Field2, reviewsUnion.c.Field3, reviewsUnion.c.Field4, Review.id_client, reviewsUnion.c.target_id).select_from(reviewsUnion).join(Review,Review.id==reviewsUnion.c.COACHING_REVIEW_id).filter(Review.id_client==id).order_by(Review.date.desc())
+    result = db.session.query(Review.id, Review.comment, Review.date, Review.type, WorkoutReview.difficulty.label("Field1"), WorkoutReview.feel.label("Field2"), WorkoutReview.fatigue.label("Field3"), WorkoutReview.energy.label("Field4"), Review.id_client, WorkoutReview.target_id).join(Review, Review.id==WorkoutReview.id).filter(Review.id==reviewId).first()
+    return result

@@ -18,14 +18,14 @@
 
 <div class="row">
       <div class="card card-body h-auto" style="width: 18rem; float: right;">
-        <h5 class="card-header">Review</h5>
+        <h5 class="card-header">Review added by {{client.name}} {{client.surname}}</h5>
         <div class="row justify-content-center">
 
             <div class="col-lg-2">
                 <div class="card border-light mb-3" style="max-width: 18rem;">
                     <div class="card-header">Date</div>
                     <div class="card-body">
-                      <h5 class="card-title">{{review['Date']}}</h5>
+                      <h5 class="card-title">{{review.date}}</h5>
                     </div>
                   </div>
           </div>
@@ -34,9 +34,9 @@
             <div class="card border-light mb-3" style="max-width: 36rem;">
                 <div class="card-header">Review on</div>
                 <div class="card-body">
-                    {% if review['Type'] == 'WORKOUT'  %}
+                    {% if review.type == 'WORKOUT'  %}
                     <h5 class="card-title">{{target['Type'] + " - " + target['Date'].strftime("%m/%d/%Y, %H:%M:%S") + " - " + target['Duration'].strftime("%X")}}</h5>
-                    {% elif review['Type'] == 'COACHING'  %}
+                    {% elif review.type == 'COACHING'  %}
                     <h5 class="card-title">{{target['Name'] + " " + target['Surname']}}</h5>
                     {% endif %}
                 </div>
@@ -47,7 +47,7 @@
             <div class="card border-light mb-3" style="max-width: 18rem;">
                 <div class="card-header">Type</div>
                 <div class="card-body">
-                  <h5 class="card-title">{{review['Type']}}</h5>
+                  <h5 class="card-title">{{review.type}}</h5>
                 </div>
               </div>
           </div>
@@ -57,7 +57,7 @@
                 <div class="card border-light mb-3" style="max-width: 18rem;">
                     <div class="card-header">{{"Satisfaction" if review['Type'] == 'COACHING' else "Difficulty"}}</div>
                     <div class="card-body">
-                      <h5 class="card-title">{{review['Field1']}}</h5>
+                      <h5 class="card-title">{{review.Field1}}</h5>
                     </div>
                   </div>
             </div>
@@ -65,7 +65,7 @@
                 <div class="card border-light mb-3" style="max-width: 18rem;">
                     <div class="card-header">{{"Support" if review['Type'] == 'COACHING' else "Feel"}}</div>
                     <div class="card-body">
-                      <h5 class="card-title">{{review['Field2']}}</h5>
+                      <h5 class="card-title">{{review.Field2}}</h5>
                     </div>
                   </div>
             </div>
@@ -73,7 +73,7 @@
                 <div class="card border-light mb-3" style="max-width: 18rem;">
                     <div class="card-header">{{"Disponibility" if review['Type'] == 'COACHING' else "Fatigue (at the end)"}}</div>
                     <div class="card-body">
-                      <h5 class="card-title">{{review['Field3']}}</h5>
+                      <h5 class="card-title">{{review.Field3}}</h5>
                     </div>
                   </div>
             </div>
@@ -81,7 +81,7 @@
                 <div class="card border-light mb-3" style="max-width: 18rem;">
                     <div class="card-header">{{"Advice quality" if review['Type'] == 'COACHING' else "Energy (at the start)"}}</div>
                     <div class="card-body">
-                      <h5 class="card-title">{{review['Field4']}}</h5>
+                      <h5 class="card-title">{{review.Field4}}</h5>
                     </div>
                   </div>
             </div>

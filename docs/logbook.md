@@ -489,3 +489,5 @@ Ces champs devront être non null car ils sont obligatoires à l'inscription.
 Je ne sais pas ni pourquoi ni comment mais Flask Login se connectait par défaut à l'utilisateur sans email. Je pouvais donc après m'être déconnecté accéder aux pages sous *@login_required*. En supprimant cet utilisateur *test*, j'ai remarqué que tout fonctionnait comme il faut car Flask login ne pouvait plus se connecter automatiquement à cet utilisateur sans email.
 
 La partie client est donc terminé, il va falloir que j'effectue quelques tests mais dans l'ensemble tout à l'air fonctionnel. Je vais débuter la partie coach en reprenant déjà les pages clients qui ont des options *coach* et j'ajouterai les nouvelles pages après.
+
+J'ai commencé à séparer un peu le fichier *client/routes.py* j'ai créer un autre fichier *util.py* qui contiendra toutes les fonctions qui permettront de récupérer des données de la base de données. Cela rendra mon fichier *routes.py* beaucoup plus lisible.
