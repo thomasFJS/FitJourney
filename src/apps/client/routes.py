@@ -51,55 +51,22 @@ def profile():
 	print(current_user)
 	user = User.query.get_or_404(id)
 
-	# SQL request to get the last physical information of the user
+	# Get the last physical information of the user
+	physicalInfo = get_physical_infos(current_user.id)
 
-	# SELECT * 
-	# FROM `PHYSICAL_INFO`
-	# WHERE `PHYSICAL_INFO`.USER_ID = %(CLIENT_ID_1)S
-	# ORDER BY `PHYSICAL_INFO`.DATE
-	physicalInfo = PhysicalInfo.query.filter_by(user_id=id).order_by(PhysicalInfo.date).first()
+	# Get the last subsciption purchase date and the duration of the subscription purchased
+	subscription = get_last_subscription(current_user.id)
 
-	# SQL Request to get the last subsciption purchase date and the duration of the subscription purchased
-	#
-	# SELECT `SUBSCRIPTION`.DURATION AS `SUBSCRIPTION_DURATION`, `PURCHASE`.DATE AS `PURCHASE_DATE` 
-	# FROM `PURCHASE` 
-	# INNER JOIN `SUBSCRIPTION` ON `PURCHASE`.SUBSCRIPTION_ID = `SUBSCRIPTION`.ID 
-	# WHERE `PURCHASE`.CLIENT_ID = %(CLIENT_ID_1)S 
-	# ORDER BY `PURCHASE`.DATE
+	# Get the reviews posted by user
+	reviews = get_reviews(current_user.id)
 
-	subscription = db.session.query(Subscription.duration, Purchase.date).join(Subscription, Purchase.subscription_id==Subscription.id).filter(Purchase.client_id==id).order_by(Purchase.date).first()
-	
-	#Queries to get all Review from user 
-	coachingReviewQuery = db.session.query(CoachingReview.id, CoachingReview.satisfaction.label("Field1"), CoachingReview.support.label("Field2"), CoachingReview.disponibility.label("Field3"), CoachingReview.advice.label("Field4"), CoachingReview.target_id.label("target_id"))
-	workoutReviewQuery = db.session.query(WorkoutReview.id, WorkoutReview.difficulty, WorkoutReview.feel, WorkoutReview.fatigue, WorkoutReview.energy, WorkoutReview.target_id)
+	# Get each workout type and how many client have made in 2 separate array to use them in js
+	wrktTypeList = get_workout_type_count(current_user.id)[0]
 
-	#UNION with the 2 queries 
-	reviewsUnion = union(coachingReviewQuery,workoutReviewQuery).alias()
+	wrktTypeCount = get_workout_type_count(current_user.id)[1]
 
-	# Query to get field from Review table and from the review union made before
-	#reviewsQuery = db.session.query(Review.id, Review.comment, Review.date, Review.type, reviewsUnion.c.Field1, reviewsUnion.c.Field2, reviewsUnion.c.Field3, reviewsUnion.c.Field4, Review.id_client, reviewsUnion.c.target_id).select_from(reviewsUnion).join(Review,Review.id==reviewsUnion.c.COACHING_REVIEW_id).filter(Review.id_client==id).order_by(Review.date.desc())
-	reviewsQuery = db.session.query(Review.id, Review.type, Review.date).filter(Review.id_client==id).order_by(Review.date.desc())
-	# Query to get each workout type and how many client have made
-	workoutTypeCountQuery = db.session.query(WorkoutType.title, func.count(Workout.workout_type).label("count")).join(Workout, Workout.workout_type==WorkoutType.id).filter(Workout.client_id==id).group_by(Workout.workout_type)
-
-	# Split values in 2 array to use them in js 
-	workoutTypeList = []
-	workoutTypeCount = []
-
-	for wtCount in workoutTypeCountQuery:
-		workoutTypeList.append('"' +wtCount.title+ '"')
-		workoutTypeCount.append(wtCount.count)
-
-	# SELECT Month(WORKOUT.date), Count(*) FROM WORKOUT WHERE client_id = 1 AND YEAR(CURDATE()) = YEAR(WORKOUT.date) GROUP BY MONTH(WORKOUT.date);
-	workoutCountPerMonthQuery = db.session.query(func.month(Workout.date).label("month"), func.count(Workout.id).label("count")).filter(Workout.client_id==id).filter(func.year(date.today())==func.year(Workout.date)).group_by(func.month(Workout.date))
-	# Create a year array with 12 values (each value represent a month)
-	nbWorkoutPerMonth = [0,0,0,0,0,0,0,0,0,0,0,0]
-	for i in range(12):
-		for wtCountbyMonth in workoutCountPerMonthQuery:
-			if i == wtCountbyMonth.month-1: # If month got result from query set the value else keep 0 
-				nbWorkoutPerMonth[i] = wtCountbyMonth.count
-				break
-
+	# Get the number of workout per month during this year
+	nbWorkoutPerMonth = get_workout_count_per_month(current_user.id)
 	
 	# SELECT AVG(heart_rate_avg) FROM WORKOUT WHERE WORKOUT.client_id = 1 AND WEEK(WORKOUT.date) = WEEK(CURDATE()) - 1;
 	# Get the average of heart rate during this week
@@ -130,11 +97,11 @@ def profile():
 	current_user.nbWorkoutPerMonth = nbWorkoutPerMonth
 
 	# Set the 2 array for workout type
-	current_user.workoutTypeList = workoutTypeList
-	current_user.workoutTypeCount = workoutTypeCount
+	current_user.workoutTypeList = wrktTypeList
+	current_user.workoutTypeCount = wrktTypeCount
 
 	#Set all the reviews
-	current_user.reviews = reviewsQuery
+	current_user.reviews = reviews
 
 	# Set the physical value to the user
 	current_user.physicalInfo = physicalInfo
@@ -223,13 +190,10 @@ def review():
 @blueprint.route('/workouts')
 @login_required
 def workouts():
-	print(current_user)
-	id = current_user.id
-	user = User.query.get_or_404(id)
 	# Get all data from workout 
 	#workouts = db.session.query(WorkoutType.title, WorkoutType.logo,Workout.id, Workout.date, Workout.duration, Workout.heart_rate_max, Workout.heart_rate_min, 
 	#			Workout.heart_rate_avg, Workout.calories, Workout.active_calories, Workout.distance, Workout.pace_avg).join(WorkoutType, Workout.workout_type == WorkoutType.id).filter(Workout.client_id==id).order_by(Workout.date.desc())
-	workouts = get_workouts(id)
+	workouts = get_workouts(current_user.id)
 	return render_template('client/workouts.html', segment='workouts', workouts=workouts)
 
 
@@ -248,18 +212,17 @@ def workout():
 @blueprint.route('/add_review', methods=['POST', 'GET'])
 @login_required
 def add_review():
-	id = current_user.id
 	add_review_form = AddReviewForm(request.form)
 
 	# put all parameters into dict 
 	reviewFields = request.args.to_dict()
 	print(reviewFields)
 	if request.method == 'POST':
-		newReview = Review(comment=request.form['comment'], date=datetime.now(),type=request.form['type'],id_client=id)
+		newReview = Review(comment=request.form['comment'], date=datetime.now(),type=request.form['type'],id_client=current_user.id)
 		db.session.add(newReview)	
 		db.session.flush()
 		if request.form['type'] == "WORKOUT":
-			exists = db.session.query(WorkoutReview.target_id).filter(WorkoutReview.target_id==request.form['target']).first() is not None
+			exists = is_workout_reviewed(request.form['target'])
 			if exists :
 				db.session.rollback()
 				flash("You already add a review on this workout")
@@ -301,15 +264,14 @@ def change_password():
 	form = ChangePasswordForm(request.form)
 
 	if request.method == 'POST':
-		user = User.query.filter_by(id=current_user.id).first()
-		if verify_pass(request.form['oldPassword'], user.password):
+		# Check if the old password is correct
+		if verify_pass(request.form['oldPassword'], current_user.password):
+			# Check if the confirmation field match the new password
 			if request.form['newPassword'] == request.form['confirmPassword'] and request.form['newPassword'] != None:
 
 				try:
-					print(user.password)
-					user.password = hash_pass(request.form['newPassword'])
-					#user.password = hash_pass(request.form['newPassword'])
-					print(user.password)
+					# Set the new password
+					current_user.password = hash_pass(request.form['newPassword'])
 					db.session.flush()
 					db.session.commit()
 					flash("Password updated")
@@ -321,6 +283,8 @@ def change_password():
 		else:
 			flash("Old password isn't correct !")
 	return render_template('client/change_password.html', segment="change_password", form=form)
+
+
 # Extract current page name from request
 def get_segment(request):
 

@@ -53,7 +53,7 @@ def login():
     if not current_user.is_authenticated:
         return render_template('accounts/login.html',form=login_form)
     
-    if current_user.role == 1:
+    if current_user.role  == 1:
         print("OK CLIENT")
         return redirect(url_for('client_blueprint.index'))
     elif current_user.role == 2:

@@ -491,3 +491,12 @@ Je ne sais pas ni pourquoi ni comment mais Flask Login se connectait par défaut
 La partie client est donc terminé, il va falloir que j'effectue quelques tests mais dans l'ensemble tout à l'air fonctionnel. Je vais débuter la partie coach en reprenant déjà les pages clients qui ont des options *coach* et j'ajouterai les nouvelles pages après.
 
 J'ai commencé à séparer un peu le fichier *client/routes.py* j'ai créer un autre fichier *util.py* qui contiendra toutes les fonctions qui permettront de récupérer des données de la base de données. Cela rendra mon fichier *routes.py* beaucoup plus lisible.
+
+### Jeudi, 19 Mai 2022
+Aujourd'hui j'ai bien avancé sur l'épuration de mon code, il y avait plein de requête que je faisais en double ou qui était inutile. Exemple pour la plupart des pages je récupérais un objet user pour avoir toutes les propriétés alors qu'avec Flask login je détenais déjà un objet *User* (current_user). Il ne reste qu'une petite partie du fichier routes.py à corriger et ça sera bon. 
+
+Demain, je vais essayer de beaucoup avancer sur la documentation technique car je ne l'ai plus touchée depuis un moment. J'ai pas mal de points à ajouter comme notamment les endpoints de l'application ou encore les différentes fonctions qui sont appelées pour récupérer des données de la base.
+
+Je pourrai ensuite ajouter la partie coach de l'application qui maintenant que le code est propre, ne devrait normalement pas me poser de gros problèmes. 
+
+En croisant M.Jossi, je lui ai demandé si cela pouvait être pertinent d'ajouter une sorte de business plan à la documentation. Pour faire en sorte d'avoir une brève explication des coûts qu'il faudrait prendre en compte si on voulait mettre en place l'application chez un coach. (En comptant les montres, les cartes, les lecteurs, etc..). M.Jossi m'a confirmé que cela pouvait être une bonne idée mais cela n'est vraiment pas prioritaire. Je vais donc garder cette idée et si il me reste du temps sur la fin j'ajouterai ce point à la documentation.

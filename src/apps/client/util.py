@@ -108,6 +108,19 @@ def get_review_details(reviewId, reviewType):
 
     return [review, target]
 
+def get_reviews(clientId):
+    """
+    Get all the reviews added by user
+
+    Parameter(s):
+     NAME     |  TYPE  | DESC
+     clientId |  INT   | the id of the client 
+    """
+
+    reviews = db.session.query(Review.id, Review.type, Review.date).filter(Review.id_client==clientId).order_by(Review.date.desc())
+    
+    return reviews
+
 def get_workouts(clientId):
     """
     Get all the workouts done by a client
@@ -144,3 +157,106 @@ def get_workout_review_field():
     fields = db.session.query(WorkoutReview).statement.columns.keys()
 
     return fields
+
+def is_workout_reviewed(workoutId):
+    """
+    Check if a workout is already reviewed 
+
+    
+    Parameter(s):
+    NAME      |  TYPE  | DESC
+    workoutId  |  INT   | The id of the workout
+    """
+    result = db.session.query(WorkoutReview.target_id).filter(WorkoutReview.target_id==workoutId).first() is not None
+    return result
+
+def get_user(userId):
+    """
+    Get user object with id
+
+    Parameter(s):
+    NAME      |  TYPE  | DESC
+    userId    |  INT   | The id of the user
+    """
+    user = User.query.filter_by(id=userId).first()
+
+    return user
+
+def get_physical_infos(userId):
+    """
+    Get the last added physical infos for a user
+
+    Parameter(s):
+    NAME      |  TYPE  | DESC
+    userId    |  INT   | The id of the user
+    """
+    infos = PhysicalInfo.query.filter_by(user_id=userId).order_by(PhysicalInfo.date.desc()).first()
+
+    return infos
+
+def get_last_subscription(userId):
+    """
+    Get the last subsciption purchase date and the duration of the subscription purchased
+    
+    Parameter(s):
+    NAME      |  TYPE  | DESC
+    userId    |  INT   | The id of the user
+    
+    Request in SQL : 
+     SELECT `SUBSCRIPTION`.DURATION AS `SUBSCRIPTION_DURATION`, `PURCHASE`.DATE AS `PURCHASE_DATE` 
+	 FROM `PURCHASE` 
+	 INNER JOIN `SUBSCRIPTION` ON `PURCHASE`.SUBSCRIPTION_ID = `SUBSCRIPTION`.ID 
+	 WHERE `PURCHASE`.CLIENT_ID = userId
+	 ORDER BY `PURCHASE`.DATE
+    
+    """
+    result = db.session.query(Subscription.duration, Purchase.date).join(Subscription, Purchase.subscription_id==Subscription.id).filter(Purchase.client_id==userId).order_by(Purchase.date).first()
+
+    return result
+
+
+def get_workout_type_count(clientId):
+    """
+    Get the count of each type of workout made by user and split workout type count in 2 array (1 for the title and 1 for the count) to use them 
+    in javascript with Chart.JS
+
+    Parameter(s) :
+     NAME      |  TYPE  | DESC
+     clientId  |  INT   | The id of the client
+
+    Return : Array contais 2 differents array. 1 for all the titles and 1 for all the counts
+    """
+    workoutTypeCount = db.session.query(WorkoutType.title, func.count(Workout.workout_type).label("count")).join(Workout, Workout.workout_type==WorkoutType.id).filter(Workout.client_id==clientId).group_by(Workout.workout_type)
+    
+    wrktTypeList = []
+    wrktTypeCount = []
+    print(workoutTypeCount)
+    for wtCount in workoutTypeCount:
+        wrktTypeList.append('"' +wtCount.title+ '"')
+        wrktTypeCount.append(wtCount.count)
+
+    return [wrktTypeList, wrktTypeCount]
+
+def get_workout_count_per_month(clientId):
+    """
+    Get the number of workout made each month during this year
+
+    Parameter(s) :
+     NAME      |  TYPE  | DESC
+     clientId  |  INT   | The id of the client
+
+    Return : Array with 12 values represent the 12 months of a year
+    """
+
+    count = db.session.query(func.month(Workout.date).label("month"), func.count(Workout.id).label("count")).filter(Workout.client_id==clientId).filter(func.year(date.today())==func.year(Workout.date)).group_by(func.month(Workout.date))
+    
+    # Create a year array with 12 values (each value represent a month)
+    nbWorkoutPerMonth = [0,0,0,0,0,0,0,0,0,0,0,0]
+    for i in range(12):
+        for wtCountbyMonth in count:
+            if i == wtCountbyMonth.month-1: # If month got result from query set the value else keep 0 
+                nbWorkoutPerMonth[i] = wtCountbyMonth.count
+                break
+                    
+   
+    return nbWorkoutPerMonth
