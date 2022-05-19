@@ -105,6 +105,42 @@ def get_review_details(reviewId, reviewType):
         targetQuery = db.session.query(User.name, User.surname).filter(User.id==review.target_id).first()
         target['Name'] = targetQuery.name
         target['Surname'] = targetQuery.surname
-        
+
     return [review, target]
 
+def get_workouts(clientId):
+    """
+    Get all the workouts done by a client
+
+    Parameter(s) :
+     NAME      |  TYPE  | DESC
+     clientId  |  INT   | The id of the client
+    """
+    workouts = db.session.query(WorkoutType.title,Workout.id, Workout.date, Workout.duration, Workout.heart_rate_avg, Workout.calories).join(WorkoutType, Workout.workout_type == WorkoutType.id).filter(Workout.client_id==clientId).order_by(Workout.date.desc())
+    
+    return workouts        
+
+def get_workout_details(workoutId):
+    """
+    Get all the details of a workout
+
+    Parameter(s):
+    NAME      |  TYPE  | DESC
+    workoutId  |  INT   | The id of the workout
+    """
+
+    workout =  db.session.query(WorkoutType.title, WorkoutType.logo, Workout.id, Workout.date, Workout.duration, Workout.heart_rate_max, Workout.heart_rate_min, 
+				Workout.heart_rate_avg, Workout.calories, Workout.active_calories, Workout.distance, Workout.pace_avg).join(WorkoutType, Workout.workout_type == WorkoutType.id).filter(Workout.id==workoutId).first()
+
+    return workout
+
+def get_workout_review_field():
+    """
+    Get the fields name for a workout review (the fields names are set in the database)
+
+    Parameter(s):
+    /
+    """
+    fields = db.session.query(WorkoutReview).statement.columns.keys()
+
+    return fields

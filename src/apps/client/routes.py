@@ -212,7 +212,7 @@ def review():
 
 	# Client who post the review
 	client = get_review_author(review.id_client)
-	
+
 	# Target of the review may be workout or a coach depends on review type
 	target = get_review_details(reviewDetails['Id'], reviewDetails['Type'])[1]
 
@@ -227,8 +227,9 @@ def workouts():
 	id = current_user.id
 	user = User.query.get_or_404(id)
 	# Get all data from workout 
-	workouts = db.session.query(WorkoutType.title, WorkoutType.logo,Workout.id, Workout.date, Workout.duration, Workout.heart_rate_max, Workout.heart_rate_min, 
-				Workout.heart_rate_avg, Workout.calories, Workout.active_calories, Workout.distance, Workout.pace_avg).join(WorkoutType, Workout.workout_type == WorkoutType.id).filter(Workout.client_id==id).order_by(Workout.date.desc())
+	#workouts = db.session.query(WorkoutType.title, WorkoutType.logo,Workout.id, Workout.date, Workout.duration, Workout.heart_rate_max, Workout.heart_rate_min, 
+	#			Workout.heart_rate_avg, Workout.calories, Workout.active_calories, Workout.distance, Workout.pace_avg).join(WorkoutType, Workout.workout_type == WorkoutType.id).filter(Workout.client_id==id).order_by(Workout.date.desc())
+	workouts = get_workouts(id)
 	return render_template('client/workouts.html', segment='workouts', workouts=workouts)
 
 
@@ -236,9 +237,11 @@ def workouts():
 @login_required
 def workout():
 	# put all parameters into dict 
-	workoutDetails = request.args.to_dict()
+	params = request.args.to_dict()
 
-	workoutReview = db.session.query(WorkoutReview).statement.columns.keys()
+	workoutDetails = get_workout_details(params['Id'])
+
+	workoutReview = get_workout_review_field()
 
 	return render_template('client/workout.html', segment="workout", workoutDetails=workoutDetails, workoutReview=workoutReview)
 

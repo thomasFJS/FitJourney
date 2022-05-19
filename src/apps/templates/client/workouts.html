@@ -47,7 +47,7 @@
                     {{ workout.heart_rate_avg }}
                 </td>
                 <td>
-                    <a class="btn btn-sm btn-primary" href="{{ url_for('client_blueprint.workout', Id=workout.id, Logo=workout.logo, Type=workout.title, Date=workout.date, Heart_rate_avg=workout.heart_rate_avg, Calories=workout.calories, Duration=workout.duration, Heart_rate_max=workout.heart_rate_max, Client=workout.id_client) }}">Details</a>
+                    <a class="btn btn-sm btn-primary" href="{{ url_for('client_blueprint.workout', Id=workout.id) }}">Details</a>
                 </td>
             </tr>
             {% endfor %}
