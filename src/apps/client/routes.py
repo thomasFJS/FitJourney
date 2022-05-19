@@ -208,24 +208,14 @@ def review():
 
 	# Put all parameters into dict 
 	reviewDetails = request.args.to_dict()
-	print(reviewDetails['Id'])
-	review = get_review_details(reviewDetails['Id'], reviewDetails['Type'])
-	print(review.target_id)
+	review = get_review_details(reviewDetails['Id'], reviewDetails['Type'])[0]
+
 	# Client who post the review
 	client = get_review_author(review.id_client)
+	
+	# Target of the review may be workout or a coach depends on review type
+	target = get_review_details(reviewDetails['Id'], reviewDetails['Type'])[1]
 
-	target = {}
-	# Target of the review may be session or a coach depends on review type
-	if reviewDetails['Type'] == "WORKOUT":
-		targetQuery = db.session.query(WorkoutType.title, Workout.date, Workout.duration).join(WorkoutType, WorkoutType.id==Workout.workout_type).filter(Workout.id==review.target_id).first()
-		target['Type'] = targetQuery.title
-		target['Date'] = targetQuery.date
-		target['Duration'] = targetQuery.duration
-	elif reviewDetails['Type'] == "COACHING":
-		targetQuery = db.session.query(User.name, User.surname).filter(User.id==review.target_id).first()
-		target['Name'] = targetQuery.name
-		target['Surname'] = targetQuery.surname
-	print(target)
 	return render_template('client/review.html', segment='review', review=review, client=client, target=target)
 
 

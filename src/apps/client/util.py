@@ -35,33 +35,49 @@ from werkzeug.utils import secure_filename
 
 from datetime import date, datetime
 
-def get_next_session(userId): # Get the next sessions
+def get_next_session(userId):
+    """
+    Get all the next sessions
 
-    # Parameter(s) :
-    # userId -> the id of the user 
+    Parameter(s) :
+    NAME     |  TYPE  | DESC
+    userId   | INT    | The id of the user 
 
-    # The query used : 
-	#  SELECT SESSION.date, SESSION.time, SESSION.duration, WORKOUT_TYPE.title, USER.name, USER.surname
-	#  FROM SESSION 
-	#  JOIN WORKOUT_TYPE ON SESSION.workout_type = WORKOUT_TYPE.id 
-	#  JOIN USER ON USER.id = SESSION.coach_id 
-	#  WHERE SESSION.client_id = 1 AND SESSION.date > curdate() 
-	#  ORDER BY SESSION.date
+
+    The query used : 
+	 SELECT SESSION.date, SESSION.time, SESSION.duration, WORKOUT_TYPE.title, USER.name, USER.surname
+	 FROM SESSION 
+	 JOIN WORKOUT_TYPE ON SESSION.workout_type = WORKOUT_TYPE.id 
+	 JOIN USER ON USER.id = SESSION.coach_id 
+	 WHERE SESSION.client_id = 1 AND SESSION.date > curdate() 
+	 ORDER BY SESSION.date
+    """
     result = db.session.query(Session.date, Session.time, Session.duration, WorkoutType.title, WorkoutType.logo, User.name, User.surname).join(WorkoutType, Session.workout_type==WorkoutType.id).join(User, Session.coach_id==User.id).filter(Session.client_id==userId).filter(Session.date>date.today()).order_by(Session.date)
     
     return result
 
-def get_review_author(clientId): # Get the client who add the review with his id
+def get_review_author(clientId): 
+    """
+    Get the client who add the review with his id
 
-    # Parameter(s):
-    # clientId -> the id of the client who post the review.
-
+     Parameter(s):
+     NAME     |  TYPE  | DESC
+     clientId |  INT   | the id of the client who post the review.
+    """
     result = db.session.query(User.name, User.surname).filter(User.id==clientId).first()
 
     return result
 
 
-def get_review_details(reviewId, reviewType): # Get the details of the a workout review
+def get_review_details(reviewId, reviewType): 
+    """
+    Get the details of a review depends on his type
+
+    Parameter(s) :
+     NAME      |  TYPE  | DESC
+     reviewId  |  INT   | The id of the review
+     reviewType| STRING | The type of the review ("WORKOUT" or "COACHING")
+    """
     #Queries to get all Review from user 
 	#coachingReviewQuery = db.session.query(CoachingReview.id, CoachingReview.satisfaction.label("Field1"), CoachingReview.support.label("Field2"), CoachingReview.disponibility.label("Field3"), CoachingReview.advice.label("Field4"), CoachingReview.target_id.label("target_id"))
 	#workoutReviewQuery = db.session.query(WorkoutReview.id, WorkoutReview.difficulty, WorkoutReview.feel, WorkoutReview.fatigue, WorkoutReview.energy, WorkoutReview.target_id)
@@ -71,5 +87,24 @@ def get_review_details(reviewId, reviewType): # Get the details of the a workout
 
 	# Query to get field from Review table and from the review union made before
 	#reviewsQuery = db.session.query(Review.id, Review.comment, Review.date, Review.type, reviewsUnion.c.Field1, reviewsUnion.c.Field2, reviewsUnion.c.Field3, reviewsUnion.c.Field4, Review.id_client, reviewsUnion.c.target_id).select_from(reviewsUnion).join(Review,Review.id==reviewsUnion.c.COACHING_REVIEW_id).filter(Review.id_client==id).order_by(Review.date.desc())
-    result = db.session.query(Review.id, Review.comment, Review.date, Review.type, WorkoutReview.difficulty.label("Field1"), WorkoutReview.feel.label("Field2"), WorkoutReview.fatigue.label("Field3"), WorkoutReview.energy.label("Field4"), Review.id_client, WorkoutReview.target_id).join(Review, Review.id==WorkoutReview.id).filter(Review.id==reviewId).first()
-    return result
+    target = {}
+    if reviewType == "WORKOUT":
+        review = db.session.query(Review.id, Review.comment, Review.date, Review.type, WorkoutReview.difficulty.label("Field1"), WorkoutReview.feel.label("Field2"),
+         WorkoutReview.fatigue.label("Field3"), WorkoutReview.energy.label("Field4"),
+          Review.id_client, WorkoutReview.target_id).join(Review, Review.id==WorkoutReview.id).filter(Review.id==reviewId).first()
+        
+        targetQuery = db.session.query(WorkoutType.title, Workout.date, Workout.duration).join(WorkoutType, WorkoutType.id==Workout.workout_type).filter(Workout.id==review.target_id).first()
+        
+        target['Type'] = targetQuery.title
+        target['Date'] = targetQuery.date
+        target['Duration'] = targetQuery.duration
+    
+    elif reviewType == "COACHING":
+        review = db.session.query(Review.id, Review.comment, Review.date, Review.type, CoachingReview.satisfaction.label("Field1"), CoachingReview.support.label("Field2"), CoachingReview.disponibility.label("Field3"), CoachingReview.advice.label("Field4"), Review.id_client, CoachingReview.target_id).join(Review, Review.id==CoachingReview.id).filter(Review.id==reviewId).first()
+    
+        targetQuery = db.session.query(User.name, User.surname).filter(User.id==review.target_id).first()
+        target['Name'] = targetQuery.name
+        target['Surname'] = targetQuery.surname
+        
+    return [review, target]
+
