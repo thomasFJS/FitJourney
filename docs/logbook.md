@@ -502,3 +502,8 @@ Je pourrai ensuite ajouter la partie coach de l'application qui maintenant que l
 En croisant M.Jossi, je lui ai demandé si cela pouvait être pertinent d'ajouter une sorte de business plan à la documentation. Pour faire en sorte d'avoir une brève explication des coûts qu'il faudrait prendre en compte si on voulait mettre en place l'application chez un coach. (En comptant les montres, les cartes, les lecteurs, etc..). M.Jossi m'a confirmé que cela pouvait être une bonne idée mais cela n'est vraiment pas prioritaire. Je vais donc garder cette idée et si il me reste du temps sur la fin j'ajouterai ce point à la documentation.
 
 ### Vendredi, 20 Mai 2022
+Aujourd'hui j'ai pu terminer de refaire le fichier de route, toutes les fonctions utilisant la base de données sont maintenant dans le fichier *util.py* . J'ai pu avancer sur la documentation en ajoutant le routage de l'application et en commençant à expliquer les différents endpoints. Je pense travailler un peu ce week-end pour avancer un peu la documentation et je pourrai également commencer à ajouter les pages pour coach.
+
+Pour la lecture des cartes RFID et la récupération des données via l'API, je possède déjà des scripts me permettant de le faire. Je n'aurai qu'à les adapter pour les faire fonctionner. 
+
+Avec l'annonce de maintenance de l'API le 18 Juin, je vais quand même créer un mock de l'API pour me permettre de faire quand même tourner l'application au cas ou l'API ne fonctionnerait pas pour la présentation.
