@@ -7,50 +7,35 @@ Brief   :        All the functions needed to get datas for templates
 """
 
 # APP
-from apps.client import blueprint
-from apps import db, login_manager
+from apps import db
 from apps.authentication.models import User, PhysicalInfo, Subscription, Purchase, CoachingReview, WorkoutReview, Review, Workout, WorkoutType, Session, CoachedBy
-from apps.client.forms import UpdateForm, AddReviewForm, ChangePasswordForm
-from apps.config import Config
-from apps.authentication.util import verify_pass, hash_pass
-
-# FLASK
-from flask import render_template, redirect, request, url_for, flash
-from flask_login import login_required
-from jinja2 import TemplateNotFound
-
-from flask_login import (
-    current_user
-)
 
 # SQL ALCHEMY 
 from sqlalchemy import union, func
 
 # UTILS
 from dateutil.relativedelta import relativedelta
-import uuid as uuid
-import os
-import json
-from werkzeug.utils import secure_filename
 
-from datetime import date, datetime
+from datetime import date
 
 def get_next_session(userId):
     """
     Get all the next sessions
 
-    Parameter(s) :
-    NAME     |  TYPE  | DESC
-    userId   | INT    | The id of the user 
-
-
-    The query used : 
+    SQL : 
 	 SELECT SESSION.date, SESSION.time, SESSION.duration, WORKOUT_TYPE.title, USER.name, USER.surname
 	 FROM SESSION 
 	 JOIN WORKOUT_TYPE ON SESSION.workout_type = WORKOUT_TYPE.id 
 	 JOIN USER ON USER.id = SESSION.coach_id 
 	 WHERE SESSION.client_id = 1 AND SESSION.date > curdate() 
 	 ORDER BY SESSION.date
+
+    Parameter(s) :
+    NAME     |  TYPE  | DESC
+    userId   | INT    | The id of the user 
+
+    Return :
+    | ARRAY[] | Array with all the next sessions planed for a user
     """
     result = db.session.query(Session.date, Session.time, Session.duration, WorkoutType.title, WorkoutType.logo, User.name, User.surname).join(WorkoutType, Session.workout_type==WorkoutType.id).join(User, Session.coach_id==User.id).filter(Session.client_id==userId).filter(Session.date>date.today()).order_by(Session.date)
     
@@ -58,11 +43,14 @@ def get_next_session(userId):
 
 def get_review_author(clientId): 
     """
-    Get the client who add the review with his id
+    Get the client name and surname who add the review with his id
 
      Parameter(s):
      NAME     |  TYPE  | DESC
      clientId |  INT   | the id of the client who post the review.
+
+     Return :
+     | USER() | User name and surname 
     """
     result = db.session.query(User.name, User.surname).filter(User.id==clientId).first()
 
@@ -77,6 +65,9 @@ def get_review_details(reviewId, reviewType):
      NAME      |  TYPE  | DESC
      reviewId  |  INT   | The id of the review
      reviewType| STRING | The type of the review ("WORKOUT" or "COACHING")
+    
+    Return :
+    | ARRAY[REVIEW(), ARRAY[]] | Array with the review details and an array that contains the target details of the review
     """
     #Queries to get all Review from user 
 	#coachingReviewQuery = db.session.query(CoachingReview.id, CoachingReview.satisfaction.label("Field1"), CoachingReview.support.label("Field2"), CoachingReview.disponibility.label("Field3"), CoachingReview.advice.label("Field4"), CoachingReview.target_id.label("target_id"))
@@ -115,6 +106,8 @@ def get_reviews(clientId):
     Parameter(s):
      NAME     |  TYPE  | DESC
      clientId |  INT   | the id of the client 
+
+    | ARRAY[REVIEW()] | Array with all reviews added by the user
     """
 
     reviews = db.session.query(Review.id, Review.type, Review.date).filter(Review.id_client==clientId).order_by(Review.date.desc())
@@ -128,6 +121,9 @@ def get_workouts(clientId):
     Parameter(s) :
      NAME      |  TYPE  | DESC
      clientId  |  INT   | The id of the client
+
+    Return :
+    | ARRAY[WORKOUT()] | Array with all workouts made by user
     """
     workouts = db.session.query(WorkoutType.title,Workout.id, Workout.date, Workout.duration, Workout.heart_rate_avg, Workout.calories).join(WorkoutType, Workout.workout_type == WorkoutType.id).filter(Workout.client_id==clientId).order_by(Workout.date.desc())
     
@@ -140,6 +136,8 @@ def get_workout_details(workoutId):
     Parameter(s):
     NAME      |  TYPE  | DESC
     workoutId  |  INT   | The id of the workout
+
+    | OBJECT | Object with all details of the workout as properties
     """
 
     workout =  db.session.query(WorkoutType.title, WorkoutType.logo, Workout.id, Workout.date, Workout.duration, Workout.heart_rate_max, Workout.heart_rate_min, 
@@ -153,6 +151,9 @@ def get_workout_review_field():
 
     Parameter(s):
     /
+
+    Return :
+    | ARRAY[STRING] | Array with the workout review fields name
     """
     fields = db.session.query(WorkoutReview).statement.columns.keys()
 
@@ -164,6 +165,9 @@ def get_coaching_review_field():
 
     Parameter(s):
     /
+
+    Return :
+    | ARRAY[STRING] | Array with the coaching review fields name 
     """
     fields = db.session.query(CoachingReview).statement.columns.keys()
     return fields
@@ -176,6 +180,9 @@ def is_workout_reviewed(workoutId):
     Parameter(s):
     NAME      |  TYPE  | DESC
     workoutId  |  INT   | The id of the workout
+
+    Return :
+    | BOOLEAN | True if the workout is already reviewed, else False
     """
     result = db.session.query(WorkoutReview.target_id).filter(WorkoutReview.target_id==workoutId).first() is not None
     return result
@@ -187,6 +194,9 @@ def get_user(userId):
     Parameter(s):
     NAME      |  TYPE  | DESC
     userId    |  INT   | The id of the user
+
+    Return :
+    | USER() | the user
     """
     user = User.query.filter_by(id=userId).first()
 
@@ -199,14 +209,17 @@ def get_physical_infos(userId):
     Parameter(s):
     NAME      |  TYPE  | DESC
     userId    |  INT   | The id of the user
+
+    Return : 
+    | PHYSICALINFO() | the last updated physical infos of the user
     """
     infos = PhysicalInfo.query.filter_by(user_id=userId).order_by(PhysicalInfo.date.desc()).first()
 
     return infos
 
-def get_last_subscription(userId):
+def get_subscription_end_date(userId):
     """
-    Get the last subsciption purchase date and the duration of the subscription purchased
+    Get the last subsciption purchased end date
     
     Parameter(s):
     NAME      |  TYPE  | DESC
@@ -219,10 +232,16 @@ def get_last_subscription(userId):
 	 WHERE `PURCHASE`.CLIENT_ID = userId
 	 ORDER BY `PURCHASE`.DATE
     
-    """
-    result = db.session.query(Subscription.duration, Purchase.date).join(Subscription, Purchase.subscription_id==Subscription.id).filter(Purchase.client_id==userId).order_by(Purchase.date).first()
+    Return :
+    | DATE | the end date of the last purchased subscription
 
-    return result
+    """
+    subscription = db.session.query(Subscription.duration, Purchase.date).join(Subscription, Purchase.subscription_id==Subscription.id).filter(Purchase.client_id==userId).order_by(Purchase.date).first()
+    
+    #Add duration to the purchase date to get end date
+    endDate = (subscription[1] + relativedelta(months=subscription[0])).date()	
+    
+    return endDate
 
 
 def get_workout_type_count(clientId):
@@ -234,7 +253,8 @@ def get_workout_type_count(clientId):
      NAME      |  TYPE  | DESC
      clientId  |  INT   | The id of the client
 
-    Return : Array contais 2 differents array. 1 for all the titles and 1 for all the counts
+    Return :
+    | ARRAY[ARRAY[STRING], ARRAY[INT]] | Array with 2 differents array inside. 1 for all the titles and 1 for all the counts
     """
     workoutTypeCount = db.session.query(WorkoutType.title, func.count(Workout.workout_type).label("count")).join(Workout, Workout.workout_type==WorkoutType.id).filter(Workout.client_id==clientId).group_by(Workout.workout_type)
     
@@ -255,7 +275,8 @@ def get_workout_count_per_month(clientId):
      NAME      |  TYPE  | DESC
      clientId  |  INT   | The id of the client
 
-    Return : Array with 12 values represent the 12 months of a year
+    Return : 
+    | ARRAY[INT] | Array with 12 int values represent the 12 months of a year. (Each values is the number of workout made for the month)
     """
 
     count = db.session.query(func.month(Workout.date).label("month"), func.count(Workout.id).label("count")).filter(Workout.client_id==clientId).filter(func.year(date.today())==func.year(Workout.date)).group_by(func.month(Workout.date))
@@ -279,7 +300,8 @@ def get_actual_coach_id(clientId):
      NAME      |  TYPE  | DESC
      clientId  |  INT   | The id of the client
 
-    Return : Int coach id 
+    Return :
+    | INT | The coach id 
     """
 
     coachId = db.session.query(CoachedBy.coach_id).filter(CoachedBy.client_id==clientId).order_by(CoachedBy.end_date.desc()).first()
@@ -290,11 +312,15 @@ def get_average_calories_last_week(clientId):
     """
     Get the average of calories burned this week
 
+    SQL : 
+	 SELECT AVG(calories) FROM WORKOUT WHERE WORKOUT.client_id = clientId AND WEEK(WORKOUT.date) = WEEK(CURDATE()) - 1;
+
     Parameter(s) :
      NAME      |  TYPE  | DESC
      clientId  |  INT   | The id of the client
 
-    Return : Numeric the average of calories burned rounded to 1 decimal
+    Return :
+    | DECIMAL | the average of calories burned rounded to 1 decimal
     """
     calories = db.session.query(func.avg(Workout.calories).label("avg")).filter(Workout.client_id==clientId).filter(func.week(Workout.date)==func.week(date.today()) -1).first()
 
@@ -304,12 +330,17 @@ def get_average_heart_rate_last_week(clientId):
     """
     Get the average heart rate recorded this week
 
+    SQL :
+     SELECT AVG(heart_rate_avg) FROM WORKOUT WHERE WORKOUT.client_id = clientId AND WEEK(WORKOUT.date) = WEEK(CURDATE()) - 1;
+
     Parameter(s) :
      NAME      |  TYPE  | DESC
      clientId  |  INT   | The id of the client
 
-    Return : Numeric the average of heart rate recorded rounded to 1 decimal
+    Return :
+    | DECIMAL | the average of heart rate recorded rounded to 1 decimal
     """
     heart_rate = db.session.query(func.avg(Workout.heart_rate_avg).label("avg")).filter(Workout.client_id==clientId).filter(func.week(Workout.date)==func.week(date.today()) -1).first()
 
     return round(heart_rate.avg,1) if heart_rate.avg != None else 0.0
+

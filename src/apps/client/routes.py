@@ -9,7 +9,7 @@ Brief   :        Set all the application routes
 # APP
 from apps.client import blueprint
 from apps import db, login_manager
-from apps.authentication.models import User, PhysicalInfo, Subscription, Purchase, CoachingReview, WorkoutReview, Review, Workout, WorkoutType, Session, CoachedBy
+from apps.authentication.models import User, PhysicalInfo, Subscription, CoachingReview, WorkoutReview, Review, Workout, WorkoutType, Session
 from apps.client.forms import UpdateForm, AddReviewForm, ChangePasswordForm
 from apps.config import Config
 from apps.authentication.util import verify_pass, hash_pass
@@ -23,14 +23,10 @@ from flask_login import (
     current_user
 )
 
-# SQL ALCHEMY 
-from sqlalchemy import union, func
 
 # UTILS
-from dateutil.relativedelta import relativedelta
 import uuid as uuid
 import os
-import json
 from werkzeug.utils import secure_filename
 from datetime import date, datetime
 
@@ -50,9 +46,6 @@ def profile():
 	# Get the last physical information of the user
 	physicalInfo = get_physical_infos(current_user.id)
 
-	# Get the last subsciption purchase date and the duration of the subscription purchased
-	subscription = get_last_subscription(current_user.id)
-
 	# Get the reviews posted by user
 	reviews = get_reviews(current_user.id)
 
@@ -64,10 +57,9 @@ def profile():
 	# Get the number of workout per month during this year
 	nbWorkoutPerMonth = get_workout_count_per_month(current_user.id)
 	
-	# SELECT AVG(heart_rate_avg) FROM WORKOUT WHERE WORKOUT.client_id = 1 AND WEEK(WORKOUT.date) = WEEK(CURDATE()) - 1;
 	# Get the average of heart rate during this week
 	avgHeartRate = get_average_heart_rate_last_week(current_user.id)
-	# SELECT AVG(calories) FROM WORKOUT WHERE WORKOUT.client_id = 1 AND WEEK(WORKOUT.date) = WEEK(CURDATE()) - 1;
+
 	# Get the average of calories burned this week
 	avgCalories = get_average_calories_last_week(current_user.id)
 	# SELECT SUM(my_time) FROM (SELECT extract(hour from duration) * 60 * 60 + extract(minute from duration) + extract(second from duration) as my_time FROM WORKOUT WHERE client_id = 1  AND WEEK(WORKOUT.date) = WEEK(CURDATE()) - 1) as timeduration
@@ -98,8 +90,8 @@ def profile():
 	# Set the physical value to the user
 	current_user.physicalInfo = physicalInfo
 
-	#Define subscription end date by adding the duration of the subscription in months to the purchase date.
-	current_user.subscriptionEnd = (subscription[1] + relativedelta(months=subscription[0])).date()	
+	# Get last subscription end date
+	current_user.subscriptionEnd = get_subscription_end_date(current_user.id)
 
 	if request.method == "POST":
 		current_user.name = request.form['name']

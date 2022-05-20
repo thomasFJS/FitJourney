@@ -300,7 +300,7 @@ J'ai créé 5 colonnes :
 ### Technologies utilisées
 
 #### Python Flask (backend)
-Flask est un micro-framework Python qui permet la création d'applications web évolutives. Flask dépend de la boite à outils WSGI de [Werkzeug](https://werkzeug.palletsprojects.com/en/2.0.x/) et du moteur de templates [Jinja](https://jinja.palletsprojects.com/en/3.0.x/). Flask était le framework qui répondait le plus à mes besoins, avec l'utilisation de l'API Polar qui est également en Python.
+Flask est un micro-framework Python qui permet la création d'applications web évolutives. Flask dépend de la boite à outils WSGI (Web Server Gateway Interface) de [Werkzeug](https://werkzeug.palletsprojects.com/en/2.0.x/) et du moteur de templates [Jinja](https://jinja.palletsprojects.com/en/3.0.x/). Le dossier *app/* représente une application Flask, elle est entre-autre homogène à une fonction WGSI.
 
 ![Flask Logo](./img/flask.png)
 
@@ -393,6 +393,9 @@ Le dossier *Apps* est le dossier principal de l'application. Il comprend l'ensem
 Le dossier *authentication* représente le Blueprint *authentication_blueprint*. On retrouve tous les fichiers utilisés pour l'implémentation des fonctionnalités d'authentification. Avec Flask, j'implémente un ORM nommé SQL Alchmey qui implémente le design pattern *Data Mapper* pour lire les données de la base de données. Chacune des tables est représentée par un modèle qui est utilisé pour interagir avec la table en question.
 
 Sachant que l'application *FitJourney* n'a pas de fonctionnalités disponible avant que l'utilisateur ne s'authentifie, le fichier "models.py" se trouve dans ce dossier, on y retrouve notamment tous les modèles.
+
+#### Fichier "authentication/routes.py"
+Le fichier *routes* contient des fonctions python représentant les *vues* de la partie authentification de l'application. Chaque fonction permet de générer une vue à partir des templates Jinja2, à l'aide de la fonction Flask *render_template* qui provient du package *Flask.templating*.
 
 #### Dossier "client"
 Le dossier *client* représente le Blueprint *client_blueprint*. On retrouve tous les fichiers utilisés pour l'implémentation des fonctionnalités client. 
@@ -492,3 +495,33 @@ Cette table contient tous les retours client sur le coaching effectué par le co
 
 ##### Table *SESSION_REVIEW*
 Cette table contient tous les retours client sur les sessions qu'il effectue avec un coach. Les champs disponibles sont la difficulté, le ressenti de la séance, le niveau de fatigue à la fin de la séance et l'énergie que le client avait en arrivant.
+
+
+### Routage de l'application
+
+Le **routage** de l'application signifie mapper les URL à une fonction spécifique qui gérera la logique de cette URL. Dans mon application, chaque route est relier au blueprint correspondant.
+
+Endpoint public - Visiteur
+
+| Méthodes  |  Endpoint |   | Description  | 
+|---|---|---|---|
+| POST | /login  |   |   |
+| POST | /register |   |   |
+| GET  | /index | | |
+|---|---|---|---|
+
+Endpoint privé - Client
+
+| Méthodes  |  Endpoint |   | Description  | 
+|---|---|---|---|
+| POST | /login  |   |   |
+| POST | /register |   |   |
+|---|---|---|---|
+
+Endpoint privé - Coach
+
+| Méthodes  |  Endpoint |   | Description  | 
+|---|---|---|---|
+| POST | /login  |   |   |
+| POST | /register |   |   |
+|---|---|---|---|

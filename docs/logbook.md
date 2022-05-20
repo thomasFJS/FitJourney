@@ -500,3 +500,5 @@ Demain, je vais essayer de beaucoup avancer sur la documentation technique car j
 Je pourrai ensuite ajouter la partie coach de l'application qui maintenant que le code est propre, ne devrait normalement pas me poser de gros problèmes. 
 
 En croisant M.Jossi, je lui ai demandé si cela pouvait être pertinent d'ajouter une sorte de business plan à la documentation. Pour faire en sorte d'avoir une brève explication des coûts qu'il faudrait prendre en compte si on voulait mettre en place l'application chez un coach. (En comptant les montres, les cartes, les lecteurs, etc..). M.Jossi m'a confirmé que cela pouvait être une bonne idée mais cela n'est vraiment pas prioritaire. Je vais donc garder cette idée et si il me reste du temps sur la fin j'ajouterai ce point à la documentation.
+
+### Vendredi, 20 Mai 2022
