@@ -158,6 +158,16 @@ def get_workout_review_field():
 
     return fields
 
+def get_coaching_review_field():
+    """
+    Get the fields name for a coaching review (the fields names are set in the database)
+
+    Parameter(s):
+    /
+    """
+    fields = db.session.query(CoachingReview).statement.columns.keys()
+    return fields
+
 def is_workout_reviewed(workoutId):
     """
     Check if a workout is already reviewed 
@@ -230,7 +240,7 @@ def get_workout_type_count(clientId):
     
     wrktTypeList = []
     wrktTypeCount = []
-    print(workoutTypeCount)
+
     for wtCount in workoutTypeCount:
         wrktTypeList.append('"' +wtCount.title+ '"')
         wrktTypeCount.append(wtCount.count)
@@ -260,3 +270,46 @@ def get_workout_count_per_month(clientId):
                     
    
     return nbWorkoutPerMonth
+
+def get_actual_coach_id(clientId):
+    """
+    Get the actual coach id for a client 
+
+    Parameter(s) :
+     NAME      |  TYPE  | DESC
+     clientId  |  INT   | The id of the client
+
+    Return : Int coach id 
+    """
+
+    coachId = db.session.query(CoachedBy.coach_id).filter(CoachedBy.client_id==clientId).order_by(CoachedBy.end_date.desc()).first()
+
+    return coachId
+
+def get_average_calories_last_week(clientId):
+    """
+    Get the average of calories burned this week
+
+    Parameter(s) :
+     NAME      |  TYPE  | DESC
+     clientId  |  INT   | The id of the client
+
+    Return : Numeric the average of calories burned rounded to 1 decimal
+    """
+    calories = db.session.query(func.avg(Workout.calories).label("avg")).filter(Workout.client_id==clientId).filter(func.week(Workout.date)==func.week(date.today()) -1).first()
+
+    return round(calories.avg,1) if calories.avg != None else 0.0 
+
+def get_average_heart_rate_last_week(clientId):
+    """
+    Get the average heart rate recorded this week
+
+    Parameter(s) :
+     NAME      |  TYPE  | DESC
+     clientId  |  INT   | The id of the client
+
+    Return : Numeric the average of heart rate recorded rounded to 1 decimal
+    """
+    heart_rate = db.session.query(func.avg(Workout.heart_rate_avg).label("avg")).filter(Workout.client_id==clientId).filter(func.week(Workout.date)==func.week(date.today()) -1).first()
+
+    return round(heart_rate.avg,1) if heart_rate.avg != None else 0.0

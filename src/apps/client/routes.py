@@ -47,10 +47,6 @@ def index():
 @login_required
 def profile():
 	update_form = UpdateForm(request.form)
-	id = current_user.id
-	print(current_user)
-	user = User.query.get_or_404(id)
-
 	# Get the last physical information of the user
 	physicalInfo = get_physical_infos(current_user.id)
 
@@ -70,28 +66,24 @@ def profile():
 	
 	# SELECT AVG(heart_rate_avg) FROM WORKOUT WHERE WORKOUT.client_id = 1 AND WEEK(WORKOUT.date) = WEEK(CURDATE()) - 1;
 	# Get the average of heart rate during this week
-	avgHeartRate = db.session.query(func.avg(Workout.heart_rate_avg).label("avg")).filter(Workout.client_id==id).filter(func.week(Workout.date)==func.week(date.today()) -1)
-
+	avgHeartRate = get_average_heart_rate_last_week(current_user.id)
 	# SELECT AVG(calories) FROM WORKOUT WHERE WORKOUT.client_id = 1 AND WEEK(WORKOUT.date) = WEEK(CURDATE()) - 1;
 	# Get the average of calories burned this week
-	avgCalories = db.session.query(func.avg(Workout.calories).label("avg")).filter(Workout.client_id==id).filter(func.week(Workout.date)==func.week(date.today()) -1)
-
+	avgCalories = get_average_calories_last_week(current_user.id)
 	# SELECT SUM(my_time) FROM (SELECT extract(hour from duration) * 60 * 60 + extract(minute from duration) + extract(second from duration) as my_time FROM WORKOUT WHERE client_id = 1  AND WEEK(WORKOUT.date) = WEEK(CURDATE()) - 1) as timeduration
 	# TODO
 
-	
 	# Get Coaching review fields name 
-	coachingReviewFields = db.session.query(CoachingReview).statement.columns.keys()
+	coachingReviewFields = get_coaching_review_field() 
 
 	# Get coach id 
-	coachId = db.session.query(CoachedBy.coach_id).filter(CoachedBy.client_id==id).order_by(CoachedBy.end_date.desc()).first()
-
-
-	# Set the average heartRate for all workout made this week
-	current_user.avgHeartRate = avgHeartRate[0]
+	coachId =get_actual_coach_id(current_user.id)
 
 	# Set the average heartRate for all workout made this week
-	current_user.avgCalories = avgCalories[0]
+	current_user.avgHeartRate = avgHeartRate
+
+	# Set the average heartRate for all workout made this week
+	current_user.avgCalories = avgCalories
 
 	# Set the number of workout per month
 	current_user.nbWorkoutPerMonth = nbWorkoutPerMonth
@@ -107,23 +99,21 @@ def profile():
 	current_user.physicalInfo = physicalInfo
 
 	#Define subscription end date by adding the duration of the subscription in months to the purchase date.
-	current_user.subscriptionEnd = (subscription[1] + relativedelta(months=subscription[0])).date()
-	
+	current_user.subscriptionEnd = (subscription[1] + relativedelta(months=subscription[0])).date()	
 
 	if request.method == "POST":
-		user.name = request.form['name']
-		user.surname = request.form['surname']
-		user.email = request.form['email']
-		user.birthdate = request.form['birthdate']
-		user.address = request.form['address']
-		user.city = request.form['city']
-		user.country = request.form['country']
-		user.npa = request.form['npa']
+		current_user.name = request.form['name']
+		current_user.surname = request.form['surname']
+		current_user.email = request.form['email']
+		current_user.birthdate = request.form['birthdate']
+		current_user.address = request.form['address']
+		current_user.city = request.form['city']
+		current_user.country = request.form['country']
+		current_user.npa = request.form['npa']
 
 		# Check if new profile pic
 		if request.files['profile_pic']:
-			user.profile_pic = request.files['profile_pic']
-
+			current_user.profile_pic = request.files['profile_pic']
 			# Grab Image name
 			pic_filename = secure_filename(user.profile_pic.filename)
 			pic_name = str(uuid.uuid1()) + "_" + pic_filename
@@ -131,8 +121,7 @@ def profile():
 			saver = request.files['profile_pic']
 
 			# Change it to a string to save to db
-			user.profile_pic = pic_name
-
+			current_user.profile_pic = pic_name
 
 			try:
 				db.session.commit()
@@ -172,11 +161,9 @@ def profile():
 @blueprint.route('/review/', methods=['GET'])
 @login_required
 def review():	
-
 	# Put all parameters into dict 
 	reviewDetails = request.args.to_dict()
 	review = get_review_details(reviewDetails['Id'], reviewDetails['Type'])[0]
-
 	# Client who post the review
 	client = get_review_author(review.id_client)
 
@@ -184,7 +171,6 @@ def review():
 	target = get_review_details(reviewDetails['Id'], reviewDetails['Type'])[1]
 
 	return render_template('client/review.html', segment='review', review=review, client=client, target=target)
-
 
 # Create Workouts Page
 @blueprint.route('/workouts')
