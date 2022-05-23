@@ -21,6 +21,7 @@ from apps.authentication.models import User
 from apps.authentication.util import verify_pass
 
 
+
 #Default route
 @blueprint.route('/')
 def route_default():

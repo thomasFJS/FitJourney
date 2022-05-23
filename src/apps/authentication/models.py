@@ -33,6 +33,7 @@ class User(db.Model, UserMixin):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     role = db.Column(db.Integer, db.ForeignKey('ROLE.id'))
 
+
     def __init__(self, **kwargs):
         for property, value in kwargs.items():
             # depending on whether value is an iterable or not, we must un pack it's value
@@ -132,8 +133,7 @@ class Session(db.Model):
     __tablename__ = 'SESSION'
 
     id = db.Column(db.Integer, primary_key=True)
-    date = db.Column(db.Date)
-    time = db.Column(db.Time)
+    date = db.Column(db.DateTime)
     duration = db.Column(db.Time)
     workout_type = db.Column(db.Integer, db.ForeignKey('WORKOUT_TYPE.id'))
     client_id = db.Column(db.Integer, db.ForeignKey('USER.id'))

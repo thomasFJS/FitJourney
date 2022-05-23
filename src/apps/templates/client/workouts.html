@@ -35,7 +35,7 @@
                     {{ workout.title }}
                 </td>
                 <td>
-                    {{ workout.date }}
+                    {{ workout.date.strftime("%d/%m/%Y, %H:%M:%S") }}
                 </td>
                 <td>
                     {{ workout.duration }}

@@ -3,7 +3,7 @@ Author  :        Thomas Fujise
 Date    :        18.05.2022
 File    :        util.py
 Version :        1.0.0
-Brief   :        All the functions needed to get datas for templates
+Brief   :        All the functions needed to get datas for client templates
 """
 
 # APP
@@ -23,7 +23,7 @@ def get_next_session(userId):
     Get all the next sessions
 
     SQL : 
-	 SELECT SESSION.date, SESSION.time, SESSION.duration, WORKOUT_TYPE.title, USER.name, USER.surname
+	 SELECT SESSION.date, SESSION.duration, WORKOUT_TYPE.title, USER.name, USER.surname
 	 FROM SESSION 
 	 JOIN WORKOUT_TYPE ON SESSION.workout_type = WORKOUT_TYPE.id 
 	 JOIN USER ON USER.id = SESSION.coach_id 
@@ -37,9 +37,9 @@ def get_next_session(userId):
     Return :
     | ARRAY[] | Array with all the next sessions planed for a user
     """
-    result = db.session.query(Session.date, Session.time, Session.duration, WorkoutType.title, WorkoutType.logo, User.name, User.surname).join(WorkoutType, Session.workout_type==WorkoutType.id).join(User, Session.coach_id==User.id).filter(Session.client_id==userId).filter(Session.date>date.today()).order_by(Session.date)
-    
-    return result
+    sessions = db.session.query(Session.date, Session.duration, WorkoutType.title, WorkoutType.logo, User.name, User.surname).join(WorkoutType, Session.workout_type==WorkoutType.id).join(User, Session.coach_id==User.id).filter(Session.client_id==userId).filter(Session.date>date.today()).order_by(Session.date)
+
+    return sessions
 
 def get_review_author(clientId): 
     """

@@ -14,9 +14,9 @@
             <tr>
                 <th scope="col"></th>
                 <th scope="col">Type</th>
-                <th scope="col">Hour</th>
-                <th scope="col">Duration</th>
                 <th scope="col">Date</th>
+                <th scope="col">Duration</th>
+                <th scope="col">Hour</th>
                 <th scope="col">Notif</th>
             </tr>
         </thead>
@@ -32,13 +32,13 @@
                 {{ session.title }}
             </td>
             <td>
-                {{ session.date }}
+                {{ session.date.strftime('%d/%m/%Y') }}
             </td>
             <td>
                 {{ session.duration }}
             </td>
             <td>
-                {{ session.time }}
+                {{ session.date.strftime('%X') }}
             </td>
             <td>
               <button type="button" class="btn btn-primary">

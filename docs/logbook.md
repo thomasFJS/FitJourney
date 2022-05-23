@@ -506,4 +506,13 @@ Aujourd'hui j'ai pu terminer de refaire le fichier de route, toutes les fonction
 
 Pour la lecture des cartes RFID et la récupération des données via l'API, je possède déjà des scripts me permettant de le faire. Je n'aurai qu'à les adapter pour les faire fonctionner. 
 
-Avec l'annonce de maintenance de l'API le 18 Juin, je vais quand même créer un mock de l'API pour me permettre de faire quand même tourner l'application au cas ou l'API ne fonctionnerait pas pour la présentation.
+Avec l'annonce de maintenance de l'API le 18 Juin, je vais quand même créer un mock de l'API pour me permettre de faire quand même tourner l'application au cas où l'API ne fonctionnerait pas pour la présentation.
+
+### Lundi, 23 Mai 2022
+J'ai découvert et voulus implémenter le *UserManager* qui m'aurait permis de gérer l'accès à mes pages avec le décorateur : *@roles_required*. Malheureusement, il est nécessaire d'utiliser une certaine structure de données et cela impliquerait trop de changement au stade actuel. Je vais donc m'en passer et faire des vérifications plus traditionnelles pour gérer les accès aux pages.
+
+J'ai eu un petit problème avec le formatage des datetimes récupérer depuis la base. J'ai simplement utilisé strftime() qui me permet de les afficher avec le format que je veux. 
+
+J'ai pu terminer le tableau de bord coach, la prochaine session est affichée avec la date, durée et type de session. Le client concerné est également affiché. En dessous, on peut retrouver une liste de tous les clients que le coach suit avec quelques infos comme la date de fin de leurs abonnements ou encore le dernier entrainement qu'ils ont effectué.
+
+Le dernier rendu intermédiaire a lieu demain, je vais essayer d'avancer un petit peu la documentation encore. En comptant cette semaine il reste un peu moins que 3 semaines avant la fin de ce travail. Pour être dans les temps, il faudrait que je termine le côté coach cette semaine, j'aurai ensuite une semaine pour implémenter l'API et les cartes RFID et je pourrai pour la dernière semaine effectuer les derniers tests et arranger la documentation.

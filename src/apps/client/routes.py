@@ -3,7 +3,7 @@ Author  :        Thomas Fujise
 Date    :        11.04.2022
 File    :        routes.py
 Version :        1.0.0
-Brief   :        Set all the application routes
+Brief   :        Set all the client routes
 """
 
 # APP

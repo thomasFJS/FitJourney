@@ -197,7 +197,7 @@
                     {{ review.type }}
                 </td>
                 <td>
-                    {{ review.date }}
+                    {{ review.date.strftime("%d/%m/%Y, %H:%M:%S") }}
                 </td>
                 <td>
                   <a class="btn btn-sm btn-primary" href="{{ url_for('client_blueprint.review', Id=review.id, Type=review.type) }}">Details</a>
