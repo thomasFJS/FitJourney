@@ -45,7 +45,7 @@
             </li>
             {% elif current_user.is_authenticated and current_user.role == 2 %}
             <li class="nav-item">
-              <a class="nav-link {% if 'index' in segment %} active {% endif %}" href="/">
+              <a class="nav-link {% if 'dashboard' in segment %} active {% endif %}" href="{{ url_for('coach_blueprint.dashboard') }}">
                 <i class="ni ni-tv-2 text-primary"></i>
                 <span class="nav-link-text">Dashboard</span>
               </a>
@@ -57,7 +57,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link {% if 'workouts' in segment %} active {% endif %}" href="{{ url_for('client_blueprint.workouts') }}">
+              <a class="nav-link {% if 'calendar' in segment %} active {% endif %}" href="{{ url_for('coach_blueprint.calendar') }}">
                 <i class="ni ni-planet text-orange"></i>
                 <span class="nav-link-text">Calendar</span>
               </a>

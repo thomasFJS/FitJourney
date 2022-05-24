@@ -1,0 +1,178 @@
+div{% extends 'layout/base.html' %}
+
+{% block title %} Payment {% endblock title %}
+
+{% block stylesheets %}
+<link type="text/css"  rel="stylesheet" href="{{ url_for('static', filename='assets/css/calendar.css') }}"/>
+
+<style>
+
+  body {
+    margin: 40px 10px;
+    padding: 0;
+    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+    font-size: 14px;
+  }
+
+  #calendar {
+    max-width: 1100px;
+    margin: 0 ;
+  }
+
+  </style>
+{% endblock stylesheets %}
+
+{% block content %}
+
+
+
+<div class="container-fluid mt--8" style="margin: auto;">
+    {% for message in get_flashed_messages() %}
+	
+	<div class="alert alert-primary alert-dismissible fade show" role="alert">
+	  {{ message }}
+	  <button type="button" class="btn btn-secondary" data-bs-dismiss="alert" aria-label="Close">Close</button>
+	</div>
+
+{% endfor %}
+<div class="row">
+    <div class="card card-body h-auto" style="width: 18rem; float: right;">
+        <h3 class="card-header">Calendar :</h3>
+
+        <div class="row">
+
+          <div class="col-lg-6">
+            <div class="card border-light mb-3" style="max-width: 50rem;">
+              <div class="card-header">Sessions</div>
+                <div class="card-body">
+                  <div id='calendar'></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="card border-light mb-3" style="max-width: 50rem;">
+              <div class="card-header">Add a session</div>
+                <div class="card-body">
+                  <form method="POST">
+                    {{ form.hidden_tag() }}
+                    <div class="row">
+                      <div class="col-lg-4">
+                        <div class="form-group">
+                          <label class="form-control-label" for="clients_list">Client :</label>
+                          {{form.client(class="form-control")}}
+                      </div>
+                    </div>
+                      <div class="col-lg-4">
+                        <div class="form-group">
+                          <label class="form-control-label" for="datepick">Date :</label>
+                             {{ form.date(placeholder="Date", class="form-control", type="date")}}
+                      </div>
+                      </div>
+
+                      <div class="col-lg-4">
+                        <div class="form-group">
+                          <label class="form-control-label" for="start_time">Time for the session</label>
+                          {{form.start_time(class="form-control" , type="time", min="07:00", max="20:00")}}
+                        </div>
+                      </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-lg-4">
+                          <div class="form-group">
+                            <label class="form-control-label" for="type_picker">Type </label>
+                            {{form.type(class="form-control")}}
+                          </div>
+                        </div>
+                      <div class="col-lg-4">
+                        <div class="form-group">
+                          <label class="form-control-label" for="duration">Duration (h)</label>
+                          {{form.duration(class="form-control", onchange="updateEndTime()")}}
+                        </div>
+                      </div>
+                      <div class="col-lg-4">
+                        <div class="form-group">
+                          <label class="form-control-label" for="end_time">End time :</label>
+                          {{form.end_time(class="form-control" , type="time", disabled=true)}}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <div class="form-group">
+                          {{form.add(class="form-control btn btn-primary")}}
+                        </div>
+                      </div>
+
+                    </div>
+                    </div>
+                  </div>
+                  </form>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        
+    </div>
+</div>
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}
+<script type="text/javascript" src="{{ url_for('static', filename='assets/js/calendar.js') }}"></script>
+<script>
+  function updateEndTime(){
+    var duration = document.getElementById("duration").value;
+    var start = document.getElementById("start_time").value;
+    var date = document.getElementById("datepick").value;
+
+    if(duration != "" && start != "" && date != ""){
+      //Check if the fields aren't empty, then set a end time depends on values selected before
+      var dt = new Date(date+"T"+start);
+      dt.setHours(dt.getHours() + parseInt(duration));
+      document.getElementById("end_time").value = dt.toTimeString().slice(0, 8);
+    }
+
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      initialDate: new Date(Date.now()),
+      initialView: 'timeGridWeek',
+      headerToolbar: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+      },
+      height: "600px",
+      navLinks: true, // can click day/week names to navigate views
+      editable: false,
+      selectable: true,
+      selectMirror: true,
+      nowIndicator: true,
+      events: [
+        {
+          title: 'Thomas Fuji',
+          start: '2022-05-22T16:00:00',
+          end: '2022-05-22T17:00:00'
+        },
+        {
+          title: 'John Doe',
+          start: '2022-05-24T15:00:00',
+          end: '2022-05-24T16:00:00'
+        },
+        {
+          title: 'Thomas Fuji',
+          start: '2022-05-24T16:00:00',
+          end: '2022-05-24T17:00:00'
+        }
+      ]
+    });
+
+    calendar.render();
+  });
+  
+  </script>
+{% endblock javascripts %}

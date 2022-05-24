@@ -72,7 +72,7 @@ def is_active(userId):
      | Boolean | True if the user done a workout in the last 24h, else False
     """
     isActive = db.session.query(Workout.date).filter(Workout.client_id==userId).filter(Workout.date>=func.current_date()-1).first() is not None
-    
+
     return isActive
 
 def get_clients(coachId):
@@ -106,3 +106,7 @@ def get_clients(coachId):
 
 
     return result
+
+def get_all_workout_types():
+    types = db.session.query(WorkoutType.id, WorkoutType.title).order_by(WorkoutType.title.asc())
+    return types

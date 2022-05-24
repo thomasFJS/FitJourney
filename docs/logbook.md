@@ -516,3 +516,25 @@ J'ai eu un petit problème avec le formatage des datetimes récupérer depuis la
 J'ai pu terminer le tableau de bord coach, la prochaine session est affichée avec la date, durée et type de session. Le client concerné est également affiché. En dessous, on peut retrouver une liste de tous les clients que le coach suit avec quelques infos comme la date de fin de leurs abonnements ou encore le dernier entrainement qu'ils ont effectué.
 
 Le dernier rendu intermédiaire a lieu demain, je vais essayer d'avancer un petit peu la documentation encore. En comptant cette semaine il reste un peu moins que 3 semaines avant la fin de ce travail. Pour être dans les temps, il faudrait que je termine le côté coach cette semaine, j'aurai ensuite une semaine pour implémenter l'API et les cartes RFID et je pourrai pour la dernière semaine effectuer les derniers tests et arranger la documentation.
+
+### Mardi, 24 Mai 2022
+Nous avons le dernier rendu intermédiaire aujourd'hui. J'ai commencé à travailler sur la page calendrier qui est une des dernières pages "compliquées" à réaliser. J'ai en premier temps, utilisé un vieux calendrier que j'avais effectué lors de ma formation ici. En faisant quelques recherches j'ai fait la découverte de [FullCalendar.io](fullcalendar.io) qui permet d'utiliser un calendrier javascript avec beaucoup de fonctionnalités. J'ai décidé d'essayer de l'implémenter dans mon application car cela va me permettre d'avoir différents affichages du calendrier (Semaines, mois, jour, liste). J'ai réussi à implémenter le calendrier FullCalendar. 
+
+Pour les événements, je dois donner un tableau contenant plusieurs objets représentant un événement. Chaque événement possède au minimum 1 titre, 1 date de début.
+
+Exemple :
+```
+{
+    title: 'Thomas Fuji',
+    start: '2022-05-22T16:00:00',
+    end: '2022-05-22T17:00:00'
+}
+```
+
+Je vais donc faire une fonction qui va me retourner toutes les sessions enregistrées sous ce format et je le passerai ensuite en javascript pour renseigner les événements à afficher sur le calendrier.
+
+J'ai également avancé sur le formulaire d'ajout de session, j'ai eu plusieurs problèmes d'affichage à cause de quelques erreurs d'inattention. Pour le formulaire d'ajout, il y a un champ *Date* et un champ *Time* pour sélectionner la date et l'heure de la session. On peut ensuite séléctionner une valeur de 1 à 3 (représentant le nombre d'heure prévu pour la séance). L'heure de fin est générée automatiquement lorsque les champs mentionnés ci-dessus sont renseignés.
+
+Avec le rendu d'aujourd'hui, j'ai toujours du retard, néanmoins je pense quand même réussir à terminer dans les temps, j'avance beaucoup sur les dernières pages à faire et une fois cela terminer, j'ai énormement de point à ajouter à la documentation.
+
+J'ai ajouté les tâches qu'il reste à effectuer dans le Trello.

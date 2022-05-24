@@ -135,8 +135,8 @@ La barre de navigation disponible en tant que client verticalement à gauche de 
 La page profil permet au client de modifier ses informations personnelles. Plusieurs boutons sont disponibles : 
 
 * 1 bouton "Update" pour appliquer les modifications effectuées sur les informations du compte
-* 1 bouton pour modifier le mot de passe 
-* 1 bouton pour importer une photo de profil.
+* 1 bouton "Change password" en jaune pour modifier le mot de passe 
+* 1 bouton "Change logo" pour importer une photo de profil.
 
  Il a également accès à des statistiques sur les données des entrainements qu'il a effectués cette semaine (en rouge) et la liste des bilans généraux et de session que l'utilisateur a posté (en vert). Il a la possibilité d'ajouter un nouveau bilan général en cliquant sur le bouton au-dessus.
 
