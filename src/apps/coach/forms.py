@@ -26,7 +26,7 @@ class SessionForm(FlaskForm):
 
     end_time = TimeField('End Time', id="end_time", validators=[DataRequired()])
 
-    duration = SelectField('Duration', id="duration", coerce=int)
+    duration = SelectField('Duration', id="duration", coerce=int, validators=[DataRequired()])
 
     type = SelectField('Type', id="type_picker", coerce=int)
 

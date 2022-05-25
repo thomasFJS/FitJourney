@@ -8,8 +8,6 @@ div{% extends 'layout/base.html' %}
 <style>
 
   body {
-    margin: 40px 10px;
-    padding: 0;
     font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
     font-size: 14px;
   }
@@ -27,9 +25,9 @@ div{% extends 'layout/base.html' %}
 
 
 <div class="container-fluid mt--8" style="margin: auto;">
-    {% for message in get_flashed_messages() %}
+    {% for category, message in get_flashed_messages(with_categories=true) %}
 	
-	<div class="alert alert-primary alert-dismissible fade show" role="alert">
+	<div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
 	  {{ message }}
 	  <button type="button" class="btn btn-secondary" data-bs-dismiss="alert" aria-label="Close">Close</button>
 	</div>
@@ -72,7 +70,7 @@ div{% extends 'layout/base.html' %}
                       <div class="col-lg-4">
                         <div class="form-group">
                           <label class="form-control-label" for="start_time">Time for the session</label>
-                          {{form.start_time(class="form-control" , type="time", min="07:00", max="20:00")}}
+                          {{form.start_time(class="form-control" , type="time", min="07:00:00", max="20:00:00", onchange="updateEndTime()")}}
                         </div>
                       </div>
                       </div>
@@ -92,7 +90,7 @@ div{% extends 'layout/base.html' %}
                       <div class="col-lg-4">
                         <div class="form-group">
                           <label class="form-control-label" for="end_time">End time :</label>
-                          {{form.end_time(class="form-control" , type="time", disabled=true)}}
+                          {{form.end_time(class="form-control" , type="time")}}
                         </div>
                       </div>
                     </div>

@@ -53,6 +53,23 @@ def calendar():
 
 
     if request.method == 'POST':
-        print(request.form['client'])
-        newSession = Session(date=request.form['date'], duration='', workout_type='')
+        print(request.form['type'])
+        startDate = request.form['date']
+        startTime = request.form['start_time']
+        endTime = request.form['end_time']
+        print(startTime)
+        # Set datetime value
+        startDateTime = datetime.strptime(startDate + " " + startTime, '%Y-%m-%d %H:%M')
+        endDateTime = datetime.strptime(startDate + " " + endTime, '%Y-%m-%d %H:%M:%S')
+        try :
+            newSession = Session(start_time=startDateTime, end_time=endDateTime, duration=request.form['duration'], workout_type=request.form['type'], client_id=request.form['client'], coach_id=current_user.id)
+            db.session.add(newSession)
+            db.session.commit()
+            flash("The session is registered !", 'success')
+            return redirect( url_for('coach_blueprint.calendar') )
+        except:
+            db.session.rollback()
+            flash("Error while trying to add a new session, please try again", 'danger')
+            return redirect( url_for('coach_blueprint.calendar') )
+        
     return render_template('coach/calendar.html', form=form)
