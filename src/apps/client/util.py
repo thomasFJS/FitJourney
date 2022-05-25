@@ -23,12 +23,12 @@ def get_next_session(userId):
     Get all the next sessions
 
     SQL : 
-	 SELECT SESSION.date, SESSION.duration, WORKOUT_TYPE.title, USER.name, USER.surname
+	 SELECT SESSION.start_time, SESSION.end_time, SESSION.duration, WORKOUT_TYPE.title, USER.name, USER.surname
 	 FROM SESSION 
 	 JOIN WORKOUT_TYPE ON SESSION.workout_type = WORKOUT_TYPE.id 
 	 JOIN USER ON USER.id = SESSION.coach_id 
-	 WHERE SESSION.client_id = 1 AND SESSION.date > curdate() 
-	 ORDER BY SESSION.date
+	 WHERE SESSION.client_id = 1 AND SESSION.start_time > curdate() 
+	 ORDER BY SESSION.start_time
 
     Parameter(s) :
     NAME     |  TYPE  | DESC
@@ -37,7 +37,7 @@ def get_next_session(userId):
     Return :
     | ARRAY[] | Array with all the next sessions planed for a user
     """
-    sessions = db.session.query(Session.date, Session.duration, WorkoutType.title, WorkoutType.logo, User.name, User.surname).join(WorkoutType, Session.workout_type==WorkoutType.id).join(User, Session.coach_id==User.id).filter(Session.client_id==userId).filter(Session.date>date.today()).order_by(Session.date)
+    sessions = db.session.query(Session.start_time, Session.end_time, Session.duration, WorkoutType.title, WorkoutType.logo, User.name, User.surname).join(WorkoutType, Session.workout_type==WorkoutType.id).join(User, Session.coach_id==User.id).filter(Session.client_id==userId).filter(Session.start_time>date.today()).order_by(Session.start_time)
 
     return sessions
 

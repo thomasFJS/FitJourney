@@ -32,13 +32,13 @@
                 {{ session.title }}
             </td>
             <td>
-                {{ session.date.strftime('%d/%m/%Y') }}
+                {{ session.start_time.strftime('%d/%m/%Y') }}
             </td>
             <td>
                 {{ session.duration }}
             </td>
             <td>
-                {{ session.date.strftime('%X') }}
+                {{ session.start_time.strftime('%X') }}
             </td>
             <td>
               <button type="button" class="btn btn-primary">

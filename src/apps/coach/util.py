@@ -47,15 +47,15 @@ def get_coach_next_session(coachId):
      | Query() | Query object with all the properties selected 
 
      SQL :
-        SELECT USER.id, USER.name, USER.surname, USER.card_id, USER.profile_pic SESSION.date, SESSION.duration, WORKOUT_TYPE.logo 
+        SELECT USER.id, USER.name, USER.surname, USER.card_id, USER.profile_pic SESSION.start_time, SESSION.end_time, SESSION.duration, WORKOUT_TYPE.logo 
         FROM SESSION 
         JOIN USER ON SESSION.client_id = USER.id 
         JOIN WORKOUT_TYPE ON WORKOUT_TYPE.id = SESSION.workout_type 
-        WHERE SESSION.date >= current_timestamp() 
-        ORDER BY SESSION.date ASC
+        WHERE SESSION.start_time >= current_timestamp() 
+        ORDER BY SESSION.start_time ASC
     """
 
-    nextSession = db.session.query(User.id, User.name, User.surname, User.card_id, User.profile_pic, Session.date, Session.duration, WorkoutType.logo.label("workoutLogo")).join(User, User.id==Session.client_id).join(WorkoutType, WorkoutType.id==Session.workout_type).filter(Session.coach_id==coachId).filter(Session.date>=func.current_timestamp()).order_by(Session.date.asc()).first()
+    nextSession = db.session.query(User.id, User.name, User.surname, User.card_id, User.profile_pic, Session.start_time, Session.end_time, Session.duration, WorkoutType.logo.label("workoutLogo")).join(User, User.id==Session.client_id).join(WorkoutType, WorkoutType.id==Session.workout_type).filter(Session.coach_id==coachId).filter(Session.start_time>=func.current_timestamp()).order_by(Session.start_time.asc()).first()
     return nextSession
 
 

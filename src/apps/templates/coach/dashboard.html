@@ -19,6 +19,8 @@
 <div class="row">
       <div class="card card-body h-auto" style="width: 18rem; float: right;">
         <h3 class="card-header">Next session :</h3>
+
+        {% if nextClient != None %}
         <div class="row justify-content-center">
 
             <div class="col-lg-2">
@@ -26,9 +28,10 @@
                     <div class="card-header">Client</div>
                     <div class="card-body">
                       <h5 class="card-title">
+
                         <img src="{{ url_for('static', filename='/assets/img/profile/' + nextClient.profile_pic)}}"  align="left" id="profile_pic" class="rounded-circle" width="50" height="50">  
                             {{nextClient.name}} {{nextClient.surname}} 
-                        
+
                       </h5>
                     </div>
                   </div>
@@ -38,7 +41,9 @@
             <div class="card border-light mb-3" style="max-width: 36rem;">
                 <div class="card-header">Last Workout</div>
                 <div class="card-body">
+
                     {{clientLastWorkout.date.strftime("%d/%m/%Y, %H:%M:%S")}}
+
                 </div>
               </div>
           </div>
@@ -57,7 +62,11 @@
                 <div class="card border-light mb-3" style="max-width: 18rem;">
                     <div class="card-header">Session time</div>
                     <div class="card-body">
-                      <h5 class="card-title">{{nextClient.date.strftime("%H:%M:%S")}}</h5>
+                      <h5 class="card-title">
+
+                          {{nextClient.start_time.strftime("%H:%M:%S")}}
+
+                        </h5>
                     </div>
                   </div>
             </div>
@@ -65,7 +74,11 @@
                 <div class="card border-light mb-3" style="max-width: 18rem;">
                     <div class="card-header">Duration</div>
                     <div class="card-body">
-                      <h5 class="card-title">{{nextClient.duration}}</h5>
+                      <h5 class="card-title">
+
+                        {{nextClient.duration}}
+
+                    </h5>
                     </div>
                   </div>
             </div>
@@ -76,7 +89,8 @@
                       <h5 class="card-title">
 
                         <img src="{{ url_for('static', filename='/assets/img/sports/' + nextClient.workoutLogo)}}" alt="{{nextClient.workoutLogo}}" class="rounded mx-auto d-block" width="50" height="50">       
-                      </h5>
+
+                    </h5>
                     </div>
                   </div>
             </div>
@@ -89,6 +103,9 @@
                   </div>
             </div>
         </div>
+        {% else %}
+        <h2 align="center">No session registered</h2>
+        {% endif %}
         </div>
       </div>
     </div>

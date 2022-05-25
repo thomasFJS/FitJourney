@@ -36,7 +36,7 @@ from apps.client.util import *
 def dashboard():
 
     nextClient = get_coach_next_session(current_user.id)
-    clientLastWorkout = get_last_workout(nextClient.id)
+    clientLastWorkout = get_last_workout(nextClient.id) if nextClient != None else None
 
     clients = get_clients(current_user.id)
     return render_template('coach/dashboard.html', segment='coach_dashboard', nextClient=nextClient, clientLastWorkout=clientLastWorkout, clients=clients)

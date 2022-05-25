@@ -133,9 +133,10 @@ class Session(db.Model):
     __tablename__ = 'SESSION'
 
     id = db.Column(db.Integer, primary_key=True)
-    date = db.Column(db.DateTime)
-    duration = db.Column(db.Time)
-    workout_type = db.Column(db.Integer, db.ForeignKey('WORKOUT_TYPE.id'))
+    start_time = db.Column(db.DateTime, nullable=False)
+    end_time = db.Column(db.DateTime, nullable=False)
+    duration = db.Column(db.Time, nullable=False)
+    workout_type = db.Column(db.Integer, db.ForeignKey('WORKOUT_TYPE.id'), nullable=False)
     client_id = db.Column(db.Integer, db.ForeignKey('USER.id'))
     coach_id = db.Column(db.Integer, db.ForeignKey('USER.id'))
 
