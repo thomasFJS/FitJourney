@@ -514,14 +514,18 @@ Endpoint privé - Client
 
 | Méthodes  |  Endpoint |   | Description  | 
 |---|---|---|---|
-| POST | /login  |   |   |
-| POST | /register |   |   |
+| GET | /index  |   |   |
+| POST | /profile |   |   |
+| GET | /review |   |   |
+| POST | /add_review |   |   |
+| GET | /workouts |   |   |
+| GET | /workout |   |   |
 |---|---|---|---|
 
 Endpoint privé - Coach
 
 | Méthodes  |  Endpoint |   | Description  | 
 |---|---|---|---|
-| POST | /login  |   |   |
-| POST | /register |   |   |
+| GET | /dashboard  |   |   |
+| POST | /calendar |   |   |
 |---|---|---|---|

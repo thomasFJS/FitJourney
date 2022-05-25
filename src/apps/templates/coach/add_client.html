@@ -1,0 +1,131 @@
+{% extends 'layout/base.html' %}
+
+{% block title %} Add client {% endblock title %}
+
+{% block content %}
+
+
+
+<div class="container-fluid mt--8" style="margin: auto;">
+    {% for message in get_flashed_messages() %}
+	
+	<div class="alert alert-primary alert-dismissible fade show" role="alert">
+	  {{ message }}
+	  <button type="button" class="btn btn-secondary" data-bs-dismiss="alert" aria-label="Close">Close</button>
+	</div>
+
+{% endfor %}
+
+  
+
+    <div class="row justify-content-center">
+  
+      <div class="col-xl-8 ">
+        <div class="card">
+          <div class="card-header">
+            <div class="row align-items-center">
+              <div class="col-8">
+                <h3 class="mb-0">Add new client </h3>
+              </div>
+              <div class="col-4 text-right">
+                <a href="#!" class="btn btn-sm btn-warning">Password</a>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <form action="/add_client" method="POST">
+                {{ form.hidden_tag() }}
+              <div class="pl-lg-4">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                          <label class="form-control-label" for="name">Name</label>
+                          {{form.name(placeholder="Name",class="form-control",type="text")}}
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label class="form-control-label" for="surname">Surname</label>
+                          {{form.surname(placeholder="Surname",class="form-control",type="text")}}
+                        </div>
+                      </div>
+                  
+                    
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-4">
+                      <div class="form-group">
+                        <label class="form-control-label" for="email">Email</label>
+                        {{form.email(placeholder="Email", class="form-control", type="email")}}
+                      </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                          <label class="form-control-label" for="birthdate">Date of birth</label>
+                          {{form.birthdate(placeholder="Date of birth", class="form-control")}}
+                        </div>
+                      </div>
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                          <label class="form-control-label" for="height">Height (cm)</label>
+                          {{form.height(placeholder="Height", class="form-control")}}
+                        </div>
+                      </div>
+                </div>
+                    <div class="row justify-content-center">
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                              <label class="form-control-label" for="start_date">Starting date</label>
+                              {{form.start_date(class="form-control", onchange="updateEndTime()")}}
+                            </div>
+                          </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                              <label class="form-control-label" for="subscription">Subscription type</label>
+                              {{form.subscription(class="form-control", onchange="updateEndTime()")}}
+                            </div>
+                          </div>
+                
+                          <div class="col-lg-4">
+                            <div class="form-group">
+                              <label class="form-control-label" for="end_date">Subscription until</label>
+                              {{form.end_date(class="form-control", disabled=true)}}
+                            </div>
+                          </div>
+                    </div>
+            
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                        {{form.add(class="form-control btn btn-primary")}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+ 
+
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}
+<script>
+    function updateEndTime(){
+      var subscription = document.getElementById("subscription").value;
+      var start_date = document.getElementById("start_date").value;
+
+      if(subscription != "" && start_date != ""){
+        //Check if the fields aren't empty, then set a end time depends on values selected before
+        var dt = new Date(start_date);
+        dt.setMonth(dt.getMonth() + parseInt(subscription));
+        let [end_date] = dt.toISOString().split('T');
+        document.getElementById("end_date").value = end_date
+      }
+  
+    }
+</script>  
+{% endblock javascripts %}

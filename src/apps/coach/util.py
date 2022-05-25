@@ -150,3 +150,12 @@ def get_sessions(coachId):
             })
 
     return result
+
+def get_all_subscriptions():
+    """
+    Get all types of subscriptions available
+    """
+
+    subscription = db.session.query(Subscription.id, Subscription.title, Subscription.cost, Subscription.duration).order_by(Subscription.title.asc())
+
+    return subscription

@@ -10,7 +10,7 @@ Brief   :        Set all the coach routes
 from apps.coach import blueprint
 from apps import db, login_manager
 from apps.authentication.models import User, PhysicalInfo, Subscription, CoachingReview, WorkoutReview, Review, Workout, WorkoutType, Session
-from apps.coach.forms import SessionForm
+from apps.coach.forms import SessionForm, AddClientForm
 from apps.config import Config
 
 # FLASK
@@ -55,11 +55,10 @@ def calendar():
     print(sessions)
 
     if request.method == 'POST':
-        print(request.form['type'])
         startDate = request.form['date']
         startTime = request.form['start_time']
         endTime = request.form['end_time']
-        print(startTime)
+
         # Set datetime value
         startDateTime = datetime.strptime(startDate + " " + startTime, '%Y-%m-%d %H:%M')
         endDateTime = datetime.strptime(startDate + " " + endTime, '%Y-%m-%d %H:%M:%S')
@@ -75,3 +74,17 @@ def calendar():
             return redirect( url_for('coach_blueprint.calendar') )
         
     return render_template('coach/calendar.html', form=form, sessions=sessions)
+
+@blueprint.route('/add_client', methods=['POST', 'GET'])
+@login_required
+def add_client():
+    form = AddClientForm(request.form)
+
+    form.subscription.choices = [(subscription.duration, subscription.title) for subscription in get_all_subscriptions()]
+
+    if request.method == 'POST':
+        height = request.form['height']
+        surname = request.form['surname']
+        email = request.form['email']
+
+    return render_template('coach/add_client.html', form=form) 
