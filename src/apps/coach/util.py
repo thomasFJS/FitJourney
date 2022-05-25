@@ -16,6 +16,8 @@ from sqlalchemy import union, func
 # UTILS
 from dateutil.relativedelta import relativedelta
 
+import json
+
 from datetime import date
 
 from apps.client.util import *
@@ -108,5 +110,43 @@ def get_clients(coachId):
     return result
 
 def get_all_workout_types():
+    """
+    Get all types of workouts
+
+    Parameter(s):
+    NAME     |  TYPE  | DESC
+    /        |  /     |  /
+
+    Return :
+    | Array[Query()] | Array of query object with all properties selected
+    """
+
     types = db.session.query(WorkoutType.id, WorkoutType.title).order_by(WorkoutType.title.asc())
     return types
+
+
+def get_sessions(coachId):
+    """
+    Get all sessions as event and create array to be used with FullCalendar.io
+
+    Parameter(s):
+     NAME     |  TYPE  | DESC
+     coachId   |  INT   | the id of the coach
+
+    Return :
+    | Array[Obj()] | Array of object contains properties required to be an event with FullCalendar (title, start, end)
+    """
+
+    sessions = db.session.query(User.name, User.surname, Session.start_time, Session.end_time).join(User, Session.client_id==User.id).filter(Session.coach_id==coachId)
+
+    result = []
+
+    for session in sessions:
+        result.append(
+            {
+                'title': session.name + " " + session.surname, 
+                'start' : session.start_time.strftime("%Y-%m-%dT%H:%M:%S"), 
+                'end' : session.end_time.strftime("%Y-%m-%dT%H:%M:%S")
+            })
+
+    return result

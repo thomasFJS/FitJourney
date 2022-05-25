@@ -538,3 +538,17 @@ J'ai également avancé sur le formulaire d'ajout de session, j'ai eu plusieurs 
 Avec le rendu d'aujourd'hui, j'ai toujours du retard, néanmoins je pense quand même réussir à terminer dans les temps, j'avance beaucoup sur les dernières pages à faire et une fois cela terminer, j'ai énormement de point à ajouter à la documentation.
 
 J'ai ajouté les tâches qu'il reste à effectuer dans le Trello.
+
+### Mercredi, 25 Mai 2022
+
+J'ai refait le modèle de la table Session, à la place d'avoir qu'une date, j'ai un *start_time* et un *end_time*. Cela me facilitera la conversion en événement pour le calendrier.
+
+J'ai pu terminer le formulaire d'ajout de session. On peut maintenant ajouter une session en séléctionnant : 
+
+* Client
+* Type d'entrainement
+* Date
+* Heure 
+* Durée
+
+Pour l'affichage j'ai récupéré toutes les sessions et je les ai insérés dans un tableau pour que ça respecte le format de FullCalendar. Je passe ensuite mon tableau directement au javascript pour qu'il l'utilise comme source.

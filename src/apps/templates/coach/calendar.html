@@ -33,6 +33,7 @@ div{% extends 'layout/base.html' %}
 	</div>
 
 {% endfor %}
+<div id="sessions" data-sessions="{{sessions}}"></div>
 <div class="row">
     <div class="card card-body h-auto" style="width: 18rem; float: right;">
         <h3 class="card-header">Calendar :</h3>
@@ -150,23 +151,7 @@ div{% extends 'layout/base.html' %}
       selectable: true,
       selectMirror: true,
       nowIndicator: true,
-      events: [
-        {
-          title: 'Thomas Fuji',
-          start: '2022-05-22T16:00:00',
-          end: '2022-05-22T17:00:00'
-        },
-        {
-          title: 'John Doe',
-          start: '2022-05-24T15:00:00',
-          end: '2022-05-24T16:00:00'
-        },
-        {
-          title: 'Thomas Fuji',
-          start: '2022-05-24T16:00:00',
-          end: '2022-05-24T17:00:00'
-        }
-      ]
+      events: {{sessions | safe}}
     });
 
     calendar.render();

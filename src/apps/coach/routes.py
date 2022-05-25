@@ -51,6 +51,8 @@ def calendar():
     form.duration.choices = [(i,i) for i in range(1,4)]
     form.type.choices = [(type.id, type.title) for type in get_all_workout_types()]
 
+    sessions = get_sessions(current_user.id)
+    print(sessions)
 
     if request.method == 'POST':
         print(request.form['type'])
@@ -72,4 +74,4 @@ def calendar():
             flash("Error while trying to add a new session, please try again", 'danger')
             return redirect( url_for('coach_blueprint.calendar') )
         
-    return render_template('coach/calendar.html', form=form)
+    return render_template('coach/calendar.html', form=form, sessions=sessions)
