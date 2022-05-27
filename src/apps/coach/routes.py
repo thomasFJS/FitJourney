@@ -80,11 +80,35 @@ def calendar():
 def add_client():
     form = AddClientForm(request.form)
 
-    form.subscription.choices = [(subscription.duration, subscription.title) for subscription in get_all_subscriptions()]
+    form.subscription.choices = [(subscription.duration, subscription.title + " - " + str(subscription.cost) + "CHF") for subscription in get_all_subscriptions()]
 
     if request.method == 'POST':
+        print(request.form)
         height = request.form['height']
         surname = request.form['surname']
         email = request.form['email']
+        name = request.form['name']
+        birthdate = request.form['birthdate']
+        date = request.form['start_date']
+        end_date = request.form['end_date']
+        subscription = request.form['subscription']
+        
+        try:
+            newClient = User(name=name,surname=surname, email=email, birthdate=birthdate, profile_pic=Config.DEFAULT_PROFILE_PIC,role=1, password=name+"123")
+            db.session.add(newClient)
+            db.session.flush()
+            print(newClient.id)
+            newCoachAssign = CoachedBy(client_id=newClient.id, coach_id=current_user.id, starting_date=date, end_date=end_date)
+            newPurchase = Purchase(client_id=newClient.id, date=date, subscription_id=get_subscription_id(subscription).id)
+            db.session.add(newPurchase)
+            db.session.add(newCoachAssign)
+            db.session.commit()
+            flash("New client is registered !", 'success')
+            return redirect( url_for('coach_blueprint.dashboard') )
+        except:
+            db.session.rollback()
+            flash("Error, while trying to register new client, please try again", 'danger')
+            return redirect(url_for('coach_blueprint.dashboard'))
+
 
     return render_template('coach/add_client.html', form=form) 

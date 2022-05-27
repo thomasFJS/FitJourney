@@ -146,14 +146,14 @@ class Subscription(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(64))
     cost = db.Column(db.Integer)
-    duration = db.Column(db.Integer)    
+    duration = db.Column(db.Integer, unique=True)    
     
 class Purchase(db.Model):
     __tablename__ = 'PURCHASE'
 
     id = db.Column(db.Integer, primary_key=True)
     client_id = db.Column(db.Integer, db.ForeignKey('USER.id'))
-    date = db.Column(db.DateTime)
+    date = db.Column(db.Date)
     subscription_id = db.Column(db.Integer, db.ForeignKey('SUBSCRIPTION.id'))
 
 class CoachedBy(db.Model):
@@ -161,8 +161,8 @@ class CoachedBy(db.Model):
 
     client_id = db.Column(db.Integer, db.ForeignKey('USER.id'), primary_key=True)
     coach_id = db.Column(db.Integer, db.ForeignKey('USER.id'), primary_key=True)
-    starting_date = db.Column(db.DateTime)
-    end_date = db.Column(db.DateTime, nullable=True)
+    starting_date = db.Column(db.Date)
+    end_date = db.Column(db.Date, nullable=True)
 
 class CoachingReview(db.Model):
     __tablename__ = 'COACHING_REVIEW'

@@ -21,6 +21,8 @@ class Config(object):
 
     UPLOAD_FOLDER = config('UPLOAD_FOLDER', default='apps/static/assets/img/profile')
 
+    DEFAULT_PROFILE_PIC = config('DEFAULT_PROFILE_PIC', default='default_profile_pic.png')
+
     SQLALCHEMY_DATABASE_URI = '{}://{}:{}@{}:{}/{}'.format(
         config('DB_ENGINE', default='mysql+pymysql'),
         config('DB_USERNAME', default='dbflask_dba'),

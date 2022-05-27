@@ -154,8 +154,31 @@ def get_sessions(coachId):
 def get_all_subscriptions():
     """
     Get all types of subscriptions available
+
+    Parameter(s):
+     NAME     |  TYPE  | DESC
+        /     |   /    | /
+
+    Return :
+    | Array[Query()] | Array of query object with all subscription properties selected
     """
 
     subscription = db.session.query(Subscription.id, Subscription.title, Subscription.cost, Subscription.duration).order_by(Subscription.title.asc())
 
     return subscription
+
+
+def get_subscription_id(duration):
+    """
+    Get the id of a subscription by his duration
+
+    Parameter(s):
+     NAME     |  TYPE  | DESC
+     duration | STRING | the duration of the subscription
+
+    Return :
+    | Query | Array of object contains properties required to be an event with FullCalendar (title, start, end)
+    """
+    id = db.session.query(Subscription.id).filter(Subscription.duration==duration).first()
+
+    return id

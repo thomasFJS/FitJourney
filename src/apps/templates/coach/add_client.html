@@ -28,7 +28,7 @@
                 <h3 class="mb-0">Add new client </h3>
               </div>
               <div class="col-4 text-right">
-                <a href="#!" class="btn btn-sm btn-warning">Password</a>
+
               </div>
             </div>
           </div>
@@ -68,7 +68,7 @@
                     <div class="col-lg-4">
                         <div class="form-group">
                           <label class="form-control-label" for="height">Height (cm)</label>
-                          {{form.height(placeholder="Height", class="form-control")}}
+                          {{form.height(placeholder="Height", class="form-control", oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');")}}
                         </div>
                       </div>
                 </div>
@@ -89,7 +89,7 @@
                           <div class="col-lg-4">
                             <div class="form-group">
                               <label class="form-control-label" for="end_date">Subscription until</label>
-                              {{form.end_date(class="form-control", disabled=true)}}
+                              {{form.end_date(class="form-control", readonly=readonly)}}
                             </div>
                           </div>
                     </div>

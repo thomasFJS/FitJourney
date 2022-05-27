@@ -552,3 +552,7 @@ J'ai pu terminer le formulaire d'ajout de session. On peut maintenant ajouter un
 * Durée
 
 Pour l'affichage j'ai récupéré toutes les sessions et je les ai insérés dans un tableau pour que ça respecte le format de FullCalendar. Je passe ensuite mon tableau directement au javascript pour qu'il l'utilise comme source.
+
+J'ai eu le dernier point avec M.Jossi, nous avons regarder les tâches qu'il me reste a effectuer. Dans l'ensemble, j'ai encore beaucoup de travail mais cela devrait être faisable dans les temps.
+
+L'objectif est de terminer toutes les pages (Ajout client, paiement, bilan, ajout de programme et affichage de profil client) avant la fin de cette semaine. Je pense que c'est faisable car la plus part des pages ne sont qu'un formulaire pour insérer des éléments dans la base de données.
