@@ -236,7 +236,7 @@ def get_subscription_end_date(userId):
     | DATE | the end date of the last purchased subscription
 
     """
-    subscription = db.session.query(Subscription.duration, Purchase.date).join(Subscription, Purchase.subscription_id==Subscription.id).filter(Purchase.client_id==userId).order_by(Purchase.date).first()
+    subscription = db.session.query(Subscription.duration, Purchase.date).join(Subscription, Purchase.subscription_id==Subscription.id).filter(Purchase.client_id==userId).order_by(Purchase.date.desc()).first()
     
     #Add duration to the purchase date to get end date
     endDate = (subscription[1] + relativedelta(months=subscription[0]))	

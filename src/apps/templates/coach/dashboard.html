@@ -152,7 +152,7 @@
                         
             </td>
             <td>
-                {{client.name}} {{client.surname}}
+                <a href="{{ url_for('coach_blueprint.client', clientId=client.id) }}" class="btn btn-sm btn-primary"> {{client.name}} {{client.surname}}</a>
             </td>
             <td>
                {{client.subscriptionEnd.strftime("%d/%m/%Y")}}

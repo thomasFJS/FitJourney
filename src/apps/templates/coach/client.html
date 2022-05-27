@@ -1,15 +1,15 @@
 {% extends 'layout/base.html' %}
 
-{% block title %} Profile {% endblock title %}
+{% block title %} Client {% endblock title %}
 
 {% block content %}
 
 
 
 <div class="container-fluid mt--8" style="margin: auto;">
-    {% for message in get_flashed_messages() %}
+    {% for category, message in get_flashed_messages(with_categories=true) %}
 	
-	<div class="alert alert-primary alert-dismissible fade show" role="alert">
+	<div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
 	  {{ message }}
 	  <button type="button" class="btn btn-secondary" data-bs-dismiss="alert" aria-label="Close">Close</button>
 	</div>
@@ -40,85 +40,79 @@
                 <div class="row">
                     <div class="col-lg-4">
                       <div class="form-group">
-                        <label class="form-control-label" for="name_update">First name</label>
-                        {{ form.name(placeholder="Name",class="form-control",type="text", value= current_user.name) }}
+                        <label class="form-control-label" for="name">First name</label>
+                        {{ form.name(placeholder="Name",class="form-control",type="text", value=client.name) }}
                       </div>
                     </div>
                     <div class="col-lg-4">
                       <div class="form-group">
-                        <label class="form-control-label" for="surname_update">Last name</label>
-                        {{ form.surname(placeholder="Surname", class="form-control", type="text", value=current_user.surname)}}
+                        <label class="form-control-label" for="surname">Last name</label>
+                        {{ form.surname(placeholder="Surname", class="form-control", type="text", value=client.surname)}}
                       </div>
                     </div>
-                    <div class="col-lg-4">
-                        <div class="form-group">
-                            <div class="card-profile-image">
-                                <a href="#">
-                                    {% if current_user.profile_pic %}
 
-                                    <img src="{{ url_for('static', filename='/assets/img/profile/' + current_user.profile_pic)}}"  align="right" id="profile_pic" class="rounded-circle" width="120" height="120">
-                                    
-                                    {% else %}
-                            
-                                    <img src="{{ url_for('static', filename='/assets/img/profile/default_profile_pic.png')}}" align="right" id="profile_pic" class="rounded-circle" width="120" height="120">
-                            
-                                    {% endif %}
-                                </a>
-                            </div>
-                        </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label class="form-control-label" for="birthdate"> Birthdate</label>
+                      {{ form.birthdate(placeholder="Birthdate", class="form-control", type="date", value=client.birthdate)}}
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label class="form-control-label" for="email">Email address</label>
+                      {{ form.email(placeholder="Email", class="form-control", type="email", value=client.email)}}
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                        <div class="card-profile-image">
+                            <a href="#">
+                             {% if client.profile_pic %}
+                                <img src="{{ url_for('static', filename='/assets/img/profile/' + client.profile_pic)}}"  align="right" id="profile_pic" class="rounded-circle" width="120" height="120">
+                                  
+                             {% endif %}
+                            </a> 
                       </div>
-                </div>
-                <div class="row">
-                  <div class="col-lg-4">
-                    <div class="form-group">
-                      <label class="form-control-label" for="birthdate_update"> Birthdate</label>
-                      {{ form.birthdate(placeholder="Birthdate", class="form-control", type="date", value=current_user.birthdate)}}
                     </div>
                   </div>
-                  <div class="col-lg-4">
-                    <div class="form-group">
-                      <label class="form-control-label" for="email_update">Email address</label>
-                      {{ form.email(placeholder="Email", class="form-control", type="email", value=current_user.email)}}
-                    </div>
-                  </div>
-                  <div class="col-lg-4">
-                    <div class="form-group">
-                  <label class="form-control-label" for="input-file">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-person " viewBox="0 0 16 16">
-                      <path d="M11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                      <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2v9.255S12 12 8 12s-5 1.755-5 1.755V2a1 1 0 0 1 1-1h5.5v2z"/>
-                    </svg>
-                  </label>
-                  {{ form.profile_pic(class="form-control", type="file") }}
-                </div>
-              </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="form-group">
-                            <label class="form-control-label" for="weight_update">Weight (kg)</label>
-                            {{ form.weight(placeholder="Weight", class="form-control", type="number", value=current_user.physicalInfo.weight, disabled=true)}}
+                            <label class="form-control-label" for="weight">Weight (kg)</label>
+                            {{ form.weight(placeholder="Weight", class="form-control", type="number", value='', disabled=true)}}
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="form-group">
-                            <label class="form-control-label" for="height_update">Height (cm)</label>
-                            {{ form.height(placeholder="Height", class="form-control", type="number", value=current_user.physicalInfo.height, disabled=true)}}
+                            <label class="form-control-label" for="height">Height (cm)</label>
+                            {{ form.height(placeholder="Height", class="form-control", type="number", value='', disabled=true)}}
                         </div>
                     </div>
+                    <div class="col-lg-4">
+                      <div class="form-group">
+                          <label class="form-control-label" for="register_date">Date of register </label>
+                          {{ form.register_date(placeholder="Register Date", class="form-control", type="date", value=client.created_at.strftime("%Y-%m-%d"), readonly=readonly)}}
+                      </div>
+                  </div>
                 </div>
 
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label class="form-control-label" for="card_update">Card ID #</label>
-                            {{ form.card_id(placeholder="Card ID", class="form-control", type="number", value=current_user.card_id if current_user.card_id != None, disabled=true)}}
+                          <label class="form-control-label" for="card_update">Card ID #</label>
+                          {{ form.card_id(placeholder="Card ID", class="form-control", type="number", value=client.card_id if client.card_id != None, disabled=true)}}
+                          <a href="#!" class="btn btn-sm btn-primary">Change</a>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label class="form-control-label" for="subscription_until">Subscription Until</label>
-                            {{ form.subscriptionEnd(placeholder="Subscription Until", class="form-control", type="date", value=current_user.subscriptionEnd, disabled=true)}}
+                          <label class="form-control-label" for="subscription_until">Subscription Until</label>
+                          {{ form.subscriptionEnd(placeholder="Subscription Until", class="form-control", type="date", value=subscriptionUntil, disabled=true)}}
+                          <a href="#!" class="btn btn-sm btn-success">Renew subscription</a>
+                          <a href="#!" class="btn btn-sm btn-danger">Cancel</a>
                         </div>
                     </div>
                 </div>
@@ -131,7 +125,7 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <label class="form-control-label" for="address_update">Address</label>
-                      {{ form.address(placeholder="Address", class="form-control", type="text", value=current_user.address if current_user.address != None)}}
+                      {{ form.address(placeholder="Address", class="form-control", type="text", value=client.address)}}
                     </div>
                   </div>
                 </div>
@@ -139,31 +133,36 @@
                   <div class="col-lg-4">
                     <div class="form-group">
                       <label class="form-control-label" for="city_update">City</label>
-                      {{ form.city(placeholder="City", class="form-control", type="text", value=current_user.city if current_user.city != None)}}
+                      {{ form.city(placeholder="City", class="form-control", type="text", value=client.city)}}
                     </div>
                   </div>
                   <div class="col-lg-4">
                     <div class="form-group">
                       <label class="form-control-label" for="country_update">Country</label>
-                      {{ form.country(placeholder="Country", class="form-control", type="text", value=current_user.country if current_user.country != None)}}
+                      {{ form.country(placeholder="Country", class="form-control", type="text", value=client.country)}}
                     </div>
                   </div>
                   <div class="col-lg-4">
                     <div class="form-group">
                       <label class="form-control-label" for="input-country">Postal code</label>
-                      {{ form.npa(placeholder="Postal code", class="form-control", type="number", value=current_user.npa if current_user.npa != None)}}
+                      {{ form.npa(placeholder="Postal code", class="form-control", type="number", value=client.npa)}}
                     </div>
                   </div>
                 </div>
               </div>
               <hr class="my-4" />
-              <div class="pl-lg-4">
-                <div class="row">
-                  <div class="col-md-12">
+              <div class="row">
+                <div class="col-lg-6">
                     <div class="form-group">
-                        {{ form.update(class="btn btn-primary btn-block") }}
-                        <a class="btn btn-sm btn-warning" href="{{url_for('client_blueprint.change_password')}}">Change password</a>
+                        <label class="form-control-label" for="card_update">Card ID #</label>
+                        {{ form.card_id(placeholder="Card ID", class="form-control", type="number", value=client.card_id if client.card_id != None, disabled=true)}}
                     </div>
+                
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label">Change client card</label>
+                      {{ form.change(class="btn btn-primary btn-block") }}
                   </div>
                 </div>
               </div>
@@ -175,42 +174,20 @@
         <div class="card-header">
         <div class="row align-items-center">
           <div class="col-8">
-            <h3 class="mb-0">Reports </h3>
+            <h3 class="mb-0">Program </h3>
           </div>
           <div class="col-4 text-right">
-            <a href="{{ url_for('client_blueprint.add_review', field1=reviewFields[1], field2=reviewFields[2], field3=reviewFields[3], field4=reviewFields[4] , type="COACHING", target=reviewTargetId) }}" class="btn btn-sm btn-secondary">Add new review</a>
+            <a href="#!" class="btn btn-sm btn-primary">Upload new program</a>
           </div>
         </div>
       </div>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">Type</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Details</th>
-                </tr>
-            </thead>
-            
-            {% for review in current_user.reviews %}
-            <tr>
-                <td>
-                    {{ review.type }}
-                </td>
-                <td>
-                    {{ review.date.strftime("%d/%m/%Y, %H:%M:%S") }}
-                </td>
-                <td>
-                  <a class="btn btn-sm btn-primary" href="{{ url_for('client_blueprint.review', Id=review.id, Type=review.type) }}">Details</a>
-                </td>
-            </tr>
-            {% endfor %}
-          </table>
+       
       </div>
     </div>
 
     <div class="row">
-      <div class="col-xl-12">
-        <div class="card" style="max-width: 114rem;"">
+      <div class="col-xl-8">
+        <div class="card" >
           <div class="card-header">
             <div class="row align-items-center">
               <div class="col-8">
@@ -255,7 +232,42 @@
             </div>
           </div>
           </div>
+        </div></div>
+        <div class="card card-body h-auto" style="width: 18rem; float: right;">
+          <div class="card-header">
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h3 class="mb-0">Reports </h3>
+            </div>
+            <div class="col-4 text-right">
+            </div>
+          </div>
         </div>
+          <table class="table">
+              <thead>
+                  <tr>
+                      <th scope="col">Type</th>
+                      <th scope="col">Date</th>
+                      <th scope="col">Details</th>
+                  </tr>
+              </thead>
+              
+              {% for review in reviews %}
+              <tr>
+                  <td>
+                      {{ review.type }}
+                  </td>
+                  <td>
+                      {{ review.date.strftime("%d/%m/%Y, %H:%M:%S") }}
+                  </td>
+                  <td>
+                    <a class="btn btn-sm btn-primary" href="{{ url_for('client_blueprint.review', Id=review.id, Type=review.type) }}">Details</a>
+                  </td>
+              </tr>
+              {% endfor %}
+            </table>
+        </div>
+      </div>
       </div>
     </div>
 
@@ -266,7 +278,7 @@
 {% block javascripts %}
 <script>
   var workoutList = []
-  {% for workoutType in current_user.workoutTypeList %}
+  {% for workoutType in wrktTypeList %}
     workoutList.push('{{workoutType}}'.replaceAll('&#34;',''));
   {% endfor %}
   const ctx = document.getElementById('workoutTypes').getContext('2d');
@@ -290,7 +302,7 @@
 				],
 				datasets: [{
 					label: 'Number of workouts',
-					data: {{current_user.nbWorkoutPerMonth}},
+					data: {{nbWorkoutPerMonth}},
 					fill: false,
 					borderColor: 'rgb(128, 0, 128)',
 					tension: 0.1
@@ -313,7 +325,7 @@
       labels: workoutList,
       datasets: [{
         label: 'Stats',
-        data: {{ current_user.workoutTypeCount }},
+        data: {{ wrktTypeCount }},
         backgroundColor: [
           'rgb(255, 99, 132)',
           'rgb(54, 162, 235)',

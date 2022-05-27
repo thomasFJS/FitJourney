@@ -54,3 +54,41 @@ class AddClientForm(FlaskForm):
     end_date = DateField('End date', id="end_date",  validators=[DataRequired()])
 
     add = SubmitField("Add")
+
+
+class ClientForm(FlaskForm):
+    """
+    Create a update form
+    """
+
+    name = StringField('Name', id='name', validators=[DataRequired()])
+
+    surname = StringField('Surname', id='surname', validators=[DataRequired()])
+
+    email = EmailField('Email', id="email", validators=[DataRequired(), Email()])
+
+    birthdate = DateField('Birthdate', id="birthdate", validators=[DataRequired()])
+
+    profile_pic = FileField('Profile Pic', id="profile_pic")
+
+    card_id = IntegerField('Card ID', id='card_update')
+    
+    weight = StringField('Weight', id='weight_update')
+
+    height = StringField('Height', id='height_update')
+
+    subscriptionEnd = DateField('Subscription Until', id='subscription_until')
+
+    address = StringField('Address', id='address')
+
+    country = StringField('Country', id='country')
+
+    city = StringField('City', id='city')
+
+    npa = StringField('NPA', id='npa')
+
+    register_date = DateField('Register date', id='register_date')
+
+    change = SubmitField("Change")
+
+    

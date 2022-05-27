@@ -10,7 +10,7 @@ Brief   :        Set all the coach routes
 from apps.coach import blueprint
 from apps import db, login_manager
 from apps.authentication.models import User, PhysicalInfo, Subscription, CoachingReview, WorkoutReview, Review, Workout, WorkoutType, Session
-from apps.coach.forms import SessionForm, AddClientForm
+from apps.coach.forms import SessionForm, AddClientForm, ClientForm
 from apps.config import Config
 
 # FLASK
@@ -75,6 +75,27 @@ def calendar():
         
     return render_template('coach/calendar.html', form=form, sessions=sessions)
 
+@blueprint.route('/client', methods=['POST', 'GET'])
+@login_required
+def client():
+    form = ClientForm(request.form)
+    client_id = request.args.get('clientId')
+
+    reviews = get_reviews(client_id)
+    clientDetails = get_client_details(client_id)
+    subscriptionUntil = get_subscription_end_date(client_id)
+    physicalInfo = get_physical_infos(client_id)
+
+    # Get each workout type and how many client have made in 2 separate array to use them in js
+    wrktTypeList = get_workout_type_count(client_id)[0]
+    wrktTypeCount = get_workout_type_count(client_id)[1]
+
+    nbWorkoutPerMonth = get_workout_count_per_month(client_id)
+    
+    return render_template('coach/client.html', segment='client', form=form, reviews=reviews, client=clientDetails, subscriptionUntil=subscriptionUntil,
+     wrktTypeCount=wrktTypeCount, wrktTypeList=wrktTypeList, nbWorkoutPerMonth=nbWorkoutPerMonth)
+
+
 @blueprint.route('/add_client', methods=['POST', 'GET'])
 @login_required
 def add_client():
@@ -111,4 +132,4 @@ def add_client():
             return redirect(url_for('coach_blueprint.dashboard'))
 
 
-    return render_template('coach/add_client.html', form=form) 
+    return render_template('coach/add_client.html', segment='add_client', form=form) 

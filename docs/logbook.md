@@ -556,3 +556,11 @@ Pour l'affichage j'ai récupéré toutes les sessions et je les ai insérés dan
 J'ai eu le dernier point avec M.Jossi, nous avons regarder les tâches qu'il me reste a effectuer. Dans l'ensemble, j'ai encore beaucoup de travail mais cela devrait être faisable dans les temps.
 
 L'objectif est de terminer toutes les pages (Ajout client, paiement, bilan, ajout de programme et affichage de profil client) avant la fin de cette semaine. Je pense que c'est faisable car la plus part des pages ne sont qu'un formulaire pour insérer des éléments dans la base de données.
+
+### Vendredi, 26 Mai 2022
+
+Aujourd'hui j'ai poursuivi l'avancement des dernières pages qu'il me reste a créer. J'ai pu terminer la page d'ajout de nouveau client, le coach peut désormais créer un client lui-même.
+
+J'ai également fait la page de profil client, on y retrouve plusieurs infos du client comme les reviews qu'il a posté, ses programmes ainsi que des graphiques représentant les entrainements qu'il effectue.
+
+Je vais cette fois vraiment devoir travailler un peu ce week-end, pour m'assurer que toutes les pages soient terminées et fonctionnent comme je le souhaite. Je pourrai ainsi débuter la récupération des données avec l'API et la détéction de carte RFID. J'espère au plus tard terminer mon projet en fin de semaine prochaine, pour garder une semaine complète de documentation.

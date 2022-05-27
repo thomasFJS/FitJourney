@@ -109,6 +109,23 @@ def get_clients(coachId):
 
     return result
 
+def get_client_details(clientId):
+    """
+    Get client details with his id
+
+    Parameter(s):
+     NAME     |  TYPE  | DESC
+     clientId |  INT   | the id of the client
+
+     Return :
+     | Dict | Dict, contains all properties (details) from user that we need
+    """
+
+    client = db.session.query(User.name, User.surname, User.email, User.birthdate, User.profile_pic, User.created_at, User.card_id, User.address, User.city, User.country, User.npa).filter(User.id==clientId).first()
+    
+    
+    return client
+
 def get_all_workout_types():
     """
     Get all types of workouts
