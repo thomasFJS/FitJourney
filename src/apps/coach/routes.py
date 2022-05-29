@@ -9,8 +9,8 @@ Brief   :        Set all the coach routes
 # APP
 from apps.coach import blueprint
 from apps import db, login_manager
-from apps.authentication.models import User, PhysicalInfo, Subscription, CoachingReview, WorkoutReview, Review, Workout, WorkoutType, Session, Program
-from apps.coach.forms import SessionForm, AddClientForm, ClientForm, AddProgramForm, AddCheckUpForm
+from apps.authentication.models import User, PhysicalInfo, Subscription, CoachingReview, WorkoutReview, Review, Workout, WorkoutType, Session, Program, CoachedBy, Purchase
+from apps.coach.forms import SessionForm, AddClientForm, ClientForm, AddProgramForm, AddCheckUpForm, RenewSubscriptionForm
 from apps.config import Config
 
 # FLASK
@@ -218,3 +218,33 @@ def check_up():
                 return redirect(url_for('coach_blueprint.client', clientId=client_id))
 
     return render_template('coach/add_checkup.html', segment='add_checkup', form=form, infos=static_infos)
+
+@blueprint.route('/new_subscription', methods=['POST', 'GET'])
+@login_required
+def new_subscription():
+    form=RenewSubscriptionForm(request.form)
+
+    #Set the subscription choices
+    form.subscription.choices = [(subscription.duration, subscription.title + " - " + str(subscription.cost) + "CHF") for subscription in get_all_subscriptions()]
+
+    client_id = request.args.get('clientId')
+    # Get the client details
+    client = get_client_details(client_id)
+    if request.method == "POST":
+        if form.validate_on_submit():
+            try:
+                print(get_subscription_id(request.form['subscription']).id)
+                newCoachAssign = CoachedBy(client_id=client_id, coach_id=current_user.id, starting_date=request.form['start_date'], end_date=request.form['end_date'])
+                newPurchase = Purchase(client_id=client_id, date=request.form['start_date'], subscription_id=get_subscription_id(request.form['subscription']).id)
+                print("OK")
+                db.session.add(newPurchase)
+                db.session.add(newCoachAssign)
+                db.session.commit()
+                flash("New subscription is purchased !", 'success')
+                return redirect( url_for('coach_blueprint.client', clientId=client_id) )
+            except:
+                db.session.rollback()
+                flash("Error, while trying to purchase new subscription", 'danger')
+                return redirect(url_for('coach_blueprint.client', clientId=client_id))
+
+    return render_template('coach/new_subscription.html', segment='new_subscription', form=form, client=client)

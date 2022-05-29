@@ -154,7 +154,7 @@ class Purchase(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     client_id = db.Column(db.Integer, db.ForeignKey('USER.id'))
-    date = db.Column(db.Date)
+    date = db.Column(db.Date,primary_key=True)
     subscription_id = db.Column(db.Integer, db.ForeignKey('SUBSCRIPTION.id'))
 
 class CoachedBy(db.Model):

@@ -56,6 +56,24 @@ class AddClientForm(FlaskForm):
 
     add = SubmitField("Add")
 
+class RenewSubscriptionForm(FlaskForm):
+    """
+    Create a renew subscription form
+    """
+
+    name = StringField('Name', id="name", validators=[DataRequired()])
+
+    surname = StringField('Surname', id="surname", validators=[DataRequired()])
+
+    email = EmailField('Email', id="email", validators=[DataRequired()])
+
+    start_date = DateField('Start date', id="start_date",  validators=[DataRequired()])
+
+    end_date = DateField('End date', id="end_date",  validators=[DataRequired()])
+
+    subscription = SelectField('Subscription', id="subscription",  validators=[DataRequired()])
+
+    submit = SubmitField("Submit")
 
 class ClientForm(FlaskForm):
     """
