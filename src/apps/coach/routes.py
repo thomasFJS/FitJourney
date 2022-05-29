@@ -156,7 +156,7 @@ def add_program():
   
     if request.method == "POST":
         if form.validate_on_submit():
-            print("ok")
+            
             file_name = form.file.data
             try:
                 newProgram = Program(type=request.form['type'], pdf=file_name.read(),date=date.today(), client_id=request.form['client'], coach_id=current_user.id)
@@ -188,4 +188,33 @@ def program():
 @login_required
 def check_up():
     form = AddCheckUpForm(request.form)
-    return render_template('coach/add_checkup.html', segment='add_checkup', form=form)
+    client_id = request.args.get('clientId')
+
+    # Get the client details
+    infos = get_client_details(client_id)
+    today = date.today()
+    # Set the static infos for the check up forms
+    static_infos = {
+        "id" : infos.id,
+        "name" : infos.name,
+        "surname" : infos.surname,
+        "age" : (today.year - infos.birthdate.year - ((today.month, today.day) < (infos.birthdate.month, infos.birthdate.day))) #Get age with birthdate and date.today()
+    }
+
+    if request.method == "POST":
+        if form.validate_on_submit():
+            try:
+                newCheckup = PhysicalInfo(user_id=client_id, height=request.form['height'], weight=request.form['weight'], age=request.form['age'],
+                    bmi=request.form['bmi'], bmr=request.form['bmr'], bodyfat_percentage=request.form['body_fat_percent'], muscle_mass_percentage=request.form['muscle_mass_percent'],
+                    bone_mass_percentage=request.form['bone_mass_percent'], water_percentage=request.form['water'], protein_percentage=request.form['protein'], 
+                    bone_mass=request.form['bone_mass'], muscle_mass=request.form['muscle_mass'], bodyfat_mass=request.form['body_fat'], leanbody_mass=request.form['lean_body_mass'],
+                    fat_visceral=request.form['fat_visceral'], body_age=request.form['body_age'], date=today)
+                db.session.add(newCheckup)
+                db.session.commit()
+                flash("Check up added !", 'success')
+                return redirect(url_for('coach_blueprint.client', clientId=client_id))
+            except:
+                flash("Error while trying to add check up", 'danger')
+                return redirect(url_for('coach_blueprint.client', clientId=client_id))
+
+    return render_template('coach/add_checkup.html', segment='add_checkup', form=form, infos=static_infos)

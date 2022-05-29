@@ -145,4 +145,6 @@ class AddCheckUpForm(FlaskForm):
 
     lean_body_mass = DecimalField('Lean body mass', id='lean_body_mass', validators=[DataRequired()])
 
+    body_age = DecimalField('Body afe', id='body_age', validators=[DataRequired()])
+
     add = SubmitField("Add")
