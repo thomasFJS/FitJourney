@@ -126,6 +126,7 @@ class Program(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     type = db.Column(db.String(32))
     pdf = db.Column(db.LargeBinary)
+    date = db.Column(db.Date)
     client_id = db.Column(db.Integer, db.ForeignKey('USER.id'))
     coach_id = db.Column(db.Integer, db.ForeignKey('USER.id'))
 

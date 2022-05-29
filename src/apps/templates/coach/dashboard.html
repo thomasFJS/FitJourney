@@ -106,7 +106,7 @@
                 <div class="card border-light mb-3" style="max-width: 18rem;">
                     <div class="card-header">Last Workout </div>
                     <div class="card-body">
-                      <h5 class="card-title">   {{clientLastWorkout.date.strftime("%d/%m/%Y, %H:%M:%S")}}</h5>
+                      <h5 class="card-title">   {{clientLastWorkout.date.strftime("%d/%m/%Y, %H:%M:%S") if clientLastWorkout != None else "No workout yet"}}</h5>
                     </div>
                   </div>
             </div>

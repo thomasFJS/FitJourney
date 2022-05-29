@@ -9,8 +9,8 @@ Brief   :        Set all the coach routes
 # APP
 from apps.coach import blueprint
 from apps import db, login_manager
-from apps.authentication.models import User, PhysicalInfo, Subscription, CoachingReview, WorkoutReview, Review, Workout, WorkoutType, Session
-from apps.coach.forms import SessionForm, AddClientForm, ClientForm
+from apps.authentication.models import User, PhysicalInfo, Subscription, CoachingReview, WorkoutReview, Review, Workout, WorkoutType, Session, Program
+from apps.coach.forms import SessionForm, AddClientForm, ClientForm, AddProgramForm
 from apps.config import Config
 
 # FLASK
@@ -52,18 +52,23 @@ def calendar():
     form.type.choices = [(type.id, type.title) for type in get_all_workout_types()]
 
     sessions = get_sessions(current_user.id)
-    print(sessions)
+    #print(sessions)
 
     if request.method == 'POST':
         startDate = request.form['date']
         startTime = request.form['start_time']
         endTime = request.form['end_time']
+        durationSelected = request.form['duration']
 
         # Set datetime value
         startDateTime = datetime.strptime(startDate + " " + startTime, '%Y-%m-%d %H:%M')
         endDateTime = datetime.strptime(startDate + " " + endTime, '%Y-%m-%d %H:%M:%S')
+
+        # Set duration format
+        duration = "0{durationSelected}:00:00".format(durationSelected=durationSelected)
+
         try :
-            newSession = Session(start_time=startDateTime, end_time=endDateTime, duration=request.form['duration'], workout_type=request.form['type'], client_id=request.form['client'], coach_id=current_user.id)
+            newSession = Session(start_time=startDateTime, end_time=endDateTime, duration=duration, workout_type=request.form['type'], client_id=request.form['client'], coach_id=current_user.id)
             db.session.add(newSession)
             db.session.commit()
             flash("The session is registered !", 'success')
@@ -79,8 +84,10 @@ def calendar():
 @login_required
 def client():
     form = ClientForm(request.form)
+    #Get client id
     client_id = request.args.get('clientId')
 
+    #Get client infos to display
     reviews = get_reviews(client_id)
     clientDetails = get_client_details(client_id)
     subscriptionUntil = get_subscription_end_date(client_id)
@@ -91,9 +98,14 @@ def client():
     wrktTypeCount = get_workout_type_count(client_id)[1]
 
     nbWorkoutPerMonth = get_workout_count_per_month(client_id)
+
+    programs = get_program(client_id)
+    workoutProgram = programs[0]
+    dietProgram = programs[1]
+
     
     return render_template('coach/client.html', segment='client', form=form, reviews=reviews, client=clientDetails, subscriptionUntil=subscriptionUntil,
-     wrktTypeCount=wrktTypeCount, wrktTypeList=wrktTypeList, nbWorkoutPerMonth=nbWorkoutPerMonth)
+     wrktTypeCount=wrktTypeCount, wrktTypeList=wrktTypeList, nbWorkoutPerMonth=nbWorkoutPerMonth, workoutProgram=workoutProgram, dietProgram=dietProgram)
 
 
 @blueprint.route('/add_client', methods=['POST', 'GET'])
@@ -133,3 +145,27 @@ def add_client():
 
 
     return render_template('coach/add_client.html', segment='add_client', form=form) 
+
+@blueprint.route('/add_program', methods=['POST', 'GET'])
+@login_required
+def add_program():
+    form=AddProgramForm()
+    #Get client id
+    client_id = request.args.get('clientId')
+  
+    if request.method == "POST":
+        if form.validate_on_submit():
+            print("ok")
+            file_name = form.file.data
+            try:
+                newProgram = Program(type=request.form['type'], pdf=file_name.read(),date=date.today(), client_id=request.form['client'], coach_id=current_user.id)
+                db.session.add(newProgram)
+                db.session.commit()
+                flash("Program Added !", 'success')
+                return redirect(url_for('coach_blueprint.client', clientId=request.form['client']))
+            except:
+                db.session.rollback()
+                flash("Error while adding the new program", 'danger')
+                return redirect(url_for('coach_blueprint.client', clientId=request.form['client']))
+            
+    return render_template('coach/add_program.html', segment='add_program', form=form, clientId=client_id)

@@ -8,7 +8,7 @@ Brief   :        All the functions needed to get datas for coach templates
 
 # APP
 from apps import db
-from apps.authentication.models import User, PhysicalInfo, Subscription, Purchase, CoachingReview, WorkoutReview, Review, Workout, WorkoutType, Session, CoachedBy
+from apps.authentication.models import User, PhysicalInfo, Subscription, Purchase, CoachingReview, WorkoutReview, Review, Workout, WorkoutType, Session, CoachedBy, Program
 
 # SQL ALCHEMY 
 from sqlalchemy import union, func
@@ -121,7 +121,7 @@ def get_client_details(clientId):
      | Dict | Dict, contains all properties (details) from user that we need
     """
 
-    client = db.session.query(User.name, User.surname, User.email, User.birthdate, User.profile_pic, User.created_at, User.card_id, User.address, User.city, User.country, User.npa).filter(User.id==clientId).first()
+    client = db.session.query(User.id, User.name, User.surname, User.email, User.birthdate, User.profile_pic, User.created_at, User.card_id, User.address, User.city, User.country, User.npa).filter(User.id==clientId).first()
     
     
     return client
@@ -199,3 +199,26 @@ def get_subscription_id(duration):
     id = db.session.query(Subscription.id).filter(Subscription.duration==duration).first()
 
     return id
+
+
+def get_program(clientId):
+    """
+    Get the actual program of a client
+
+    Parameter(s):
+     NAME     |  TYPE  | DESC
+     clientId |   INT  | the id of the client
+
+    Return :
+    | Query | 
+    """
+    # Get the latest workout program uploaded for this user (Program type : 1 => Diet | 2 => Workout)
+    workoutProgram = db.session.query(Program.id, Program.date, Program.type, Program.pdf, User.name, User.surname).join(User, Program.coach_id==User.id).filter(Program.type==2).filter(Program.client_id==clientId).order_by(Program.date.desc()).first() 
+    dietProgram = db.session.query(Program.id, Program.date, Program.type, Program.pdf, User.name, User.surname).join(User, Program.coach_id==User.id).filter(Program.type==1).filter(Program.client_id==clientId).order_by(Program.date.desc()).first() 
+    
+    result = []
+
+    result.append(workoutProgram)
+    result.append(dietProgram)
+    
+    return result

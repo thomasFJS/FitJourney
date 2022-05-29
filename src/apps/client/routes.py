@@ -107,7 +107,7 @@ def profile():
 		if request.files['profile_pic']:
 			current_user.profile_pic = request.files['profile_pic']
 			# Grab Image name
-			pic_filename = secure_filename(user.profile_pic.filename)
+			pic_filename = secure_filename(current_user.profile_pic.filename)
 			pic_name = str(uuid.uuid1()) + "_" + pic_filename
 
 			saver = request.files['profile_pic']

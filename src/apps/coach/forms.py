@@ -7,8 +7,9 @@ Brief   :        Coach forms
 """
 
 from flask_wtf import FlaskForm
+from flask_wtf.file import FileField, FileAllowed, FileRequired
 from wtforms import FileField, StringField, SubmitField, PasswordField, IntegerField, BooleanField, ValidationError, SelectField, TextAreaField, HiddenField, DecimalField
-from wtforms.validators import Email, DataRequired, EqualTo, Length
+from wtforms.validators import Email, DataRequired, EqualTo, Length, Regexp
 from wtforms.fields.html5 import DateField, EmailField, IntegerRangeField, TimeField
 from wtforms.ext.dateutil.fields import DateTimeField
 from datetime import datetime
@@ -92,3 +93,15 @@ class ClientForm(FlaskForm):
     change = SubmitField("Change")
 
     
+class AddProgramForm(FlaskForm):
+    """
+    Create the adding program form
+    """
+
+    type = SelectField('Type', id="program_type",  validators=[DataRequired()], choices=[(1, "Diet"), (2, "Workout")])
+
+    file = FileField('Program File', id="program_file", validators=[FileRequired(), FileAllowed(['pdf'], 'PDF only !')])
+
+    client = HiddenField('Client', id="program_client")
+
+    add = SubmitField("Upload")
