@@ -171,46 +171,54 @@
           </div>
         </div>
       </div>
+
+      
       <div class="card card-body h-auto" style="width: 18rem; float: right;">
         <div class="card-header">
         <div class="row align-items-center">
           <div class="col-8">
-            <h3 class="mb-0">Reports </h3>
+            <h3 class="mb-0">Programs </h3>
           </div>
           <div class="col-4 text-right">
-            <a href="{{ url_for('client_blueprint.add_review', field1=reviewFields[1], field2=reviewFields[2], field3=reviewFields[3], field4=reviewFields[4] , type="COACHING", target=reviewTargetId) }}" class="btn btn-sm btn-secondary">Add new review</a>
           </div>
         </div>
       </div>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">Type</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Details</th>
-                </tr>
-            </thead>
-            
-            {% for review in current_user.reviews %}
-            <tr>
-                <td>
-                    {{ review.type }}
-                </td>
-                <td>
-                    {{ review.date.strftime("%d/%m/%Y, %H:%M:%S") }}
-                </td>
-                <td>
-                  <a class="btn btn-sm btn-primary" href="{{ url_for('client_blueprint.review', Id=review.id, Type=review.type) }}">Details</a>
-                </td>
-            </tr>
-            {% endfor %}
-          </table>
+      <div class="row">
+        <div class="col-lg-12">
+            <div class="form-group">
+              <label class="form-control-label">Workout Program added the {{current_user.workoutProgram.date.strftime('%d/%m/%Y')}}: </label>
+            </br>
+              {% if current_user.workoutProgram != None %}
+              <a href="{{ url_for('coach_blueprint.program', programId=current_user.workoutProgram.id, programType="workout") }}" class="btn btn-sm btn-warning">Workout Program</a> added by <strong>{{current_user.workoutProgram.name}} {{current_user.workoutProgram.surname}}</strong>
+              {% else %}
+              <h4>No workout plan available yet</h4>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+              <div class="form-group">
+                <label class="form-control-label">Diet Program added the {{current_user.dietProgram.date.strftime('%d/%m/%Y')}}: </label>
+              </br>
+                {% if current_user.dietProgram != None %}
+                <a href="{{ url_for('coach_blueprint.program', programId=current_user.dietProgram.id, programType="diet") }}" class="btn btn-sm btn-success">Diet Program</a> added by <strong>{{current_user.dietProgram.name}} {{current_user.dietProgram.surname}}</strong>
+                {% else %}
+                <h4>No workout plan available yet</h4>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+
       </div>
     </div>
 
+
+
+
     <div class="row">
-      <div class="col-xl-12">
-        <div class="card" style="max-width: 114rem;"">
+      <div class="col-xl-8">
+        <div class="card" >
           <div class="card-header">
             <div class="row align-items-center">
               <div class="col-8">
@@ -257,7 +265,45 @@
           </div>
         </div>
       </div>
+      
+      <div class="card card-body h-auto" style="width: 18rem; float: right;">
+        <div class="card-header">
+        <div class="row align-items-center">
+          <div class="col-8">
+            <h3 class="mb-0">Reports </h3>
+          </div>
+          <div class="col-4 text-right">
+            <a href="{{ url_for('client_blueprint.add_review', field1=reviewFields[1], field2=reviewFields[2], field3=reviewFields[3], field4=reviewFields[4] , type="COACHING", target=reviewTargetId) }}" class="btn btn-sm btn-secondary">Add new review</a>
+          </div>
+        </div>
+      </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Type</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Details</th>
+                </tr>
+            </thead>
+            
+            {% for review in current_user.reviews %}
+            <tr>
+                <td>
+                    {{ review.type }}
+                </td>
+                <td>
+                    {{ review.date.strftime("%d/%m/%Y, %H:%M:%S") }}
+                </td>
+                <td>
+                  <a class="btn btn-sm btn-primary" href="{{ url_for('client_blueprint.review', Id=review.id, Type=review.type) }}">Details</a>
+                </td>
+            </tr>
+            {% endfor %}
+          </table>
+      </div>
     </div>
+    </div>
+  </div>
 
 
 {% endblock content %}

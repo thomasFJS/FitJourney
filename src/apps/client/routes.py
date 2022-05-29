@@ -31,6 +31,7 @@ from werkzeug.utils import secure_filename
 from datetime import date, datetime
 
 from apps.client.util import *
+from apps.coach.util import get_program
 
 @blueprint.route('/index')
 @login_required
@@ -65,11 +66,18 @@ def profile():
 	# SELECT SUM(my_time) FROM (SELECT extract(hour from duration) * 60 * 60 + extract(minute from duration) + extract(second from duration) as my_time FROM WORKOUT WHERE client_id = 1  AND WEEK(WORKOUT.date) = WEEK(CURDATE()) - 1) as timeduration
 	# TODO
 
+	#Get the latest programs 
+	programs = get_program(current_user.id)
+
 	# Get Coaching review fields name 
 	coachingReviewFields = get_coaching_review_field() 
 
 	# Get coach id 
 	coachId =get_actual_coach_id(current_user.id)
+
+	#set the programs
+	current_user.workoutProgram = programs[0]
+	current_user.dietProgram = programs[1]
 
 	# Set the average heartRate for all workout made this week
 	current_user.avgHeartRate = avgHeartRate
