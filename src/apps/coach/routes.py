@@ -106,7 +106,7 @@ def client():
 
     
     return render_template('coach/client.html', segment='client', form=form, reviews=reviews, client=clientDetails, subscriptionUntil=subscriptionUntil,
-     wrktTypeCount=wrktTypeCount, wrktTypeList=wrktTypeList, nbWorkoutPerMonth=nbWorkoutPerMonth, workoutProgram=workoutProgram, dietProgram=dietProgram)
+     wrktTypeCount=wrktTypeCount, wrktTypeList=wrktTypeList, nbWorkoutPerMonth=nbWorkoutPerMonth, workoutProgram=workoutProgram, dietProgram=dietProgram, physicalInfo=physicalInfo)
 
 
 @blueprint.route('/add_client', methods=['POST', 'GET'])
