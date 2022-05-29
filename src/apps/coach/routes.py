@@ -10,7 +10,7 @@ Brief   :        Set all the coach routes
 from apps.coach import blueprint
 from apps import db, login_manager
 from apps.authentication.models import User, PhysicalInfo, Subscription, CoachingReview, WorkoutReview, Review, Workout, WorkoutType, Session, Program
-from apps.coach.forms import SessionForm, AddClientForm, ClientForm, AddProgramForm
+from apps.coach.forms import SessionForm, AddClientForm, ClientForm, AddProgramForm, AddCheckUpForm
 from apps.config import Config
 
 # FLASK
@@ -183,3 +183,9 @@ def program():
 
     return send_file(BytesIO(program.pdf), attachment_filename=str(program_type+'.pdf'), as_attachment=True)
     
+
+@blueprint.route('/check_up', methods=['POST', 'GET'])
+@login_required
+def check_up():
+    form = AddCheckUpForm(request.form)
+    return render_template('coach/add_checkup.html', segment='add_checkup', form=form)

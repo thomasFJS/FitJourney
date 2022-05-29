@@ -204,7 +204,7 @@
                 {% if current_user.dietProgram != None %}
                 <a href="{{ url_for('coach_blueprint.program', programId=current_user.dietProgram.id, programType="diet") }}" class="btn btn-sm btn-success">Diet Program</a> added by <strong>{{current_user.dietProgram.name}} {{current_user.dietProgram.surname}}</strong>
                 {% else %}
-                <h4>No workout plan available yet</h4>
+                <h4>No diet plan available yet</h4>
                 {% endif %}
               </div>
             </div>

@@ -1,0 +1,175 @@
+{% extends 'layout/base.html' %}
+
+{% block title %} Add check up {% endblock title %}
+
+{% block content %}
+
+
+
+<div class="container-fluid mt--8" style="margin: auto;">
+    {% for category, message in get_flashed_messages(with_categories=true) %}
+	
+	<div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+	  {{ message }}
+	  <button type="button" class="btn btn-secondary" data-bs-dismiss="alert" aria-label="Close">Close</button>
+	</div>
+
+{% endfor %}
+
+  
+
+    <div class="row justify-content-center">
+  
+      <div class="col-xl-8 ">
+        <div class="card">
+          <div class="card-header">
+            <div class="row align-items-center">
+              <div class="col-8">
+                <h3 class="mb-0">Add check up </h3>
+              </div>
+              <div class="col-4 text-right">
+
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <form action="/add_client" method="POST">
+                {{ form.hidden_tag() }}
+              <div class="pl-lg-4">
+                <div class="row justify-content-center">
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                          <label class="form-control-label" for="name">Name</label>
+                          {{form.name(placeholder="Name",class="form-control",type="text")}}
+                        </div>
+                      </div>
+                      <div class="col-lg-3">
+                        <div class="form-group">
+                          <label class="form-control-label" for="surname">Surname</label>
+                          {{form.surname(placeholder="Surname",class="form-control",type="text")}}
+                        </div>
+                      </div>
+                      <div class="col-lg-3">
+                        <div class="form-group">
+                          <label class="form-control-label" for="height">Height</label>
+                          {{form.height(placeholder="Height",class="form-control")}}
+                        </div>
+                      </div>
+                      <div class="col-lg-3">
+                        <div class="form-group">
+                          <label class="form-control-label" for="surname">Age</label>
+                          {{form.age(placeholder="Age",class="form-control")}}
+                        </div>
+                      </div>
+                  
+                    
+                </div>
+                <hr class="my-4" />
+                <div class="row justify-content-center">
+                  <div class="col-lg-3">
+                    <div class="form-group">
+                      <label class="form-control-label" for="weight">Weight</label>
+                      {{form.weight(placeholder="Name",class="form-control")}}
+                    </div>
+                  </div>
+                  <div class="col-lg-3">
+                    <div class="form-group">
+                      <label class="form-control-label" for="surnbmiame">BMI</label>
+                      {{form.bmi(placeholder="Surname",class="form-control")}}
+                    </div>
+                  </div>
+                  <div class="col-lg-3">
+                    <div class="form-group">
+                      <label class="form-control-label" for="water">Water %</label>
+                      {{form.water(placeholder="Water %",class="form-control")}}
+                    </div>
+                  </div>
+                  <div class="col-lg-3">
+                    <div class="form-group">
+                      <label class="form-control-label" for="protein">Protein %</label>
+                      {{form.protein(placeholder="Protein %",class="form-control")}}
+                    </div>
+                  </div>
+                </div>
+                    <div class="row justify-content-center">
+                      <div class="col-lg-3">
+                        <div class="form-group">
+                          <label class="form-control-label" for="muscle_mass_percent">Muscle Mass %</label>
+                          {{form.muscle_mass_percent(placeholder="Muscle mass %",class="form-control")}}
+                        </div>
+                      </div>
+                      <div class="col-lg-3">
+                        <div class="form-group">
+                          <label class="form-control-label" for="body_fat_percent">Body fat %</label>
+                          {{form.body_fat_percent(placeholder="Body fat %",class="form-control")}}
+                        </div>
+                      </div>
+                      <div class="col-lg-3">
+                        <div class="form-group">
+                          <label class="form-control-label" for="bone_mass_percent">Bone mass %</label>
+                          {{form.bone_mass_percent(placeholder="Bone mass %",class="form-control")}}
+                        </div>
+                      </div>
+                      <div class="col-lg-3">
+                        <div class="form-group">
+                          <label class="form-control-label" for="bmr">BMR</label>
+                          {{form.bmr(placeholder="BMR",class="form-control")}}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row justify-content-center">
+                      <div class="col-lg-3">
+                        <div class="form-group">
+                          <label class="form-control-label" for="muscle_mass">Muscle Mass (kg)</label>
+                          {{form.muscle_mass(placeholder="Muscle mass (kg)",class="form-control")}}
+                        </div>
+                      </div>
+                      <div class="col-lg-3">
+                        <div class="form-group">
+                          <label class="form-control-label" for="body_fat_percent">Body fat (kg)</label>
+                          {{form.body_fat(placeholder="Body fat (kg)",class="form-control")}}
+                        </div>
+                      </div>
+                      <div class="col-lg-3">
+                        <div class="form-group">
+                          <label class="form-control-label" for="bone_mass_percent">Visceral fat (kg)</label>
+                          {{form.fat_visceral(placeholder="Visceral fat (kg)",class="form-control")}}
+                        </div>
+                      </div>
+                      <div class="col-lg-3">
+                        <div class="form-group">
+                          <label class="form-control-label" for="bmr">Bone mass (kg)</label>
+                          {{form.bone_mass(placeholder="Bone mass (kg)",class="form-control")}}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row justify-content-center">
+                      <div class="col-lg-3">
+                        <div class="form-group">
+                          <label class="form-control-label" for="lean_body_mass">Lean body mass (kg)</label>
+                          {{form.lean_body_mass(placeholder="Lean body mass (kg)",class="form-control")}}
+                        </div>
+                      </div>
+                    </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                        {{form.add(class="form-control btn btn-primary")}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+ 
+
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}
+
+{% endblock javascripts %}
