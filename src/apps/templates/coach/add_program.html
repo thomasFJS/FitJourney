@@ -71,19 +71,4 @@
 
 <!-- Specific JS goes HERE --> 
 {% block javascripts %}
-<script>
-    function updateEndTime(){
-      var subscription = document.getElementById("subscription").value;
-      var start_date = document.getElementById("start_date").value;
-
-      if(subscription != "" && start_date != ""){
-        //Check if the fields aren't empty, then set a end time depends on values selected before
-        var dt = new Date(start_date);
-        dt.setMonth(dt.getMonth() + parseInt(subscription));
-        let [end_date] = dt.toISOString().split('T');
-        document.getElementById("end_date").value = end_date
-      }
-  
-    }
-</script>  
 {% endblock javascripts %}

@@ -14,7 +14,7 @@ from apps.coach.forms import SessionForm, AddClientForm, ClientForm, AddProgramF
 from apps.config import Config
 
 # FLASK
-from flask import render_template, redirect, request, url_for, flash
+from flask import render_template, redirect, request, url_for, flash, send_file
 from flask_login import login_required
 from jinja2 import TemplateNotFound
 
@@ -23,6 +23,7 @@ from flask_login import (
 )
 
 # UTILS
+from io import BytesIO
 import uuid as uuid
 import os
 from werkzeug.utils import secure_filename
@@ -169,3 +170,16 @@ def add_program():
                 return redirect(url_for('coach_blueprint.client', clientId=request.form['client']))
             
     return render_template('coach/add_program.html', segment='add_program', form=form, clientId=client_id)
+
+
+@blueprint.route('/program', methods=['GET'])
+@login_required
+def program():
+
+    program_id = request.args.get('programId')
+    program_type = request.args.get('programType')
+
+    program = get_program_by_id(program_id)
+
+    return send_file(BytesIO(program.pdf), attachment_filename=str(program_type+'.pdf'), as_attachment=True)
+    

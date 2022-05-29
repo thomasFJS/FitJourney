@@ -210,11 +210,11 @@ def get_program(clientId):
      clientId |   INT  | the id of the client
 
     Return :
-    | Query | 
+    | Array[Query()] | Array with 2 Query object 1 represent the latest workout program and the other the latest diet program.
     """
     # Get the latest workout program uploaded for this user (Program type : 1 => Diet | 2 => Workout)
-    workoutProgram = db.session.query(Program.id, Program.date, Program.type, Program.pdf, User.name, User.surname).join(User, Program.coach_id==User.id).filter(Program.type==2).filter(Program.client_id==clientId).order_by(Program.date.desc()).first() 
-    dietProgram = db.session.query(Program.id, Program.date, Program.type, Program.pdf, User.name, User.surname).join(User, Program.coach_id==User.id).filter(Program.type==1).filter(Program.client_id==clientId).order_by(Program.date.desc()).first() 
+    workoutProgram = db.session.query(Program.id, Program.date, User.name, User.surname).join(User, Program.coach_id==User.id).filter(Program.type==2).filter(Program.client_id==clientId).order_by(Program.date.desc()).first() 
+    dietProgram = db.session.query(Program.id, Program.date, User.name, User.surname).join(User, Program.coach_id==User.id).filter(Program.type==1).filter(Program.client_id==clientId).order_by(Program.date.desc()).first() 
     
     result = []
 
@@ -222,3 +222,18 @@ def get_program(clientId):
     result.append(dietProgram)
     
     return result
+
+
+def get_program_by_id(programId):
+    """
+    Get a specific program
+
+    Parameter(s):
+     NAME     |  TYPE  | DESC
+     programId |   INT  | the id of the program
+
+    Return :
+    | Program | Program object with the selected properties
+    """
+    program = db.session.query(Program.date, Program.type, Program.pdf).filter(Program.id==programId).first()
+    return program
