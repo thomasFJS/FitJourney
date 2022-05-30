@@ -64,7 +64,7 @@ def profile():
 	# Get the average of calories burned this week
 	avgCalories = get_average_calories_last_week(current_user.id)
 	# SELECT SUM(my_time) FROM (SELECT extract(hour from duration) * 60 * 60 + extract(minute from duration) + extract(second from duration) as my_time FROM WORKOUT WHERE client_id = 1  AND WEEK(WORKOUT.date) = WEEK(CURDATE()) - 1) as timeduration
-	# TODO
+	totalTime = get_time_working_out_last_week(current_user.id)
 
 	#Get the latest programs 
 	programs = get_program(current_user.id)
@@ -84,6 +84,9 @@ def profile():
 
 	# Set the average heartRate for all workout made this week
 	current_user.avgCalories = avgCalories
+
+	# Set the total time of working out this week
+	current_user.totalTime = totalTime
 
 	# Set the number of workout per month
 	current_user.nbWorkoutPerMonth = nbWorkoutPerMonth

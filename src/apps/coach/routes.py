@@ -56,6 +56,11 @@ def calendar():
     #print(sessions)
 
     if request.method == 'POST':
+        #Check if client there is client in the select field
+        if 'client' not in request.form:
+            flash("You don't have client to select, please add a client before", 'danger')
+            return redirect( url_for('coach_blueprint.calendar') )
+
         startDate = request.form['date']
         startTime = request.form['start_time']
         endTime = request.form['end_time']
@@ -96,7 +101,7 @@ def client():
 
     # Get each workout type and how many client have made in 2 separate array to use them in js
     wrktTypeList = get_workout_type_count(client_id)[0]
-    wrktTypeCount = get_workout_type_count(client_id)[1]
+    wrktTypeCount = get_workout_type_count(client_id)[1] if get_workout_type_count(client_id)[1] != [] else 0
 
     nbWorkoutPerMonth = get_workout_count_per_month(client_id)
 
@@ -104,9 +109,14 @@ def client():
     workoutProgram = programs[0]
     dietProgram = programs[1]
 
-    
+    # Get the average of heart rate during this week
+    avgHeartRate = get_average_heart_rate_last_week(client_id)
+	# Get the average of calories burned this week
+    avgCalories = get_average_calories_last_week(client_id)
+
     return render_template('coach/client.html', segment='client', form=form, reviews=reviews, client=clientDetails, subscriptionUntil=subscriptionUntil,
-     wrktTypeCount=wrktTypeCount, wrktTypeList=wrktTypeList, nbWorkoutPerMonth=nbWorkoutPerMonth, workoutProgram=workoutProgram, dietProgram=dietProgram, physicalInfo=physicalInfo)
+     wrktTypeCount=wrktTypeCount, wrktTypeList=wrktTypeList, nbWorkoutPerMonth=nbWorkoutPerMonth, workoutProgram=workoutProgram, dietProgram=dietProgram, physicalInfo=physicalInfo,
+     avgCalories=avgCalories, avgHeartRate=avgHeartRate)
 
 
 @blueprint.route('/add_client', methods=['POST', 'GET'])

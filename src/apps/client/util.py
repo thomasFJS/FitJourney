@@ -322,7 +322,7 @@ def get_average_calories_last_week(clientId):
     Return :
     | DECIMAL | the average of calories burned rounded to 1 decimal
     """
-    calories = db.session.query(func.avg(Workout.calories).label("avg")).filter(Workout.client_id==clientId).filter(func.week(Workout.date)==func.week(date.today()) -1).first()
+    calories = db.session.query(func.avg(Workout.calories).label("avg")).filter(Workout.client_id==clientId).filter(func.week(Workout.date)>=func.week(date.today()) -1).first()
 
     return round(calories.avg,1) if calories.avg != None else 0.0 
 
@@ -340,7 +340,27 @@ def get_average_heart_rate_last_week(clientId):
     Return :
     | DECIMAL | the average of heart rate recorded rounded to 1 decimal
     """
-    heart_rate = db.session.query(func.avg(Workout.heart_rate_avg).label("avg")).filter(Workout.client_id==clientId).filter(func.week(Workout.date)==func.week(date.today()) -1).first()
+    heart_rate = db.session.query(func.avg(Workout.heart_rate_avg).label("avg")).filter(Workout.client_id==clientId).filter(func.week(Workout.date)>=func.week(date.today()) -1).first()
 
     return round(heart_rate.avg,1) if heart_rate.avg != None else 0.0
 
+def get_time_working_out_last_week(clientId):
+    """
+    Get the total time working out recorded this week
+
+    Parameter(s) :
+     NAME      |  TYPE  | DESC
+     clientId  |  INT   | The id of the client
+
+    Return :
+    | DECIMAL | the total time in minute
+    """
+
+    subquery = db.session.query((func.extract("hour",Workout.duration)*60*60 + func.extract("minute",Workout.duration)*60+ func.extract("second",Workout.duration)).label("time")).filter(Workout.client_id==clientId).filter(func.week(Workout.date)>func.week(date.today())-1)
+    result = 0.0
+
+    for workout in subquery:
+        result += workout.time
+    
+
+    return result /60
