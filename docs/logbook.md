@@ -579,4 +579,5 @@ J'ai pu régler quelques détails comme :
 * Définir le role coach lors de l'enregistrement de la page register (Les clients sont créer avec le formulaire coach)
 * Affichage des messages *flash* avec le bon CSS
 * Details d'erreur pour l'ajout au calendrier si le coach ne possède aucun client.
-* Affichage d'un message à la place des graphiques si l'utilisateur n'a pas encore de données d'entrainement
+* Affichage d'un message à la place des graphiques si l'utilisateur n'a pas encore de données d'entrainement 
+* Ajouter le total de temps d'entrainement cette semaine

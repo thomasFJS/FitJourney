@@ -103,8 +103,9 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                           <label class="form-control-label" for="card_update">Card ID #</label>
-                          {{ form.card_id(placeholder="Card ID", class="form-control", type="number", value=client.card_id if client.card_id != None, disabled=true)}}
-                          <a href="#!" class="btn btn-sm btn-primary">Change</a>
+                          {{ form.card_id(placeholder="Card ID", class="form-control", type="text", value=client.card_id if client.card_id != None, disabled=true)}}
+                          <a href="{{ url_for('coach_blueprint.new_card', clientId=client.id) }}" class="btn btn-sm btn-primary">Change</a>
+                          
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -256,7 +257,7 @@
                 <div class="card" style="max-width: 10rem;">
                   <div class="card-header">Time working out</div>
                   <div class="card-body">
-                    <h5 class="card-title"></h5>
+                    <h5 class="card-title">{{ totalTime }}</h5>
                   </div>
                 </div>
             </div>

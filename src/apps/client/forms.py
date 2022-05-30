@@ -27,7 +27,7 @@ class UpdateForm(FlaskForm):
 
     profile_pic = FileField('Profile Pic', id="profile_pic_update")
 
-    card_id = IntegerField('Card ID', id='card_update')
+    card_id = StringField('Card ID', id='card_update')
     
     weight = StringField('Weight', id='weight_update')
 

@@ -31,6 +31,7 @@ from datetime import date, datetime
 
 from apps.coach.util import *
 from apps.client.util import *
+from apps.coach.reader import get_card_id
 
 @blueprint.route('/dashboard')
 @login_required
@@ -114,9 +115,11 @@ def client():
 	# Get the average of calories burned this week
     avgCalories = get_average_calories_last_week(client_id)
 
+    totalTime = get_time_working_out_last_week(client_id)
+
     return render_template('coach/client.html', segment='client', form=form, reviews=reviews, client=clientDetails, subscriptionUntil=subscriptionUntil,
      wrktTypeCount=wrktTypeCount, wrktTypeList=wrktTypeList, nbWorkoutPerMonth=nbWorkoutPerMonth, workoutProgram=workoutProgram, dietProgram=dietProgram, physicalInfo=physicalInfo,
-     avgCalories=avgCalories, avgHeartRate=avgHeartRate)
+     avgCalories=avgCalories, avgHeartRate=avgHeartRate, totalTime=totalTime)
 
 
 @blueprint.route('/add_client', methods=['POST', 'GET'])
@@ -259,3 +262,13 @@ def new_subscription():
                 return redirect(url_for('coach_blueprint.client', clientId=client_id))
 
     return render_template('coach/new_subscription.html', segment='new_subscription', form=form, client=client)
+
+@blueprint.route('/new_card', methods=['GET'])
+@login_required
+def new_card():
+    client_id = request.args.get('clientId')
+    card = get_card_id()
+
+    update_card_id(client_id, card)
+    
+    return redirect(url_for('coach_blueprint.client', clientId=client_id))

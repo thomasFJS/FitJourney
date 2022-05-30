@@ -238,3 +238,6 @@ def get_program_by_id(programId):
     program = db.session.query(Program.date, Program.type, Program.pdf).filter(Program.id==programId).first()
     return program
 
+def update_card_id(clientId, cardId):
+    db.session.query(User).filter(User.id==clientId).update({'card_id':cardId})
+    db.session.commit()
