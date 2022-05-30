@@ -31,6 +31,8 @@
               {% else %}
                 Add your credentials
               {% endif %}
+
+              {% for error in form.password.errors %} <p class="text-danger">{{ error | safe }}</p>  {% endfor%}
             </div>
             
           </div>

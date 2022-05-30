@@ -55,10 +55,10 @@ def login():
         return render_template('accounts/login.html',form=login_form)
     
     if current_user.role  == 1:
-        print("OK CLIENT")
+        #CLIENT
         return redirect(url_for('client_blueprint.index'))
     elif current_user.role == 2:
-        print("OK COACH")
+        #COACH
         return redirect(url_for('client_blueprint.index'))
 
     return redirect(url_for('client_blueprint.index'))
@@ -84,7 +84,8 @@ def register():
             flash("Email already registered", 'warning')
             return render_template('accounts/register.html', msg='Email Already registered', success=False, form=register_form)
 
-        #Else we create the user
+
+         #try to create the user
         try:
             user = User(name=request.form['name'], surname=request.form['surname'], email=request.form['email'], birthdate=request.form['birthdate'], password=request.form['password'], role=2)
             db.session.add(user)
@@ -95,6 +96,8 @@ def register():
             db.session.rollback()
             flash("Error while registering new user", 'danger')
             return redirect(url_for('authentication_blueprint.register'))
+
+
 
         return render_template('accounts/register.html', msg='<a href="/login"> LOGIN</a> ', success=True, form=register_form)
 
