@@ -126,14 +126,14 @@ def profile():
 			try:
 				db.session.commit()
 				saver.save(os.path.join(Config.UPLOAD_FOLDER, pic_name))
-				flash("Account Updated successfully !")
+				flash("Account Updated successfully !", 'success')
 				return render_template("client/profile.html",
 						form=update_form,
 						reviewFields=coachingReviewFields,
 						reviewTargetId=coachId
 				)		
 			except:
-				flash("Error! Looks like there was a problem.. try again!")
+				flash("Error! Looks like there was a problem.. try again!", 'danger')
 				return render_template("client/profile.html",
 						form=update_form,
 						reviewFields=coachingReviewFields,
@@ -141,7 +141,7 @@ def profile():
 						)
 		else:
 			db.session.commit()
-			flash("User Updated successfully !")
+			flash("User Updated successfully !", 'success')
 			return render_template("client/profile.html", 
 					form=update_form,
 					reviewFields=coachingReviewFields,
@@ -211,7 +211,7 @@ def add_review():
 			exists = is_workout_reviewed(request.form['target'])
 			if exists :
 				db.session.rollback()
-				flash("You already add a review on this workout")
+				flash("You already add a review on this workout", 'warning')
 				return redirect( url_for('client_blueprint.workouts') )
 			else :
 				# Try to add and commit the workout review 
@@ -219,10 +219,10 @@ def add_review():
 					newWorkoutReview = WorkoutReview(id= newReview.id,difficulty=request.form['field1'], feel=request.form['field2'], fatigue=request.form['field3'], energy=request.form['field4'], target_id=request.form['target'])
 					db.session.add(newWorkoutReview)
 					db.session.commit()
-					flash("Your workout review is added")
+					flash("Your workout review is added", 'success')
 				except :
 					db.session.rollback()
-					flash("Error, please try again")
+					flash("Error, please try again", 'danger')
 				
 				return redirect( url_for('client_blueprint.workouts') )
 
@@ -233,9 +233,9 @@ def add_review():
 				newCoachingReview = CoachingReview(id=newReview.id,satisfaction=request.form['field1'], support=request.form['field2'], disponibility=request.form['field3'], advice=request.form['field4'], target_id=request.form['target'])
 				db.session.add(newCoachingReview)
 				db.session.commit()
-				flash("Your coaching review is added")
+				flash("Your coaching review is added", 'success')
 			except:
-				flash("Error, please try again")
+				flash("Error, please try again", 'danger')
 
 			
 			return redirect( url_for('client_blueprint.profile') )
@@ -260,14 +260,14 @@ def change_password():
 					current_user.password = hash_pass(request.form['newPassword'])
 					db.session.flush()
 					db.session.commit()
-					flash("Password updated")
+					flash("Password updated", 'success')
 					return redirect( url_for('client_blueprint.profile') )
 				except: 
-					flash("Error, please try again")
+					flash("Error, please try again", 'danger')
 			else :
-				flash ("Passwords must match !")
+				flash ("Passwords must match !", 'warning')
 		else:
-			flash("Old password isn't correct !")
+			flash("Old password isn't correct !", 'warning')
 	return render_template('client/change_password.html', segment="change_password", form=form)
 
 

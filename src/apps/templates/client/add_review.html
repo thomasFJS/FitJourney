@@ -7,14 +7,14 @@
 {% block content %}
 
 <div class="container-fluid mt--8" style="margin: auto;">
-  {% for message in get_flashed_messages() %}
-
-<div class="alert alert-primary alert-dismissible fade show" role="alert">
-  {{ message }}
-  <button type="button" class="btn btn-secondary" data-bs-dismiss="alert" aria-label="Close">Close</button>
-</div>
-
-{% endfor %}
+  {% for category, message in get_flashed_messages(with_categories=true) %}
+	
+  <div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+    {{ message }}
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="alert" aria-label="Close">Close</button>
+  </div>
+  
+  {% endfor %}
 
 <div class="row">
   <div class="card card-body h-auto" style="width: 18rem; float: right;">

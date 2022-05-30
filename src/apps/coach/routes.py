@@ -134,6 +134,7 @@ def add_client():
             print(newClient.id)
             newCoachAssign = CoachedBy(client_id=newClient.id, coach_id=current_user.id, starting_date=date, end_date=end_date)
             newPurchase = Purchase(client_id=newClient.id, date=date, subscription_id=get_subscription_id(subscription).id)
+            print(get_subscription_id(subscription).id)
             db.session.add(newPurchase)
             db.session.add(newCoachAssign)
             db.session.commit()

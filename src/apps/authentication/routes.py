@@ -6,7 +6,7 @@ Version :        1.0.0
 Brief   :        Set all authentication routes
 """
 
-from flask import render_template, redirect, request, url_for
+from flask import render_template, redirect, request, url_for, flash
 from flask_login import (
     current_user,
     login_user,
@@ -81,14 +81,22 @@ def register():
         user = User.query.filter_by(email=email).first()
 
         if user:
+            flash("Email already registered", 'warning')
             return render_template('accounts/register.html', msg='Email Already registered', success=False, form=register_form)
 
         #Else we create the user
-        user = User(**request.form)
-        db.session.add(user)
-        db.session.commit()
+        try:
+            user = User(name=request.form['name'], surname=request.form['surname'], email=request.form['email'], birthdate=request.form['birthdate'], password=request.form['password'], role=2)
+            db.session.add(user)
+            db.session.commit()
+            flash("User has been created please login", 'success')
+            return redirect(url_for('authentication_blueprint.login'))
+        except:
+            db.session.rollback()
+            flash("Error while registering new user", 'danger')
+            return redirect(url_for('authentication_blueprint.register'))
 
-        return render_template('accounts/register.html', msg='User has been created please <a href="/login"> login</a> ', success=True, form=register_form)
+        return render_template('accounts/register.html', msg='<a href="/login"> LOGIN</a> ', success=True, form=register_form)
 
     else:
         return render_template('accounts/register.html', form=register_form)

@@ -7,14 +7,14 @@
 
 
 <div class="container-fluid mt--8" style="margin: auto;">
-    {% for message in get_flashed_messages() %}
+  {% for category, message in get_flashed_messages(with_categories=true) %}
 	
-	<div class="alert alert-primary alert-dismissible fade show" role="alert">
-	  {{ message }}
-	  <button type="button" class="btn btn-secondary" data-bs-dismiss="alert" aria-label="Close">Close</button>
-	</div>
-
-{% endfor %}
+  <div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+    {{ message }}
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="alert" aria-label="Close">Close</button>
+  </div>
+  
+  {% endfor %}
 
   
 
@@ -118,7 +118,7 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label class="form-control-label" for="subscription_until">Subscription Until</label>
-                            {{ form.subscriptionEnd(placeholder="Subscription Until", class="form-control", type="date", value=current_user.subscriptionEnd, disabled=true)}}
+                            {{ form.subscriptionEnd(placeholder="Subscription Until", class="form-control",  value=current_user.subscriptionEnd if current_user.subscriptionEnd != None, disabled=true)}}
                         </div>
                     </div>
                 </div>
@@ -186,9 +186,9 @@
       <div class="row">
         <div class="col-lg-12">
             <div class="form-group">
-              <label class="form-control-label">Workout Program added the {{current_user.workoutProgram.date.strftime('%d/%m/%Y')}}: </label>
-            </br>
               {% if current_user.workoutProgram != None %}
+              <label class="form-control-label">Workout Program added the {{current_user.workoutProgram.date.strftime('%d/%m/%Y')}}: </label>
+              </br>
               <a href="{{ url_for('coach_blueprint.program', programId=current_user.workoutProgram.id, programType="workout") }}" class="btn btn-sm btn-warning">Workout Program</a> added by <strong>{{current_user.workoutProgram.name}} {{current_user.workoutProgram.surname}}</strong>
               {% else %}
               <h4>No workout plan available yet</h4>
@@ -199,9 +199,9 @@
         <div class="row">
           <div class="col-lg-12">
               <div class="form-group">
+                {% if current_user.dietProgram != None %}
                 <label class="form-control-label">Diet Program added the {{current_user.dietProgram.date.strftime('%d/%m/%Y')}}: </label>
               </br>
-                {% if current_user.dietProgram != None %}
                 <a href="{{ url_for('coach_blueprint.program', programId=current_user.dietProgram.id, programType="diet") }}" class="btn btn-sm btn-success">Diet Program</a> added by <strong>{{current_user.dietProgram.name}} {{current_user.dietProgram.surname}}</strong>
                 {% else %}
                 <h4>No diet plan available yet</h4>

@@ -564,3 +564,11 @@ Aujourd'hui j'ai poursuivi l'avancement des dernières pages qu'il me reste a cr
 J'ai également fait la page de profil client, on y retrouve plusieurs infos du client comme les reviews qu'il a posté, ses programmes ainsi que des graphiques représentant les entrainements qu'il effectue.
 
 Je vais cette fois vraiment devoir travailler un peu ce week-end, pour m'assurer que toutes les pages soient terminées et fonctionnent comme je le souhaite. Je pourrai ainsi débuter la récupération des données avec l'API et la détéction de carte RFID. J'espère au plus tard terminer mon projet en fin de semaine prochaine, pour garder une semaine complète de documentation.
+
+### Lundi, 30 Mai 2022
+
+J'ai pu terminer toutes les pages que je devais encore créer, le coach peut maintenant ajouter un "checkup"(bilan) à un utilisateur et peut renouveler l'abonnement d'un client. J'ai du modifier légèrement la base de données, j'ai ajouté un champ *date* à la table *PROGRAM* pour garder les anciens programmes. J'ai également modifié le champ *pdf* en *LONGBLOB* car *BLOB* était trop court dans certains cas.
+
+Le client peut maintenant télécharger son programme directement depuis son profil dans la section *Programs*.
+
+J'ai encore quelques détails à revoir et je vais tester toutes les fonctionnalitées/pages. SI je ne rencontre aucun problème et que tout est ok, je vais ajouter la lecture de carte RFID pour assigner les cartes de membres.
