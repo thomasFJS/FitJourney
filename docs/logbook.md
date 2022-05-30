@@ -567,17 +567,22 @@ Je vais cette fois vraiment devoir travailler un peu ce week-end, pour m'assurer
 
 ### Lundi, 30 Mai 2022
 
-J'ai pu terminer toutes les pages que je devais encore créer, le coach peut maintenant ajouter un "checkup"(bilan) à un utilisateur et peut renouveler l'abonnement d'un client. J'ai du modifier légèrement la base de données, j'ai ajouté un champ *date* à la table *PROGRAM* pour garder les anciens programmes. J'ai également modifié le champ *pdf* en *LONGBLOB* car *BLOB* était trop court dans certains cas.
+J'ai pu terminer toutes les pages que je devais encore créer, le coach peut maintenant ajouter un "checkup"(bilan) à un utilisateur et peut renouveler l'abonnement d'un client. J'ai dû modifier légèrement la base de données, j'ai ajouté un champ *date* à la table *PROGRAM* pour garder les anciens programmes. J'ai également modifié le champ *pdf* en *LONGBLOB* car *BLOB* était trop court dans certains cas.
 
 Le client peut maintenant télécharger son programme directement depuis son profil dans la section *Programs*.
 
-J'ai encore quelques détails à revoir et je vais tester toutes les fonctionnalitées/pages. SI je ne rencontre aucun problème et que tout est ok, je vais ajouter la lecture de carte RFID pour assigner les cartes de membres.
+J'ai encore quelques détails à revoir et je vais tester toutes les fonctionnalités/pages. SI je ne rencontre aucun problème et que tout est ok, je vais ajouter la lecture de carte RFID pour assigner les cartes de membres.
 
 J'ai pu régler quelques détails comme : 
 
 * Affichage d'un message d'erreur *Password must match* lors de la création d'un nouveau compte
-* Définir le role coach lors de l'enregistrement de la page register (Les clients sont créer avec le formulaire coach)
+* Définir le rôle coach lors de l'enregistrement de la page register (Les clients sont créés avec le formulaire coach)
 * Affichage des messages *flash* avec le bon CSS
-* Details d'erreur pour l'ajout au calendrier si le coach ne possède aucun client.
+* Détails d'erreur pour l'ajout au calendrier si le coach ne possède aucun client.
 * Affichage d'un message à la place des graphiques si l'utilisateur n'a pas encore de données d'entrainement 
 * Ajouter le total de temps d'entrainement cette semaine
+
+J'ai pu ajouter la mise à jour de la carte de membre, lorsque le coach click sur le bouton *change* sur le profil du client il peut changer la carte de membre en scannant une nouvelle carte.
+
+Pour l'instant, je n'ai pas mis de timeout, c'est-à-dire que si le coach ne scanne pas de carte alors qu'il a cliqué sur le bouton le site restera bloqué à attendre la carte. Je pense donc mettre un timeout de 30s 
+
