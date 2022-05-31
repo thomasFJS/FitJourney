@@ -239,5 +239,9 @@ def get_program_by_id(programId):
     return program
 
 def update_card_id(clientId, cardId):
-    db.session.query(User).filter(User.id==clientId).update({'card_id':cardId})
-    db.session.commit()
+    try:
+        db.session.query(User).filter(User.id==clientId).update({'card_id':cardId})
+        db.session.commit()
+        return True
+    except:
+        return False

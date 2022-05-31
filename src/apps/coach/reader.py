@@ -7,7 +7,7 @@ import time
 def get_card_id():
     card_type = AnyCardType()
 
-    request = CardRequest(timeout=None, cardType=card_type)
+    request = CardRequest(timeout=30, cardType=card_type)
 
     card = None
 
@@ -19,7 +19,7 @@ def get_card_id():
             service = request.waitforcard()
         except:
             print("ERROR: No card detected")
-            exit(-1)
+            break
 
         conn = service.connection
         conn.connect()

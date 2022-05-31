@@ -269,6 +269,13 @@ def new_card():
     client_id = request.args.get('clientId')
     card = get_card_id()
 
-    update_card_id(client_id, card)
+    if card == None:
+        flash("No new card was detected", 'danger')
+        return redirect(url_for('coach_blueprint.client', clientId=client_id))
+
+    if update_card_id(client_id, card):
+        flash("Member card updated", 'success')
+    else:
+        flash("Error while updating the member card, please try again", 'danger')
     
     return redirect(url_for('coach_blueprint.client', clientId=client_id))
