@@ -597,6 +597,8 @@ Après quelques tests, le mailer fonctionne correctement, je vais maintenant ajo
 
 J'ai ajouté l'envoie d'une notification par mail lorsque le coach ajoute un nouveau programme, lors du renouvellement d'un abonnement , lors de l'enregistrement d'une session et lors de la création du compte client également.
 
+REMARQUE : Les actions qui envoient un mail, sont remarquablement ralenties.
+
 Il me reste quelques point à effectuer avant de commencer le script qui tournera à côté pour gérer les entrées/sorties et l'appel à l'API :
 
 * Ajouter un graphique représentant l'évolution du poid (si possible changement des valeurs avec *Masse graisseuse*, *Masse musculaire*, etc)

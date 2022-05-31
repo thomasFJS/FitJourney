@@ -352,16 +352,20 @@
 				],
         datasets: [{
 					label: 'Weight update',
-					data: [96.8, 96.5, 95.4],
+					data: {{weightUpdate}},
 					fill: false,
 					borderColor: 'rgb(0, 128, 128)',
 					tension: 0.1
 				}]
 			},
 			options: {
-				r: {
-					suggestedMin: 0
-				},
+        scales: {
+            y: {
+                min: 40,
+                suggestedMin: 50,
+                suggestedMax: 100
+            }
+        },
 				elements: {
 				line: {
 					borderWidth: 3

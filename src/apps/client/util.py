@@ -15,7 +15,7 @@ from sqlalchemy import union, func
 
 # UTILS
 from dateutil.relativedelta import relativedelta
-
+import numpy as np
 from datetime import date, datetime
 
 def get_next_session(userId):
@@ -367,3 +367,20 @@ def get_time_working_out_last_week(clientId):
     
 
     return result /60
+
+def get_weight_update(clientId):
+    """
+    Get the average weight each month of a client during the whole year (months without values will show 0)
+    """
+    
+    weights = db.session.query(func.month(PhysicalInfo.date).label("month"), func.avg(PhysicalInfo.weight).label("avg")).filter(PhysicalInfo.user_id==clientId).filter(func.year(date.today())==func.year(PhysicalInfo.date)).group_by(func.month(PhysicalInfo.date))
+    
+    # Create a year array with 12 values (each value represent a month)
+    weightPerMonth = [0,0,0,0,0,0,0,0,0,0,0,0]
+    for i in range(12):
+        for weight in weights:
+            if i == weight.month-1: # If month got result from query set the value else keep 0 
+                weightPerMonth[i] = float(round(weight.avg,1))
+                break
+                    
+    return weightPerMonth

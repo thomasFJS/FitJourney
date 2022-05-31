@@ -121,9 +121,11 @@ def client():
 
     totalTime = get_time_working_out_last_week(client_id)
 
+    weightUpdate = get_weight_update(client_id)
+    print(weightUpdate)
     return render_template('coach/client.html', segment='client', form=form, reviews=reviews, client=clientDetails, subscriptionUntil=subscriptionUntil,
      wrktTypeCount=wrktTypeCount, wrktTypeList=wrktTypeList, nbWorkoutPerMonth=nbWorkoutPerMonth, workoutProgram=workoutProgram, dietProgram=dietProgram, physicalInfo=physicalInfo,
-     avgCalories=avgCalories, avgHeartRate=avgHeartRate, totalTime=totalTime)
+     avgCalories=avgCalories, avgHeartRate=avgHeartRate, totalTime=totalTime, weightUpdate=weightUpdate)
 
 
 @blueprint.route('/add_client', methods=['POST', 'GET'])

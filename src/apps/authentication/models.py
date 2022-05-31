@@ -68,7 +68,7 @@ class PhysicalInfo(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('USER.id'))
 
     height = db.Column(db.Integer, nullable=False)
-    weight = db.Column(db.Numeric(3,1), nullable=False)
+    weight = db.Column(db.Numeric(4,1), nullable=False)
     age = db.Column(db.Integer, nullable=False)
     bmi = db.Column(db.Numeric(3,1), nullable=False)
     bmr = db.Column(db.Numeric(5,1), nullable=False)
