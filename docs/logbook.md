@@ -586,3 +586,17 @@ J'ai pu ajouter la mise à jour de la carte de membre, lorsque le coach click su
 
 Pour l'instant, je n'ai pas mis de timeout, c'est-à-dire que si le coach ne scanne pas de carte alors qu'il a cliqué sur le bouton le site restera bloqué à attendre la carte. Je pense donc mettre un timeout de 30s 
 
+### Mardi, 31 Mai 2022
+J'ai mis à jour quelques détails comme l'affichage d'icone cohérentes à côté des statistiques.
+
+J'ai commencé à implémenter le mailer avec *FlaskMail*. J'ai ajouté la configuration dans mon fichier de config. 
+
+Pour envoyer les mails, j'ai créer le mail : *fitjourney.cfpt@gmail.com*.
+
+Après quelques tests, le mailer fonctionne correctement, je vais maintenant ajouter l'envoie d'un mail de notification sur quelques actions. (Pas trop car cela prend du temps donc je ne vais pas trop charger l'application avec des envoies de mail)
+
+Il me reste quelques point à effectuer avant de commencer le script qui tournera à côté pour gérer les entrées/sorties et l'appel à l'API :
+
+* Ajouter un graphique représentant l'évolution du poid (si possible changement des valeurs avec *Masse graisseuse*, *Masse musculaire*, etc)
+* Ajouter la possibilité au coach de modifier les informations du compte client
+* Vérifier que le compte connecté est bien coach pour toutes les pages coach

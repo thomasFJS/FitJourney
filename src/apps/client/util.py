@@ -16,7 +16,7 @@ from sqlalchemy import union, func
 # UTILS
 from dateutil.relativedelta import relativedelta
 
-from datetime import date
+from datetime import date, datetime
 
 def get_next_session(userId):
     """
@@ -37,7 +37,7 @@ def get_next_session(userId):
     Return :
     | ARRAY[] | Array with all the next sessions planed for a user
     """
-    sessions = db.session.query(Session.start_time, Session.end_time, Session.duration, WorkoutType.title, WorkoutType.logo, User.name, User.surname).join(WorkoutType, Session.workout_type==WorkoutType.id).join(User, Session.coach_id==User.id).filter(Session.client_id==userId).filter(Session.start_time>date.today()).order_by(Session.start_time)
+    sessions = db.session.query(Session.start_time, Session.end_time, Session.duration, WorkoutType.title, WorkoutType.logo, User.name, User.surname).join(WorkoutType, Session.workout_type==WorkoutType.id).join(User, Session.coach_id==User.id).filter(Session.client_id==userId).filter(Session.start_time>datetime.now()).order_by(Session.start_time)
 
     return sessions
 
@@ -238,8 +238,11 @@ def get_subscription_end_date(userId):
     """
     subscription = db.session.query(Subscription.duration, Purchase.date).join(Subscription, Purchase.subscription_id==Subscription.id).filter(Purchase.client_id==userId).order_by(Purchase.date.desc()).first()
 
-    #Add duration to the purchase date to get end date
-    endDate = (subscription[1] + relativedelta(months=subscription[0]))	
+    endDate=''
+    if subscription != None:
+        #Add duration to the purchase date to get end date
+        endDate = (subscription[1] + relativedelta(months=subscription[0]))
+    
     
     return endDate
 

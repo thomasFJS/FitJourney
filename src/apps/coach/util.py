@@ -126,6 +126,21 @@ def get_client_details(clientId):
     
     return client
 
+def get_client_mail(clientId):
+    """
+    Get only the client mail 
+
+    Parameter(s):
+     NAME     |  TYPE  | DESC
+     clientId |  INT   | the id of the client
+
+     Return :
+     | String | the mail of the client
+    """
+    mail = db.session.query(User.email).filter(User.id==clientId).first()
+
+    return mail
+
 def get_all_workout_types():
     """
     Get all types of workouts
@@ -213,8 +228,8 @@ def get_program(clientId):
     | Array[Query()] | Array with 2 Query object 1 represent the latest workout program and the other the latest diet program.
     """
     # Get the latest workout program uploaded for this user (Program type : 1 => Diet | 2 => Workout)
-    workoutProgram = db.session.query(Program.id, Program.date, User.name, User.surname).join(User, Program.coach_id==User.id).filter(Program.type==2).filter(Program.client_id==clientId).order_by(Program.date.desc()).first() 
-    dietProgram = db.session.query(Program.id, Program.date, User.name, User.surname).join(User, Program.coach_id==User.id).filter(Program.type==1).filter(Program.client_id==clientId).order_by(Program.date.desc()).first() 
+    workoutProgram = db.session.query(Program.id, Program.date, User.name, User.surname).join(User, Program.coach_id==User.id).filter(Program.type=="Workout").filter(Program.client_id==clientId).order_by(Program.date.desc()).first() 
+    dietProgram = db.session.query(Program.id, Program.date, User.name, User.surname).join(User, Program.coach_id==User.id).filter(Program.type=="Diet").filter(Program.client_id==clientId).order_by(Program.date.desc()).first() 
     
     result = []
 
@@ -239,9 +254,21 @@ def get_program_by_id(programId):
     return program
 
 def update_card_id(clientId, cardId):
+    """
+    Update the card id of a client
+
+    Parameter(s):
+     NAME     |  TYPE  | DESC
+     clientId |   INT  | the id of the client
+     cardId  |  INT    | the new card id
+
+    Return :
+    | Boolean | True if the update success, else False
+    """
     try:
         db.session.query(User).filter(User.id==clientId).update({'card_id':cardId})
         db.session.commit()
         return True
     except:
         return False
+

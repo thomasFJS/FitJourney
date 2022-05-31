@@ -116,7 +116,7 @@ class AddProgramForm(FlaskForm):
     Create the adding program form
     """
 
-    type = SelectField('Type', id="program_type",  validators=[DataRequired()], choices=[(1, "Diet"), (2, "Workout")])
+    type = SelectField('Type', id="program_type",  validators=[DataRequired()], choices=[("Diet", "Diet"), ("Workout", "Workout")])
 
     file = FileField('Program File', id="program_file", validators=[FileRequired(), FileAllowed(['pdf'], 'PDF only !')])
 

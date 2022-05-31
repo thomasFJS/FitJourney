@@ -243,23 +243,41 @@
             </div>
             <div class="col-lg-4">
                 <div class="card" style="max-width: 12rem;">
-                  <div class="card-header">Calories Burn</div>
+                  <div class="card-header">Calories burned 
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="text-orange"> <g> <path fill="none" d="M0 0h24v24H0z"/> <path d="M12 23a7.5 7.5 0 0 1-5.138-12.963C8.204 8.774 11.5 6.5 11 1.5c6 4 9 8 3 14 1 0 2.5 0 5-2.47.27.773.5 1.604.5 2.47A7.5 7.5 0 0 1 12 23z"/> </g> </svg>
+                  </div>
                   <div class="card-body">
                     <h5 class="card-title">{{ avgCalories }}</h5>
                   </div>
                 </div>
-                <div class="card" style="max-width: 10rem;">
-                  <div class="card-header">Heart rate avg</div>
+                <div class="card" style="max-width: 11rem;">
+                  <div class="card-header">Heart rate avg 
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-pulse-fill text-red" viewBox="0 0 16 16">
+                      <path fill-rule="evenodd" d="M1.475 9C2.702 10.84 4.779 12.871 8 15c3.221-2.129 5.298-4.16 6.525-6H12a.5.5 0 0 1-.464-.314l-1.457-3.642-1.598 5.593a.5.5 0 0 1-.945.049L5.889 6.568l-1.473 2.21A.5.5 0 0 1 4 9H1.475ZM.879 8C-2.426 1.68 4.41-2 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C11.59-2 18.426 1.68 15.12 8h-2.783l-1.874-4.686a.5.5 0 0 0-.945.049L7.921 8.956 6.464 5.314a.5.5 0 0 0-.88-.091L3.732 8H.88Z"/>
+                    </svg>
+                  </div>
                   <div class="card-body">
                     <h5 class="card-title">{{ avgHeartRate }}</h5>
                   </div>
                 </div>
-                <div class="card" style="max-width: 10rem;">
-                  <div class="card-header">Time working out</div>
+                <div class="card" style="max-width: 11rem;">
+                  <div class="card-header">Time working out
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+                      <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+                      <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+                    </svg>
+                  </div>
                   <div class="card-body">
                     <h5 class="card-title">{{ totalTime }}</h5>
                   </div>
                 </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="chart-container" style="max-width: 40rem; position: relative;">
+                <canvas id="weightUpdate"></canvas>
+              </div>
             </div>
           </div>
           </div>
@@ -314,7 +332,44 @@
   {% endfor %}
   const ctx = document.getElementById('workoutTypes').getContext('2d');
   const ctx2 = document.getElementById('workoutCount').getContext('2d');
-  const myChart2 = new Chart(ctx2, {
+  const ctx3 = document.getElementById('weightUpdate').getContext('2d');
+  const weightUpdateChart = new Chart(ctx3,{
+      type: 'line',
+      data:{
+        labels: [
+					'Jan',
+					'Feb',
+					'Mar',
+					'Apr',
+					'Mai',
+					'Jun',
+					'Jul',
+          'Aug',
+          'Sept',
+          'Oct',
+          'Nov',
+          'Dec'
+				],
+        datasets: [{
+					label: 'Weight update',
+					data: [96.8, 96.5, 95.4],
+					fill: false,
+					borderColor: 'rgb(0, 128, 128)',
+					tension: 0.1
+				}]
+			},
+			options: {
+				r: {
+					suggestedMin: 0
+				},
+				elements: {
+				line: {
+					borderWidth: 3
+				}
+			}
+      }
+  });
+  const workoutCountChart = new Chart(ctx2, {
 			type: 'line',
 			data: {
 				labels: [
@@ -350,7 +405,7 @@
 			}
 			}
 		});
-  const myChart = new Chart(ctx, {
+  const workoutTypeChart = new Chart(ctx, {
     type: 'doughnut',
     data: {
       labels: workoutList,

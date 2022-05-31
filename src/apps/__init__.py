@@ -10,12 +10,13 @@ from flask import Flask
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 from importlib import import_module
+from flask_mail import Mail
 
 
 
 db = SQLAlchemy()
 login_manager = LoginManager()
-
+mail = Mail()
 
 def register_extensions(app):
     """
@@ -23,10 +24,11 @@ def register_extensions(app):
 
     - LoginManager
     - SQLAlchemy
+    - FlaskMail
     """
     db.init_app(app)
     login_manager.init_app(app)
-
+    mail.init_app(app)
 
 
 def register_blueprints(app):

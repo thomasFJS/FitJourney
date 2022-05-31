@@ -8,7 +8,7 @@ Brief   :        Set all the coach routes
 
 # APP
 from apps.coach import blueprint
-from apps import db, login_manager
+from apps import db, login_manager, mail
 from apps.authentication.models import User, PhysicalInfo, Subscription, CoachingReview, WorkoutReview, Review, Workout, WorkoutType, Session, Program, CoachedBy, Purchase
 from apps.coach.forms import SessionForm, AddClientForm, ClientForm, AddProgramForm, AddCheckUpForm, RenewSubscriptionForm
 from apps.config import Config
@@ -17,7 +17,7 @@ from apps.config import Config
 from flask import render_template, redirect, request, url_for, flash, send_file
 from flask_login import login_required
 from jinja2 import TemplateNotFound
-
+from flask_mail import Message
 from flask_login import (
     current_user
 )
@@ -167,16 +167,20 @@ def add_program():
     form=AddProgramForm()
     #Get client id
     client_id = request.args.get('clientId')
-  
+    
     if request.method == "POST":
         if form.validate_on_submit():
             
             file_name = form.file.data
+            client = get_client_details(request.form['client'])
             try:
                 newProgram = Program(type=request.form['type'], pdf=file_name.read(),date=date.today(), client_id=request.form['client'], coach_id=current_user.id)
                 db.session.add(newProgram)
                 db.session.commit()
                 flash("Program Added !", 'success')
+                msg = Message('New program available', recipients =[client.email])
+                msg.body = "Hey "+ client.name + ", your coach just added your new "+ request.form['type']  + " program"
+                mail.send(msg)
                 return redirect(url_for('coach_blueprint.client', clientId=request.form['client']))
             except:
                 db.session.rollback()
@@ -268,7 +272,7 @@ def new_subscription():
 def new_card():
     client_id = request.args.get('clientId')
     card = get_card_id()
-
+    client = get_client_details(client_id)
     if card == None:
         flash("No new card was detected", 'danger')
         return redirect(url_for('coach_blueprint.client', clientId=client_id))
