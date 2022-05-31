@@ -73,12 +73,16 @@ def calendar():
 
         # Set duration format
         duration = "0{durationSelected}:00:00".format(durationSelected=durationSelected)
-
+        client = get_client_details(request.form['client'])
         try :
             newSession = Session(start_time=startDateTime, end_time=endDateTime, duration=duration, workout_type=request.form['type'], client_id=request.form['client'], coach_id=current_user.id)
             db.session.add(newSession)
             db.session.commit()
             flash("The session is registered !", 'success')
+            #set and send mail
+            msg = Message('New session register', recipients =[client.email])
+            msg.body = "Hey "+ client.name + ", your coach just registered a new session with you on  "+ startDateTime.strftime("%d %B, %Y") + " at " + startDateTime.strftime("%I%p") + " for " + durationSelected +" hour(s)" 
+            mail.send(msg)
             return redirect( url_for('coach_blueprint.calendar') )
         except:
             db.session.rollback()
@@ -152,6 +156,10 @@ def add_client():
             db.session.add(newCoachAssign)
             db.session.commit()
             flash("New client is registered !", 'success')
+            #Set and send mail
+            msg = Message('Your account is now created ', recipients =[newClient.email])
+            msg.body = "Hey "+ newClient.name + ", your Fitjourney account just been created. You can access to it by filling the login form with : \r\n Email : "+ newClient.email  + " \r\n Password : " + newClient.name + "123 \r\n Thank you. \r\n Fitjourney"
+            mail.send(msg)
             return redirect( url_for('coach_blueprint.dashboard') )
         except:
             db.session.rollback()
@@ -178,8 +186,9 @@ def add_program():
                 db.session.add(newProgram)
                 db.session.commit()
                 flash("Program Added !", 'success')
+                #Set and send mail
                 msg = Message('New program available', recipients =[client.email])
-                msg.body = "Hey "+ client.name + ", your coach just added your new "+ request.form['type']  + " program"
+                msg.body = "Hey "+ client.name + ", your coach just added your new "+ request.form['type']  + " program \r\n Fitjourney"
                 mail.send(msg)
                 return redirect(url_for('coach_blueprint.client', clientId=request.form['client']))
             except:
@@ -259,6 +268,9 @@ def new_subscription():
                 db.session.add(newCoachAssign)
                 db.session.commit()
                 flash("New subscription is purchased !", 'success')
+                msg = Message('New subscription purchased', recipients =[client.email])
+                msg.body = "Hey "+ client.name + ", you just purchased a new subscription for " + request.form['subscription'] + " month(s).  \r\n Thank you. \r\n Fitjourney"
+                mail.send(msg)
                 return redirect( url_for('coach_blueprint.client', clientId=client_id) )
             except:
                 db.session.rollback()

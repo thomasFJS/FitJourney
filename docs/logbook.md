@@ -595,6 +595,8 @@ Pour envoyer les mails, j'ai créer le mail : *fitjourney.cfpt@gmail.com*.
 
 Après quelques tests, le mailer fonctionne correctement, je vais maintenant ajouter l'envoie d'un mail de notification sur quelques actions. (Pas trop car cela prend du temps donc je ne vais pas trop charger l'application avec des envoies de mail)
 
+J'ai ajouté l'envoie d'une notification par mail lorsque le coach ajoute un nouveau programme, lors du renouvellement d'un abonnement , lors de l'enregistrement d'une session et lors de la création du compte client également.
+
 Il me reste quelques point à effectuer avant de commencer le script qui tournera à côté pour gérer les entrées/sorties et l'appel à l'API :
 
 * Ajouter un graphique représentant l'évolution du poid (si possible changement des valeurs avec *Masse graisseuse*, *Masse musculaire*, etc)

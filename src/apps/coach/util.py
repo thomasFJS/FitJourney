@@ -89,7 +89,7 @@ def get_clients(coachId):
      | Array[Dict] | Array of dict, dict contains all properties from user that we need
 
     """
-    clients = db.session.query(User.id, User.name, User.surname, User.card_id, User.profile_pic).join(CoachedBy, CoachedBy.client_id==User.id).filter(CoachedBy.coach_id==coachId)
+    clients = db.session.query(User.id, User.name, User.surname, User.card_id, User.profile_pic).distinct(User.id).join(CoachedBy, CoachedBy.client_id==User.id).filter(CoachedBy.coach_id==coachId)
 
 
     result = []
@@ -126,20 +126,6 @@ def get_client_details(clientId):
     
     return client
 
-def get_client_mail(clientId):
-    """
-    Get only the client mail 
-
-    Parameter(s):
-     NAME     |  TYPE  | DESC
-     clientId |  INT   | the id of the client
-
-     Return :
-     | String | the mail of the client
-    """
-    mail = db.session.query(User.email).filter(User.id==clientId).first()
-
-    return mail
 
 def get_all_workout_types():
     """
