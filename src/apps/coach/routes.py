@@ -36,6 +36,9 @@ from apps.coach.reader import get_card_id
 @blueprint.route('/dashboard')
 @login_required
 def dashboard():
+    #Check if user is coach
+    if not current_user.is_coach():
+        return redirect(url_for('authentication_blueprint.login'))
 
     nextClient = get_coach_next_session(current_user.id)
     clientLastWorkout = get_last_workout(nextClient.id) if nextClient != None else None
@@ -47,6 +50,10 @@ def dashboard():
 @blueprint.route('/calendar', methods=['POST', 'GET'])
 @login_required
 def calendar():
+    #Check if user is coach
+    if not current_user.is_coach():
+        return redirect(url_for('authentication_blueprint.login'))
+
     form = SessionForm(request.form)
     # Set select input choices
     form.client.choices = [(client['id'], str(client['name'] + " " + client['surname'])) for client in get_clients(current_user.id)]
@@ -94,6 +101,10 @@ def calendar():
 @blueprint.route('/client', methods=['POST', 'GET'])
 @login_required
 def client():
+    #Check if user is coach
+    if not current_user.is_coach():
+        return redirect(url_for('authentication_blueprint.login'))
+
     form = ClientForm(request.form)
     #Get client id
     client_id = request.args.get('clientId')
@@ -131,6 +142,10 @@ def client():
 @blueprint.route('/add_client', methods=['POST', 'GET'])
 @login_required
 def add_client():
+    #Check if user is coach
+    if not current_user.is_coach():
+        return redirect(url_for('authentication_blueprint.login'))
+
     form = AddClientForm(request.form)
 
     form.subscription.choices = [(subscription.duration, subscription.title + " - " + str(subscription.cost) + "CHF") for subscription in get_all_subscriptions()]
@@ -174,6 +189,10 @@ def add_client():
 @blueprint.route('/add_program', methods=['POST', 'GET'])
 @login_required
 def add_program():
+    #Check if user is coach
+    if not current_user.is_coach():
+        return redirect(url_for('authentication_blueprint.login'))
+
     form=AddProgramForm()
     #Get client id
     client_id = request.args.get('clientId')
@@ -216,6 +235,10 @@ def program():
 @blueprint.route('/check_up', methods=['POST', 'GET'])
 @login_required
 def check_up():
+    #Check if user is coach
+    if not current_user.is_coach():
+        return redirect(url_for('authentication_blueprint.login'))
+
     form = AddCheckUpForm(request.form)
     client_id = request.args.get('clientId')
 
@@ -251,6 +274,10 @@ def check_up():
 @blueprint.route('/new_subscription', methods=['POST', 'GET'])
 @login_required
 def new_subscription():
+    #Check if user is coach
+    if not current_user.is_coach():
+        return redirect(url_for('authentication_blueprint.login'))
+
     form=RenewSubscriptionForm(request.form)
 
     #Set the subscription choices
@@ -284,6 +311,10 @@ def new_subscription():
 @blueprint.route('/new_card', methods=['GET'])
 @login_required
 def new_card():
+    #Check if user is coach
+    if not current_user.is_coach():
+        return redirect(url_for('authentication_blueprint.login'))
+
     client_id = request.args.get('clientId')
     card = get_card_id()
     client = get_client_details(client_id)
@@ -301,6 +332,10 @@ def new_card():
 @blueprint.route('/cancel_subscription', methods=['GET'])
 @login_required
 def cancel_subscription():
+    #Check if user is coach
+    if not current_user.is_coach():
+        return redirect(url_for('authentication_blueprint.login'))
+
     client_id = request.args.get('clientId')
 
     if cancel_last_subscription(client_id):

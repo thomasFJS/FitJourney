@@ -602,5 +602,15 @@ REMARQUE : Les actions qui envoient un mail, sont remarquablement ralenties.
 Il me reste quelques point à effectuer avant de commencer le script qui tournera à côté pour gérer les entrées/sorties et l'appel à l'API :
 
 * Ajouter un graphique représentant l'évolution du poid (si possible changement des valeurs avec *Masse graisseuse*, *Masse musculaire*, etc)
-* Ajouter la possibilité au coach de modifier les informations du compte client
+* (Ajouter la possibilité au coach de modifier les informations du compte client)
 * Vérifier que le compte connecté est bien coach pour toutes les pages coach
+* Ajouter l'annulement d'un abonnement
+
+### Mercredi, 01 Juin 2022
+J'ai envoyé un mail à M.Jossi pour faire une mise au point avant de commencer la dernière semaine.
+
+J'ai pu ajouter l'annulation d'abonnement, lorsque le coach clique sur le bouton *Cancel*. 
+
+J'ai également ajouté un graphique qui affiche l'évolution du poids d'un client. Je récupère la moyenne des pesées enregistrée pour chaque mois (dans la plupart des cas 1 bilan par mois). Je n'aurai pas le temps de le faire maintenant, mais pour une amélioration future cela serait intéressant d'ajouter une "navbar" qui permettent de changer les valeurs du graphique entre toutes les données récupérées lors d'un bilan (Taux de masse musculaire, graisseuse, etc..)
+
+J'ai également ajouté le check pour les pages coach, elles ne sont plus accessibles par un client.

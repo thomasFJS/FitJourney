@@ -153,16 +153,8 @@
               </div>
               <hr class="my-4" />
               <div class="row">
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <label class="form-control-label" for="card_update">Card ID #</label>
-                        {{ form.card_id(placeholder="Card ID", class="form-control", type="number", value=client.card_id if client.card_id != None, disabled=true)}}
-                    </div>
-                
-                </div>
-                <div class="col-lg-6">
+                <div class="col-lg-12">
                   <div class="form-group">
-                    <label class="form-control-label">Change client card</label>
                       {{ form.change(class="btn btn-primary btn-block") }}
                   </div>
                 </div>

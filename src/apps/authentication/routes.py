@@ -59,7 +59,7 @@ def login():
         return redirect(url_for('client_blueprint.index'))
     elif current_user.role == 2:
         #COACH
-        return redirect(url_for('client_blueprint.index'))
+        return redirect(url_for('coach_blueprint.dashboard'))
 
     return redirect(url_for('client_blueprint.index'))
 

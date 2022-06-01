@@ -12,7 +12,11 @@ from apps import db, login_manager
 
 from apps.authentication.util import hash_pass
 
-
+ACCESS = {
+    'Guest': 0,
+    'Client': 1,
+    'Coach': 2
+}
 class User(db.Model, UserMixin):
 
     __tablename__ = 'USER'
@@ -60,6 +64,9 @@ class User(db.Model, UserMixin):
 
     def get_id(self):
         return str(self.id)
+    
+    def is_coach(self):
+        return self.role == ACCESS['Coach']
 
 
 class PhysicalInfo(db.Model):
