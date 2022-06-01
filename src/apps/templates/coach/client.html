@@ -113,7 +113,7 @@
                           <label class="form-control-label" for="subscription_until">Subscription Until</label>
                           {{ form.subscriptionEnd(placeholder="Subscription Until", class="form-control", type="date", value=subscriptionUntil, disabled=true)}}
                           <a href="{{url_for('coach_blueprint.new_subscription', clientId=client.id)}}" class="btn btn-sm btn-success">Renew subscription</a>
-                          <a href="#!" class="btn btn-sm btn-danger">Cancel</a>
+                          <a href="{{url_for('coach_blueprint.cancel_subscription', clientId=client.id)}}" class="btn btn-sm btn-danger">Cancel</a>
                         </div>
                     </div>
                 </div>

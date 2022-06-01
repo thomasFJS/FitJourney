@@ -371,6 +371,13 @@ def get_time_working_out_last_week(clientId):
 def get_weight_update(clientId):
     """
     Get the average weight each month of a client during the whole year (months without values will show 0)
+
+    Parameter(s) :
+     NAME      |  TYPE  | DESC
+     clientId  |  INT   | The id of the client
+
+    Return : 
+    | ARRAY[INT] | Array with 12 int values represent the 12 months of a year. (Each values is the average of all the weight recorded for the month in kg)
     """
     
     weights = db.session.query(func.month(PhysicalInfo.date).label("month"), func.avg(PhysicalInfo.weight).label("avg")).filter(PhysicalInfo.user_id==clientId).filter(func.year(date.today())==func.year(PhysicalInfo.date)).group_by(func.month(PhysicalInfo.date))

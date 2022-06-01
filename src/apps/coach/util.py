@@ -258,3 +258,23 @@ def update_card_id(clientId, cardId):
     except:
         return False
 
+def cancel_last_subscription(clientId):
+    """
+    Cancel the last subscription purchased for a user
+
+    Parameter(s):
+     NAME     |  TYPE  | DESC
+     clientId |   INT  | the id of the client
+
+    Return :
+    | Boolean | True if the delete success, else False
+    """
+    try:
+        #Set the last subscription
+        last_subscription = db.session.query(Purchase).filter(Purchase.client_id==clientId).order_by(Purchase.date.desc()).first()
+        db.session.query(Purchase).filter(Purchase.id==last_subscription.id).delete()
+        
+        db.session.commit()
+        return True
+    except:
+        return False

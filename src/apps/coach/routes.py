@@ -118,11 +118,11 @@ def client():
     avgHeartRate = get_average_heart_rate_last_week(client_id)
 	# Get the average of calories burned this week
     avgCalories = get_average_calories_last_week(client_id)
-
+    # Get total time of training this week
     totalTime = get_time_working_out_last_week(client_id)
-
+    # Get the average weight recorded each month
     weightUpdate = get_weight_update(client_id)
-    print(weightUpdate)
+
     return render_template('coach/client.html', segment='client', form=form, reviews=reviews, client=clientDetails, subscriptionUntil=subscriptionUntil,
      wrktTypeCount=wrktTypeCount, wrktTypeList=wrktTypeList, nbWorkoutPerMonth=nbWorkoutPerMonth, workoutProgram=workoutProgram, dietProgram=dietProgram, physicalInfo=physicalInfo,
      avgCalories=avgCalories, avgHeartRate=avgHeartRate, totalTime=totalTime, weightUpdate=weightUpdate)
@@ -136,7 +136,6 @@ def add_client():
     form.subscription.choices = [(subscription.duration, subscription.title + " - " + str(subscription.cost) + "CHF") for subscription in get_all_subscriptions()]
 
     if request.method == 'POST':
-        print(request.form)
         height = request.form['height']
         surname = request.form['surname']
         email = request.form['email']
@@ -147,13 +146,14 @@ def add_client():
         subscription = request.form['subscription']
         
         try:
+            #Add client
             newClient = User(name=name,surname=surname, email=email, birthdate=birthdate, profile_pic=Config.DEFAULT_PROFILE_PIC,role=1, password=name+"123")
             db.session.add(newClient)
             db.session.flush()
-            print(newClient.id)
+            #Assign coach and add purchase of the subscription selected
             newCoachAssign = CoachedBy(client_id=newClient.id, coach_id=current_user.id, starting_date=date, end_date=end_date)
             newPurchase = Purchase(client_id=newClient.id, date=date, subscription_id=get_subscription_id(subscription).id)
-            print(get_subscription_id(subscription).id)
+
             db.session.add(newPurchase)
             db.session.add(newCoachAssign)
             db.session.commit()
@@ -296,4 +296,16 @@ def new_card():
     else:
         flash("Error while updating the member card, please try again", 'danger')
     
+    return redirect(url_for('coach_blueprint.client', clientId=client_id))
+
+@blueprint.route('/cancel_subscription', methods=['GET'])
+@login_required
+def cancel_subscription():
+    client_id = request.args.get('clientId')
+
+    if cancel_last_subscription(client_id):
+        flash("Subscription canceled", 'success')
+    else:
+        flash("Error while trying to cancel subscription", 'danger')
+
     return redirect(url_for('coach_blueprint.client', clientId=client_id))
