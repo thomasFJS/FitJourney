@@ -53,7 +53,7 @@ def profile():
 	# Get each workout type and how many client have made in 2 separate array to use them in js
 	wrktTypeList = get_workout_type_count(current_user.id)[0]
 
-	wrktTypeCount = get_workout_type_count(current_user.id)[1]
+	wrktTypeCount = get_workout_type_count(current_user.id)[1] if get_workout_type_count(current_user.id)[1] != [] else 0
 
 	# Get the number of workout per month during this year
 	nbWorkoutPerMonth = get_workout_count_per_month(current_user.id)
@@ -63,8 +63,11 @@ def profile():
 
 	# Get the average of calories burned this week
 	avgCalories = get_average_calories_last_week(current_user.id)
-	# SELECT SUM(my_time) FROM (SELECT extract(hour from duration) * 60 * 60 + extract(minute from duration) + extract(second from duration) as my_time FROM WORKOUT WHERE client_id = 1  AND WEEK(WORKOUT.date) = WEEK(CURDATE()) - 1) as timeduration
+	# Get the total time training this week
 	totalTime = get_time_working_out_last_week(current_user.id)
+
+	# Get the average weight recorded for each month
+	weightUpdate = get_weight_update(current_user.id)
 
 	#Get the latest programs 
 	programs = get_program(current_user.id)
@@ -90,6 +93,9 @@ def profile():
 
 	# Set the number of workout per month
 	current_user.nbWorkoutPerMonth = nbWorkoutPerMonth
+
+	# Set the average weight per month
+	current_user.weightUpdate = weightUpdate
 
 	# Set the 2 array for workout type
 	current_user.workoutTypeList = wrktTypeList

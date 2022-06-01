@@ -6712,7 +6712,7 @@ button.bg-darker:focus {
 
 .pt-7,
 .py-7 {
-  padding-top: 6rem !important; }
+  padding-top: 2rem !important; }
 
 .pr-7,
 .px-7 {
@@ -9240,7 +9240,7 @@ button.bg-darker:focus {
     padding-right: 8rem !important; }
   .pb-lg-8,
   .py-lg-8 {
-    padding-bottom: 8rem !important; }
+    padding-bottom: 2rem !important; }
   .pl-lg-8,
   .px-lg-8 {
     padding-left: 8rem !important; }

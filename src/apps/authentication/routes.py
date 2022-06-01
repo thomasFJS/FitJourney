@@ -44,14 +44,15 @@ def login():
         user = User.query.filter_by(email=email).first()
         #Check password
         if user and verify_pass(password, user.password):
-            
             login_user(user)
             return redirect(url_for('authentication_blueprint.route_default'))     
 
         # Something is not ok (user or password)
-        return render_template('accounts/login.html', msg='Wrong user or password', form=login_form)
+        flash('Wrong user or password', 'danger')
+        return redirect(url_for('authentication_blueprint.route_default', msg='Wrong user or password'))
 
     if not current_user.is_authenticated:
+        
         return render_template('accounts/login.html',form=login_form)
     
     if current_user.role  == 1:

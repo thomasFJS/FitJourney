@@ -224,7 +224,7 @@
           <div class="card-header">
             <div class="row align-items-center">
               <div class="col-8">
-                <h3 class="mb-0">Analytics</h3>
+                <h3 class="mb-0">Analytics {% if current_user.workoutTypeCount == 0 %} - No workout done yet {%endif%}</h3>
               </div>
               <div class="col-4 text-right">
                 <a href="#!" class="btn btn-sm btn-warning">Statistic</a>
@@ -235,7 +235,7 @@
             <div class="row">
             <div class="col-lg-4">
             <div class="chart-container" style="max-width: 25rem; position: relative;">
-              <canvas id="workoutTypes"></canvas>
+              <canvas id="workoutTypes" ></canvas>
             </div>
           </div>
             <div class="col-lg-4">
@@ -277,6 +277,13 @@
                     <h5 class="card-title">{{ current_user.totalTime }}</h5>
                   </div>
                 </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="chart-container" style="max-width: 40rem; position: relative;">
+                <canvas id="weightUpdate"></canvas>
+              </div>
             </div>
           </div>
           </div>
@@ -321,19 +328,62 @@
     </div>
     </div>
   </div>
-{%endif%}
+  {%endif%}
 
 {% endblock content %}
 
 <!-- Specific JS goes HERE --> 
 {% block javascripts %}
+{% if current_user.role == 1%}
 <script>
+
   var workoutList = []
   {% for workoutType in current_user.workoutTypeList %}
     workoutList.push('{{workoutType}}'.replaceAll('&#34;',''));
   {% endfor %}
   const ctx = document.getElementById('workoutTypes').getContext('2d');
   const ctx2 = document.getElementById('workoutCount').getContext('2d');
+  const ctx3 = document.getElementById('weightUpdate').getContext('2d');
+  const weightUpdateChart = new Chart(ctx3,{
+      type: 'line',
+      data:{
+        labels: [
+					'Jan',
+					'Feb',
+					'Mar',
+					'Apr',
+					'Mai',
+					'Jun',
+					'Jul',
+          'Aug',
+          'Sept',
+          'Oct',
+          'Nov',
+          'Dec'
+				],
+        datasets: [{
+					label: 'Weight update',
+					data: {{current_user.weightUpdate}},
+					fill: false,
+					borderColor: 'rgb(0, 128, 128)',
+					tension: 0.1
+				}]
+			},
+			options: {
+        scales: {
+            y: {
+                min: 40,
+                suggestedMin: 50,
+                suggestedMax: 100
+            }
+        },
+				elements: {
+				line: {
+					borderWidth: 3
+				}
+			}
+      }
+  });
   const myChart2 = new Chart(ctx2, {
 			type: 'line',
 			data: {
@@ -380,7 +430,10 @@
         backgroundColor: [
           'rgb(255, 99, 132)',
           'rgb(54, 162, 235)',
-          'rgb(255, 205, 86)'
+          'rgb(255, 205, 86)',
+          'rgb(128, 0, 128)',
+          'rgb(0,128,128)',
+          'rgb(128,128,0)'
         ],
         hoverOffset: 4
       }]
@@ -389,4 +442,5 @@
   });
   
   </script>
+  {%endif%}
 {% endblock javascripts %}
