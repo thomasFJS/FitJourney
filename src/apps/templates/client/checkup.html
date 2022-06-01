@@ -1,0 +1,184 @@
+{% extends 'layout/base.html' %}
+
+{% block title %} Add check up {% endblock title %}
+
+{% block content %}
+
+
+
+<div class="container-fluid mt--8" style="margin: auto;">
+    {% for category, message in get_flashed_messages(with_categories=true) %}
+	
+	<div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+	  {{ message }}
+	  <button type="button" class="btn btn-secondary" data-bs-dismiss="alert" aria-label="Close">Close</button>
+	</div>
+
+{% endfor %}
+
+  
+
+    <div class="row justify-content-center">
+  
+      <div class="col-xl-8 ">
+        <div class="card">
+          <div class="card-header">
+            <div class="row align-items-center">
+              <div class="col-8">
+                <h3 class="mb-0">Check up of the : {{checkUp.date.strftime("%d/%m/%Y")}}</h3>
+              </div>
+              <div class="col-4 text-right">
+
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            
+                
+              <div class="pl-lg-4">
+
+                <div class="row justify-content-center">
+                  <div class="col-lg-3">
+                    <div class="form-group">
+                      
+                      <div class="card-header text-center">Weight (kg)</div>
+                      <div class="card-body">
+                        <h5 class="card-title text-center"> {{checkUp.weight}}</h5>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-3">
+                    <div class="form-group">
+                        <div class="card-header text-center">Height (cm)</div>
+                        <div class="card-body">
+                          <h5 class="card-title text-center"> {{checkUp.height}}</h5>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-3">
+                    <div class="form-group">
+                        <div class="card-header text-center">Water (%)</div>
+                        <div class="card-body">
+                          <h5 class="card-title text-center"> {{checkUp.water_percentage}}</h5>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-3">
+                    <div class="form-group">
+                        <div class="card-header text-center">Protein (%)</div>
+                        <div class="card-body">
+                          <h5 class="card-title text-center"> {{checkUp.protein_percentage}}</h5>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                    <div class="row justify-content-center">
+                      <div class="col-lg-3">
+                        <div class="form-group">
+                            <div class="card-header text-center">Muscle Mass (%)</div>
+                            <div class="card-body">
+                              <h5 class="card-title text-center"> {{checkUp.muscle_mass_percentage}}</h5>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-3">
+                        <div class="form-group">
+                            <div class="card-header text-center">Body Fat (%)</div>
+                            <div class="card-body">
+                              <h5 class="card-title text-center"> {{checkUp.bodyfat_percentage}}</h5>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-3">
+                        <div class="form-group">
+                            <div class="card-header text-center">Bone Mass (%)</div>
+                            <div class="card-body">
+                              <h5 class="card-title text-center"> {{checkUp.bone_mass_percentage}}</h5>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-3">
+                        <div class="form-group">
+                            <div class="card-header text-center">BMR </div>
+                            <div class="card-body">
+                              <h5 class="card-title text-center"> {{checkUp.bmr}}</h5>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row justify-content-center">
+                      <div class="col-lg-3">
+                        <div class="form-group">
+                            <div class="card-header text-center">Muscle Mass (kg)</div>
+                            <div class="card-body">
+                              <h5 class="card-title text-center"> {{checkUp.muscle_mass}}</h5>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-3">
+                        <div class="form-group">
+                            <div class="card-header text-center">Body Fat (kg)</div>
+                            <div class="card-body">
+                              <h5 class="card-title text-center"> {{checkUp.bodyfat_mass}}</h5>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-3">
+                        <div class="form-group">
+                            <div class="card-header text-center">Visceral fat (kg)</div>
+                            <div class="card-body">
+                              <h5 class="card-title text-center"> {{checkUp.fat_visceral}}</h5>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-3">
+                        <div class="form-group">
+                            <div class="card-header text-center">Bone Mass (kg)</div>
+                            <div class="card-body">
+                              <h5 class="card-title text-center"> {{checkUp.bone_mass}}</h5>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row justify-content-center">
+                      <div class="col-lg-3">
+                        <div class="form-group">
+                            <div class="card-header text-center">Lean body mass (kg)</div>
+                            <div class="card-body">
+                              <h5 class="card-title text-center"> {{checkUp.leanbody_mass}}</h5>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-3">
+                        <div class="form-group">
+                            <div class="card-header text-center">Body age</div>
+                            <div class="card-body">
+                              <h5 class="card-title text-center"> {{checkUp.body_age}}</h5>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-3">
+                        <div class="form-group">
+                            <div class="card-header text-center">BMI </div>
+                            <div class="card-body">
+                              <h5 class="card-title text-center"> {{checkUp.bmi}}</h5>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+
+              </div>
+          
+          </div>
+        </div>
+      </div>
+ 
+
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}
+
+{% endblock javascripts %}

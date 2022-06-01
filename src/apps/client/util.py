@@ -391,3 +391,31 @@ def get_weight_update(clientId):
                 break
                     
     return weightPerMonth
+
+def get_all_check_up(clientId):
+    """
+    Get all the check ups made for a client
+
+    Parameter(s) :
+     NAME      |  TYPE  | DESC
+     clientId  |  INT   | The id of the client
+
+    Return :
+    | ARRAY(QUERY()) | Array contains query object with field selected as properties (query object as PhysicalInfo)
+    """
+    checkUp = db.session.query(PhysicalInfo.id, PhysicalInfo.date, PhysicalInfo.weight).filter(PhysicalInfo.user_id==clientId).order_by(PhysicalInfo.date.desc())
+    return checkUp
+
+def get_check_up(checkUpId):
+    """
+    Get all the values of a check up
+
+    Parameter(s) :
+     NAME      |  TYPE  | DESC
+     checkUpId  |  INT   | The id of the checkup
+
+    Return :
+    | PhysicalInfo() | PhysicalInfo object contains all value of the check up selected
+    """
+    checkUp = db.session.query(PhysicalInfo).filter(PhysicalInfo.id==checkUpId).first()
+    return checkUp

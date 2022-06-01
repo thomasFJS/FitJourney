@@ -78,6 +78,10 @@ def profile():
 	# Get coach id 
 	coachId =get_actual_coach_id(current_user.id)
 
+	#Get all the check up made for this user
+	current_user.checkUps = get_all_check_up(current_user.id)
+
+
 	#set the programs
 	current_user.workoutProgram = programs[0]
 	current_user.dietProgram = programs[1]
@@ -180,6 +184,15 @@ def review():
 	target = get_review_details(reviewDetails['Id'], reviewDetails['Type'])[1]
 
 	return render_template('client/review.html', segment='review', review=review, client=client, target=target)
+
+@blueprint.route('/checkup/', methods=['GET'])
+@login_required
+def checkup():
+	checkUpId = request.args.get('checkUpId')
+	#Get the check up values
+	checkUp = get_check_up(checkUpId)
+
+	return render_template('client/checkup.html', segment='checkup', checkUp=checkUp)
 
 # Create Workouts Page
 @blueprint.route('/workouts')

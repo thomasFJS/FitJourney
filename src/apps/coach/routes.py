@@ -134,9 +134,11 @@ def client():
     # Get the average weight recorded each month
     weightUpdate = get_weight_update(client_id)
 
+    # Get all check ups 
+    checkUps = get_all_check_up(client_id)
     return render_template('coach/client.html', segment='client', form=form, reviews=reviews, client=clientDetails, subscriptionUntil=subscriptionUntil,
      wrktTypeCount=wrktTypeCount, wrktTypeList=wrktTypeList, nbWorkoutPerMonth=nbWorkoutPerMonth, workoutProgram=workoutProgram, dietProgram=dietProgram, physicalInfo=physicalInfo,
-     avgCalories=avgCalories, avgHeartRate=avgHeartRate, totalTime=totalTime, weightUpdate=weightUpdate)
+     avgCalories=avgCalories, avgHeartRate=avgHeartRate, totalTime=totalTime, weightUpdate=weightUpdate, checkUps=checkUps)
 
 
 @blueprint.route('/add_client', methods=['POST', 'GET'])
