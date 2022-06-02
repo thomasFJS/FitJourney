@@ -613,4 +613,20 @@ J'ai pu ajouter l'annulation d'abonnement, lorsque le coach clique sur le bouton
 
 J'ai également ajouté un graphique qui affiche l'évolution du poids d'un client. Je récupère la moyenne des pesées enregistrée pour chaque mois (dans la plupart des cas 1 bilan par mois). Je n'aurai pas le temps de le faire maintenant, mais pour une amélioration future cela serait intéressant d'ajouter une "navbar" qui permettent de changer les valeurs du graphique entre toutes les données récupérées lors d'un bilan (Taux de masse musculaire, graisseuse, etc..)
 
-J'ai également ajouté le check pour les pages coach, elles ne sont plus accessibles par un client.
+J'ai également ajouté le check pour les pages coach, elles ne sont plus accessibles par un client. 
+
+Nous avons fait une mise au point avec M.Jossi, dans l'ensemble je commence à arriver au bout. Je dois encore rajouter un historique des bilans ajoutés pour avoir quand même un petit aperçu des bilans ajoutés. M.Jossi m'a également fait remarquer que je n'avais pas mis l'échelle à côté des valeurs des reviews. Je vais donc les rajouter.
+
+J'ai pu terminer d'ajouter l'historique de bilan, sur la page client pour le coach et sur la page profil pour le client.
+
+
+### Jeudi, 02 Juin 2022
+Pour aujourd'hui, il me reste à valider l'insert dans la DB des données d'entrainement récupérés avec l'API Polar. Je vais également déjà préparé une méthode que j'utiliserai pour la démo si l'API n'est pas disponible.
+
+Je pourrai ensuite établir mon scénario de démo et commencer à effectuer tous les tests utilisateurs que j'ajouterai directement dans la documentation.
+
+J'ai pu terminer l'insert dans la base de données, je ne peux pas encore tester car l'API Polar semble avoir un problème (Impossible de faire une requête ), j'obtiens une *Error 500 Internal server error* à chaque requête.
+
+Je testerai demain pour voir si mon script fonctionne comme il faut, je vais préparer ma méthode pour récupérer des données dans le même format que les données Polar.
+
+En relisant les termes et conditions d'utilisations de l'API, j'ai vu que tout en bas de leur pdf ils precisent qu'ils ne garantissent **ABSOLUMENT** pas la disponibilité de leurs API. Je vais donc bien utiliser ma méthode car je veux vraiment éviter les problèmes lors de la démo. 

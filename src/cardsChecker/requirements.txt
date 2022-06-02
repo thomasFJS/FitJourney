@@ -1,0 +1,4 @@
+smartcard
+flask
+pyyaml
+requests

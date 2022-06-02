@@ -57,7 +57,7 @@
                 <div class="card border-light mb-3" style="max-width: 18rem;">
                     <div class="card-header">{{"Satisfaction" if review['Type'] == 'COACHING' else "Difficulty"}}</div>
                     <div class="card-body">
-                      <h5 class="card-title">{{review.Field1}}</h5>
+                      <h5 class="card-title">{{review.Field1}}/10</h5>
                     </div>
                   </div>
             </div>
@@ -65,7 +65,7 @@
                 <div class="card border-light mb-3" style="max-width: 18rem;">
                     <div class="card-header">{{"Support" if review['Type'] == 'COACHING' else "Feel"}}</div>
                     <div class="card-body">
-                      <h5 class="card-title">{{review.Field2}}</h5>
+                      <h5 class="card-title">{{review.Field2}}/10</h5>
                     </div>
                   </div>
             </div>
@@ -73,7 +73,7 @@
                 <div class="card border-light mb-3" style="max-width: 18rem;">
                     <div class="card-header">{{"Disponibility" if review['Type'] == 'COACHING' else "Fatigue (at the end)"}}</div>
                     <div class="card-body">
-                      <h5 class="card-title">{{review.Field3}}</h5>
+                      <h5 class="card-title">{{review.Field3}}/10</h5>
                     </div>
                   </div>
             </div>
@@ -81,7 +81,7 @@
                 <div class="card border-light mb-3" style="max-width: 18rem;">
                     <div class="card-header">{{"Advice quality" if review['Type'] == 'COACHING' else "Energy (at the start)"}}</div>
                     <div class="card-body">
-                      <h5 class="card-title">{{review.Field4}}</h5>
+                      <h5 class="card-title">{{review.Field4}}/10</h5>
                     </div>
                   </div>
             </div>
