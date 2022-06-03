@@ -630,3 +630,17 @@ J'ai pu terminer l'insert dans la base de données, je ne peux pas encore tester
 Je testerai demain pour voir si mon script fonctionne comme il faut, je vais préparer ma méthode pour récupérer des données dans le même format que les données Polar.
 
 En relisant les termes et conditions d'utilisations de l'API, j'ai vu que tout en bas de leur pdf ils precisent qu'ils ne garantissent **ABSOLUMENT** pas la disponibilité de leurs API. Je vais donc bien utiliser ma méthode car je veux vraiment éviter les problèmes lors de la démo. 
+
+### Vendredi, 03 Juin 2022
+
+L'API Polar semble être à nouveau disponible, je vais tester mon script pour vérifier que l'insert dans la base de données est effectué correctement. Une fois cette étape validée, je commencerai à effectuer tous les tests utilisateurs pour vérifier qu'il ne reste aucun "bug". L'objectif est qu'à la fin de la journée je ne touche plus au code et qu'il me reste uniquement la documentation à terminer.
+
+J'ai du faire quelques ajustement pour certains format de valeurs lors de l'insert. J'utilise le champ *duration* que l'API me donne sauf qu'il est rendu avec un format très spécifique qui change en fonction de la durée exemple :
+
+Pour une séance de 1h30 : *PT1H30M*
+
+Pour une séance de 50min et 30s : *PT50M30S*
+
+j'ai donc fait un try avec plusieurs exception pour permettre de couvrir les différents cas.
+
+L'insert est désormais fonctionnel, les données d'entrainement sont correctement inséré dans la base de données. Je vais donc commencer mon tableau de test utilisateur et vérifier que toutes mes fonctionalitées fonctionne comme il faut.

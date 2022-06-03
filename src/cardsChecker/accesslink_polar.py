@@ -12,7 +12,7 @@ from __future__ import print_function
 
 from utils import load_config, save_config, pretty_print_json
 from accesslink import AccessLink
-from db import cursor
+from db import cursor, db
 from datetime import datetime
 from config import WORKOUT_TYPE
 
@@ -102,7 +102,9 @@ class PolarAccessLink(object):
         self.running = False
 
     def get_exercises(self, userId):
-        sql = "INSERT INTO WORKOUT (workout_type, client_id, date, duration, heart_rate_max, heart_rate_avg, calories, distance) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
+        # Query to insert
+        insertWorkoutQuery = "INSERT INTO WORKOUT (workout_type, client_id, date, duration, heart_rate_max, heart_rate_avg, calories, distance) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
+        
         #Init values
         values = ()
 
@@ -113,7 +115,7 @@ class PolarAccessLink(object):
         heart_rate_max = ''
         heart_rate_avg = ''
         calories = ''
-        distance = ''
+        distance = 0.0
 
         transaction = self.accesslink.training_data.create_transaction(user_id=self.config["user_id"],
                                                                        access_token=self.config["access_token"])
@@ -132,20 +134,31 @@ class PolarAccessLink(object):
             if WORKOUT_TYPE[exercise_summary['detailed-sport-info']] is not None:
                 workout_type = WORKOUT_TYPE[exercise_summary['detailed-sport-info']]
 
-            date = exercise_summary['start_time']
-            start = datetime(exercise_summary['start_time'])
-            end = datetime(exercise_summary['upload-time'])
-            duration = (end-start)
+            date = exercise_summary["start-time"]
+            start = datetime.strptime(exercise_summary["start-time"], '%Y-%m-%dT%H:%M:%S')
+            end = datetime.strptime(exercise_summary["upload-time"], '%Y-%m-%dT%H:%M:%S.%fZ')
+
+            #Try different format (depends on duration exemple : PT1H30M)
+            if 'H' in exercise_summary["duration"]:
+                duration = datetime.strptime(exercise_summary["duration"], 'PT%HH%MM')
+            elif 'M' in exercise_summary["duration"]:
+                duration = datetime.strptime(exercise_summary["duration"], 'PT%MM%S.%fS')
+            elif 'S' in exercise_summary["duration"]:
+                duration = datetime.strptime(exercise_summary["duration"], 'PT%S.%fS')
+
             heart_rate_max = exercise_summary["heart-rate"]["maximum"]
             heart_rate_avg = exercise_summary["heart-rate"]["average"]
             calories = exercise_summary["calories"]
 
-            if exercise_summary['distance'] is not None:
+            if 'distance' in exercise_summary:
                 distance = exercise_summary['distance']
             
-            values = (workout_type, client_id, date, duration, heart_rate_max, heart_rate_avg, calories, duration)
+            values = (workout_type, client_id, date, duration, heart_rate_max, heart_rate_avg, calories, distance)
 
-
+        print(values)
+        cursor.execute(insertWorkoutQuery, values)
+        db.commit()
+        print(cursor.rowcount, "was inserted.")
         transaction.commit()
 
     def get_daily_activity(self):

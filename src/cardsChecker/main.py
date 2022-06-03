@@ -63,7 +63,7 @@ if __name__ == '__main__':
                         card_found = True
                         if entry:
                             print("-------------GOODBYE " + client[0] + " " + client[1]+ "---------------")
-                            polar.get_exercises(getUserIdByCard(client[2]))
+                            polar.get_exercises(getUserIdByCard(client[2])[0])
                             entry = False
                         else:
                             print("-------------WELCOME " + client[0] + " " + client[1]+ "---------------")
@@ -71,7 +71,7 @@ if __name__ == '__main__':
 
                                                         
                 if not card_found:
-                    print("ENTRY REFUSED")      
+                    print("-------------UNRECOGNIZED CARD---------------")      
 
                 time.sleep(2)
         

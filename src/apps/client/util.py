@@ -366,7 +366,7 @@ def get_time_working_out_last_week(clientId):
         result += workout.time
     
 
-    return result /60
+    return round(result /60,1)
 
 def get_weight_update(clientId):
     """
