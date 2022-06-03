@@ -633,14 +633,18 @@ En relisant les termes et conditions d'utilisations de l'API, j'ai vu que tout e
 
 ### Vendredi, 03 Juin 2022
 
-L'API Polar semble être à nouveau disponible, je vais tester mon script pour vérifier que l'insert dans la base de données est effectué correctement. Une fois cette étape validée, je commencerai à effectuer tous les tests utilisateurs pour vérifier qu'il ne reste aucun "bug". L'objectif est qu'à la fin de la journée je ne touche plus au code et qu'il me reste uniquement la documentation à terminer.
+L'API Polar semble être à nouveau disponible, je vais tester mon script pour vérifier que l'insert dans la base de données est effectué correctement. Une fois cette étape validée, je commencerai à effectuer tous les tests utilisateurs pour vérifier qu'ils ne restent aucun "bug". L'objectif est qu'à la fin de la journée je ne touche plus au code et qu'il me reste uniquement la documentation à terminer.
 
-J'ai du faire quelques ajustement pour certains format de valeurs lors de l'insert. J'utilise le champ *duration* que l'API me donne sauf qu'il est rendu avec un format très spécifique qui change en fonction de la durée exemple :
+J'ai dû faire quelques ajustements pour certains formats de valeurs lors de l'insert. J'utilise le champ *duration* que l'API me donne sauf qu'il est rendu avec un format très spécifique qui change en fonction de la durée exemple :
 
 Pour une séance de 1h30 : *PT1H30M*
 
-Pour une séance de 50min et 30s : *PT50M30S*
+Pour une séance de 50 min et 30s : *PT50M30S*
 
-j'ai donc fait un try avec plusieurs exception pour permettre de couvrir les différents cas.
+j'ai donc fait un try avec plusieurs exceptions pour permettre de couvrir les différents cas.
 
-L'insert est désormais fonctionnel, les données d'entrainement sont correctement inséré dans la base de données. Je vais donc commencer mon tableau de test utilisateur et vérifier que toutes mes fonctionalitées fonctionne comme il faut.
+L'insert est désormais fonctionnel, les données d'entrainement sont correctement inséré dans la base de données. Je vais donc commencer mon tableau de test utilisateur et vérifier que toutes mes fonctionnalités fonctionnent comme il faut.
+
+J'ai pu réaliser une bonne partie des tests tout est fonctionnel pour l'instant, je vais terminer les tests et avancer grandement dans la documentation. J'aimerais avoir une version "très avancée" à montrer à M.Jossi d'ici Lundi soir pour avoir le temps d'avoir un retour avant la fin.
+
+Pour la documentation, je vais devoir refaire les diagrammes de *USECASES* ainsi que l'architecture du projet qui ont bien changé depuis la dernière fois.
