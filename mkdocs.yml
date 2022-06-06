@@ -23,6 +23,8 @@ markdown_extensions:
 
 extra_css:
   - https://unpkg.com/mermaid@8.5.1/dist/mermaid.css
+  - https://latex.now.sh/style.css
+  - style/extra.css
 extra_javascript:
   - https://unpkg.com/mermaid@8.5.1/dist/mermaid.min.js
 
@@ -33,12 +35,12 @@ plugins:
       #     enable: true
   - with-pdf:
       author: Thomas Fujise
-      copyright: CFPT 2022
+      copyright: CFPT Informatique 2022
       #
       #cover: false
       #back_cover: true
-      cover_title: Travail de semestre
-      cover_subtitle: Thomas Fujise
+      cover_title: Travail de diplôme
+      cover_subtitle: Technicien ES 
       cover_logo: img/logo.png
       #custom_template_path: TEMPLATES PATH
       #

@@ -15,17 +15,37 @@ FitJourney is a WEB application made with Flask Python framework. It relies main
 This document contains all the steps of the project, which was carried out within the diploma project of the IT Technician formation of Thomas Fujise
 
 ## Introduction
-Il existe très peu d'outil qui permet à un coach sportif de gérer sa salle de sport avec le suivi de tous ses clients. C'est pourquoi, j'ai décidé de créer une application qui permettrait de gérer une salle de sports ainsi que le suivi des membres. Ayant passé un diplôme de coach sportif l'année passée, j'étais à l'aise avec les besoins qu'un professionnel aurait en cas d'utilisation de l'application.
+Dans le cadre de notre deuxième et dernière année au CFPT Informatique en tant que Technicien ES, il nous est demandé de réaliser un travail de diplôme dans le but de valider les compétences acquises tout au long de cette formation. J'ai fait le choix de développer "FitJourney", une application web qui facilite la pratique du métier de coach sportif.
 
-Cette application permet de gérer la salle de sport avec les cartes de membres qui permettent l'accès à la salle ou encore les montres connectés pour enregistrés les données d'entrainements des clients. Elle permet également le suivi des clients.
+Cette application permet de gérer le suivi des clients allant de l'importation des programmes individuels des clients à la récolte des données d'entrainements à l'aide de montre connecté Polar. Elle permet également de gérer une salle de sport avec les cartes de membres qui permettent l'accès à la salle. Ayant passé un diplôme de coach sportif l'année passée, j'étais à l'aise avec les besoins qu'un professionnel aurait en cas d'utilisation de l'application.
 
-## Analyse de l'existant
+
 
 ## Cahier des charges
+### Contexte
+Développer une application web regroupant des clients et des coachs de sport. L'application permet le suivi des clients et peut récupérer des données d'entrainements directement depuis un appareil connecté Polar. 
+
+Il existe aujourd'hui, très peu d'outil qui permet à un coach sportif de gérer sa salle de sport avec le suivi de tout ses clients. C'est pourquoi, j'ai décidé de développer une application qui permettrait de gérer une salle de sports ainsi que le suivi des clients et de l'utiliser en tant que sujet pour mon travail de diplôme. 
 
 
 
-## Analyse fonctionnelle
+### But du projet
+Le but du projet est de créer une plateforme web regroupant clients et coachs afin de gérer une salle de sport et le suivi des clients.
+Les données d'entrainements suivantes sont récupérées depuis une smartwatch Polar:
+
+* Pulsation cardiaque (Repos/Actif/Après effort)
+* Le type d'exercice effectué
+* Date et durée de l'entrainement
+* Nombre de total de calories brulées 
+* Nombre de calories active
+(Optionnel)
+* Les données relatives au sommeil 
+    * Pulsation cardiaque
+    * Cycles de sommeil
+    * Interruption
+    * Hypnogramme
+
+Il y a également un système de badging pour savoir quand le client rentre et sors de la salle de sport à la fin de son entrainement. 
 
 ### Cas d'utilisations
 2 cas d'utilisations sont possibles avec l'application.
@@ -36,17 +56,14 @@ Le cas d'utilisation pour client :
 
 ![Client use case](./img/client_use_case.png)
 
-Le client n'a que 2 possibilitées sur l'application : 
-
-* S'enregistrer
-
-* Se connecter
+Le client doit se connecter pour avoir accès à l'application, il ne peut pas se créer de compte lui même.
 
 Si le client se connecte à l'application, il a alors accès à plusieurs fonctionnalitées :
 
 * Visualiser/Télécharger ses programmes (Entrainement et Nutrition)
 * Laisser un retour sur une session effectué
 * Laisser un retour sur le coaching de manière générale
+* Gérer son profil
 
 
 #### Coach
@@ -59,14 +76,144 @@ Le coach à lui également 2 possibilitées en arrivant sur l'application (Enreg
 
 Une fois connecté, le coach à accès à une multitude de fonctionnalitées :
 
-* Ajout d'un nouveau client
+* Ajout d'un nouveau client (création du compte client)
 * Ajouter une session avec un client (Prise de rendez-vous)
+* Gérer son profil
 
 Il a également accès à des fonctionnalitées pour gérer ses clients : 
 
 * Importation des programmes (entrainement et nutrition)
 * Renouveller l'abonnement souscrit par le client
 * Effectuer un bilan avec un client 
+* Changer la carte membre du client
+
+
+### Spécifications
+* Les données d'entrainements sont récupérées avec l'API Accesslink de Polar en Python sous forme d'objet, elles sont vérifiées et stockées directement dans la base de données
+* Le système de badge fonctionne à l'aide de cartes RFID et un lecteur NFC (ACS ACR 122u) 
+* Les graphiques liés aux stats sont effectués avec la librairie javascript Chart.js
+* Les programmes d'entrainements et de nutritions doivent respecter le format proposé (Lors de l'upload une vérification est effectuée)
+* Un système de notification est mis en place pour avertir les utilisateurs des différents événements
+
+### Restrictions
+- Pour l'instant, il est uniquement possible d'utiliser des appareils Polar pour les données d'entrainement.
+- Le système de badge est utilisé au début et à la fin et non pendant l'entrainement.
+- L'API accepte au maximum 500 requête pour 20 utilisateurs différents en 15 min et 5000 pour 100 utilisateurs en 24h
+- Les montres utilisées lors des entrainements sont celles du coach (montres déjà enregistrées sur le compte client qui accède à l'API)
+
+### Environnement
+Les technologies a utiliser:
+
+* HTML5
+* CSS3 
+* Javascript
+* SQL 
+* Python
+* Flask (Micro Framework Python)
+* Lecteur NFC (ACS ACR122U)
+* [API AccessLink Polar](https://www.polar.com/accesslink-api/#polar-accesslink-api)
+* [Chart.js](https://www.chartjs.org/)
+
+
+Système d'exploitation :
+
+* Développement sur Windows
+
+Versionning / Documentation :
+
+* GitHub
+* MarkDown (Mkdocs)
+### Contact
+#### Étudiant
+- **Prénom** : Thomas 
+- **Nom** : Fujise 
+- **Email** : thomas.fjs@eduge.ch
+- **Téléphone** : +41 (0) 77 463 89 68  
+
+#### Enseignant
+- **Prénom** : Sébastien 
+- **Nom** : Jossi 
+- **Email** : edu-jossis@eduge.ch
+- **Téléphone** : /
+
+### Dates importantes
+| Date  |  Tâches |  
+|---|---|
+|**Lundi, 04 avril 2022** | Début du travail de diplôme|
+|**Mardi, 26 avril 2022**| Évaluation intermédiaire 01|
+|**Lundi, 09 mai 2022**| Rendu du rapport intermédiaire + poster & Rendu du résumé et de l'abstract|
+|**Mardi, 10 mai 2022**| Évaluation intermédiaire 02|
+|**Jeudi, 12 mai 2022**| Après-midi/Soirée poster|
+|**Mardi, 24 mai 2022**| Évaluation intermédiaire 03|
+|**Vendredi, 10 juin 20222**| Rendu du travail avant 12:00|
+
+### Livrable
+* Documentation technique + journal de bord
+* Mode d'emploi
+* Poster
+* Code source
+
+
+## Analyse de l'existant
+### Inithy
+![Logo Inithy](./img/inithy.png){width=200 align="right"}
+Inithy est une application de coaching "tout-en-un" qui propose énormement de fonctionnalités. Elle permet le suivi des client, le planning de sessions, l'importation de programmes ou encore l'interaction entre utilisateurs de l'application. Elle possède une fonctionnalité de synchronisation avec les applications de sports comme *GoogleFit*, *Apple Santé* ou encore *Fitbit*. La synchronisation avec *Polar* et *Garmin* n'est pas disponible avec leurs application. Il y a également la possibilité d'effectuer des paiements sur l'application pour acheter un abonnement. C'est une application très complète qui répond à beaucoup de besoins que j'ai identifié précédemment. Le principal point qui me différencie de cette application, est que *FitJourney* est plus axé pour gérer une salle de sport et les clients membres(pour un coach sportif qui aurait son studio de coaching par exemple) que pour le coaching en ligne comme l'est *Inithy*. 
+
+![Inithy dashboard](./img/inithy_dashboard.png)
+
+## Analyse fonctionnelle
+
+### Fonctionnalités
+#### Description générale
+L'application est accessible par n'importe qui possédant un compte. Seuls les coachs ont accès à la page d'enregistrement pour se créer un nouveau compte et c'est également que les coachs qui peuvent créer un compte pour un client. Une fois connecté, l'utilisateur à accès à plusieurs fonctionnalités en fonction de son rôle (coach ou client)
+
+#### Description détaillée
+##### Application coach
+* Le coach s'inscrit et s'authentifie avec un formulaire;
+* Le coach peut modifier les informations propres à son compte utilisateur (nom, prénom, birthdate, email, photo de profil, adresse et mot de passe);
+* Le coach peut ajouter un client en lui créant un compte et en séléctionnant le type d'abonnement que le client souhaite prendre;
+* Le coach peut enregistrer une session qu'il prévoit avec un de ses clients en renseignant :
+    * La date;
+    * L'heure;
+    * La durée;
+    * Le type d'entrainement prévu;
+* Le coach peut voir une vue d'ensemble de la liste de tous les clients dont il a la charge, il voit également la prochaine session qu'il a enregistré avec un client avec un résumé;
+* Le coach à accès à un calendrier pour visionner les sessions qu'il a enregistrer (plusieurs affichage disponible : mois, semaine, jour ou encore en liste);
+* Le coach peut effectuer un nouveau bilan/check-up pour le client 
+* Le coach à accès aux profils des clients dont il a la charge où il peut :
+    * Renouveler/annuler l'abonnement du client;
+    * Changer la carte de membre du client;
+    * Importer un nouveau programme d'alimentation ou d'entrainement pour le client;
+    * Visionner les anciens bilans qu'il a effectué
+    * Visionner les reviews sur le coaching et les entrainements que le client a laissé;
+    * Visionner les statistiques du client :
+        * Nombre de type d'entrainement effectué;
+        * Nombre d'entrainement chaque mois;
+        * Le poids du client sur l'année;
+        * Le nombre de calories brûlées dans la semaine;
+        * La moyenne des BPM cardiaques enregistrés dans la semaine;
+        * Le total de temps passé à s'entrainer dans la semaine;
+
+##### Application client
+* Le client s'authentifie avec un formulaire à l'aide des identifiants qui lui sont transmit par email (les identifiants peuvent être modifié par le client plus tard);
+* Le client a un aperçu des prochaines sessions qu'il a avec son coach; 
+* Le client a un aperçu de tous les entrainements qu'il a effectué, en cliquant dessus il peut voir les détails de ce-dernier;
+* Le client peut laisser un retour sur un entrainement qu'il a effectué, il peut également laisser un retour sur le coaching de manière générale;
+* Le client peut télécharger les programmes que son coach a importé;
+* Le client a accès à un aperçu des bilans qu'il a effectué avec son coach;
+* Le client peut visionner les statistiques enregistrées pour lui :
+    * Nombre de type d'entrainement effectué;
+    * Nombre d'entrainement chaque mois;
+    * Le poids du client sur l'année;
+    * Le nombre de calories brûlées dans la semaine;
+    * La moyenne des BPM cardiaques enregistrés dans la semaine;
+    * Le total de temps passé à s'entrainer dans la semaine;
+
+##### Lecture carte membre
+La lecture de carte membre est effectué à l'aide d'un script indépendemment de l'application principale. Aucune interface n'est disponible pour le moment, seul un message est affiché dans le terminal pour afficher si le client a été reconnu ou non. Cette partie permet au client de : 
+
+* Scanner sa carte membre en arrivant à la salle de sport, la carte est reconnue et le client est identifié.
+* Scanner sa carte de membre en sortant de la salle de sport, les données de l'entrainement effectué sont alors récupérés et enregistrés.
 
 ### Sitemap
 La sitemap de l'application possède 2 alternatives, 1 pour les clients et 1 pour les coachs.
@@ -82,43 +229,18 @@ La sitemap de l'application possède 2 alternatives, 1 pour les clients et 1 pou
 ### Maquettage
 Pour préparer les interfaces, j'ai réalisé des maquettes avec l'outil Figma. Les maquettes m'ont permis de mettre à plat les éléments nécessaires pour les interfaces et ont évité de perdre trop de temps lors de la création des interfaces.
 
-L'application FitJourney propose 3 niveaux d'accès :
+L'application FitJourney propose 2 niveaux d'accès :
 
-* Visiteur
 * Client
 * Coach
 
-#### En tant que visiteur 
-Lorsqu'on arrive sur l'application sans être authentifié, seuls 3 pages sont accessibles. 
 
-##### Barre de navigation
-![Navbar visitor](./mockups/Interface_mockups/navbar_visitor.jpg)
-La barre de navigation disponible en tant que visiteur. Elle est visible sur le côté gauche de l'écran à la vertical. Sans être connecté à l'application seul 2 boutons sont disponibles :
-
-* Accueil
-* Login
-
-
-
-##### Page d'accueil
-![Home Page](./mockups/Interface_mockups/home.jpg)
-La page d'accueil est très basique et propose 2 boutons :
-
-* 1 bouton de connexion
-* 1 bouton pour s'enregistrer
-
-##### Page d'enregistrement
-![Register Page](./mockups/Interface_mockups/sign_up.jpg)
-La page d'enregistrement permet aux utilisateurs de s'enregistrer, une option est disponible pour permettre la création d'un nouveau compte coach. 
+#### En tant que client 
+Le client doit se connecter pour avoir accès à l'application, il ne peut pas se créer de compte tout seul. 
 
 ##### Page de connexion 
 ![Login Page](./mockups/Interface_mockups/sign_in.jpg)
 La page de connexion permet aux utilisateurs de se connecter. Un lien est disponible si le mot de passe a été oublié.
-
-
-
-#### En tant que client 
-Si on se connecte à l'application en tant que client, 4 pages supplémentaires sont disponibles.
 
 ##### Barre de navigation 
 ![Navbar client](./mockups/Interface_mockups/navbar_client.jpg)
@@ -185,7 +307,11 @@ Cette page affiche les prochaines sessions d'entrainements avec un coach du clie
 
 
 #### En tant que coach
-Si on se connecte à l'application en tant que coach, on a alors accès à 5 autres pages.
+Le coach peut se créer un compte et se connecter à l'application, une fois connecté, il a accès à toute l'application.
+
+##### Page d'enregistrement
+![Register Page](./mockups/Interface_mockups/sign_up.jpg)
+La page d'enregistrement permet aux coachs de s'enregistrer, une fois enregistré il peut se connecter avec la [page de connexion](#page-de-connexion)
 
 ##### Barre de navigation 
 ![Navbar coach](./mockups/Interface_mockups/navbar_coach.jpg)
@@ -262,8 +388,6 @@ Dans la zone verte, un bouton pour ajouter une nouvelle session avec un client e
 
 ### Mise en place / Envirronement
 
-#### Installation (reprise du projet)
-
 #### Visual Studio Code
 J'ai choisi d'utiliser Visual Studio code pour éditer mon code, il est directement relié à mon repo sur Github. Je peux donc directement depuis Visual Studio Code commit tous les changements que j'effectue.
 
@@ -299,17 +423,95 @@ J'ai créé 5 colonnes :
 
 ### Technologies utilisées
 
+#### NFC Reader ACR122U
+
+Le lecteur NFC ACR122U est un appareil permettant de lire et d'écrire sur des cartes sans contact. Il est basé sur la technologie Mifare 13,56 MHz (RFID) et suit les standards de la norme ISO 18092. L'ACR122U est développé et vendu par ACS ltd .
+
+Pour pouvoir utiliser ce lecteur, j'ai utilisé la librairie *pyscard* qui me permet de récupérer les infos des cartes à puces que le lecteur lit
+
+![NFC Reader](./img/acr122u.png){ width="300" }
+
+##### RFID
+**Qu'est-ce que la technologie RFID ??**
+ 
+RFID (Radio Frequency Identification), est une technologie qui permet d'enregistrer des données sur un support et de les récupérer à distance. Elle est apparue dans les années 1940 et était utilisée uniquement par l'armée pour l'identification des avions de guerre qui entrait dans l'espace aérien du Royaume-Uni. Elle s'est ensuite répandue dans différents secteurs industriels à partir des années 1980.
+  
+**Comment fonctionne la RFID ?**
+
+Les étiquettes RFID, sont composées d'une puce RFID et d'une antenne et sont collées sur un produit. Elles enregistrent les données et avec un lecteur électromagnétique on peut ensuite lire les ondes radio présentes sur la puce RFID grâce à l'antenne.
+ 
+**Pourquoi utiliser RFID**
+
+RFID est un système de traçabilité. A l'aide d'une seule puce, il est possible de tracer les produits pendant tout le processus de production, de transport et de distribution, voire même jusqu'à leur fin de vie.
+
+Dans le cadre de mon projet, RFID est une solution adéquate pour gérer les entrées/sorties des clients dans la salle d'entrainement.
+
+**Différences entre RFID et NFC**
+
+![RFIDVSNFC](./img/rfid_vs_nfc.jpg){ width="500"}
+
+Dans le cadre de mon projet, j'utilise parfois le terme NFC. La technologie NFC (Near Field Communication) est un dérivé de la RFID qui a commencé à être utilisé dès 2011. Le NFC repose sur le même concept que la RFID. C'est une technologie qui fonctionne avec une puce permettant d'échanger des données entre un lecteur et n'importe quel terminal avec un simple rapprochement ou contact entre les deux objets.
+
+La communication sans fil ne fonctionne qu'à courte portée et haute fréquence, une distance d'environ 10cm. La technologie NFC se retrouve dans la plupart des smartphones, consoles de jeux ou cartes bancaires. Le lecteur de carte que j'utilise fonctionne à l'aide de cette technologie également.
+
+Les principales différences entre RFID et NFC résident dans la portée plus courte et sécurisée pour NFC (10cm) contre jusqu'à 10m pour RFID. La technologie NFC peut transmettre toute sorte de données contre RFID qui ne transmet que l'ID. La lecture fait, quant à elle, défaut à la technologie NFC qui ne peut lire qu'une puce à la fois ce qui peut limiter ses cas d'utilisation.
+
+
+#### Pyscard - Librairie Python Smart card 
+
+Pyscard est un module python qui permet d'utiliser les cartes à puce (PC/SC) avec python. Il donne accès à plusieurs classes et fonctions donnant accès aux cartes et aux lecteurs.  
+
+![Pyscard Architecture](./img/pyscard.jpg){width="250"}
+
+Architecture pyscard :
+
+* smartcard.scard est un module d'extension enveloppant l'API WinSCard (Les composants de base smartcard) aussi connue sous le nom PC/SC (Personal computer / Smart Card)
+* smartcard est un framework Python construit à partir de l'API PC/SC
+
+##### Installation
+Pour installer la librairie **pyscard** sur Windows 10, il faut au préalable installer [SWIG](http://www.swig.org/) et l'ajouter directement au PATH. Il faut ensuite installer Visual C++ version 14.0 ou plus récente (directement installable depuis le Visual Studio Installer).
+
+
+#### SWIG
+![Swig](./img/swig.png)
+
+SWIG est un outil logiciel open source qui permet de connecter des logiciels ou librairies écrites en C/C++ avec des langages de scripts tels que : *Perl*, *Python*, *Ruby*, *PHP* ou d'autres langages de programmation comme *Java* ou *C#*.
+
+#### Polar Accesslink API 
+![Polar](./img/polar.png)
+
+Accesslink est une API qui donne accès aux données d'entrainement et d'activitée journalière enregistrés par les appareils Polar. Pour pouvoir l'utiliser il est nécessaire de posséder un compte Polar Flow afin de créer un client sur [admin.polaraccesslink.com](admin.polaraccesslink.com) qui nous donnera accès à l'API. 
+
+Accesslink utilise [OAuth2](https://oauth.net/) comme protocole d'authentification. Les utilisateurs enregistrés ont besoin de s'authentifier pour pouvoir avoir accès aux données.
+
+Fonctionnalités de base d'Accesslink :
+
+| Fonctionnalité        | Description                                            |
+| ----------------------| ------------------------------------------------------ |
+| Utilisateurs          | Permets d'enregistrer, supprimer et récupérer les informations de base de l'utilisateur        |       
+| Pull Notification     | Permets de vérifier si l'utilisateur à des données disponible à récupérer | 
+| Donnée d'entrainement | Permets d'accéder aux données d'entrainements de l'utilisateur |
+| Activité journalière  | Permets d'accéder aux données de l'activité journalière de l'utilisateur |
+| Info physique         | Permets d'accéder aux informations physique de l'utilisateur (Ex: Taille/Poids) |
+| Modèle de données     | Décrit tous les objets qui transportent les données entre le serveur et le client |
+| Annexes               | Contient des exemples et des détails sur l'interface de l'application |    
+
+##### Choix dans le projet - FitJourney
+Je souhaitais utiliser les données d'entrainements en provenance de montre connectée et j'avais déjà en ma possession une montre Polar. Mon choix s'est donc naturellement orienté vers Polar, lorsque j'ai pris connaissance de l'API développée en Python qu'ils mettaient à disposition. 
+
+#### Python 
+![Python](./img/python.png){width=200 align="right"}
+
+Python est un langage très flexible qui propose une approche modulaire et orientée objet de la programmation. Il est placé sous une licence libre et fonctionne sur la plupart des plates-formes informatiques. Il est conçu pour optimiser la productivité des programmeurs en offrant des outils de haut niveau et une syntaxe simple à utiliser.
+
+##### Choix dans le projet - FitJourney
+
+Durant ma dernière année en tant que Technicien ES, j'ai beaucoup utilisé python dans mes projets. En trouvant de plus en plus d'outils comme la librairie *pyscard* ou encore l'API Polar en Python, je me suis très vite décidé sur le langage que j'allais utiliser pour ce projet.
+
 #### Python Flask (backend)
 Flask est un micro-framework Python qui permet la création d'applications web évolutives. Flask dépend de la boite à outils WSGI (Web Server Gateway Interface) de [Werkzeug](https://werkzeug.palletsprojects.com/en/2.0.x/) et du moteur de templates [Jinja](https://jinja.palletsprojects.com/en/3.0.x/). Le dossier *app/* représente une application Flask, elle est entre-autre homogène à une fonction WGSI.
 
 ![Flask Logo](./img/flask.png)
-
-##### Installation Flask
-En premier lieu, il faut disposer d'une version à jour de PIP afin d'installer Python Flask avec la commande :
-
-```
-pip install Flask
-```
 
 ##### Utilisation Flask
 Pour lancer une application Flask, il faut utiliser la méthode de l'objet Flask : 
@@ -328,7 +530,7 @@ Le terme *micro* dans le micro framework signifie que Flask vise à garder le co
 
 En définissant uniquement le moteur de templates et un système de routes, Flask laisse le choix de personnaliser (en ajoutant des packages) pour la gestion des formulaires par exemple.
 
-##### Choix dans le projet
+##### Choix dans le projet FitJourney
 Dans le cadre de ce projet, j'ai préféré utiliser Flask comme framework à la place d'un autre car j'utilise l'API Polar Accesslink qui est fait en Python. Je souhaitais garder le même langage pour éviter de partir dans tous les sens.
 
 ##### Architecture (Blueprint)
@@ -336,12 +538,37 @@ Afin de bien structurer mon projet, j'ai décidé d'utiliser les Flask Blueprint
 
 Malgré tous, un Flask Blueprint n'est pas exactement comme une application Flask car il a besoin d'être enregistré dans l'application pour être lancé. Lorsqu'on enregistre un Blueprint à l'application, on étend l'application avec le contenu du Blueprint. Les Blueprints enregistrent toutes les opérations à exécuter et ne les exécutes qu'une fois enregistré dans l'application
 
-Les Blueprints m'ont permis de découper l'application en plusieurs parties et de structurer mon projet de la manière suivante : 
+Les Blueprints m'ont permis de découper l'application principale en plusieurs parties et de structurer mon projet.
 
+#### Argon Design System
+![Argon](./img/argon.png)
+
+Argon est un "design system" open source basé sur le framework CSS Bootstrap 4. Il propose plus de 100 composants individuel ce qui permet une certaine libertée. 
+Argon m'a permit de ne pas perdre trop de temps sur le côté "design" de l'application
+
+#### Chart.JS
+![chartjs](./img/chartjs.svg)
+
+Chart.js est une librairie open source, elle permet la visualisation de données en utilisant JavaScript. Elle est similaire à *Chartist* ou *Google Chart*. Chart.js supporte 8 différents type de graphique et sont tous responsive. Pour pouvoir utiliser Chart.js il faut :
+
+* Definir ou dessiner le graphique sur notre page
+* Definir quel type de graphique afficher
+* Definir les données, labels et toutes les autres options
+
+Voici un exemple de graphique que peut générer chart.js : 
+![chartjsex](./img/graphique.png)
+
+
+### Architecture du projet
+
+#### Arborescence application principale
 ```
 run.py
 |
 apps/
+|
+|── __init__.py
+├── config.py
 |
 ├── authentication/
 |   ├── __init__.py
@@ -353,12 +580,14 @@ apps/
 ├── client/
 |   ├── __init__.py
 |   ├── forms.py
-|   └── routes.py
+|   ├── routes.py
+|   └── util.py
 |
 ├── coach/
 |   ├── __init__.py
 |   ├── forms.py
-|   └── routes.py
+|   ├── routes.py
+|   └── util.py
 |
 ├── static/assets/
 |   ├── css/
@@ -367,69 +596,263 @@ apps/
 |   ├── js/
 |   └── vendor/.py
 |
-├── templates/
-|   ├── accounts/
-|   ├── client/
-|   ├── coach/
-|   ├── includes/
-|   └── layout/
-|
-|── __init__.py
-└── config.py
+└── templates/
+    ├── accounts/
+    ├── client/
+    ├── coach/
+    ├── includes/
+    └── layout/
+
+
 
 ```
 
-#### Fichier "run.py"
+##### Fichier "run.py"
 Le fichier run.py est le seul fichier qui est en dehors du dossier principal de l'application. Il permet de créer et de lancer l'application Flask. On peut lancer directement l'application en exécutant ce script.
 
 ```
 python3 ./run.py
 ```
 
-#### Dossier "Apps"
+##### Dossier "Apps"
 Le dossier *Apps* est le dossier principal de l'application. Il comprend l'ensemble du code source du projet excepté le fichier "run.py". Il comprend lui-même plusieurs sous-dossiers expliqués dans les chapitres suivants.
 
-#### Dossier "authentication"
+###### Dossier "authentication"
 Le dossier *authentication* représente le Blueprint *authentication_blueprint*. On retrouve tous les fichiers utilisés pour l'implémentation des fonctionnalités d'authentification. Avec Flask, j'implémente un ORM nommé SQL Alchmey qui implémente le design pattern *Data Mapper* pour lire les données de la base de données. Chacune des tables est représentée par un modèle qui est utilisé pour interagir avec la table en question.
 
 Sachant que l'application *FitJourney* n'a pas de fonctionnalités disponible avant que l'utilisateur ne s'authentifie, le fichier "models.py" se trouve dans ce dossier, on y retrouve notamment tous les modèles.
 
-#### Fichier "authentication/routes.py"
+###### Fichier "authentication/routes.py"
 Le fichier *routes* contient des fonctions python représentant les *vues* de la partie authentification de l'application. Chaque fonction permet de générer une vue à partir des templates Jinja2, à l'aide de la fonction Flask *render_template* qui provient du package *Flask.templating*.
 
-#### Dossier "client"
+###### Dossier "client"
 Le dossier *client* représente le Blueprint *client_blueprint*. On retrouve tous les fichiers utilisés pour l'implémentation des fonctionnalités client. 
 Il contient un fichier de routes, avec toutes les routes disponible en tant que client sur l'application et un fichier "forms.py" qui contient tous les fomulaires qui peuvent être disponible en tant que client.
 
-#### Dossier "coach"
+###### Dossier "coach"
 Le dossier *coach* représente le Blueprint *coach_blueprint*. On retouve tous les fichier utilisés pour l'implémentation des fonctionnalités coach. Comme le dossier "client" il contient également un fichier de routes et un fichier "forms" pour les formulaires.
 
-#### Dossier "static/assets"
-Le dossier "assets" qui se trouve dans le dossier "static" contient tous les dossiers "support" de l'application comme le CSS ou encore le javascript.
-
-#### Dossier "assets/css"
+###### Dossier "static/assets/css"
 Le dosssier "css" contient tous les fichiers CSS de l'application. Il contient également un dossier "bootstrap" contenant des fichiers de style de l'ensemble Bootstrap
 
-#### Dossier "assets/fonts"
+###### Dossier "static/assets/fonts"
 Le dossier "fonts" contient les fichiers de police d'écriture utilisés dans l'application
 
-#### Dossier "assets/img"
+###### Dossier "static/assets/img"
 Le dossier "img" contient toutes les images de l'application dont notamment les photos de profil des utilisateurs.
 
-#### Dossier "assets/js"
+###### Dossier "static/assets/js"
 Le dossier "js" contient tous les fichiers JavaScript nécessaire pour l'application.
 
-#### Dossier "assets/vendor"
+###### Dossier "static/assets/vendor"
 Le dossier "vendor" contient toutes les bibliothèque tierce qui sont nécessaire au projet (ressources externe). C'est généralement dans ce dossier ou sont stocker les dependance à télécharger avec un packet manager.
 
-#### Dossier "templates"
+###### Dossier "templates"
 Le dossier templates est structuré en plusieurs parties. Il contient les fichiers .html de l'application. Chaque Blueprint de l'application possède son dossier ici qui contient les templates nécessaire pour les vues. En plus des dossiers représentant les Blueprints, un dossier includes est disponible. Il contient les parties à inclure sur les différentes pages de l'application comme la barre de navigation ou encore les importations de fichiers CSS ou JavaScript. Il y a également un dossier layout qui contient un fichier de base .html qui contient la structure HTML de l'application.
 
-#### Fichier "__init.py"
+##### Fichier "__init.py"
 Le fichier "init" est un fichier python contenant les méthode d'initialisation de l'application. C'est notamment ici que les blueprints sont enregistrés dans l'application.
 
-#### Fichier "config.py"
+##### Fichier "config.py"
 Le fichier "config" est un fichier python contenant la configuration de l'application. Il contient toutes les constantes nécessaire au fonctionnement de l'application
+
+#### Arborescence lecture de carte 
+
+```
+cardsChecker/
+|
+|── accesslink/
+|
+├── accesslink_polar.py
+|   
+├── authorization.py
+|
+├── config.py
+|
+├── config.yml
+|
+├── db.py
+|
+├── main.py
+|
+└── utils.py
+
+```
+##### Dossier "accesslink/"
+Le dossier "accesslink" contient tous les scripts python permettant l'authentification, l'exécution des différentes transactions et récupérer des données avec l'API Polar Accesslink. La plupart des fichiers présents dans ce dossier sont fournit par Polar.
+
+##### Fichier "accesslink_polar.py"
+Le fichier "accesslink_polar" contient un objet Python qui enveloppe toutes les fonctionnalités de l'API Polar à l'aide des objets et méthode disponible dans le dossier "accesslink/"
+
+##### Fichier "authorization.py"
+Le fichier "authorization" est un script python qui permet d'authentifier un compte Polar pour avoir accès à l'API
+
+##### Fichier "config.py"
+Le fichier "config.py" contient toutes les constantes nécessaire pour le bon fonctionnement de la lecture des cartes de membre. On y retrouve notamment la configuration pour se connecter à la base de données.
+
+##### Fichier "config.yml"
+Le fichier "config.yml" contient la configuration du client pour avoir accès aux données avec l'API Polar. Il Contient :
+ 
+* L'id de l'utilisateur 
+* L'id du client (Pour l'accès)
+* Le secret du client 
+* Le token d'accès (Il est généré avec le fichier *authorization.py*)
+
+##### Fichier "db.py"
+Le fichier "db.py" est utilisé pour se connecté à la base de données, on y retrouve également les fonctions effectuant des actions avec cette dernière.
+
+##### Fichier "main.py"
+Le fichier "main.py" contient le script python principal qui permet la lecture des cartes et la récupération des données avec l'API Polar. C'est ce script qu'il faut exécuter pour lancer le programme.
+
+
+
+### FitJourney application
+#### Développement avec Python Flask
+L'application web FitJourney est développé avec Python flask qui utilise Jinja2 pour le templating et Werkzeug pour faire la communication entre serveur web et application web.
+
+##### Templating Jinja2
+Le templating permet de créer des pages dynamiques en fonction des données fournient à la page. Dans le cas de l'application, cela permet d'afficher les données de l'utilisateurs connectés ainsi qu'afficher certaines parties en fonction du niveau d'accès de l'utilisateur.
+
+##### Template de base 
+Le concept très utile qui est la possibilité de créer une template parent. Pour illustrer cela, j'ai un fichier *add_program.html* qui va utiliser tout le contenu du fichier *base.html*, mais qui va ajouter certaines parties en plus, selon les instructions.
+
+Voici un aperçu du fichier *base.html* et on peut y retrouver plusieurs instructions comme :
+```
+{% block content %}{% endblock content%}
+```
+Ces instructions permettent d'insérer du contenu depuis un fichier enfant.
+![base html](./img/base.PNG)
+
+Pour créer un fichier enfant il suffit d'ajouter l'instruction : 
+```
+{% extends 'base.html' %}
+```
+pour étendre le fichier de parent. Voici un exemple de fichier enfant avec le fichier *add_program.html* :
+
+![Add program](./img/add_program.PNG)
+
+La vue de cette page : 
+
+![Add program view](./img/add_program_view.PNG)
+
+
+##### Routes
+Les routes avec Python Flask sont reliées directement à des méthodes. Ces méthodes doivent forcément retourner quelque chose. L'instruction :
+```
+@blueprint.route('/dashboard')
+```
+permet de dire que la méthode qui suit l'instruction sera liée au blueprint et la route "/dashboard". (Il est possible de relier plusieurs routes à la même méthode)
+
+![Dashboard route](./img/route_dashboard.PNG)
+
+Comme préciser ci-dessus, il est obligatoire de retourner quelque chose. Pour utiliser du templating Jinja2, Flask propose une méthode nommée *render_template()*. Le premier paramètres de cette méthode est le fichier de template que l'on veut utiliser, puis les paramètres suivant sont des données que l'on veut transmettre à la vue. Dans le cas de la route */dashboard*, je donne le prochain client qui a rendez-vous avec le coach, la date du dernier entrainement qu'il a effectué ainsi que la liste de tous les autres clients dont il a la charge.
+
+Comme on peut le voir sur l'image ci-dessus, il est possible d'ajouter l'instruction 
+```
+@login_required
+```
+avant la méthode pour préciser que cette route n'est accessible que si un utilisateur est connecté. Cette instruction est utilisable à l'aide la librairie *Flask-Login*.
+
+##### Client
+
+###### Prochaines sessions
+
+La page "prochaines session" de l'application a pour but d'afficher toutes les sessions à venir pour le client. Cela permet au client d'avoir une vue d'ensemble sur les différentes sessions qu'il a prévu avec son coach. Pour récupérer toutes les prochaines sessions j'utilise la méthode 
+```
+get_next_session(userid)
+```
+Elle se trouve avec toutes les autres méthodes utilisées pour les routes client, dans le fichier *client/utils.py*. Je n'ai besoin que de l'id du client dont on veut récupérer les sessions.
+
+![Next session](./img/next_sessions.PNG)
+
+Le tableau retourné contenant toutes les sessions est ensuite envoyé à la vue à l'aide de la méthode *render_template()*
+
+
+###### Profil
+
+La page "profil" est une page qui est utilisé pour les 2 types d'utilisateurs, seulement plus d'informations sont affichés lorsque c'est un client qui est connecté. Cette page sert essentiellement à modifier ses informations personnelles à l'aide d'un formulaire. Beaucoup de données sont récupérées pour tout afficher sur cette page. La modification des données de l'utilisateur se fait à l'aide du model *SQLAlchemy* *User*. Ce qui rend la tâche beaucoup plus simple, en modifiant les propriétés correspondant aux champs modifiés on peut mettre à jours toutes les valeurs. Il suffit d'effectuer un commit à la fin pour valider les changements. Si l'utilisateur importe une nouvelle photo de profil, l'image est sauvegarder localement avec un nom unique et ce nom est enregistré dans la base de données. 
+
+![Update profile](./img/update_profile.PNG)
+
+On peut voir ici que j'essaye de commit les changements effectués, je sauvegarde l'image importé et si cela fonctionne le fichier "profile.html" est retourné avec la méthode *render_template()*. Avec la méthode *flash()*, je peux afficher un message pour confirmer à l'utilisateur que la mise à jours a fonctionné ou pas.
+
+
+
+###### Changement de mot de passe
+
+La page "changement de mot de passe" est également accessible par les 2 types d'utilisateurs, elle est directement relié à la page profil. En précisant l'instruction suivante dans le lien de référence d'un bouton ou d'un lien on peut arriver directement sur cette page : 
+```
+{{url_for('client_blueprint.change_password')}}`
+
+```
+la méthode *url_for()* permet d'obtenir l'URL qui redirige vers une route ou un blueprint en l'occurence. 
+
+Le changement de mot de passe s'effectue en précisant son ancien mot de passe, le nouveau ainsi qu'une confirmation pour éviter les fautes de frappe. L'ancien mot de passe est ensuite vérifier à l'aide de la méthode *verify_pass()* qui permet de comparer le mot de passe saisit avec celui hashé en base de données.
+
+![verify password](./img/verify_password.PNG)
+
+Pour effectuer la vérification, je prends les 64 premiers caractères qui correspondent aux salt. Je hash ensuite le mot de passe saisit avec le même salt puis je compare avec celui enregistré en base.
+
+Si l'ancien mot de passe est correctement renseigné, alors la propriété *password* du model User est modifiée en hashant le mot de passe à l'aide de la méthode *hash_pass()*. Pour hashé le mot de passe j'utilise l'algorithme "SHA-512" sur le mot de passe ainsi que le salt qui est genéré.
+
+![Hash password](./img/hash_pass.PNG)
+
+Un message est ensuite affiché en fonction de la réussite de l'opération à l'aide de la méthode *flash()*
+
+###### Entrainements
+
+La page entrainements est la page qui permet au client de visionner l'ensemble des entrainements qu'il a effectué depuis son inscription.
+
+![Workouts route](./img/workouts_route.PNG)
+
+J'utilise la méthode *get_workouts()* qui permet de récupérer tous les entrainements d'un client et je les passent ensuite à la vue avec la méthode *render_template()*
+
+![Get workouts](./img/get_workouts.PNG)
+
+Les entrainements sont récupérer dans l'ordre par date décroissante (le plus récent en premier)
+
+
+###### Entrainement
+
+La page "entrainement" est utilisé uniquement pour afficher les détails d'un entrainements depuis la page "entrainements" d'un client. Les liens disponible sur la page "entrainements" qui permettent la redirection sur la page "entrainement" affichant les détails de ce dernier sont genérés avec l'instruction : 
+```
+{{ url_for('client_blueprint.workout', Id=workout.id) }}
+```
+En passant, un paramètre supplémentaire à la méthode *url_for* je peux passer des valeurs en paramètre. Je fais donc passer l'id de l'entrainements que je récupère ensuite sur cette page entrainement pour aller chercher les données correspondantes. J'utilise la méthode *get_workout_details()* qui me permet d'aller chercher toutes les informations nécessaires pour afficher les détails de l'entrainement en question.
+
+![get workout details](./img/get_workout_details.PNG)
+
+###### Ajout de review
+
+La page "Ajout de review" est un simple formulaire qui permet d'ajouter une review sur le coaching de manière générale ou sur un entrainement effectué. Le type de review ajouté est défini en fonction de ou le client va cliquer sur l'application. Les boutons redirigeant sur cette page possèdent un paramètre *type* qui permet d'identifier les champs a afficher ainsi que le type de review qui va être ajouté. Il y a également un paramètre target qui est ensuite inséré dans un input *hidden* représentant l'id de la "cible" de cette review.
+
+Les reviews sur le coaching peuvent être ajouté n'importe quand, par contre, un entrainement ne peut posséder qu'une seule review. Pour ajouter une review, j'utilise le model SQL Alchemy *WorkoutReview* pour les reviews d'entrainements et *CoachingReview* pour les reviews de coaching. Il suffit de renseigner les propriétés avec les champs renseigner, et d'effectuer un commit pour valider l'insertion. 
+
+Exemple avec une review d'entrainement :
+
+![Add review](./img/add_review.PNG)
+
+###### Review
+
+La page "Review" permet l'affichage d'une review que le client a ajouté. Les reviews ajoutés par le client sont listés sur son profil, il peut donc accéder aux détails de ces dernières en cliquant dessus. A nouveau à l'aide de la méthode *url_for* je fait passer en paramètre l'id et le type de la review séléctionné. Cela permet la récupération des infos une fois sur cette page. Les détails sont récupéré à l'aide de la méthode *get_review_details()* et sont ensuite passé en paramètre à la méthode *render_template()*.
+
+###### Bilan
+
+La page "Bilan" ressemble aux pages "Review" et "Entrainement" car elle ne sert qu'à afficher les valeurs qui ont été renseigné lors d'un Bilan avec le coach. L'id du bilan est passé en paramètre GET comme pour les deux autres pages (Review et Entrainement). Une fois récupéré, j'utilise la méthode *get_check_up()* en donnant l'id du bilan en paramètre pour avoir toutes les données et les passer ensuite en paramètre à la méthode *render_template()* qui les fera passer à la vue
+
+##### Coach
+
+###### Tableau de bord
+
+###### Ajout client
+
+###### Client
+
+###### Ajout programme
+
+###### Ajout Bilan
+
+###### Renouvellement abonnement
 
 ### Base de données
 Pour permettre le stockage des données, j'ai créé une base de données nomées "fitjourney". Cette base de données me permet d'enregistrer et stocker toutes les données requis pour le bon fonctionnement de l'application. 
@@ -453,8 +876,7 @@ Exemple d'initialisation d'une table avec SQL Alchemy :
 Data Mapper est un pattern qui sépare les objets en mémoire de la base de données. Il consiste à transférer les données entre les deux et à les isoler l'une de l'autre. Avec le pattern *Data Mapper*, les objets en mémoire ne doivent même pas savoir qu'une base de données est présente, ils n'ont pas besoin de code d'interface SQL, et certainement pas de connaissance du schéma de la base de données. (Le schéma de la base de données ignore toujours les objets qui l'utilisent). 
 
 ![Data Mapper](./img/DataMapper.PNG)
-#### Accès
-#### Données de tests
+
 #### Tables
 
 ##### Table *USER*
@@ -497,6 +919,14 @@ Cette table contient tous les retours client sur le coaching effectué par le co
 Cette table contient tous les retours client sur les sessions qu'il effectue avec un coach. Les champs disponibles sont la difficulté, le ressenti de la séance, le niveau de fatigue à la fin de la séance et l'énergie que le client avait en arrivant.
 
 
+
+
+
+
+### API Polar Accesslink
+
+
+
 ### Routage de l'application
 
 Le **routage** de l'application signifie mapper les URL à une fonction spécifique qui gérera la logique de cette URL. Dans mon application, chaque route est relier au blueprint correspondant.
@@ -507,7 +937,6 @@ Endpoint public - Visiteur
 |---|---|---|---|
 | POST | /login  |   |   |
 | POST | /register |   |   |
-| GET  | /index | | |
 |---|---|---|---|
 
 Endpoint privé - Client
@@ -520,6 +949,9 @@ Endpoint privé - Client
 | POST | /add_review |   |   |
 | GET | /workouts |   |   |
 | GET | /workout |   |   |
+| GET | /checkup |   |   |
+| POST | /change_password |   |   |
+| GET | /program |   |   |
 |---|---|---|---|
 
 Endpoint privé - Coach
@@ -528,4 +960,22 @@ Endpoint privé - Coach
 |---|---|---|---|
 | GET | /dashboard  |   |   |
 | POST | /calendar |   |   |
+| POST | /client |   |   |
+| GET | /review |   |   |
+| POST | /add_client |   |   |
+| POST | /add_program |   |   |
+| GET | /program |   |   |
+| GET | /checkup |   |   |
+| POST | /check_up |   |   |
+| POST | /new_subscription |   |   |
+| POST | /new_card |   |   |
+| POST | /cancel_subscription |   |   |
 |---|---|---|---|
+
+
+### Gestion du temps
+
+## Améliorations futures
+
+## Bilans
+

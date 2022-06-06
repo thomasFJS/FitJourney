@@ -9,29 +9,19 @@ Brief           :           HTML base for each page of the application
 -->
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
   <title>
         FitJourney - {% block title %} {% endblock %}
   </title>
-
   {% include "includes/css.html" %}
   <!-- Specific CSS HERE -->
   {% block stylesheets %}{% endblock stylesheets %}
-
 </head>
-
 <body class="">
   {% include "includes/nav.html" %}
-
   <div class="main-content" id="panel">
-
-   
-
         <!-- Header -->
         <div class="header bg-gradient-purple py-7 py-lg-8">
           <div class="container">
@@ -50,17 +40,10 @@ Brief           :           HTML base for each page of the application
             </div>
           </div>
         </div>
-        
-
     {% block content %}{% endblock content %}
-
   </div>
-
   {% include "includes/scripts.html" %}
-
   <!-- Specific JS HERE --> 
   {% block javascripts %}{% endblock javascripts %}
-
 </body>
-
 </html>
