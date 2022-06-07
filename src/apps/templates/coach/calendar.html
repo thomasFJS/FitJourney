@@ -151,7 +151,7 @@ div{% extends 'layout/base.html' %}
       selectable: true,
       selectMirror: true,
       nowIndicator: true,
-      events: {{sessions | safe}}
+      events: {{ sessions | safe }}
     });
 
     calendar.render();

@@ -386,6 +386,8 @@ Dans la zone verte, un bouton pour ajouter une nouvelle session avec un client e
 
 ## Analyse Organique
 
+
+
 ### Mise en place / Envirronement
 
 #### Visual Studio Code
@@ -420,6 +422,39 @@ J'ai créé 5 colonnes :
 * Doing (Les tâches en cours)
 * Testing (Les tâches en cours de test)
 * Done (Les tâches terminées)
+
+### Organisation / Gestion du temps
+#### Convention : en-têtes
+Tous les fichiers développés par moi même possèdent l'entête ci-dessous:
+
+![HEader code](./img/header.png)
+
+#### Backlog
+Les backlogs ont été identifiés au lancement du projet (certains l'ont été au fur et à mesure que le projet avançait). Ils ont été ajouté au [Trello](#trello) qui est l'outil qui a été choisi pour gérer le projet. Avec les cartes Trello, j'ai défini la difficulté et la priorité des tâches. Il était donc plus simple pour moi de visualiser quelle tâches devaient être réalisé en priorités.
+
+##### Difficulté
+La difficulté est définie par une étiquette de couleur selon la charte que j'ai défini : 
+
+![Trello difficulty](./img/trello_difficulty.PNG)
+
+##### Priorité
+La priorité est définie également par une étiquette qui provient de l'extension "CardsPriority" sur Trello. Les prioritées assigné suivent la charte : 
+
+![Trello priority](./img/trello_priority.PNG)
+
+#### Planning 
+Un planning prévisionnel a été réalisé au début du projet afin de lister les tâches et d'estimer leurs durées. En regardant les graphiques, on peut directement apercevoir que les deux n'ont aucun point en commun.
+
+Planning prévisionnel : 
+
+![Planning prévisionnel](./img/planning_previsionnel.PNG)
+
+Planning effectif : 
+![Planning effectif](./img/planning_effectif.PNG)
+
+Lors de la réalisation du projet, beaucoup de tâches sont venues s'ajoutées. Toutes la mise en place de la structure de l'application avec Python Flask m'a prit beaucoup plus de temps que prévu. Les besoins de la base de données qui ont été revu a maintes reprises.
+
+Le planning initial n'a vraiment pas pu être respecté a cause des différentes tâches qui ont été identifiées uniquement après avoir commencer le projet.
 
 ### Technologies utilisées
 
@@ -484,6 +519,7 @@ Accesslink est une API qui donne accès aux données d'entrainement et d'activit
 
 Accesslink utilise [OAuth2](https://oauth.net/) comme protocole d'authentification. Les utilisateurs enregistrés ont besoin de s'authentifier pour pouvoir avoir accès aux données.
 
+
 Fonctionnalités de base d'Accesslink :
 
 | Fonctionnalité        | Description                                            |
@@ -541,13 +577,13 @@ Malgré tous, un Flask Blueprint n'est pas exactement comme une application Flas
 Les Blueprints m'ont permis de découper l'application principale en plusieurs parties et de structurer mon projet.
 
 #### Argon Design System
-![Argon](./img/argon.png)
+![Argon](./img/argon.png){width=200 align="right"}
 
 Argon est un "design system" open source basé sur le framework CSS Bootstrap 4. Il propose plus de 100 composants individuel ce qui permet une certaine libertée. 
 Argon m'a permit de ne pas perdre trop de temps sur le côté "design" de l'application
 
 #### Chart.JS
-![chartjs](./img/chartjs.svg)
+![chartjs](./img/chartjs.svg){width=200 align="right"}
 
 Chart.js est une librairie open source, elle permet la visualisation de données en utilisant JavaScript. Elle est similaire à *Chartist* ou *Google Chart*. Chart.js supporte 8 différents type de graphique et sont tous responsive. Pour pouvoir utiliser Chart.js il faut :
 
@@ -558,8 +594,17 @@ Chart.js est une librairie open source, elle permet la visualisation de données
 Voici un exemple de graphique que peut générer chart.js : 
 ![chartjsex](./img/graphique.png)
 
+#### FullCalendar.io
+![FullCalendar](./img/FullCalendar_logo.png){width=200 align="right"}
+
+FullCalendar est une librairie javascript qui s'intègre facilement avec des frameworks Javascript populaires tels que Vue, React et Angular. Elle permet d'implémenter un calendrier avec des événements. Cette librairie est très utile pour gérer l'agenda du coach.
+
+![Fullcalendare](./img/fullcalendar_demo.png)
 
 ### Architecture du projet
+Voici l'architecture du projet Fitjourney : 
+
+![Architecture du projet](./img/application_diagram.PNG)
 
 #### Arborescence application principale
 ```
@@ -704,156 +749,6 @@ Le fichier "db.py" est utilisé pour se connecté à la base de données, on y r
 ##### Fichier "main.py"
 Le fichier "main.py" contient le script python principal qui permet la lecture des cartes et la récupération des données avec l'API Polar. C'est ce script qu'il faut exécuter pour lancer le programme.
 
-
-
-### FitJourney application
-#### Développement avec Python Flask
-L'application web FitJourney est développé avec Python flask qui utilise Jinja2 pour le templating et Werkzeug pour faire la communication entre serveur web et application web.
-
-##### Templating Jinja2
-Le templating permet de créer des pages dynamiques en fonction des données fournient à la page. Dans le cas de l'application, cela permet d'afficher les données de l'utilisateurs connectés ainsi qu'afficher certaines parties en fonction du niveau d'accès de l'utilisateur.
-
-##### Template de base 
-Le concept très utile qui est la possibilité de créer une template parent. Pour illustrer cela, j'ai un fichier *add_program.html* qui va utiliser tout le contenu du fichier *base.html*, mais qui va ajouter certaines parties en plus, selon les instructions.
-
-Voici un aperçu du fichier *base.html* et on peut y retrouver plusieurs instructions comme :
-```
-{% block content %}{% endblock content%}
-```
-Ces instructions permettent d'insérer du contenu depuis un fichier enfant.
-![base html](./img/base.PNG)
-
-Pour créer un fichier enfant il suffit d'ajouter l'instruction : 
-```
-{% extends 'base.html' %}
-```
-pour étendre le fichier de parent. Voici un exemple de fichier enfant avec le fichier *add_program.html* :
-
-![Add program](./img/add_program.PNG)
-
-La vue de cette page : 
-
-![Add program view](./img/add_program_view.PNG)
-
-
-##### Routes
-Les routes avec Python Flask sont reliées directement à des méthodes. Ces méthodes doivent forcément retourner quelque chose. L'instruction :
-```
-@blueprint.route('/dashboard')
-```
-permet de dire que la méthode qui suit l'instruction sera liée au blueprint et la route "/dashboard". (Il est possible de relier plusieurs routes à la même méthode)
-
-![Dashboard route](./img/route_dashboard.PNG)
-
-Comme préciser ci-dessus, il est obligatoire de retourner quelque chose. Pour utiliser du templating Jinja2, Flask propose une méthode nommée *render_template()*. Le premier paramètres de cette méthode est le fichier de template que l'on veut utiliser, puis les paramètres suivant sont des données que l'on veut transmettre à la vue. Dans le cas de la route */dashboard*, je donne le prochain client qui a rendez-vous avec le coach, la date du dernier entrainement qu'il a effectué ainsi que la liste de tous les autres clients dont il a la charge.
-
-Comme on peut le voir sur l'image ci-dessus, il est possible d'ajouter l'instruction 
-```
-@login_required
-```
-avant la méthode pour préciser que cette route n'est accessible que si un utilisateur est connecté. Cette instruction est utilisable à l'aide la librairie *Flask-Login*.
-
-##### Client
-
-###### Prochaines sessions
-
-La page "prochaines session" de l'application a pour but d'afficher toutes les sessions à venir pour le client. Cela permet au client d'avoir une vue d'ensemble sur les différentes sessions qu'il a prévu avec son coach. Pour récupérer toutes les prochaines sessions j'utilise la méthode 
-```
-get_next_session(userid)
-```
-Elle se trouve avec toutes les autres méthodes utilisées pour les routes client, dans le fichier *client/utils.py*. Je n'ai besoin que de l'id du client dont on veut récupérer les sessions.
-
-![Next session](./img/next_sessions.PNG)
-
-Le tableau retourné contenant toutes les sessions est ensuite envoyé à la vue à l'aide de la méthode *render_template()*
-
-
-###### Profil
-
-La page "profil" est une page qui est utilisé pour les 2 types d'utilisateurs, seulement plus d'informations sont affichés lorsque c'est un client qui est connecté. Cette page sert essentiellement à modifier ses informations personnelles à l'aide d'un formulaire. Beaucoup de données sont récupérées pour tout afficher sur cette page. La modification des données de l'utilisateur se fait à l'aide du model *SQLAlchemy* *User*. Ce qui rend la tâche beaucoup plus simple, en modifiant les propriétés correspondant aux champs modifiés on peut mettre à jours toutes les valeurs. Il suffit d'effectuer un commit à la fin pour valider les changements. Si l'utilisateur importe une nouvelle photo de profil, l'image est sauvegarder localement avec un nom unique et ce nom est enregistré dans la base de données. 
-
-![Update profile](./img/update_profile.PNG)
-
-On peut voir ici que j'essaye de commit les changements effectués, je sauvegarde l'image importé et si cela fonctionne le fichier "profile.html" est retourné avec la méthode *render_template()*. Avec la méthode *flash()*, je peux afficher un message pour confirmer à l'utilisateur que la mise à jours a fonctionné ou pas.
-
-
-
-###### Changement de mot de passe
-
-La page "changement de mot de passe" est également accessible par les 2 types d'utilisateurs, elle est directement relié à la page profil. En précisant l'instruction suivante dans le lien de référence d'un bouton ou d'un lien on peut arriver directement sur cette page : 
-```
-{{url_for('client_blueprint.change_password')}}`
-
-```
-la méthode *url_for()* permet d'obtenir l'URL qui redirige vers une route ou un blueprint en l'occurence. 
-
-Le changement de mot de passe s'effectue en précisant son ancien mot de passe, le nouveau ainsi qu'une confirmation pour éviter les fautes de frappe. L'ancien mot de passe est ensuite vérifier à l'aide de la méthode *verify_pass()* qui permet de comparer le mot de passe saisit avec celui hashé en base de données.
-
-![verify password](./img/verify_password.PNG)
-
-Pour effectuer la vérification, je prends les 64 premiers caractères qui correspondent aux salt. Je hash ensuite le mot de passe saisit avec le même salt puis je compare avec celui enregistré en base.
-
-Si l'ancien mot de passe est correctement renseigné, alors la propriété *password* du model User est modifiée en hashant le mot de passe à l'aide de la méthode *hash_pass()*. Pour hashé le mot de passe j'utilise l'algorithme "SHA-512" sur le mot de passe ainsi que le salt qui est genéré.
-
-![Hash password](./img/hash_pass.PNG)
-
-Un message est ensuite affiché en fonction de la réussite de l'opération à l'aide de la méthode *flash()*
-
-###### Entrainements
-
-La page entrainements est la page qui permet au client de visionner l'ensemble des entrainements qu'il a effectué depuis son inscription.
-
-![Workouts route](./img/workouts_route.PNG)
-
-J'utilise la méthode *get_workouts()* qui permet de récupérer tous les entrainements d'un client et je les passent ensuite à la vue avec la méthode *render_template()*
-
-![Get workouts](./img/get_workouts.PNG)
-
-Les entrainements sont récupérer dans l'ordre par date décroissante (le plus récent en premier)
-
-
-###### Entrainement
-
-La page "entrainement" est utilisé uniquement pour afficher les détails d'un entrainements depuis la page "entrainements" d'un client. Les liens disponible sur la page "entrainements" qui permettent la redirection sur la page "entrainement" affichant les détails de ce dernier sont genérés avec l'instruction : 
-```
-{{ url_for('client_blueprint.workout', Id=workout.id) }}
-```
-En passant, un paramètre supplémentaire à la méthode *url_for* je peux passer des valeurs en paramètre. Je fais donc passer l'id de l'entrainements que je récupère ensuite sur cette page entrainement pour aller chercher les données correspondantes. J'utilise la méthode *get_workout_details()* qui me permet d'aller chercher toutes les informations nécessaires pour afficher les détails de l'entrainement en question.
-
-![get workout details](./img/get_workout_details.PNG)
-
-###### Ajout de review
-
-La page "Ajout de review" est un simple formulaire qui permet d'ajouter une review sur le coaching de manière générale ou sur un entrainement effectué. Le type de review ajouté est défini en fonction de ou le client va cliquer sur l'application. Les boutons redirigeant sur cette page possèdent un paramètre *type* qui permet d'identifier les champs a afficher ainsi que le type de review qui va être ajouté. Il y a également un paramètre target qui est ensuite inséré dans un input *hidden* représentant l'id de la "cible" de cette review.
-
-Les reviews sur le coaching peuvent être ajouté n'importe quand, par contre, un entrainement ne peut posséder qu'une seule review. Pour ajouter une review, j'utilise le model SQL Alchemy *WorkoutReview* pour les reviews d'entrainements et *CoachingReview* pour les reviews de coaching. Il suffit de renseigner les propriétés avec les champs renseigner, et d'effectuer un commit pour valider l'insertion. 
-
-Exemple avec une review d'entrainement :
-
-![Add review](./img/add_review.PNG)
-
-###### Review
-
-La page "Review" permet l'affichage d'une review que le client a ajouté. Les reviews ajoutés par le client sont listés sur son profil, il peut donc accéder aux détails de ces dernières en cliquant dessus. A nouveau à l'aide de la méthode *url_for* je fait passer en paramètre l'id et le type de la review séléctionné. Cela permet la récupération des infos une fois sur cette page. Les détails sont récupéré à l'aide de la méthode *get_review_details()* et sont ensuite passé en paramètre à la méthode *render_template()*.
-
-###### Bilan
-
-La page "Bilan" ressemble aux pages "Review" et "Entrainement" car elle ne sert qu'à afficher les valeurs qui ont été renseigné lors d'un Bilan avec le coach. L'id du bilan est passé en paramètre GET comme pour les deux autres pages (Review et Entrainement). Une fois récupéré, j'utilise la méthode *get_check_up()* en donnant l'id du bilan en paramètre pour avoir toutes les données et les passer ensuite en paramètre à la méthode *render_template()* qui les fera passer à la vue
-
-##### Coach
-
-###### Tableau de bord
-
-###### Ajout client
-
-###### Client
-
-###### Ajout programme
-
-###### Ajout Bilan
-
-###### Renouvellement abonnement
-
 ### Base de données
 Pour permettre le stockage des données, j'ai créé une base de données nomées "fitjourney". Cette base de données me permet d'enregistrer et stocker toutes les données requis pour le bon fonctionnement de l'application. 
 #### MCD
@@ -918,64 +813,294 @@ Cette table contient tous les retours client sur le coaching effectué par le co
 ##### Table *SESSION_REVIEW*
 Cette table contient tous les retours client sur les sessions qu'il effectue avec un coach. Les champs disponibles sont la difficulté, le ressenti de la séance, le niveau de fatigue à la fin de la séance et l'énergie que le client avait en arrivant.
 
+### FitJourney application
+#### Développement avec Python Flask
+L'application web FitJourney est développé avec Python flask qui utilise Jinja2 pour le templating et Werkzeug pour faire la communication entre serveur web et application web.
+
+##### Templating Jinja2
+Le templating permet de créer des pages dynamiques en fonction des données fournient à la page. Dans le cas de l'application, cela permet d'afficher les données de l'utilisateurs connectés ainsi qu'afficher certaines parties en fonction du niveau d'accès de l'utilisateur.
+
+##### Template de base 
+Le concept très utile qui est la possibilité de créer une template parent. Pour illustrer cela, j'ai un fichier *add_program.html* qui va utiliser tout le contenu du fichier *base.html*, mais qui va ajouter certaines parties en plus, selon les instructions.
+
+Voici un aperçu du fichier *base.html* et on peut y retrouver plusieurs instructions comme :
+```
+{% block content %}{% endblock content%}
+```
+Ces instructions permettent d'insérer du contenu depuis un fichier enfant.
+![base html](./img/base.PNG)
+
+Pour créer un fichier enfant il suffit d'ajouter l'instruction : 
+```
+{% extends 'base.html' %}
+```
+pour étendre le fichier de parent. Voici un exemple de fichier enfant avec le fichier *add_program.html* :
+
+![Add program](./img/add_program.PNG)
+
+La vue de cette page : 
+
+![Add program view](./img/add_program_view.PNG)
 
 
+##### Routes
+Les routes avec Python Flask sont reliées directement à des méthodes. Ces méthodes doivent forcément retourner quelque chose. L'instruction :
+```
+@blueprint.route('/dashboard')
+```
+permet de dire que la méthode qui suit l'instruction sera liée au blueprint et la route "/dashboard". (Il est possible de relier plusieurs routes à la même méthode)
+
+![Dashboard route](./img/route_dashboard.PNG)
+
+Comme préciser ci-dessus, il est obligatoire de retourner quelque chose. Pour utiliser du templating Jinja2, Flask propose une méthode nommée *render_template()*. Le premier paramètres de cette méthode est le fichier de template que l'on veut utiliser, puis les paramètres suivant sont des données que l'on veut transmettre à la vue. Dans le cas de la route */dashboard*, je donne le prochain client qui a rendez-vous avec le coach, la date du dernier entrainement qu'il a effectué ainsi que la liste de tous les autres clients dont il a la charge.
+
+Comme on peut le voir sur l'image ci-dessus, il est possible d'ajouter l'instruction 
+```
+@login_required
+```
+avant la méthode pour préciser que cette route n'est accessible que si un utilisateur est connecté. Cette instruction est utilisable à l'aide la librairie *Flask-Login*.
 
 
-
-### API Polar Accesslink
-
-
-
-### Routage de l'application
-
-Le **routage** de l'application signifie mapper les URL à une fonction spécifique qui gérera la logique de cette URL. Dans mon application, chaque route est relier au blueprint correspondant.
+##### Les routes de l'application
+Comme mentionné plus haut dans l'[architecture blueprint](#architecture-blueprint), dans mon application, chaque route est reliée au blueprint correspondant. Voici les différentes routes qui ont été créé pour l'application *FitJourney*.
 
 Endpoint public - Visiteur
 
-| Méthodes  |  Endpoint |   | Description  | 
-|---|---|---|---|
-| POST | /login  |   |   |
-| POST | /register |   |   |
-|---|---|---|---|
+| Méthodes  |  Endpoint   | Description  | 
+|---|---|---|
+| POST | /login  | Permet de connecter un utilisateur |    
+|---|---|---|
 
 Endpoint privé - Client
 
-| Méthodes  |  Endpoint |   | Description  | 
-|---|---|---|---|
-| GET | /index  |   |   |
-| POST | /profile |   |   |
-| GET | /review |   |   |
-| POST | /add_review |   |   |
-| GET | /workouts |   |   |
-| GET | /workout |   |   |
-| GET | /checkup |   |   |
-| POST | /change_password |   |   |
-| GET | /program |   |   |
-|---|---|---|---|
+| Méthodes  |  Endpoint |  Description  | 
+|---|---|---|
+| GET | /index  |  Récupère les prochaines sessions que le client a planifié |   
+| POST | /profile | Récupère toutes les données du client, permets de modifier les informations personnelles du client   |   
+| GET | /review |  Récupère les détails d'une review |   
+| POST | /add_review | Permet d'ajouter une review  |   
+| GET | /workouts | Récupère tous les entrainements effectué par un client   |   
+| GET | /workout | Récupère les détails d'un entrainement  |   
+| GET | /checkup | Récupère les détails d'un bilan  |   
+| POST | /change_password |  Permet de modifier le mot de passe de l'utilisateur |   
+| GET | /program |  Permet de télécharger le fichier pdf du programme |   
+|---|---|---|
 
 Endpoint privé - Coach
 
-| Méthodes  |  Endpoint |   | Description  | 
-|---|---|---|---|
-| GET | /dashboard  |   |   |
-| POST | /calendar |   |   |
-| POST | /client |   |   |
-| GET | /review |   |   |
-| POST | /add_client |   |   |
-| POST | /add_program |   |   |
-| GET | /program |   |   |
-| GET | /checkup |   |   |
-| POST | /check_up |   |   |
-| POST | /new_subscription |   |   |
-| POST | /new_card |   |   |
-| POST | /cancel_subscription |   |   |
-|---|---|---|---|
+| Méthodes  |  Endpoint | Description  | 
+|---|---|---|
+| POST | /register |  Permet d'inscrire un nouvel utilisateur **coach**|
+| GET | /dashboard  | Récupère les informations de la prochaine session du coach et la liste de tous ses clients  |
+| POST | /calendar | Récupère toutes les sessions d'un coach et permet d'ajouter une nouvelle session avec un client   |
+| POST | /client |  Récupère toutes les données d'un client   |
+| GET | /review |  Récupère les détails d'une review  |
+| POST | /add_client | Permet de créer un nouvel utilisateur client  |
+| POST | /add_program | Permet d'ajouter un programme à un client   |
+| GET | /program | Permet de télécharger le fichier pdf du programme   |
+| GET | /checkup |  Récupère les détails d'un bilan  |
+| POST | /check_up | Permet d'ajouter un bilan   |
+| POST | /new_subscription |  Permet de renouveller un abonnement  |
+| POST | /new_card |  Permet de mettre à jour la carte membre d'un client  |
+| POST | /cancel_subscription | Permet d'annuler l'abonnement d'un client  |
+|---|---|---|
 
 
-### Gestion du temps
+##### Client
 
-## Améliorations futures
+###### Prochaines sessions
+
+La page "prochaines session" de l'application a pour but d'afficher toutes les sessions à venir pour le client. Cela permet au client d'avoir une vue d'ensemble sur les différentes sessions qu'il a prévu avec son coach. Pour récupérer toutes les prochaines sessions j'utilise la méthode 
+```
+get_next_session(userid)
+```
+Elle se trouve avec toutes les autres méthodes utilisées pour les routes client, dans le fichier *client/utils.py*. Je n'ai besoin que de l'id du client dont on veut récupérer les sessions.
+
+![Next session](./img/next_sessions.PNG)
+
+Le tableau retourné contenant toutes les sessions est ensuite envoyé à la vue à l'aide de la méthode *render_template()*
+
+
+###### Profil
+
+La page "profil" est une page qui est utilisé pour les 2 types d'utilisateurs, seulement plus d'informations sont affichés lorsque c'est un client qui est connecté. Cette page sert essentiellement à modifier ses informations personnelles à l'aide d'un formulaire. Beaucoup de données sont récupérées pour tout afficher sur cette page. La modification des données de l'utilisateur se fait à l'aide du model *SQLAlchemy* *User*. Ce qui rend la tâche beaucoup plus simple, en modifiant les propriétés correspondant aux champs modifiés on peut mettre à jours toutes les valeurs. Il suffit d'effectuer un commit à la fin pour valider les changements. Si l'utilisateur importe une nouvelle photo de profil, l'image est sauvegarder localement avec un nom unique et ce nom est enregistré dans la base de données. 
+
+![Update profile](./img/update_profile.PNG)
+
+On peut voir ici que j'essaye de commit les changements effectués, je sauvegarde l'image importé et si cela fonctionne le fichier "profile.html" est retourné avec la méthode *render_template()*. Avec la méthode *flash()*, je peux afficher un message pour confirmer à l'utilisateur que la mise à jours a fonctionné ou pas.
+
+
+
+###### Changement de mot de passe
+
+La page "changement de mot de passe" est également accessible par les 2 types d'utilisateurs, elle est directement relié à la page profil. En précisant l'instruction suivante dans le lien de référence d'un bouton ou d'un lien on peut arriver directement sur cette page : 
+```
+{{url_for('client_blueprint.change_password')}}`
+
+```
+la méthode *url_for()* permet d'obtenir l'URL qui redirige vers une route ou un blueprint en l'occurence. 
+
+Le changement de mot de passe s'effectue en précisant son ancien mot de passe, le nouveau ainsi qu'une confirmation pour éviter les fautes de frappe. L'ancien mot de passe est ensuite vérifier à l'aide de la méthode *verify_pass()* qui permet de comparer le mot de passe saisit avec celui hashé en base de données.
+
+![verify password](./img/verify_password.PNG)
+
+Pour effectuer la vérification, je prends les 64 premiers caractères qui correspondent aux salt. Je hash ensuite le mot de passe saisit avec le même salt puis je compare avec celui enregistré en base.
+
+Si l'ancien mot de passe est correctement renseigné, alors la propriété *password* du model User est modifiée en hashant le mot de passe à l'aide de la méthode *hash_pass()*. Pour hashé le mot de passe j'utilise l'algorithme "SHA-512" sur le mot de passe ainsi que le salt qui est genéré.
+
+![Hash password](./img/hash_pass.PNG)
+
+Un message est ensuite affiché en fonction de la réussite de l'opération à l'aide de la méthode *flash()*
+
+###### Entrainements
+
+La page entrainements est la page qui permet au client de visionner l'ensemble des entrainements qu'il a effectué depuis son inscription.
+
+![Workouts route](./img/workouts_route.PNG)
+
+J'utilise la méthode *get_workouts()* qui permet de récupérer tous les entrainements d'un client et je les passent ensuite à la vue avec la méthode *render_template()*
+
+![Get workouts](./img/get_workouts.PNG)
+
+Les entrainements sont récupérer dans l'ordre par date décroissante (le plus récent en premier).
+
+
+
+
+###### Entrainement
+
+La page "entrainement" est utilisé uniquement pour afficher les détails d'un entrainements depuis la page "entrainements" d'un client. Les liens disponible sur la page "entrainements" qui permettent la redirection sur la page "entrainement" affichant les détails de ce dernier sont genérés avec l'instruction : 
+```
+{{ url_for('client_blueprint.workout', Id=workout.id) }}
+```
+En passant, un paramètre supplémentaire à la méthode *url_for* je peux passer des valeurs en paramètre. Je fais donc passer l'id de l'entrainements que je récupère ensuite sur cette page entrainement pour aller chercher les données correspondantes. J'utilise la méthode *get_workout_details()* qui me permet d'aller chercher toutes les informations nécessaires pour afficher les détails de l'entrainement en question.
+
+![get workout details](./img/get_workout_details.PNG)
+
+Les données des entrainements sont récupérés avec l'[API Polar Accesslink](#polar-accesslink-api) qui donne accès aux enregistrements des montres connectés Polar.
+
+###### Ajout de review
+
+La page "Ajout de review" est un simple formulaire qui permet d'ajouter une review sur le coaching de manière générale ou sur un entrainement effectué. Le type de review ajouté est défini en fonction de ou le client va cliquer sur l'application. Les boutons redirigeant sur cette page possèdent un paramètre *type* qui permet d'identifier les champs a afficher ainsi que le type de review qui va être ajouté. Il y a également un paramètre target qui est ensuite inséré dans un input *hidden* représentant l'id de la "cible" de cette review.
+
+Les reviews sur le coaching peuvent être ajouté n'importe quand, par contre, un entrainement ne peut posséder qu'une seule review. Pour ajouter une review, j'utilise le model SQL Alchemy *WorkoutReview* pour les reviews d'entrainements et *CoachingReview* pour les reviews de coaching. Il suffit de renseigner les propriétés avec les champs renseigner, et d'effectuer un commit pour valider l'insertion. 
+
+Exemple avec une review d'entrainement :
+
+![Add review](./img/add_review.PNG)
+
+###### Review
+
+La page "Review" permet l'affichage d'une review que le client a ajouté. Les reviews ajoutés par le client sont listés sur son profil, il peut donc accéder aux détails de ces dernières en cliquant dessus. A nouveau à l'aide de la méthode *url_for* je fait passer en paramètre l'id et le type de la review séléctionné. Cela permet la récupération des infos une fois sur cette page. Les détails sont récupéré à l'aide de la méthode *get_review_details()* et sont ensuite passé en paramètre à la méthode *render_template()*.
+
+###### Bilan
+
+La page "Bilan" ressemble aux pages "Review" et "Entrainement" car elle ne sert qu'à afficher les valeurs qui ont été renseigné lors d'un Bilan avec le coach. L'id du bilan est passé en paramètre GET comme pour les deux autres pages (Review et Entrainement). Une fois récupéré, j'utilise la méthode *get_check_up()* en donnant l'id du bilan en paramètre pour avoir toutes les données et les passer ensuite en paramètre à la méthode *render_template()* qui les fera passer à la vue
+
+##### Coach
+
+###### Tableau de bord
+
+ La page "Tableau de bord" permet d'afficher la prochaine session du coach ainsi que la liste de tous ses clients. Une vérification est effectué au début de la route pour éviter qu'un client se retrouve sur cette page.
+
+ ![Dashboard route](./img/dashboard_route.PNG)
+
+ La vérification est effectué avec la méthode *is_coach()* de l'objet *User* qui permet de vérifier si l'utilisateur connecté possède le role de coach. Si l'utilisateur est un coach, alors les infos du prochain client, la date de son dernier entrainement ainsi que la liste de tous les clients dont le coach a la charge sont recupérés et donné en paramêtre à la vue.
+
+###### Calendrier
+
+La page "Calendrier" permet d'afficher un agenda affichant toutes les sessions que le coach a enregistré. Il peut également en ajouter une avec le formulaire qui est disponible juste à côté. Le calendrier est affiché à l'aide de la librairie Javascript *FullCalendar.io*, il est initialisé en javascript. Les événements à inscrire dans le calendrier doivent être assigné à la propriété *events:* de l'objet javascript *FullCalendar.Calendar()*. La méthode *get_session()* est donc utilisé pour récupérer tous les sessions enregistrés pour le coach connecté dans le bon format pour que les sessions soient interprêtés comme un événement pour le calendrier.
+
+![Get event](./img/get_event.PNG)
+
+La méthode récupère toutes les sessions à venir et les ajoutent dans un tableau sous la forme d'objets avec 3 propriétées
+```
+{
+    'title':
+    'start':
+    'end':
+}
+```
+
+Si le coach ajoute une session à l'aide du formulaire, les valeurs des champs sont récupérés et utilisés pour avoir le format désiré. Si le coach n'a pas de client a charge, il ne sera pas en mesure de séléctionner un client pour la session qu'il souhaite ajouter. Si il essaye, une erreur sera affichée à l'aide de la méthode *flash()*. Le *DateTime* de fin est genéré automatiquement à l'aide de la date et l'heure de début séléctionné ainsi que la durée. Pour enregistrer sous le format *DateTime*, l'heure de la session est ajouté à la date.La session est ajoutée à l'aide du model SQLAlchemy *Session*, l'ajout est validé avec un commit.
+
+###### Ajout client
+
+La page "Ajout client" permet de créer un nouveau compte client et d'assigner son suivi au coach qui créer son compte. Cette page contient également une vérification avec la méthode *is_coach()* pour vérifier que l'utilisateur sur cette page est bien un coach. L'input de type *select* pour séléctionner le type d'abonnement souhaité est genéré automatiquement, les différents abonnements sont récupérés depuis la base de données avec la méthode *get_all_subscription()*. Pour ajouter le client dans la base de données, j'utilise à nouveau les modèles *SQLAlchemy*, cette fois-ci plusieurs sont nécessaires (*User*, *CoachedBy* et *Purchase*). Pour pouvoir effectuer l'insertion comme il faut, je commence par l'utilisateur puis j'utilise l'instruction : 
+```
+db.session.flush()
+```
+qui me permet d'obtenir l'id de l'utilisateur qui va être inséré (utilisé pour l'insertion avec les 2 autres modèles). Une fois les 3 modèles remplis et ajouté, j'effectue un commit pour valider les insertions.
+
+![Add client](./img/add_client.PNG)
+
+###### Client
+
+La page "Client" permet aux coach de visionner le profil d'un de leurs client. Toutes les données nécessaires sont récupérés depuis la base de données et envoyer à la vue. On y retrouve énormement de données comme sur la page profil du client.
+
+![Client render](./img/client_render.PNG)
+
+Sur la template Jinja2, on retrouve énormement de condition comme par exemple pour les programmes d'entrainements qui peuvent ne pas avoir été importé par le coach :
+
+```
+{% if workoutProgram != None %}
+```
+
+Cela permet d'afficher quand même quelque chose même si il n'y a pas encore de valeurs qui a été ajouté en base.
+
+###### Ajout programme
+
+La page "Ajout programme" est également soumise à une vérification, pour éviter qu'un client arrive sur cette page. Pour ajouter un programme, il suffit de séléctionner le type et d'ajouter le pdf que l'on souhaite importer. Pour éviter d'imposer un format prédéfini avec un fichier excel, j'ai voulu permettre uniquement l'ajout de pdf. Cela permet plus de liberté aux coachs et évitera de "casser" leurs habitudes si ils utilisent l'application. Le pdf est lu avec la méthode python *read()* qui permet de retourner les bytes du fichier. Ils sont ensuite enregistrés dans la base de données dans un champ *LONGBLOB*.
+
+Pour télécharger le programme, j'utilise la route "/program" et je passe en paramêtre GET l'id du programme. La route retourne la méthode python *send_file()* qui permet de télécharger un fichier. J'utilise également l'objet *BytesIO* qui permet d'écrire le fichier à partir des bytes qui ont été enregistré en base.
+
+![Download program](./img/dl_program.PNG)
+
+
+###### Ajout Bilan
+La page "Ajout bilan" ne contient qu'un formulaire pour ajouter les valeurs du bilan. Les valeurs demandées sont toutes récupérables à l'aide d'une balance connectée. L'id, le nom, prénom et l'âge du client sont récupérés et insérés automatiquement et sont statiques, le coach ne peut pas modifier ses informations. L'âge du client est calculé en fonction de sa date de naissance et la date d'aujourd'hui.
+
+![Checkup static](./img/checkup.PNG)
+
+###### Modification de carte
+La modification de carte de membre s'effectue depuis la [page client](#client-2). Une fois le bouton cliquer, la méthode *get_card_id()* est appelée. Elle va lire à l'aide du [Lecteur NFC](#nfc-reader-acr122u) une carte que le coach va scanner. Un timeout de 30 secondes est définis pour éviter d'attendre trop longtemps, si les 30 secondes sont écoulées et que le coach n'a pas présenté de carte alors une erreur *flash()* est affichée. La méthode *get_card_id()* utilise la librairie python [smartcard](#pyscard---librairie-python-smart-card) qui permet d'utiliser le lecteur. Si le lecteur détécte une carte, alors une connexion est établie. A l'aide de la transmission, je peux récupérer l'UID de la carte sous le format : 
+```
+[12, 123, 89, 09]
+```
+Je n'ai plus qu'a modifier ce format en string pour pouvoir l'insérer en base plus tard.
+
+![Get card](./img/get_card.PNG)
+
+
+### FitJourney cards checker
+#### Authentification à l'API
+
+Comme expliqué plus haut dans la section [Entrainement](#entrainement), les entrainements sont récupérés à l'aide de l'API Polar. Pour s'authentifier envers l'API, j'utilise l'objet *Accesslink* qui utilise l'objet *OAuth2Client* qui est fournit par Polar afin de s'authentifier en utilisant le protocole OAuth2. Les identifiants sont quand à eux récupérés du fichier *config.yml*. Si les identifiants ne sont pas dans ce fichier, il faut alors exécuter le script *authorization.py* qui va se charger de générer et d'écrire les identifiants et le token d'accès dans le fichier *config.yml*.
+
+![Accesslink obj](./img/accesslinkObj.png)
+
+
+#### Utilisation de l'API
+
+Dans le dossier *endpoints/* on retrouve les objets python qui permettent d'effectuer les requetes à l'API. La principale requête que j'utilise est celle des "training data". C'est cette requête qui permet de récupérer les informations de l'entrainement enregistré avec les montres connectées. Les données sont récupérés en format json, voici un exemple de retour de cette requête : 
+
+![Training data](./img/trainingdata_json.png)
+
+Les données récupérées sont pour la plupart dans le bon format, la durée de l'entrainement est malheureusement dans un format très spécial. La durée est représentée par un *string* commençant par "PT" et est suivi par les valeurs (heures,minutes, secondes). Chaque valeurs est suivi d'une lettre pour les séparés :
+* La valeur pour les heures est suivie du caractère 'H'
+* La valeur pour les minutes est suivie du caractère 'M'
+* La valeur pour les secondes est suivie du caractère 'S'
+
+Mais si il n'y a pas de valeur pour les heures par exemple, alors le caractère 'H' ne figurera pas dans le string.
+
+J'ai donc effectué 3 conditions pour pouvoir bien formatter dans chaque cas le string avec la méthode *strptime* de la librairie *datetime* 
+
+![Duration conditions](./img/duration_condition.png)
+
+J'insère ensuite les données voulues dans la base avec la librairie *mysql.connector*.
+
+
+## Améliorations 
 
 ## Bilans
 
