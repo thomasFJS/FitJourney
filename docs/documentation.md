@@ -1107,6 +1107,8 @@ La méthode récupère toutes les sessions à venir et les ajoutent dans un tabl
 
 Si le coach ajoute une session à l'aide du formulaire, les valeurs des champs sont récupérés et utilisés pour avoir le format désiré. Si le coach n'a pas de client a charge, il ne sera pas en mesure de séléctionner un client pour la session qu'il souhaite ajouter. Si il essaye, une erreur sera affichée à l'aide de la méthode *flash()*. Le *DateTime* de fin est genéré automatiquement à l'aide de la date et l'heure de début séléctionné ainsi que la durée. Pour enregistrer sous le format *DateTime*, l'heure de la session est ajouté à la date.La session est ajoutée à l'aide du model SQLAlchemy *Session*, l'ajout est validé avec un commit.
 
+Une fois la session ajoutée, un mail est envoyé au client avec les informations de la session.
+
 ###### Ajout client
 
 La page "Ajout client" permet de créer un nouveau compte client et d'assigner son suivi au coach qui créer son compte. Cette page contient également une vérification avec la méthode *is_coach()* pour vérifier que l'utilisateur sur cette page est bien un coach. L'input de type *select* pour séléctionner le type d'abonnement souhaité est genéré automatiquement, les différents abonnements sont récupérés depuis la base de données avec la méthode *get_all_subscription()*. Pour ajouter le client dans la base de données, j'utilise à nouveau les modèles *SQLAlchemy*, cette fois-ci plusieurs sont nécessaires (*User*, *CoachedBy* et *Purchase*). Pour pouvoir effectuer l'insertion comme il faut, je commence par l'utilisateur puis j'utilise l'instruction : 
@@ -1116,6 +1118,8 @@ db.session.flush()
 qui me permet d'obtenir l'id de l'utilisateur qui va être inséré (utilisé pour l'insertion avec les 2 autres modèles). Une fois les 3 modèles remplis et ajouté, j'effectue un commit pour valider les insertions.
 
 ![Add client](./img/add_client.PNG)
+
+Une fois le commit effectué, un mail est envoyé au client pour l'informer de ses identifiants de connexion à l'application. Le mot de passe est généré automatiquement.
 
 ###### Client
 
@@ -1133,7 +1137,7 @@ Cela permet d'afficher quand même quelque chose même si il n'y a pas encore de
 
 ###### Ajout programme
 
-La page "Ajout programme" est également soumise à une vérification, pour éviter qu'un client arrive sur cette page. Pour ajouter un programme, il suffit de séléctionner le type et d'ajouter le pdf que l'on souhaite importer.Le pdf est lu avec la méthode python *read()* qui permet de retourner les bytes du fichier. Ils sont ensuite enregistrés dans la base de données dans un champ *LONGBLOB*.
+La page "Ajout programme" est également soumise à une vérification, pour éviter qu'un client arrive sur cette page. Pour ajouter un programme, il suffit de séléctionner le type et d'ajouter le pdf que l'on souhaite importer.Le pdf est lu avec la méthode python *read()* qui permet de retourner les bytes du fichier. Ils sont ensuite enregistrés dans la base de données dans un champ *LONGBLOB*. Une fois le programme enregistré, un mail est envoyé au client pour le notifier que son nouveau programme est disponible. 
 
 Pour télécharger le programme, j'utilise la route "/program" et je passe en paramêtre GET l'id du programme. La route retourne la méthode python *send_file()* qui permet de télécharger un fichier. J'utilise également l'objet *BytesIO* qui permet d'écrire le fichier à partir des bytes qui ont été enregistré en base.
 
@@ -1248,3 +1252,20 @@ Action|Valeur(s)|Attente(s)|Résultat|
 
 ## Bilans
 
+## Sources
+
+* **Polar Flow** : [https://flow.polar.com/](https://flow.polar.com/)
+* **Polar API** : [https://www.polar.com/accesslink-api/](https://www.polar.com/accesslink-api/)
+* **Python Flask** : [https://flask.palletsprojects.com/en/2.1.x/](https://flask.palletsprojects.com/en/2.1.x/)
+* **FullCalendar** : [https://fullcalendar.io/](https://fullcalendar.io/)
+* **Flask-Mail** : [https://pythonhosted.org/Flask-Mail/](https://pythonhosted.org/Flask-Mail/)
+* **Flask-Login** : [https://flask-login.readthedocs.io/en/latest/](https://flask-login.readthedocs.io/en/latest/)
+* **SQLAlchemy** : [https://www.sqlalchemy.org/](https://www.sqlalchemy.org/)
+* **Chart.js** : [https://www.chartjs.org/](https://www.chartjs.org/)
+* **LucidCharts**:  [https://www.lucidchart.com/](https://www.lucidchart.com/)
+* **Figma** : [https://www.figma.com/](https://www.figma.com/)
+* **Pyscard** : [https://pyscard.sourceforge.io/](https://pyscard.sourceforge.io/)
+* **Argon Design System** : [https://demos.creative-tim.com/argon-design-system/docs/getting-started/overview.html](https://demos.creative-tim.com/argon-design-system/docs/getting-started/overview.html)
+
+* **Python** : [https://www.python.org/](https://www.python.org/)
+* **MailTrap** : [https://mailtrap.io/](https://mailtrap.io/)
