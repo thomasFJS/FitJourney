@@ -40,11 +40,11 @@ Pour pouvoir installer la librairie `pyscard` sur Windows, il faut au préalable
 
 Il faut ensuite l'ajouter directement au PATH en modifiant les variables d'envirronement dans les propriétés système.
 
-![variables env](./img/param_system.PNG)
+![variables env](./docs/img/param_system.PNG)
 
 On peut ensuite ajouter simplement le chemin vers le dossier `swig` que l'on a téléchargé :
 
-![add swig](./img/swig_path.PNG)
+![add swig](./docs/img/swig_path.PNG)
 
 Une fois ajouté, il faut ensuite installer Visual C++ version 14.0 ou plus récente (directement installable depuis le Visual Studio Installer) ([https://visualstudio.microsoft.com/fr/downloads/](https://visualstudio.microsoft.com/fr/downloads/))
 
