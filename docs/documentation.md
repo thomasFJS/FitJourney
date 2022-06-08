@@ -423,6 +423,91 @@ J'ai créé 5 colonnes :
 * Testing (Les tâches en cours de test)
 * Done (Les tâches terminées)
 
+#### Guide d'installation 
+FitJourney utilise la 3ème version de Python (donc `python3`)
+
+##### Windows
+Premièrement, cela serait intéressant de travailler sur un envirronement WSL avec VSCode. Pour mettre en place WSL, j'ai suivi le guide disponible directement dans la documentation de VSCode : [https://code.visualstudio.com/docs/remote/wsl](https://code.visualstudio.com/docs/remote/wsl)
+
+##### MySQL
+Une fois l'envirronement de développement installé correctement, il faut installer MySQL (si cela n'est pas déjà fait) à l'aide de la commande :
+
+`sudo apt install mysql-server`
+
+Puis lancer le service MySQL:
+
+`sudo service mysql start`
+
+et 
+
+`sudo mysql_secure_installation`
+
+Pour se connecter à la base de données, utiliser un DBMS comme *DBeaver* ou *MySQLWorkbench*.
+
+##### `pip3`
+Il faut s'assurer que pip3 a bien été installé afin de télécharger tous les paquets/librairies pour faire fonctionner l'application comme il faut.
+
+`sudo apt install python3-pip`
+
+Si une erreur survient, utiliser la commande :
+
+`sudo apt update && sudo apt upgrade`
+
+Sinon, vous pouvez vérifier que pip3 a bien été installé en utilisant : 
+
+`pip3 --version`
+
+##### Pyscard 
+Pour pouvoir installer la librairie `pyscard` sur Windows, il faut au préalable installer [SWIG](#swig) depuis le lien suivant : [https://www.swig.org/download.html](https://www.swig.org/download.html)
+
+Il faut ensuite l'ajouter directement au PATH en modifiant les variables d'envirronement dans les propriétés système.
+
+![variables env](./img/param_system.PNG)
+
+On peut ensuite ajouter simplement le chemin vers le dossier `swig` que l'on a téléchargé :
+
+![add swig](./img/swig_path.PNG)
+
+Une fois ajouté, il faut ensuite installer Visual C++ version 14.0 ou plus récente (directement installable depuis le Visual Studio Installer) ([https://visualstudio.microsoft.com/fr/downloads/](https://visualstudio.microsoft.com/fr/downloads/))
+
+##### Requirements
+Une fois que `swig` a été ajouté au PATH et que `pip3` a été installé, il faut installer tous les paquets nécessaires pour l'application. Un fichier `requirements.txt` contenant toutes les librairies nécessaire est disponible dans le dossier *src/*
+
+`pip3 install -r requirements.txt`
+
+/!\ Ne pas toucher ce fichier.
+
+##### API 
+L'API utilisée est l'API Accesslink v3.144.0 de Polar [https://www.polar.com/accesslink-api/#polar-accesslink-api](https://www.polar.com/accesslink-api/#polar-accesslink-api).
+
+Pour pouvoir utiliser l'API, il faut disposer au préalable d'un compte Polar Flow [https://flow.polar.com/](https://flow.polar.com/).
+
+###### Création d'un nouveau client pour l'API
+Aller sur [https://admin.polaraccesslink.com/](https://admin.polaraccesslink.com/). Il faut se connecter avec votre compte Polar Flow et ajouter un nouveau client. Il faut utiliser `http://localhost:5000/oauth2_callback` pour la callback d'authorisation.
+
+###### Configuration des identifiants
+Ajouter l'`id` et le `secret` client dans le fichier `src/cardsChecker/config.yml` comme ceci : 
+
+```
+client_id: 57a715f8-b7e8-11e7-abc4-cec278b6b50a
+client_secret: 62c54f4a-b7e8-11e7-abc4-cec278b6b50a
+```
+ 
+###### Authentification
+Le compte utilisateur doit être relié au client créé avant de pouvoir accéder aux données. Pour le relier il faut lancer le script `src/cardsChecker/authorization.py`
+
+```
+python3 authorization.py
+```
+
+puis aller sur la page '[https://flow.polar.com/oauth2/authorization?response_type=code&client_id=CLIENT_ID](https://flow.polar.com/oauth2/authorization?response_type=code&client_id=CLIENT_ID)' pour relier votre compte utilisateur. ('*CLIENT_ID*' doit être remplacé par votre id client)
+
+Une fois ces étapes effectuées, votre compte aura accès aux données Polar.
+##### Base de données
+Pour la base de données, il suffit de créer un base nommée `fitjourney`, (respcter le nom sinon l'application ne fonctionnera pas). Vous pouvez ensuite exécuter le script sql disponible à `src/apps/db.sql`.
+
+
+
 ### Organisation / Gestion du temps
 #### Convention : en-têtes
 Tous les fichiers développés par moi même possèdent l'entête ci-dessous:
@@ -503,8 +588,6 @@ Architecture pyscard :
 * smartcard.scard est un module d'extension enveloppant l'API WinSCard (Les composants de base smartcard) aussi connue sous le nom PC/SC (Personal computer / Smart Card)
 * smartcard est un framework Python construit à partir de l'API PC/SC
 
-##### Installation
-Pour installer la librairie **pyscard** sur Windows 10, il faut au préalable installer [SWIG](http://www.swig.org/) et l'ajouter directement au PATH. Il faut ensuite installer Visual C++ version 14.0 ou plus récente (directement installable depuis le Visual Studio Installer).
 
 
 #### SWIG
@@ -1050,12 +1133,13 @@ Cela permet d'afficher quand même quelque chose même si il n'y a pas encore de
 
 ###### Ajout programme
 
-La page "Ajout programme" est également soumise à une vérification, pour éviter qu'un client arrive sur cette page. Pour ajouter un programme, il suffit de séléctionner le type et d'ajouter le pdf que l'on souhaite importer. Pour éviter d'imposer un format prédéfini avec un fichier excel, j'ai voulu permettre uniquement l'ajout de pdf. Cela permet plus de liberté aux coachs et évitera de "casser" leurs habitudes si ils utilisent l'application. Le pdf est lu avec la méthode python *read()* qui permet de retourner les bytes du fichier. Ils sont ensuite enregistrés dans la base de données dans un champ *LONGBLOB*.
+La page "Ajout programme" est également soumise à une vérification, pour éviter qu'un client arrive sur cette page. Pour ajouter un programme, il suffit de séléctionner le type et d'ajouter le pdf que l'on souhaite importer.Le pdf est lu avec la méthode python *read()* qui permet de retourner les bytes du fichier. Ils sont ensuite enregistrés dans la base de données dans un champ *LONGBLOB*.
 
 Pour télécharger le programme, j'utilise la route "/program" et je passe en paramêtre GET l'id du programme. La route retourne la méthode python *send_file()* qui permet de télécharger un fichier. J'utilise également l'objet *BytesIO* qui permet d'écrire le fichier à partir des bytes qui ont été enregistré en base.
 
 ![Download program](./img/dl_program.PNG)
 
+L'ajout de programme devait se faire par import de fichier excel sous format uniformisé à la base. Après plusieurs réflexions, j'ai décidé de changer cela en acceptant uniquement les pdf. Cela permet plus de liberté aux coachs et évitera de "casser" leurs habitudes si ils utilisent l'application. Les coachs peuvent garder leurs méthode de rendu pour leurs programmes et simplement importer les pdfs sur l'application.
 
 ###### Ajout Bilan
 La page "Ajout bilan" ne contient qu'un formulaire pour ajouter les valeurs du bilan. Les valeurs demandées sont toutes récupérables à l'aide d'une balance connectée. L'id, le nom, prénom et l'âge du client sont récupérés et insérés automatiquement et sont statiques, le coach ne peut pas modifier ses informations. L'âge du client est calculé en fonction de sa date de naissance et la date d'aujourd'hui.
@@ -1099,7 +1183,67 @@ J'ai donc effectué 3 conditions pour pouvoir bien formatter dans chaque cas le 
 
 J'insère ensuite les données voulues dans la base avec la librairie *mysql.connector*.
 
+## Tests
 
+### Tests unitaires
+Aucun test unitaire n'a été réalisé pour l'application. Cependant, toutes les fonctionnalités de l'application ont été testés "manuellement" avec une partie de débogage. Les 2 parties de mon projet étant développé majoritairement en Python, il serait intéressant d'ajouter des tests unitaires à l'aide du framework [*Pytest*](https://docs.pytest.org/en/7.1.x/) par exemple. Cela serait très utile d'avoir des tests unitaire dans le but de mettre en production l'application.
+
+### Tests utilisateurs
+#### FitJourney Web application
+##### En tant que coach :
+
+|Action|Valeur(s)|Attente(s)|Résultat|
+|------|------|-----------|--------|
+|Création d'un compte avec 2 mots de passes différents |<ul><li> Name : "Thomas";</li> <li>Surname : "Fujise" ;</li><li>Email : "thomas.fjs@eduge.ch";</li> <li>Birthdate : 15.09.2000;</li><li> Password : "Super2012";</li><li> Confirm Password : "Super";</li></ul> | Un message d'erreur "Passwords Must Match!" s'affiche.| OK |
+|Création d'un compte coach | <ul><li> Name : "Thomas";</li> <li>Surname : "Fujise" ;</li><li>Email : "thomas.fjs@eduge.ch";</li> <li>Birthdate : 15.09.2000;</li><li> Password : "Super2012";</li><li> Confirm Password : "Super2012";</li></ul> | Redirection sur la page "login" et un message apparait pour confirmer la création | OK|
+|Création d'un compte avec un email existant | <ul><li> Name : "Thomas";</li> <li>Surname : "Fujise" ;</li><li>Email : "thomas.fjs@eduge.ch";</li> <li>Birthdate : 15.09.2000;</li><li> Password : "Super2012";</li><li> Confirm Password : "Super2012";</li></ul> |Message d'erreur "Email already registered" | OK|
+|Connexion avec le compte et un mot de passe erroné | <ul><li>Email : "thomas.fjs@eduge.ch";</li> <li> Password : "Super";</li></ul> |Un message d'erreur apparait | OK|
+|Connexion avec le compte | <ul><li>Email : "thomas.fjs@eduge.ch";</li> <li> Password : "Super2012";</li></ul> |Redirection sur la page tableau de bord | OK|
+| Clique sur le bouton "Add new client" | / | Redirection sur le formulaire d'ajout d'un nouveau client | OK |
+| Ajout d'un nouveau client | <ul><li> Name : "John";</li> <li>Surname : "Doe" ;</li><li>Email : "thomasfjs@gmail.com";</li> <li>Birthdate : 12.10.2001;</li><li> Height : 178;</li><li> Starting date : 08.06.2022</li> <li>Subscription type : "1 Month"</li></ul> | Un message de confirmation est affiché, le client est ajouté à la liste des clients et un email est envoyé à l'email renseigné contenant les identifiants du compte client | OK |
+| Clique sur le nom d'un client dans la liste | / | Redirection sur la page profil du client séléctionné | OK |
+| Ajout d'une carte de membre | <ul><li>Carte utilisé : 832141011 </li></ul> | Une fois la carte scanné, un message de confirmation est affiché et le numéro **832141011** figure dans le champs "Card ID"| OK|
+| Pas de carte scannée pendant >30s | / | Un message d'erreur "No card detected" apparait | OK
+| Clique sur le bouton "Upload new program" | / | Redirection vers le formulaire d'ajout de programme | OK |
+|Ajout d'un programme| <ul><li>Type : "Workout"</li><li>File : "workout.pdf</li></ul> | Un message de confirmation apparait, on peut voir un bouton "Workout" dans la section "Programs" apparaitre et un mail est envoyé à l'email du client pour le notifier. | OK |
+| Clique sur le bouton "Check up" | / | Redirection vers la page d'ajout d'un nouveau bilan | OK |
+| Ajout d'un bilan | <ul><li>Weight : 80.2</li><li>Height : 178</li><li>Water : 41.6</li><li>Protein : 10</li><li>Muscle Mass % : 55</li><li>Body Fat % : 41.7</li><li>Bone mass % : 3.3</li><li>BMR : 1336.0</li><li>Muscle Mass (kg) : 45.9</li><li>Body fat (kg) : 34.8</li><li>Visceral fat (kg) : 10</li><li>Bone mass (kg) : 2.8</li><li>Lean body mass (kg) : 48.7</li><li>Body age : 43</li><li>BMI : 31.4</li></ul> | Un message confirmation est affiché, on peut voir le bilan s'ajouter sur la droite dans la section "Check up"| OK|
+| Clique sur le bouton "Details" à côté d'un bilan | / | Redirection sur la page de détails du bilan | OK|
+| Renouvellement d'abonnement | <ul><li>Starting date : 10.06.2022</li><li>Subscription type : "3 Months"</li></ul> | Un message de confirmation est affiché, la date de fin d'abonnement a été modifier dans le champ "Subscription Until" | OK |
+| Annulation d'un abonnement | / | Le dernier abonnement souscrit est supprimé, la date de fin d'abonnement redevient celle du précédent abonnement | OK |
+| Clique sur le bouton "Profile" dans la barre de navigation | / | Redirection sur la page profil du coach | OK |
+| Modification profil coach | <ul><li>Last name : "Fuji"</li><li>Address : "Chemin des curiades 35"</li><li>City : "Bernex"</li><li>Country : "Switzerland"</li><li>Postal code : "1233"</li></ul> | Les modifications sont effectuées et un message de confirmation apparait. | OK |
+| Clique sur le bouton "Calendar" dans la barre de navigation | / | Redirection vers l'agenda du coach ainsi que le formulaire d'ajout d'une nouvelle session | OK |
+| Inscription d'une session avec un client | <ul><li>Client : "John Doe"</li><li>Date : 10.06.2022</li><li>Time for the session : 10:00</li><li>Type : "Weightlifting"</li><li>Duration (h) : 1</li></ul> | Un message de confirmation apparait, la session a été ajouté au calendrier | OK |
+| / | / | La prochaine session est visible sur le tableau de bord avec les détails de la session | OK |
+
+##### En tant que client 
+Action|Valeur(s)|Attente(s)|Résultat|
+|------|------|-----------|--------|
+|Connexion avec les identifiants fournit par mail |<ul><li>Email : "thomas.fjs@eduge.ch";</li> <li> Password : "John123";</li></ul> | Redirection sur la page d'accueil client | OK |
+| / | / | Les prochaines sessions sont affichées sur la page d'accueil client | OK |
+|Clique sur le bouton "Profile" dans la barre de navigation | /| Redirection sur la page profil | OK|
+|Modification du profil | <ul><li>Birthdate : 13.10.2001</li><li>Profile picture : "logo.jpg"</li><li>Country : Switzerland</li></ul> | Un message de confirmation apparait, la photo de profil et les informations sont modifiés | OK |
+| Clique sur le bouton "change password" | / | Redirection vers le formulaire de changement de mot de passe | OK |
+| Changement de mot de passe avec 2 mots de passe différents| <ul><li>Old password : "John123"</li><li>New password : "Super"</li><li>Confirm new password : "Super2012"</li></ul> | Un message d'erreur "Passwords must match" apparait | OK |
+| Changement de mot de passe | <ul><li>Old password : "John123"</li><li>New password : "Super2012"</li><li>Confirm new password : "Super2012"</li></ul> | Redirection sur la page profil et message de confirmation apparait | OK |
+| Téléchargement du programme | / | En cliquant sur le bouton "Workout program" le pdf est téléchargé | OK |
+| Clique sur le bouton "Add new review" | / | Redirection vers le formulaire d'ajout de review sur le coaching | OK |
+| Ajout d'une review coaching | <ul><li>Satisfaction : 8</li><li>Support : 8</li><li>Disponibility : 10</li><li>Advice : 9</li><li>Comment : "This coach is super !"</li></ul> | Redirection vers la page profil, un message de confirmation d'ajout apparait et on peut voir la review dans la section "Reports" en bas à droite | OK |
+| Clique sur le bouton "Details" à côté d'une review | / | Redirection sur la page de détails de la review | OK |
+| Clique sur le bouton "Workouts" dans la barre de navigation|/| Redirection sur la page affichant tous les entrainements effectués | OK |
+| Clique sur le bouton "Details" à côté d'un entrainement | / | Redirection sur la page de détail de l'entrainement | OK |
+| Clique sur le bouton "Add review" sur la page de l'entrainement | / | Redirection sur la page pour ajouter une review sur l'entrainement | OK |
+| Ajout d'une review d'entrainement | <ul><li>Difficulty : 7</li><li>Feel : 8</li><li>Fatigue : 6</li> <li>Energy: 8</li><li>Comment : "This was a great workout"</li></ul> | Redirection sur la page listant tous les entrainements effectués | OK |
+| Rajout d'une review sur le même entrainement |<ul><li>Difficulty : 7</li><li>Feel : 8</li><li>Fatigue : 6</li> <li>Energy: 8</li><li>Comment : "This was a great workout"</li></ul> | Redirection sur la page listant tous les entrainements avec un message d'erreur "Workout already reviewed" | OK |
+| Clique sur le bouton "Logout" dans la barre de navigation | / | L'utilisateur est déconnecté et redirigé vers la page de connexion | OK |
+
+#### FitJourney card checker
+Action|Valeur(s)|Attente(s)|Résultat|
+|------|------|-----------|--------|
+|Scan d'une carte inconnue |<ul><li>Carte utilisée : 5874146165</li></ul> | Message s'affiche dans la console : "Unrecognized card" | OK |
+|Scan d'une carte de membre assignée en arrivant| <ul><li> Carte utilisée : 832141011</li></ul> | La carte est reconnue et un message de bienvenue avec le nom du client est affiché dans la console : "Welcome John Doe" | OK |
+|Scan de la même carte de membre pour la sortie | <ul><li> Carte utilisée : 832141011</li></ul> | La carte est reconnue et un message est affiché en console : "Goodbye John Doe" | OK
 ## Améliorations 
 
 ## Bilans

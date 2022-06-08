@@ -648,3 +648,22 @@ L'insert est désormais fonctionnel, les données d'entrainement sont correcteme
 J'ai pu réaliser une bonne partie des tests tout est fonctionnel pour l'instant, je vais terminer les tests et avancer grandement dans la documentation. J'aimerais avoir une version "très avancée" à montrer à M.Jossi d'ici Lundi soir pour avoir le temps d'avoir un retour avant la fin.
 
 Pour la documentation, je vais devoir refaire les diagrammes de *USECASES* ainsi que l'architecture du projet qui ont bien changé depuis la dernière fois.
+
+### Mardi, 07 Juin 2022
+Dernière semaine de ce travail de diplôme, je dois encore pas mal avancer sur la documentation. J'ai ajouté un schéma pour expliquer le fonctionnement interne de l'application : 
+
+![Schema](./img/application_diagram.PNG)
+
+En ajoutant les plannings, je me suis bien rendu compte que le planning prévisionnel n'a vraiment pas été respecté. Beaucoup de tâches sont venues s'ajouter et certaines ont pris plus de temps que prévu. J'ai pu décrire toutes les technologies que j'ai utilisé et terminé une grosse partie de l'analyse organique. Il faut encore que j'ajoute les tests utilisateurs que j'ai effectués, que je souligne les améliorations possibles ainsi que mon bilan personnel.
+
+### Mercredi, 08 Juin 2022
+
+Aujourd'hui, je vais continuer d'avancer sur la documentation l'idéal serait de la terminer d'ici demain matin. Cela me laissera le temps de faire un manuel utilisateur pour le client et le coach. 
+
+En voulant montrer application, je me rends compte que le mailer ne fonctionne plus. Le compte google fitjourney-cfpt@gmail.com a été désactivé pour "Accès suspect" alors que j'avais au préalable bien autorisé l'accès a des applications externes. J'ai réactivé le compte et vais attendre un peu voir si cela refonctionne. En attendant je vais continuer la documentation en ajoutant les tests utilisateurs qui ont été effectué.
+
+En retestant le mailer je me rends compte qu'il ne fonctionne toujours pas. Je vais donc voir sur le compte google voir s'il y a un problème avec le compte et je vois que depuis le 30 mai 2022 Google ne prend plus en charge les applications "moins sécurisée"
+
+![google](./img/google_mail.PNG)
+
+Ce qui veut dire que je ne peux plus utiliser de compte google pour envoyer les mails. Je vais devoir trouver une solution sinon le mailer ne sera pas fonctionnel. J'ai essayé d'utiliser un compte Yahoo à la place, mais cela n'a pas l'air de fonctionner. Le problème est que le 90% de la documentation que l'on peut trouver sur le net utilise les comptes google. Je n'ai toujours pas trouvé de solution, alors je pense utiliser [MailTrap](mailtrap.io). MailTrap est un service "sandbox" pour email, il capture le trafic SMTP et permet d'analyser les mails. Le mailer n'étant plus fonctionnel, je peux utiliser mailtrap pour démontrer que le mail s'envoie correctement (le mail ne s'enverra pas réellement au destinataire, il restera dans la boîte mailtrap)

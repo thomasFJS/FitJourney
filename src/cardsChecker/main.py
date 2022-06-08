@@ -63,7 +63,8 @@ if __name__ == '__main__':
                         card_found = True
                         if entry:
                             print("-------------GOODBYE " + client[0] + " " + client[1]+ "---------------")
-                            polar.get_exercises(getUserIdByCard(client[2])[0])
+                            if polar.check_available_data():
+                                polar.get_exercises(getUserIdByCard(client[2])[0])
                             entry = False
                         else:
                             print("-------------WELCOME " + client[0] + " " + client[1]+ "---------------")

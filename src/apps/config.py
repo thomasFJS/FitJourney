@@ -38,13 +38,13 @@ class Config(object):
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     #FLASK MAIL
-    MAIL_SERVER = config('MAIL_SERVER', default='smtp.gmail.com')
-    MAIL_PORT = config('MAIL_PORT', default=465)
-    MAIL_USERNAME = config('MAIL_USERNAME', default='fitjourney.cfpt@gmail.com')
-    MAIL_PASSWORD = config('MAIL_PASSWORD', default='Super2012')
-    MAIL_USE_TLS = config('MAIL_USE_TLS', default=False)
-    MAIL_USE_SSL = config('MAIL_USE_SSL', default=True)
-    MAIL_DEFAULT_SENDER = config('MAIL_DEFAULT_SENDER', default='fitjourney.cfpt@gmail.com')
+    MAIL_SERVER = config('MAIL_SERVER', default='smtp.mailtrap.io')
+    MAIL_PORT = config('MAIL_PORT', default=2525)
+    MAIL_USERNAME = config('MAIL_USERNAME', default='5806e099aa3376')
+    MAIL_PASSWORD = config('MAIL_PASSWORD', default='c2857a008d8b60')
+    MAIL_USE_TLS = config('MAIL_USE_TLS', default=True)
+    MAIL_USE_SSL = config('MAIL_USE_SSL', default=False)
+    MAIL_DEFAULT_SENDER = config('MAIL_DEFAULT_SENDER', default='thomas.fjs@eduge.ch')
 
 class ProductionConfig(Config):
     """

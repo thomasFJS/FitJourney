@@ -73,7 +73,7 @@ class PolarAccessLink(object):
 
         if not available_data:
             print("No new data available.")
-            return
+            return false
 
         print("Available data:")
         pretty_print_json(available_data)
