@@ -1,4 +1,4 @@
-site_name: Atelier TD
+site_name: Travail de diplôme
 theme:
   name : material
   palette:
@@ -33,13 +33,13 @@ plugins:
       # - pdf-with-js:
       #     enable: true
   - with-pdf:
-      author: 10 Juin 2022
+      author: Thomas Fujise
       copyright: CFPT Informatique 2022, Version 1.0
       #
       #cover: false
       #back_cover: true
       cover_title: FitJourney
-      cover_subtitle: Thomas Fujise | Technicien ES 
+      cover_subtitle: Travail de diplôme Technicien ES 
       cover_logo: img/fitjourney_logo.png
       #custom_template_path: TEMPLATES PATH
       #

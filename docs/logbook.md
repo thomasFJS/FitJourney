@@ -684,4 +684,6 @@ Il faut que j'ajoute encore le retour sur l'expérience qui comprendra :
 * Problèmes rencontrés
 * Bilan personnel
 
-Je peux ensuite commencer les manuels utilisateur pour détailler l'utilisation de mon application.
+Je peux ensuite commencer les manuels utilisateurs pour détailler l'utilisation de mon application.
+
+J'ai eu le temps de terminer les deux manuels utilisateur. Il faut encore que je corrige l'orthographe de ma documentation et que je génère le listing du code source et je serai bon.
