@@ -14,7 +14,7 @@ from apps.config import config_dict
 from apps import create_app, db
 
 # By default config set to debug mode
-DEBUG = config('DEBUG', default=True, cast=bool)
+DEBUG = config('DEBUG', default=False, cast=bool)
 
 #Get the config mode
 config_mode = 'Debug' if DEBUG else 'Production'

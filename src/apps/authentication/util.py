@@ -14,6 +14,14 @@ def hash_pass(password):
     """
     Function that hash a password for storing
     Encodes a provided password in a way that is safe to store on a database
+    
+    Parameter(s) :
+    NAME      |  TYPE  | DESC
+    password  | STRING | The password to hash
+   
+    Return :
+    | BYTES | The password hashed with salt
+    
     """
     salt = hashlib.sha256(os.urandom(60)).hexdigest().encode('ascii')
     pwdhash = hashlib.pbkdf2_hmac('sha512', password.encode('utf-8'), salt, 100000)
@@ -26,6 +34,15 @@ def verify_pass(provided_password, stored_password):
     """
     Function that verify a stored password against one provided by the user
     Given an encoded password and a plain text one which is provided by the user, it verifies whether the provided password matches the encoded one.
+    
+    Parameter(s) :
+    NAME               |  TYPE  | DESC
+    provided_password  | STRING | The password provided by the user
+    stored_password    | BYTES | The hashed with salt password stored in db 
+
+    Return :
+    | BOOLEAN | True if passwords are the same, else False 
+   
     """
 
     stored_password = stored_password.decode('ascii')

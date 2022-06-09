@@ -530,11 +530,11 @@ La priorité est définie également par une étiquette qui provient de l'extens
 #### Planning 
 Un planning prévisionnel a été réalisé au début du projet afin de lister les tâches et d'estimer leurs durées. En regardant les graphiques, on peut directement apercevoir que les deux n'ont aucun point en commun.
 
-Planning prévisionnel : 
+##### Planning prévisionnel 
 
 ![Planning prévisionnel](./img/planning_previsionnel.PNG)
 
-Planning effectif : 
+##### Planning effectif 
 ![Planning effectif](./img/planning_effectif.PNG)
 
 Lors de la réalisation du projet, beaucoup de tâches sont venues s'ajoutées. Toutes la mise en place de la structure de l'application avec Python Flask m'a prit beaucoup plus de temps que prévu. Les besoins de la base de données qui ont été revu a maintes reprises.
@@ -911,7 +911,7 @@ Voici un aperçu du fichier *base.html* et on peut y retrouver plusieurs instruc
 {% block content %}{% endblock content%}
 ```
 Ces instructions permettent d'insérer du contenu depuis un fichier enfant.
-![base html](./img/base.PNG)
+![base html](./img/base_html.png)
 
 Pour créer un fichier enfant il suffit d'ajouter l'instruction : 
 ```
@@ -919,7 +919,7 @@ Pour créer un fichier enfant il suffit d'ajouter l'instruction :
 ```
 pour étendre le fichier de parent. Voici un exemple de fichier enfant avec le fichier *add_program.html* :
 
-![Add program](./img/add_program.PNG)
+![Add program](./img/add_program_html.png)
 
 La vue de cette page : 
 
@@ -933,7 +933,7 @@ Les routes avec Python Flask sont reliées directement à des méthodes. Ces mé
 ```
 permet de dire que la méthode qui suit l'instruction sera liée au blueprint et la route "/dashboard". (Il est possible de relier plusieurs routes à la même méthode)
 
-![Dashboard route](./img/route_dashboard.PNG)
+![Dashboard route](./img/dashboard_route.PNG)
 
 Comme préciser ci-dessus, il est obligatoire de retourner quelque chose. Pour utiliser du templating Jinja2, Flask propose une méthode nommée *render_template()*. Le premier paramètres de cette méthode est le fichier de template que l'on veut utiliser, puis les paramètres suivant sont des données que l'on veut transmettre à la vue. Dans le cas de la route */dashboard*, je donne le prochain client qui a rendez-vous avec le coach, la date du dernier entrainement qu'il a effectué ainsi que la liste de tous les autres clients dont il a la charge.
 
@@ -988,6 +988,10 @@ Endpoint privé - Coach
 | POST | /cancel_subscription | Permet d'annuler l'abonnement d'un client  |
 |---|---|---|
 
+##### Blueprints 
+Avec l'utilisation des "[Flask Blueprints](#architecture-blueprint)", lors de l'initialisation de l'application les modules sont ajoutés à l'application à l'aide de la méthode `register_blueprints`. Dans le but de mettre en production l'application plus tard, cela va être très utile car pour enlever toute la partie coach de l'application par exemple, il suffit de retirer le dossier 'coach' de la boucle `for` qui parcourt les modules.
+
+![register blueprint](./img/register_blueprint.png)
 
 ##### Client
 
@@ -999,7 +1003,7 @@ get_next_session(userid)
 ```
 Elle se trouve avec toutes les autres méthodes utilisées pour les routes client, dans le fichier *client/utils.py*. Je n'ai besoin que de l'id du client dont on veut récupérer les sessions.
 
-![Next session](./img/next_sessions.PNG)
+![Next session](./img/get_next_sessions.png)
 
 Le tableau retourné contenant toutes les sessions est ensuite envoyé à la vue à l'aide de la méthode *render_template()*
 
@@ -1008,7 +1012,7 @@ Le tableau retourné contenant toutes les sessions est ensuite envoyé à la vue
 
 La page "profil" est une page qui est utilisé pour les 2 types d'utilisateurs, seulement plus d'informations sont affichés lorsque c'est un client qui est connecté. Cette page sert essentiellement à modifier ses informations personnelles à l'aide d'un formulaire. Beaucoup de données sont récupérées pour tout afficher sur cette page. La modification des données de l'utilisateur se fait à l'aide du model *SQLAlchemy* *User*. Ce qui rend la tâche beaucoup plus simple, en modifiant les propriétés correspondant aux champs modifiés on peut mettre à jours toutes les valeurs. Il suffit d'effectuer un commit à la fin pour valider les changements. Si l'utilisateur importe une nouvelle photo de profil, l'image est sauvegarder localement avec un nom unique et ce nom est enregistré dans la base de données. 
 
-![Update profile](./img/update_profile.PNG)
+![Update profile](./img/profile_update.png)
 
 On peut voir ici que j'essaye de commit les changements effectués, je sauvegarde l'image importé et si cela fonctionne le fichier "profile.html" est retourné avec la méthode *render_template()*. Avec la méthode *flash()*, je peux afficher un message pour confirmer à l'utilisateur que la mise à jours a fonctionné ou pas.
 
@@ -1018,20 +1022,20 @@ On peut voir ici que j'essaye de commit les changements effectués, je sauvegard
 
 La page "changement de mot de passe" est également accessible par les 2 types d'utilisateurs, elle est directement relié à la page profil. En précisant l'instruction suivante dans le lien de référence d'un bouton ou d'un lien on peut arriver directement sur cette page : 
 ```
-{{url_for('client_blueprint.change_password')}}`
+{{ url_for('client_blueprint.change_password') }}`
 
 ```
 la méthode *url_for()* permet d'obtenir l'URL qui redirige vers une route ou un blueprint en l'occurence. 
 
 Le changement de mot de passe s'effectue en précisant son ancien mot de passe, le nouveau ainsi qu'une confirmation pour éviter les fautes de frappe. L'ancien mot de passe est ensuite vérifier à l'aide de la méthode *verify_pass()* qui permet de comparer le mot de passe saisit avec celui hashé en base de données.
 
-![verify password](./img/verify_password.PNG)
+![verify password](./img/verify_password_function.PNG)
 
 Pour effectuer la vérification, je prends les 64 premiers caractères qui correspondent aux salt. Je hash ensuite le mot de passe saisit avec le même salt puis je compare avec celui enregistré en base.
 
 Si l'ancien mot de passe est correctement renseigné, alors la propriété *password* du model User est modifiée en hashant le mot de passe à l'aide de la méthode *hash_pass()*. Pour hashé le mot de passe j'utilise l'algorithme "SHA-512" sur le mot de passe ainsi que le salt qui est genéré.
 
-![Hash password](./img/hash_pass.PNG)
+![Hash password](./img/hash_pass_function.PNG)
 
 Un message est ensuite affiché en fonction de la réussite de l'opération à l'aide de la méthode *flash()*
 
@@ -1039,11 +1043,11 @@ Un message est ensuite affiché en fonction de la réussite de l'opération à l
 
 La page entrainements est la page qui permet au client de visionner l'ensemble des entrainements qu'il a effectué depuis son inscription.
 
-![Workouts route](./img/workouts_route.PNG)
+![Workouts route](./img/route_workouts.PNG)
 
 J'utilise la méthode *get_workouts()* qui permet de récupérer tous les entrainements d'un client et je les passent ensuite à la vue avec la méthode *render_template()*
 
-![Get workouts](./img/get_workouts.PNG)
+![Get workouts](./img/get_workouts_function.PNG)
 
 Les entrainements sont récupérer dans l'ordre par date décroissante (le plus récent en premier).
 
@@ -1058,7 +1062,7 @@ La page "entrainement" est utilisé uniquement pour afficher les détails d'un e
 ```
 En passant, un paramètre supplémentaire à la méthode *url_for* je peux passer des valeurs en paramètre. Je fais donc passer l'id de l'entrainements que je récupère ensuite sur cette page entrainement pour aller chercher les données correspondantes. J'utilise la méthode *get_workout_details()* qui me permet d'aller chercher toutes les informations nécessaires pour afficher les détails de l'entrainement en question.
 
-![get workout details](./img/get_workout_details.PNG)
+![get workout details](./img/get_workout_details_function.PNG)
 
 Les données des entrainements sont récupérés avec l'[API Polar Accesslink](#polar-accesslink-api) qui donne accès aux enregistrements des montres connectés Polar.
 
@@ -1070,7 +1074,7 @@ Les reviews sur le coaching peuvent être ajouté n'importe quand, par contre, u
 
 Exemple avec une review d'entrainement :
 
-![Add review](./img/add_review.PNG)
+![Add review](./img/add_review_code.PNG)
 
 ###### Review
 
@@ -1094,7 +1098,7 @@ La page "Bilan" ressemble aux pages "Review" et "Entrainement" car elle ne sert 
 
 La page "Calendrier" permet d'afficher un agenda affichant toutes les sessions que le coach a enregistré. Il peut également en ajouter une avec le formulaire qui est disponible juste à côté. Le calendrier est affiché à l'aide de la librairie Javascript *FullCalendar.io*, il est initialisé en javascript. Les événements à inscrire dans le calendrier doivent être assigné à la propriété *events:* de l'objet javascript *FullCalendar.Calendar()*. La méthode *get_session()* est donc utilisé pour récupérer tous les sessions enregistrés pour le coach connecté dans le bon format pour que les sessions soient interprêtés comme un événement pour le calendrier.
 
-![Get event](./img/get_event.PNG)
+![Get event](./img/get_event_function.PNG)
 
 La méthode récupère toutes les sessions à venir et les ajoutent dans un tableau sous la forme d'objets avec 3 propriétées
 ```
@@ -1117,7 +1121,7 @@ db.session.flush()
 ```
 qui me permet d'obtenir l'id de l'utilisateur qui va être inséré (utilisé pour l'insertion avec les 2 autres modèles). Une fois les 3 modèles remplis et ajouté, j'effectue un commit pour valider les insertions.
 
-![Add client](./img/add_client.PNG)
+![Add client](./img/add_client_code.PNG)
 
 Une fois le commit effectué, un mail est envoyé au client pour l'informer de ses identifiants de connexion à l'application. Le mot de passe est généré automatiquement.
 
@@ -1125,7 +1129,7 @@ Une fois le commit effectué, un mail est envoyé au client pour l'informer de s
 
 La page "Client" permet aux coach de visionner le profil d'un de leurs client. Toutes les données nécessaires sont récupérés depuis la base de données et envoyer à la vue. On y retrouve énormement de données comme sur la page profil du client.
 
-![Client render](./img/client_render.PNG)
+![Client render](./img/client_render_code.PNG)
 
 Sur la template Jinja2, on retrouve énormement de condition comme par exemple pour les programmes d'entrainements qui peuvent ne pas avoir été importé par le coach :
 
@@ -1141,14 +1145,14 @@ La page "Ajout programme" est également soumise à une vérification, pour évi
 
 Pour télécharger le programme, j'utilise la route "/program" et je passe en paramêtre GET l'id du programme. La route retourne la méthode python *send_file()* qui permet de télécharger un fichier. J'utilise également l'objet *BytesIO* qui permet d'écrire le fichier à partir des bytes qui ont été enregistré en base.
 
-![Download program](./img/dl_program.PNG)
+![Download program](./img/dl_program_code.PNG)
 
 L'ajout de programme devait se faire par import de fichier excel sous format uniformisé à la base. Après plusieurs réflexions, j'ai décidé de changer cela en acceptant uniquement les pdf. Cela permet plus de liberté aux coachs et évitera de "casser" leurs habitudes si ils utilisent l'application. Les coachs peuvent garder leurs méthode de rendu pour leurs programmes et simplement importer les pdfs sur l'application.
 
 ###### Ajout Bilan
 La page "Ajout bilan" ne contient qu'un formulaire pour ajouter les valeurs du bilan. Les valeurs demandées sont toutes récupérables à l'aide d'une balance connectée. L'id, le nom, prénom et l'âge du client sont récupérés et insérés automatiquement et sont statiques, le coach ne peut pas modifier ses informations. L'âge du client est calculé en fonction de sa date de naissance et la date d'aujourd'hui.
 
-![Checkup static](./img/checkup.PNG)
+![Checkup static](./img/checkup_static.PNG)
 
 ###### Modification de carte
 La modification de carte de membre s'effectue depuis la [page client](#client-2). Une fois le bouton cliquer, la méthode *get_card_id()* est appelée. Elle va lire à l'aide du [Lecteur NFC](#nfc-reader-acr122u) une carte que le coach va scanner. Un timeout de 30 secondes est définis pour éviter d'attendre trop longtemps, si les 30 secondes sont écoulées et que le coach n'a pas présenté de carte alors une erreur *flash()* est affichée. La méthode *get_card_id()* utilise la librairie python [smartcard](#pyscard---librairie-python-smart-card) qui permet d'utiliser le lecteur. Si le lecteur détécte une carte, alors une connexion est établie. A l'aide de la transmission, je peux récupérer l'UID de la carte sous le format : 
@@ -1157,7 +1161,8 @@ La modification de carte de membre s'effectue depuis la [page client](#client-2)
 ```
 Je n'ai plus qu'a modifier ce format en string pour pouvoir l'insérer en base plus tard.
 
-![Get card](./img/get_card.PNG)
+![Get card](./img/get_card_function.PNG)
+
 
 
 ### FitJourney cards checker
@@ -1248,9 +1253,42 @@ Action|Valeur(s)|Attente(s)|Résultat|
 |Scan d'une carte inconnue |<ul><li>Carte utilisée : 5874146165</li></ul> | Message s'affiche dans la console : "Unrecognized card" | OK |
 |Scan d'une carte de membre assignée en arrivant| <ul><li> Carte utilisée : 832141011</li></ul> | La carte est reconnue et un message de bienvenue avec le nom du client est affiché dans la console : "Welcome John Doe" | OK |
 |Scan de la même carte de membre pour la sortie | <ul><li> Carte utilisée : 832141011</li></ul> | La carte est reconnue et un message est affiché en console : "Goodbye John Doe" | OK
-## Améliorations 
 
-## Bilans
+## Points positifs
+Globalement, j'ai pu tirer pas mal de points positifs concernant ce travail de diplôme. Premièrement, le fait de travailler sur un projet de cette ampleur. Lors de ma formation en tant que Technicien ES, j'ai que très rarement eu l'occasion de travailler sur des projets similaires. L'expérience acquise lors d'un projet comme ceci ne peut être que positif pour le futur.
+
+Deuxièmement, le fait d'apprendre et d'améliorer ses connaissances sur des nouvelles technologies est un point très positif. Je suis beaucoup plus à l'aise avec Python Flask par exemple, ce qui n'était pas forcément le cas au début du projet.
+
+Pour terminer, je ressors beaucoup de positif des étapes suivies tout le long du projet. J'ai très rarement suivi toutes les étapes dans l'ordre comme je l'ai fait pour ce projet, par exemple le fait de commencer par effectuer des maquettes d'interfaces ou encore faire un MCD au préalable. Ce sont tout des points long a effectué au début mais si ils sont bien fait, cela permet un gain de temps conséquent. Il y a également le fait de poser mes réflexions dans le journal de bord, cela m'a permis d'identifier des problèmes avant de tomber dessus.
+
+## Problèmes rencontrés
+
+### Mise en place de la structure du projet
+La mise en place de la structure du projet n'était pas réellement un problème mais j'ai vraiment pris beaucoup de temps pour l'effectuer comme il faut. N'étant pas parfaitement à l'aise avec Python Flask, je souhaitais vraiment avoir une très bonne structure de projet. J'ai découvert les ["Flask Blueprint"](#architecture-blueprint) qui m'ont beaucoup aidé à effectuer une structure propre et découpée.
+
+### Oublie de certains points très important
+Un des gros problèmes que j'ai pu rencontrer est que je suis malheureusment passer à côté de plusieurs parties très importante dans le métier de coach sportif. Cela à engendré de longue réflexion pour l'implémentation ainsi que l'ajout de nombreuse tâches "nécessaires" ainsi que de nombreux ajustements de la base de données. C'est pour cela que dans le [planning effectif](#planning-effectif) on peut retrouver beaucoup plus de tâches que dans le [planning prévisionnel](#planning-prévisionnel).
+
+### Compte google
+Un autre problème que j'ai rencontré sur la fin de ce travail de diplôme est que Google ne prend plus en charge les applications "moins sécurisées" depuis le 30 mai. Cette décision a été prise pour améliorer leurs normes de sécurité. Le problème est que j'utilisais cette fonctionnalité pour utiliser le compte google fitjourney pour envoyer les mails. Désormais, pour utiliser un compte google pour envoyer des mails, il faut utiliser leurs API pour récupérer une clé qui permet l'accès. Je n'avais malheureusement pas le temps d'implémenter cetter solution avec le temps qu'il me restait. C'est pour cela que j'ai utilisé `MailTrap` un service 'sandbox' pour email comme solution temporaire.
+
+
+## Améliorations possibles
+J'ai retenu plusieurs points au niveau des améliorations possibles et envisageables pour la suite du projet. Premièrement, cela serait utile d'ajouter la possibilité de transférer la prise en charge d'un client à un autre coach. Cette fonctionnalité peut être nécessaire dans plusieurs cas, comme par exemple si plusieurs coachs travaillent dans la même salle et qu'un coach est débordé, il pourrait assigner des clients à son collègue. Dans le cas ou un client change d'objectif et qu'un autre coach est plus adapté a ses besoins aussi. 
+
+Un deuxième point qui me parait très intéressant serait d'ajouter la possibilitée de modifier ou supprimer une session. En cas d'imprévu, le coach me peut pas supprimer ou modifier la date d'une session qu'il a enregistré avec un client.
+
+Un autre point qu'il faudrait rajouter serait l'ajout des photos du client lors de bilan. Les champs sont déjà prévus dans la base de données, il ne manque que les inputs dans le formulaire de bilan. 
+
+Il y a également les données d'entrainements qui sont actuellement récupéré avec l'API Polar, cela serait intéressant d'ajouter d'autre montre connectée (Apple Watch, FitBit, Garmin, etc..). Même si Polar est une marque très utilisé dans le millieu, cela reste limitant pour les utilisateurs qui ne possède pas d'appareils Polar.
+
+Dans le but de mettre en production l'application, cela serait très intéressant de l'adapter pour téléphone mobile. Il faudrait également séparer les 2 versions de l'application (Coach/Client) qui n'en font qu'une pour l'instant. Comme mentionné plus haut les [blueprints](#blueprints) Flask permettent d'effectuer cela sans trop de soucis.
+
+La dernière amélioration serait de pouvoir séléctionner les valeurs affichés utilisés dans les graphiques montrant l'évolution du poids sur la page profil du client. Cela serait très utile pour le coach et même pour le client d'avoir accès a une courbe montrant l'évolution d'autre données comme la masse graisseuse ou musculaire.
+
+## Bilan personnel
+Globalement je suis très satisfait du travail rendu au bout de ces 9 semaines. Ce projet me tenais particulièrement à coeur et je suis content de l'avancement de ce dernier. J'ai pu prendre en main de nouvelles technologies comme Python Flask que j'ai vraiment apprécié. J'ai également appris à utiliser les lecteurs RFID ce que j'ai trouvé très intéressant, malgré une documentation très archaïque de la librairie `pyscard` qui me permet d'utiliser les lecteurs en Python.
+
 
 ## Sources
 
@@ -1269,3 +1307,4 @@ Action|Valeur(s)|Attente(s)|Résultat|
 
 * **Python** : [https://www.python.org/](https://www.python.org/)
 * **MailTrap** : [https://mailtrap.io/](https://mailtrap.io/)
+* **Ray.so** : [https://ray.so/](https://ray.so/)

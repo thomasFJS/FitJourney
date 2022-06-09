@@ -667,3 +667,21 @@ En retestant le mailer je me rends compte qu'il ne fonctionne toujours pas. Je v
 ![google](./img/google_mail.PNG)
 
 Ce qui veut dire que je ne peux plus utiliser de compte google pour envoyer les mails. Je vais devoir trouver une solution sinon le mailer ne sera pas fonctionnel. J'ai essayé d'utiliser un compte Yahoo à la place, mais cela n'a pas l'air de fonctionner. Le problème est que le 90% de la documentation que l'on peut trouver sur le net utilise les comptes google. Je n'ai toujours pas trouvé de solution, alors je pense utiliser [MailTrap](mailtrap.io). MailTrap est un service "sandbox" pour email, il capture le trafic SMTP et permet d'analyser les mails. Le mailer n'étant plus fonctionnel, je peux utiliser mailtrap pour démontrer que le mail s'envoie correctement (le mail ne s'enverra pas réellement au destinataire, il restera dans la boîte mailtrap)
+
+### Jeudi, 09 Juin 2022
+Avant-dernier jour avant le rendu, je vais refaire un tour sur mon application vérifier que tout fonctionne normalement et que la réception avec MailTrap est fonctionnelle.
+
+Je vais garder MailTrap car je n'ai plus le temps d'implémenter l'API Google qui me permettrai d'utiliser les comptes google pour le mailer comme je le faisais initialement. J'ai changé les morceaux de code que j'avais placé dans ma documentation, je les ai généré avec [Ray.so](https://ray.so/) pour avoir un rendu visuel meilleur.
+
+Exemple de code avec Ray.so :
+
+![Exemple](./img/add_review_code.PNG)
+
+Il faut que j'ajoute encore le retour sur l'expérience qui comprendra :
+* Points positifs
+* Points négatifs
+* Améliorations 
+* Problèmes rencontrés
+* Bilan personnel
+
+Je peux ensuite commencer les manuels utilisateur pour détailler l'utilisation de mon application.

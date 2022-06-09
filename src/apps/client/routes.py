@@ -199,8 +199,6 @@ def checkup():
 @login_required
 def workouts():
 	# Get all data from workout 
-	#workouts = db.session.query(WorkoutType.title, WorkoutType.logo,Workout.id, Workout.date, Workout.duration, Workout.heart_rate_max, Workout.heart_rate_min, 
-	#			Workout.heart_rate_avg, Workout.calories, Workout.active_calories, Workout.distance, Workout.pace_avg).join(WorkoutType, Workout.workout_type == WorkoutType.id).filter(Workout.client_id==id).order_by(Workout.date.desc())
 	workouts = get_workouts(current_user.id)
 	return render_template('client/workouts.html', segment='workouts', workouts=workouts)
 
