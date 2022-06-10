@@ -1,0 +1,3876 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<link href="../assets/images/favicon.png" rel="icon"/>
+<meta content="mkdocs-1.2.3, mkdocs-material-7.3.6" name="generator"/>
+<title>Documentation technique - Travail de diplôme</title>
+<link href="../assets/stylesheets/main.a57b2b03.min.css" rel="stylesheet"/>
+<link href="../assets/stylesheets/palette.3f5d1f46.min.css" rel="stylesheet"/>
+<meta content="#ab47bd" name="theme-color"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+<link href="https://unpkg.com/mermaid@8.5.1/dist/mermaid.css" rel="stylesheet"/>
+<link href="../style/extra.css" rel="stylesheet"/>
+</head>
+<body data-md-color-accent="" data-md-color-primary="purple" data-md-color-scheme="slate" dir="ltr">
+<script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#documentation-technique">
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header" data-md-component="header">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<a aria-label="Travail de diplôme" class="md-header__button md-logo" data-md-component="logo" href=".." title="Travail de diplôme">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            Travail de diplôme
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              Documentation technique
+            
+          </span>
+</div>
+</div>
+</div>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"></path></svg>
+</label>
+<nav aria-label="Search" class="md-search__options">
+<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"></path></svg>
+</button>
+</nav>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Initializing search
+          </div>
+<ol class="md-search-result__list"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="Travail de diplôme" class="md-nav__button md-logo" data-md-component="logo" href=".." title="Travail de diplôme">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"></path></svg>
+</a>
+    Travail de diplôme
+  </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          Documentation technique
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+        Documentation technique
+      </a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#resume">
+    Résumé
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#abstract">
+    Abstract
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#introduction">
+    Introduction
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#cahier-des-charges">
+    Cahier des charges
+  </a>
+<nav aria-label="Cahier des charges" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#contexte">
+    Contexte
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#but-du-projet">
+    But du projet
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#cas-dutilisations">
+    Cas d'utilisations
+  </a>
+<nav aria-label="Cas d'utilisations" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#client">
+    Client
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#coach">
+    Coach
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#specifications">
+    Spécifications
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#restrictions">
+    Restrictions
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#environnement">
+    Environnement
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#contact">
+    Contact
+  </a>
+<nav aria-label="Contact" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#etudiant">
+    Étudiant
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#enseignant">
+    Enseignant
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#dates-importantes">
+    Dates importantes
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#livrable">
+    Livrable
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#analyse-de-lexistant">
+    Analyse de l'existant
+  </a>
+<nav aria-label="Analyse de l'existant" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#inithy">
+    Inithy
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#analyse-fonctionnelle">
+    Analyse fonctionnelle
+  </a>
+<nav aria-label="Analyse fonctionnelle" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#fonctionnalites">
+    Fonctionnalités
+  </a>
+<nav aria-label="Fonctionnalités" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#description-generale">
+    Description générale
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#description-detaillee">
+    Description détaillée
+  </a>
+<nav aria-label="Description détaillée" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#application-coach">
+    Application coach
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#application-client">
+    Application client
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#lecture-carte-membre">
+    Lecture carte membre
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#sitemap">
+    Sitemap
+  </a>
+<nav aria-label="Sitemap" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#sitemap-client">
+    Sitemap Client
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#sitemap-coach">
+    Sitemap Coach
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#maquettage">
+    Maquettage
+  </a>
+<nav aria-label="Maquettage" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#en-tant-que-client">
+    En tant que client
+  </a>
+<nav aria-label="En tant que client" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#page-de-connexion">
+    Page de connexion
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#barre-de-navigation">
+    Barre de navigation
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#page-profil">
+    Page profil
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#page-ajout-review">
+    Page ajout review
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#page-bilan">
+    Page Bilan
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#page-liste-entrainements">
+    Page liste entrainements
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#page-details-entrainement">
+    Page détails entrainement
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#page-prochaine-session">
+    Page prochaine session
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#en-tant-que-coach">
+    En tant que coach
+  </a>
+<nav aria-label="En tant que coach" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#page-denregistrement">
+    Page d'enregistrement
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#barre-de-navigation_1">
+    Barre de navigation
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#page-tableau-de-bord">
+    Page tableau de bord
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#page-ajout-de-client">
+    Page Ajout de client
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#page-profil-client">
+    Page profil client
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#page-bilan-client">
+    Page Bilan client
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#page-abonnement">
+    Page Abonnement
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#page-calendrier">
+    Page Calendrier
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#analyse-organique">
+    Analyse Organique
+  </a>
+<nav aria-label="Analyse Organique" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#mise-en-place-environnement">
+    Mise en place / Environnement
+  </a>
+<nav aria-label="Mise en place / Environnement" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#visual-studio-code">
+    Visual Studio Code
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#mkdocs">
+    Mkdocs
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#github">
+    GitHub
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#trello">
+    Trello
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#guide-dinstallation">
+    Guide d'installation
+  </a>
+<nav aria-label="Guide d'installation" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#windows">
+    Windows
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#mysql">
+    MySQL
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pip3">
+    pip3
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pyscard">
+    Pyscard
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#requirements">
+    Requirements
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#api">
+    API
+  </a>
+<nav aria-label="API" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#creation-dun-nouveau-client-pour-lapi">
+    Création d'un nouveau client pour l'API
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#configuration-des-identifiants">
+    Configuration des identifiants
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#authentification">
+    Authentification
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#base-de-donnees">
+    Base de données
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#organisation-gestion-du-temps">
+    Organisation / Gestion du temps
+  </a>
+<nav aria-label="Organisation / Gestion du temps" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#convention-en-tetes">
+    Convention : en-têtes
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#backlog">
+    Backlog
+  </a>
+<nav aria-label="Backlog" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#difficulte">
+    Difficulté
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#priorite">
+    Priorité
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#planning">
+    Planning
+  </a>
+<nav aria-label="Planning" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#planning-previsionnel">
+    Planning prévisionnel
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#planning-effectif">
+    Planning effectif
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#technologies-utilisees">
+    Technologies utilisées
+  </a>
+<nav aria-label="Technologies utilisées" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#nfc-reader-acr122u">
+    NFC Reader ACR122U
+  </a>
+<nav aria-label="NFC Reader ACR122U" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#rfid">
+    RFID
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pyscard-librairie-python-smart-card">
+    Pyscard - Librairie Python Smart card
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#swig">
+    SWIG
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#polar-accesslink-api">
+    Polar Accesslink API
+  </a>
+<nav aria-label="Polar Accesslink API" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#choix-dans-le-projet-fitjourney">
+    Choix dans le projet - FitJourney
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#python">
+    Python
+  </a>
+<nav aria-label="Python" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#choix-dans-le-projet-fitjourney_1">
+    Choix dans le projet - FitJourney
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#python-flask-backend">
+    Python Flask (backend)
+  </a>
+<nav aria-label="Python Flask (backend)" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#utilisation-flask">
+    Utilisation Flask
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#micro-framework">
+    Micro framework
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#choix-dans-le-projet-fitjourney_2">
+    Choix dans le projet FitJourney
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#architecture-blueprint">
+    Architecture (Blueprint)
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#argon-design-system">
+    Argon Design System
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#chartjs">
+    Chart.JS
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#fullcalendario">
+    FullCalendar.io
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#architecture-du-projet">
+    Architecture du projet
+  </a>
+<nav aria-label="Architecture du projet" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#arborescence-application-principale">
+    Arborescence application principale
+  </a>
+<nav aria-label="Arborescence application principale" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#fichier-runpy">
+    Fichier "run.py"
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#dossier-apps">
+    Dossier "Apps"
+  </a>
+<nav apps""="" aria-label="Dossier " class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#dossier-authentication">
+    Dossier "authentication"
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#fichier-authenticationroutespy">
+    Fichier "authentication/routes.py"
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#dossier-client">
+    Dossier "client"
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#dossier-coach">
+    Dossier "coach"
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#dossier-staticassetscss">
+    Dossier "static/assets/css"
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#dossier-staticassetsfonts">
+    Dossier "static/assets/fonts"
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#dossier-staticassetsimg">
+    Dossier "static/assets/img"
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#dossier-staticassetsjs">
+    Dossier "static/assets/js"
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#dossier-staticassetsvendor">
+    Dossier "static/assets/vendor"
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#dossier-templates">
+    Dossier "templates"
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#fichier-__initpy">
+    Fichier "__init.py"
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#fichier-configpy">
+    Fichier "config.py"
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#arborescence-lecture-de-carte">
+    Arborescence lecture de carte
+  </a>
+<nav aria-label="Arborescence lecture de carte" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#dossier-accesslink">
+    Dossier "accesslink/"
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#fichier-accesslink_polarpy">
+    Fichier "accesslink_polar.py"
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#fichier-authorizationpy">
+    Fichier "authorization.py"
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#fichier-configpy_1">
+    Fichier "config.py"
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#fichier-configyml">
+    Fichier "config.yml"
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#fichier-dbpy">
+    Fichier "db.py"
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#fichier-mainpy">
+    Fichier "main.py"
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#base-de-donnees_1">
+    Base de données
+  </a>
+<nav aria-label="Base de données" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#mcd">
+    MCD
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#modele-physique">
+    Modèle physique
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#sqlalchemy">
+    SQLAlchemy
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#data-mapper">
+    Data Mapper
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#tables">
+    Tables
+  </a>
+<nav aria-label="Tables" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#table-user">
+    Table USER
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#table-physical_info">
+    Table PHYSICAL_INFO
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#table-coachedby">
+    Table COACHEDBY
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#table-program">
+    Table PROGRAM
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#table-role">
+    Table ROLE
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#table-purchase">
+    Table PURCHASE
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#table-subscription">
+    Table SUBSCRIPTION
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#table-session">
+    Table SESSION
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#table-workout_type">
+    Table WORKOUT_TYPE
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#table-workout">
+    Table WORKOUT
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#table-review">
+    Table REVIEW
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#table-coaching_review">
+    Table COACHING_REVIEW
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#table-session_review">
+    Table SESSION_REVIEW
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#fitjourney-application">
+    FitJourney application
+  </a>
+<nav aria-label="FitJourney application" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#developpement-avec-python-flask">
+    Développement avec Python Flask
+  </a>
+<nav aria-label="Développement avec Python Flask" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#templating-jinja2">
+    Templating Jinja2
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#template-de-base">
+    Template de base
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#routes">
+    Routes
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#les-routes-de-lapplication">
+    Les routes de l'application
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#blueprints">
+    Blueprints
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#client_1">
+    Client
+  </a>
+<nav aria-label="Client" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#prochaines-sessions">
+    Prochaines sessions
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#profil">
+    Profil
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#changement-de-mot-de-passe">
+    Changement de mot de passe
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#entrainements">
+    Entrainements
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#entrainement">
+    Entrainement
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#ajout-de-review">
+    Ajout de review
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#review">
+    Review
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#bilan">
+    Bilan
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#coach_1">
+    Coach
+  </a>
+<nav aria-label="Coach" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#tableau-de-bord">
+    Tableau de bord
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#calendrier">
+    Calendrier
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#ajout-client">
+    Ajout client
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#client_2">
+    Client
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#ajout-programme">
+    Ajout programme
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#ajout-bilan">
+    Ajout Bilan
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#modification-de-carte">
+    Modification de carte
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#fitjourney-cards-checker">
+    FitJourney cards checker
+  </a>
+<nav aria-label="FitJourney cards checker" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#authentification-a-lapi">
+    Authentification à l'API
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#utilisation-de-lapi">
+    Utilisation de l'API
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#tests">
+    Tests
+  </a>
+<nav aria-label="Tests" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#tests-unitaires">
+    Tests unitaires
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#tests-utilisateurs">
+    Tests utilisateurs
+  </a>
+<nav aria-label="Tests utilisateurs" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#fitjourney-web-application">
+    FitJourney Web application
+  </a>
+<nav aria-label="FitJourney Web application" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#en-tant-que-coach_1">
+    En tant que coach :
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#en-tant-que-client_1">
+    En tant que client
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#fitjourney-card-checker">
+    FitJourney card checker
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#conclusion">
+    Conclusion
+  </a>
+<nav aria-label="Conclusion" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#points-positifs">
+    Points positifs
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#problemes-rencontres">
+    Problèmes rencontrés
+  </a>
+<nav aria-label="Problèmes rencontrés" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#mise-en-place-de-la-structure-du-projet">
+    Mise en place de la structure du projet
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#oublie-de-certains-points-tres-importants">
+    Oublie de certains points très importants
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#compte-google">
+    Compte Google
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#ameliorations-possibles">
+    Améliorations possibles
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#bilan-personnel">
+    Bilan personnel
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#sources">
+    Sources
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../2client_guide/">
+        Client guide
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../3coach_guide/">
+        Coach Guide
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../logbook/">
+        Logbook
+      </a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#resume">
+    Résumé
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#abstract">
+    Abstract
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#introduction">
+    Introduction
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#cahier-des-charges">
+    Cahier des charges
+  </a>
+<nav aria-label="Cahier des charges" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#contexte">
+    Contexte
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#but-du-projet">
+    But du projet
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#cas-dutilisations">
+    Cas d'utilisations
+  </a>
+<nav aria-label="Cas d'utilisations" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#client">
+    Client
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#coach">
+    Coach
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#specifications">
+    Spécifications
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#restrictions">
+    Restrictions
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#environnement">
+    Environnement
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#contact">
+    Contact
+  </a>
+<nav aria-label="Contact" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#etudiant">
+    Étudiant
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#enseignant">
+    Enseignant
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#dates-importantes">
+    Dates importantes
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#livrable">
+    Livrable
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#analyse-de-lexistant">
+    Analyse de l'existant
+  </a>
+<nav aria-label="Analyse de l'existant" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#inithy">
+    Inithy
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#analyse-fonctionnelle">
+    Analyse fonctionnelle
+  </a>
+<nav aria-label="Analyse fonctionnelle" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#fonctionnalites">
+    Fonctionnalités
+  </a>
+<nav aria-label="Fonctionnalités" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#description-generale">
+    Description générale
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#description-detaillee">
+    Description détaillée
+  </a>
+<nav aria-label="Description détaillée" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#application-coach">
+    Application coach
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#application-client">
+    Application client
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#lecture-carte-membre">
+    Lecture carte membre
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#sitemap">
+    Sitemap
+  </a>
+<nav aria-label="Sitemap" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#sitemap-client">
+    Sitemap Client
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#sitemap-coach">
+    Sitemap Coach
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#maquettage">
+    Maquettage
+  </a>
+<nav aria-label="Maquettage" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#en-tant-que-client">
+    En tant que client
+  </a>
+<nav aria-label="En tant que client" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#page-de-connexion">
+    Page de connexion
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#barre-de-navigation">
+    Barre de navigation
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#page-profil">
+    Page profil
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#page-ajout-review">
+    Page ajout review
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#page-bilan">
+    Page Bilan
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#page-liste-entrainements">
+    Page liste entrainements
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#page-details-entrainement">
+    Page détails entrainement
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#page-prochaine-session">
+    Page prochaine session
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#en-tant-que-coach">
+    En tant que coach
+  </a>
+<nav aria-label="En tant que coach" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#page-denregistrement">
+    Page d'enregistrement
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#barre-de-navigation_1">
+    Barre de navigation
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#page-tableau-de-bord">
+    Page tableau de bord
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#page-ajout-de-client">
+    Page Ajout de client
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#page-profil-client">
+    Page profil client
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#page-bilan-client">
+    Page Bilan client
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#page-abonnement">
+    Page Abonnement
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#page-calendrier">
+    Page Calendrier
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#analyse-organique">
+    Analyse Organique
+  </a>
+<nav aria-label="Analyse Organique" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#mise-en-place-environnement">
+    Mise en place / Environnement
+  </a>
+<nav aria-label="Mise en place / Environnement" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#visual-studio-code">
+    Visual Studio Code
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#mkdocs">
+    Mkdocs
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#github">
+    GitHub
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#trello">
+    Trello
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#guide-dinstallation">
+    Guide d'installation
+  </a>
+<nav aria-label="Guide d'installation" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#windows">
+    Windows
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#mysql">
+    MySQL
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pip3">
+    pip3
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pyscard">
+    Pyscard
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#requirements">
+    Requirements
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#api">
+    API
+  </a>
+<nav aria-label="API" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#creation-dun-nouveau-client-pour-lapi">
+    Création d'un nouveau client pour l'API
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#configuration-des-identifiants">
+    Configuration des identifiants
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#authentification">
+    Authentification
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#base-de-donnees">
+    Base de données
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#organisation-gestion-du-temps">
+    Organisation / Gestion du temps
+  </a>
+<nav aria-label="Organisation / Gestion du temps" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#convention-en-tetes">
+    Convention : en-têtes
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#backlog">
+    Backlog
+  </a>
+<nav aria-label="Backlog" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#difficulte">
+    Difficulté
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#priorite">
+    Priorité
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#planning">
+    Planning
+  </a>
+<nav aria-label="Planning" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#planning-previsionnel">
+    Planning prévisionnel
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#planning-effectif">
+    Planning effectif
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#technologies-utilisees">
+    Technologies utilisées
+  </a>
+<nav aria-label="Technologies utilisées" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#nfc-reader-acr122u">
+    NFC Reader ACR122U
+  </a>
+<nav aria-label="NFC Reader ACR122U" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#rfid">
+    RFID
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pyscard-librairie-python-smart-card">
+    Pyscard - Librairie Python Smart card
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#swig">
+    SWIG
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#polar-accesslink-api">
+    Polar Accesslink API
+  </a>
+<nav aria-label="Polar Accesslink API" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#choix-dans-le-projet-fitjourney">
+    Choix dans le projet - FitJourney
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#python">
+    Python
+  </a>
+<nav aria-label="Python" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#choix-dans-le-projet-fitjourney_1">
+    Choix dans le projet - FitJourney
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#python-flask-backend">
+    Python Flask (backend)
+  </a>
+<nav aria-label="Python Flask (backend)" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#utilisation-flask">
+    Utilisation Flask
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#micro-framework">
+    Micro framework
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#choix-dans-le-projet-fitjourney_2">
+    Choix dans le projet FitJourney
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#architecture-blueprint">
+    Architecture (Blueprint)
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#argon-design-system">
+    Argon Design System
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#chartjs">
+    Chart.JS
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#fullcalendario">
+    FullCalendar.io
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#architecture-du-projet">
+    Architecture du projet
+  </a>
+<nav aria-label="Architecture du projet" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#arborescence-application-principale">
+    Arborescence application principale
+  </a>
+<nav aria-label="Arborescence application principale" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#fichier-runpy">
+    Fichier "run.py"
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#dossier-apps">
+    Dossier "Apps"
+  </a>
+<nav apps""="" aria-label="Dossier " class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#dossier-authentication">
+    Dossier "authentication"
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#fichier-authenticationroutespy">
+    Fichier "authentication/routes.py"
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#dossier-client">
+    Dossier "client"
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#dossier-coach">
+    Dossier "coach"
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#dossier-staticassetscss">
+    Dossier "static/assets/css"
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#dossier-staticassetsfonts">
+    Dossier "static/assets/fonts"
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#dossier-staticassetsimg">
+    Dossier "static/assets/img"
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#dossier-staticassetsjs">
+    Dossier "static/assets/js"
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#dossier-staticassetsvendor">
+    Dossier "static/assets/vendor"
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#dossier-templates">
+    Dossier "templates"
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#fichier-__initpy">
+    Fichier "__init.py"
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#fichier-configpy">
+    Fichier "config.py"
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#arborescence-lecture-de-carte">
+    Arborescence lecture de carte
+  </a>
+<nav aria-label="Arborescence lecture de carte" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#dossier-accesslink">
+    Dossier "accesslink/"
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#fichier-accesslink_polarpy">
+    Fichier "accesslink_polar.py"
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#fichier-authorizationpy">
+    Fichier "authorization.py"
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#fichier-configpy_1">
+    Fichier "config.py"
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#fichier-configyml">
+    Fichier "config.yml"
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#fichier-dbpy">
+    Fichier "db.py"
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#fichier-mainpy">
+    Fichier "main.py"
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#base-de-donnees_1">
+    Base de données
+  </a>
+<nav aria-label="Base de données" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#mcd">
+    MCD
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#modele-physique">
+    Modèle physique
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#sqlalchemy">
+    SQLAlchemy
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#data-mapper">
+    Data Mapper
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#tables">
+    Tables
+  </a>
+<nav aria-label="Tables" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#table-user">
+    Table USER
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#table-physical_info">
+    Table PHYSICAL_INFO
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#table-coachedby">
+    Table COACHEDBY
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#table-program">
+    Table PROGRAM
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#table-role">
+    Table ROLE
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#table-purchase">
+    Table PURCHASE
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#table-subscription">
+    Table SUBSCRIPTION
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#table-session">
+    Table SESSION
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#table-workout_type">
+    Table WORKOUT_TYPE
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#table-workout">
+    Table WORKOUT
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#table-review">
+    Table REVIEW
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#table-coaching_review">
+    Table COACHING_REVIEW
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#table-session_review">
+    Table SESSION_REVIEW
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#fitjourney-application">
+    FitJourney application
+  </a>
+<nav aria-label="FitJourney application" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#developpement-avec-python-flask">
+    Développement avec Python Flask
+  </a>
+<nav aria-label="Développement avec Python Flask" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#templating-jinja2">
+    Templating Jinja2
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#template-de-base">
+    Template de base
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#routes">
+    Routes
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#les-routes-de-lapplication">
+    Les routes de l'application
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#blueprints">
+    Blueprints
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#client_1">
+    Client
+  </a>
+<nav aria-label="Client" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#prochaines-sessions">
+    Prochaines sessions
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#profil">
+    Profil
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#changement-de-mot-de-passe">
+    Changement de mot de passe
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#entrainements">
+    Entrainements
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#entrainement">
+    Entrainement
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#ajout-de-review">
+    Ajout de review
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#review">
+    Review
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#bilan">
+    Bilan
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#coach_1">
+    Coach
+  </a>
+<nav aria-label="Coach" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#tableau-de-bord">
+    Tableau de bord
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#calendrier">
+    Calendrier
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#ajout-client">
+    Ajout client
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#client_2">
+    Client
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#ajout-programme">
+    Ajout programme
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#ajout-bilan">
+    Ajout Bilan
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#modification-de-carte">
+    Modification de carte
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#fitjourney-cards-checker">
+    FitJourney cards checker
+  </a>
+<nav aria-label="FitJourney cards checker" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#authentification-a-lapi">
+    Authentification à l'API
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#utilisation-de-lapi">
+    Utilisation de l'API
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#tests">
+    Tests
+  </a>
+<nav aria-label="Tests" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#tests-unitaires">
+    Tests unitaires
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#tests-utilisateurs">
+    Tests utilisateurs
+  </a>
+<nav aria-label="Tests utilisateurs" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#fitjourney-web-application">
+    FitJourney Web application
+  </a>
+<nav aria-label="FitJourney Web application" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#en-tant-que-coach_1">
+    En tant que coach :
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#en-tant-que-client_1">
+    En tant que client
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#fitjourney-card-checker">
+    FitJourney card checker
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#conclusion">
+    Conclusion
+  </a>
+<nav aria-label="Conclusion" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#points-positifs">
+    Points positifs
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#problemes-rencontres">
+    Problèmes rencontrés
+  </a>
+<nav aria-label="Problèmes rencontrés" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#mise-en-place-de-la-structure-du-projet">
+    Mise en place de la structure du projet
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#oublie-de-certains-points-tres-importants">
+    Oublie de certains points très importants
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#compte-google">
+    Compte Google
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#ameliorations-possibles">
+    Améliorations possibles
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#bilan-personnel">
+    Bilan personnel
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#sources">
+    Sources
+  </a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<h1 id="documentation-technique">Documentation technique</h1>
+<h2 id="resume">Résumé</h2>
+<p>FitJourney est une application permettant, d'une part, à un coach sportif de gérer et effectuer le suivi de tous ses clients avec des données d'entrainements récupérées à l'aide de montres connectés Polar. D'autre part, elle permet aux clients d'accéder à leurs programmes d'entrainements et de nutrition. L'application permet également aux clients de visionner le détail de chacune de leurs séances.</p>
+<p>FitJourney est une application WEB réalisée avec le framework Flask du langage Python, elle repose principalement sur l'API Polar Accesslink qui permet l'utilisation des données des montres connectées</p>
+<p>Ce document reprend toutes les étapes du projet qui a été réalisé dans le cadre du travail de diplôme de la formation Technicien ES en informatique de Thomas Fujise.</p>
+<h2 id="abstract">Abstract</h2>
+<p>FitJourney is an application that allows personal trainers to follow up all their clients training data that is retrieved using Polar connected watches. It also allows clients to access their training and diet plan. The application allows clients to look at the details of each of their workouts.</p>
+<p>FitJourney is a WEB application made with Flask Python framework. It relies mainly on the Polar Accesslink API which allows the use of data from connected watches.</p>
+<p>This document contains all the steps of the project, which was carried out within the diploma project of the IT Technician formation of Thomas Fujise</p>
+<h2 id="introduction">Introduction</h2>
+<p>Dans le cadre de notre deuxième et dernière année au CFPT Informatique en tant que Technicien ES, il nous est demandé de réaliser un travail de diplôme dans le but de valider les compétences acquises tout au long de cette formation. J'ai fait le choix de développer "FitJourney", une application web qui facilite la pratique du métier de coach sportif.</p>
+<p>Cette application permet de gérer le suivi des clients allant de l'importation des programmes individuels des clients à la récolte des données d'entrainements à l'aide de montre connecté Polar. Elle permet également de gérer une salle de sport avec les cartes de membres qui permettent l'accès à la salle. Ayant passé un diplôme de coach sportif l'année passée, j'étais à l'aise avec les besoins qu'un professionnel aurait en cas d'utilisation de l'application.</p>
+<h2 id="cahier-des-charges">Cahier des charges</h2>
+<h3 id="contexte">Contexte</h3>
+<p>Développer une application web regroupant des clients et des coachs de sport. L'application permet le suivi des clients et peut récupérer des données d'entrainements directement depuis un appareil connecté Polar. </p>
+<p>Il existe aujourd'hui, très peu d'outil qui permet à un coach sportif de gérer sa salle de sport avec le suivi de tous ses clients. C'est pourquoi, j'ai décidé de développer une application qui permettrait de gérer une salle de sports ainsi que le suivi des clients et de l'utiliser en tant que sujet pour mon travail de diplôme. </p>
+<h3 id="but-du-projet">But du projet</h3>
+<p>Le but du projet est de créer une plateforme web regroupant clients et coachs afin de gérer une salle de sport et le suivi des clients.</p>
+<p>Les données d'entrainements suivantes sont récupérées depuis une smartwatch Polar:</p>
+<ul>
+<li>Pulsation cardiaque (Repos/Actif/Après effort)</li>
+<li>Le type d'exercice effectué</li>
+<li>Date et durée de l'entrainement</li>
+<li>Nombre de total de calories brulées </li>
+<li>Nombre de calories active</li>
+</ul>
+<p>(Optionnel)</p>
+<ul>
+<li>Les données relatives au sommeil <ul>
+<li>Pulsation cardiaque</li>
+<li>Cycles de sommeil</li>
+<li>Interruption</li>
+<li>Hypnogramme</li>
+</ul>
+</li>
+</ul>
+<p>Il y a également un système de badging pour savoir quand le client rentre et sors de la salle de sport à la fin de son entrainement. </p>
+<h3 id="cas-dutilisations">Cas d'utilisations</h3>
+<p>2 cas d'utilisations sont possibles avec l'application.</p>
+<h4 id="client">Client</h4>
+<p>Le cas d'utilisation pour client : </p>
+<figure>
+<img alt="Use case client" src="../img/client_use_case.png"/>
+<figcaption>Fig 1 : Diagramme de cas d'utilisation client</figcaption>
+</figure>
+<p>Le client doit se connecter pour avoir accès à l'application, il ne peut pas se créer de compte lui-même.</p>
+<p>Si le client se connecte à l'application, il a alors accès à plusieurs fonctionnalités :</p>
+<ul>
+<li>Visualiser/Télécharger ses programmes (Entrainement et Nutrition)</li>
+<li>Laisser un retour sur une session effectué</li>
+<li>Laisser un retour sur le coaching de manière générale</li>
+<li>Gérer son profil</li>
+</ul>
+<div style="page-break-before:always"></div>
+<h4 id="coach">Coach</h4>
+<p>Le cas d'utilisation pour coach :</p>
+<figure>
+<img alt="Use case coach" src="../img/client_use_case.png"/>
+<figcaption>Fig 2 : Diagramme de cas d'utilisation coach</figcaption>
+</figure>
+<p>Le coach à lui également 2 possibilités en arrivant sur l'application (Enregistrement et connexion).</p>
+<p>Une fois connecté, le coach à accès à une multitude de fonctionnalités :</p>
+<ul>
+<li>Ajout d'un nouveau client (création du compte client)</li>
+<li>Ajouter une session avec un client (Prise de rendez-vous)</li>
+<li>Gérer son profil</li>
+</ul>
+<p>Il a également accès à des fonctionnalités pour gérer ses clients : </p>
+<ul>
+<li>Importation des programmes (entrainement et nutrition)</li>
+<li>Renouveler l'abonnement souscrit par le client</li>
+<li>Effectuer un bilan avec un client </li>
+<li>Changer la carte membre du client</li>
+</ul>
+<h3 id="specifications">Spécifications</h3>
+<ul>
+<li>Les données d'entrainements sont récupérées avec l'API Accesslink de Polar en Python sous forme d'objet, elles sont vérifiées et stockées directement dans la base de données</li>
+<li>Le système de badge fonctionne à l'aide de cartes RFID et un lecteur NFC (ACS ACR 122u) </li>
+<li>Les graphiques liés aux stats sont effectués avec la librairie JavaScript Chart.js</li>
+<li>Les programmes d'entrainements et de nutritions doivent respecter le format proposé (Lors de l'upload une vérification est effectuée)</li>
+<li>Un système de notification est mis en place pour avertir les utilisateurs des différents événements</li>
+</ul>
+<h3 id="restrictions">Restrictions</h3>
+<ul>
+<li>Pour l'instant, il est uniquement possible d'utiliser des appareils Polar pour les données d'entrainement.</li>
+<li>Le système de badge est utilisé au début et à la fin et non pendant l'entrainement.</li>
+<li>L'API accepte au maximum 500 requête pour 20 utilisateurs différents en 15 min et 5000 pour 100 utilisateurs en 24h</li>
+<li>Les montres utilisées lors des entrainements sont celles du coach (montres déjà enregistrées sur le compte client qui accède à l'API)</li>
+</ul>
+<h3 id="environnement">Environnement</h3>
+<p>Les technologies à utiliser :</p>
+<ul>
+<li>HTML5</li>
+<li>CSS3 </li>
+<li>JavaScript</li>
+<li>SQL </li>
+<li>Python</li>
+<li>Flask (Micro Framework Python)</li>
+<li>Lecteur NFC (ACS ACR122U)</li>
+<li><a href="https://www.polar.com/accesslink-api/#polar-accesslink-api">API AccessLink Polar</a></li>
+<li><a href="https://www.chartjs.org/">Chart.js</a></li>
+</ul>
+<p>Système d'exploitation :</p>
+<ul>
+<li>Développement sur Windows</li>
+</ul>
+<p>Versionning / Documentation :</p>
+<ul>
+<li>GitHub</li>
+<li>MarkDown (Mkdocs)</li>
+</ul>
+<h3 id="contact">Contact</h3>
+<h4 id="etudiant">Étudiant</h4>
+<ul>
+<li><strong>Prénom</strong> : Thomas </li>
+<li><strong>Nom</strong> : Fujise </li>
+<li><strong>Email</strong> : thomas.fjs@eduge.ch</li>
+<li><strong>Téléphone</strong> : +41 (0) 77 463 89 68 </li>
+</ul>
+<h4 id="enseignant">Enseignant</h4>
+<ul>
+<li><strong>Prénom</strong> : Sébastien </li>
+<li><strong>Nom</strong> : Jossi </li>
+<li><strong>Email</strong> : edu-jossis@eduge.ch</li>
+<li><strong>Téléphone</strong> : /</li>
+</ul>
+<h3 id="dates-importantes">Dates importantes</h3>
+<table>
+<thead>
+<tr>
+<th>Date</th>
+<th>Tâches</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Lundi, 04 avril 2022</strong></td>
+<td>Début du travail de diplôme</td>
+</tr>
+<tr>
+<td><strong>Mardi, 26 avril 2022</strong></td>
+<td>Évaluation intermédiaire 01</td>
+</tr>
+<tr>
+<td><strong>Lundi, 09 mai 2022</strong></td>
+<td>Rendu du rapport intermédiaire + poster &amp; Rendu du résumé et de l'abstract</td>
+</tr>
+<tr>
+<td><strong>Mardi, 10 mai 2022</strong></td>
+<td>Évaluation intermédiaire 02</td>
+</tr>
+<tr>
+<td><strong>Jeudi, 12 mai 2022</strong></td>
+<td>Après-midi/Soirée poster</td>
+</tr>
+<tr>
+<td><strong>Mardi, 24 mai 2022</strong></td>
+<td>Évaluation intermédiaire 03</td>
+</tr>
+<tr>
+<td><strong>Vendredi, 10 juin 2022</strong></td>
+<td>Rendu du travail avant 12:00</td>
+</tr>
+</tbody>
+</table>
+<h3 id="livrable">Livrable</h3>
+<ul>
+<li>Documentation technique + journal de bord</li>
+<li>Manuel utilisateur</li>
+<li>Poster</li>
+<li>Code source</li>
+</ul>
+<div style="page-break-before:always"></div>
+<h2 id="analyse-de-lexistant">Analyse de l'existant</h2>
+<h3 id="inithy">Inithy</h3>
+<figure style="float:right;">
+<img alt="Inithy logo" src="../img/inithy.png" width="200"/>
+<figcaption>Fig 3 : Logo de l'application Inithy</figcaption>
+</figure>
+<p>Inithy est une application de coaching "tout-en-un" qui propose énormément de fonctionnalités. Elle permet le suivi des clients, le planning de sessions, l'importation de programmes ou encore l'interaction entre utilisateurs de l'application. Elle possède une fonctionnalité de synchronisation avec les applications de sports comme GoogleFit, Apple Santé ou encore Fitbit. La synchronisation avec Polar et Garmin n'est pas disponible avec leur application. Il y a également la possibilité d'effectuer des paiements sur l'application pour acheter un abonnement. C'est une application très complète qui répond à beaucoup de besoins que j'ai identifié précédemment. Le principal point qui me différencie de cette application, est que FitJourney est plus axé pour gérer une salle de sport et les clients membres (pour un coach sportif qui aurait son studio de coaching par exemple) que pour le coaching en ligne comme l'est <em>Inithy</em>. </p>
+<figure>
+<img alt="Inithy dashboard" src="../img/inithy_dashboard.png"/>
+<figcaption>Fig 4 : Tableau de bord de l'application Inithy</figcaption>
+</figure>
+<h2 id="analyse-fonctionnelle">Analyse fonctionnelle</h2>
+<h3 id="fonctionnalites">Fonctionnalités</h3>
+<h4 id="description-generale">Description générale</h4>
+<p>L'application est accessible par n'importe qui possédant un compte. Seuls les coachs ont accès à la page d'enregistrement pour se créer un nouveau compte et c'est également que les coachs qui peuvent créer un compte pour un client. Une fois connecté, l'utilisateur à accès à plusieurs fonctionnalités en fonction de son rôle (coach ou client)</p>
+<h4 id="description-detaillee">Description détaillée</h4>
+<h5 id="application-coach">Application coach</h5>
+<ul>
+<li>Le coach s'inscrit et s'authentifie avec un formulaire ;</li>
+<li>Le coach peut modifier les informations propres à son compte utilisateur (nom, prénom, birthdate, email, photo de profil, adresse et mot de passe) ;</li>
+<li>Le coach peut ajouter un client en lui créant un compte et en sélectionnant le type d'abonnement que le client souhaite prendre ;</li>
+<li>Le coach peut enregistrer une session qu'il prévoit avec un de ses clients en renseignant :<ul>
+<li>La date ;</li>
+<li>L'heure ;</li>
+<li>La durée ;</li>
+<li>Le type d'entrainement prévu ;</li>
+</ul>
+</li>
+<li>Le coach peut voir une vue d'ensemble de la liste de tous les clients dont il a la charge, il voit également la prochaine session qu'il a enregistrée avec un client avec un résumé ;</li>
+<li>Le coach à accès à un calendrier pour visionner les sessions qu'il a enregistrées (plusieurs affichages disponibles : mois, semaine, jour ou encore en liste) ;</li>
+<li>Le coach peut effectuer un nouveau bilan/check-up pour le client </li>
+<li>Le coach à accès aux profils des clients dont il a la charge où il peut :<ul>
+<li>Renouveler/annuler l'abonnement du client ;</li>
+<li>Changer la carte de membre du client ;</li>
+<li>Importer un nouveau programme d'alimentation ou d'entrainement pour le client ;</li>
+<li>Visionner les anciens bilans qu'il a effectués</li>
+<li>Visionner les reviews sur le coaching et les entrainements que le client a laissés ;</li>
+<li>Visionner les statistiques du client :<ul>
+<li>Nombre de types d'entrainement effectué ;</li>
+<li>Nombre d'entrainements chaque mois ;</li>
+<li>Le poids du client sur l'année ;</li>
+<li>Le nombre de calories brûlées dans la semaine ;</li>
+<li>La moyenne des BPM cardiaques enregistrés dans la semaine ;</li>
+<li>Le total de temps passé à s'entrainer dans la semaine ;</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="application-client">Application client</h5>
+<ul>
+<li>Le client s'authentifie avec un formulaire à l'aide des identifiants qui lui sont transmis par email (les identifiants peuvent être modifié par le client plus tard) ;</li>
+<li>Le client a un aperçu des prochaines sessions qu'il a avec son coach; </li>
+<li>Le client a un aperçu de tous les entrainements qu'il a effectués, en cliquant dessus il peut voir les détails de ce-dernier ;</li>
+<li>Le client peut laisser un retour sur un entrainement qu'il a effectué, il peut également laisser un retour sur le coaching de manière générale ;</li>
+<li>Le client peut télécharger les programmes que son coach a importés ;</li>
+<li>Le client a accès à un aperçu des bilans qu'il a effectués avec son coach;</li>
+<li>Le client peut visionner les statistiques enregistrées pour lui :<ul>
+<li>Nombre de types d'entrainement effectué ;</li>
+<li>Nombre d'entrainements chaque mois ;</li>
+<li>Le poids du client sur l'année ;</li>
+<li>Le nombre de calories brûlées dans la semaine ;</li>
+<li>La moyenne des BPM cardiaques enregistrés dans la semaine ;</li>
+<li>Le total de temps passé à s'entrainer dans la semaine ;</li>
+</ul>
+</li>
+</ul>
+<h5 id="lecture-carte-membre">Lecture carte membre</h5>
+<p>La lecture de carte membre est effectuée à l'aide d'un script indépendamment de l'application principale. Aucune interface n'est disponible pour le moment, seul un message est affiché dans le terminal pour afficher si le client a été reconnu ou non. Cette partie permet au client de : </p>
+<ul>
+<li>Scanner sa carte membre en arrivant à la salle de sport, la carte est reconnue et le client est identifié.</li>
+<li>Scanner sa carte de membre en sortant de la salle de sport, les données de l'entrainement effectué sont alors récupérés et enregistrés.</li>
+</ul>
+<h3 id="sitemap">Sitemap</h3>
+<p>La sitemap de l'application possède 2 alternatives, 1 pour les clients et 1 pour les coachs.</p>
+<div style="page-break-before:always"></div>
+<h4 id="sitemap-client">Sitemap Client</h4>
+<p>Voici la sitemap client, on y retrouve tous les chemins utilisables en tant que client :</p>
+<figure>
+<img alt="Sitemap client" src="../img/Sitemap_client.png"/>
+<figcaption>Fig 5 : Diagramme représentant la sitemap client de l'application</figcaption>
+</figure>
+<div style="page-break-before:always"></div>
+<h4 id="sitemap-coach">Sitemap Coach</h4>
+<p>Voici la sitemap coach, on y retrouve tous les chemins utilisables en tant que coach :</p>
+<figure>
+<img alt="Sitemap coach" src="../img/Sitemap_coach.png"/>
+<figcaption>Fig 6 : Diagramme représentant la sitemap coach de l'application</figcaption>
+</figure>
+<div style="page-break-before:always"></div>
+<h3 id="maquettage">Maquettage</h3>
+<p>Pour préparer les interfaces, j'ai réalisé des maquettes avec l'outil Figma. Les maquettes m'ont permis de mettre à plat les éléments nécessaires pour les interfaces et ont évité de perdre trop de temps lors de la création des interfaces.</p>
+<p>L'application FitJourney propose 2 niveaux d'accès :</p>
+<ul>
+<li>Client</li>
+<li>Coach</li>
+</ul>
+<h4 id="en-tant-que-client">En tant que client</h4>
+<p>Le client doit se connecter pour avoir accès à l'application, il ne peut pas se créer de compte tout seul. </p>
+<div style="page-break-before:always"></div>
+<h5 id="page-de-connexion">Page de connexion</h5>
+<figure>
+<img alt="Page de connexion" src="../mockups/Interface_mockups/sign_in.jpg"/>
+<figcaption>Fig 8 : Maquette de l'interface utilisateur - Page de connexion</figcaption>
+</figure>
+<p>La page de connexion permet aux utilisateurs de se connecter. Un lien est disponible si le mot de passe a été oublié.</p>
+<div style="page-break-before:always"></div>
+<h5 id="barre-de-navigation">Barre de navigation</h5>
+<figure>
+<img alt="Barre de navigation client" src="../mockups/Interface_mockups/navbar_client.jpg"/>
+<figcaption>Fig 9 : Maquette de l'interface utilisateur - Barre de navigation client</figcaption>
+</figure>
+<p>La barre de navigation disponible en tant que client verticalement à gauche de l'écran. 3 boutons de navigation supplémentaires sont disponibles :</p>
+<ul>
+<li><a href="#page-profil">Profil</a></li>
+<li><a href="#page-prochaine-session">Agenda</a></li>
+<li><a href="#page-liste-entrainements">Entrainement</a></li>
+</ul>
+<div style="page-break-before:always"></div>
+<h5 id="page-profil">Page profil</h5>
+<figure>
+<img alt="Page de profil" src="../mockups/Interface_mockups/profile.jpg"/>
+<figcaption>Fig 10 : Maquette de l'interface utilisateur - Page de profil du client</figcaption>
+</figure>
+<p>La page profil permet au client de modifier ses informations personnelles. Plusieurs boutons sont disponibles : </p>
+<ul>
+<li>1 bouton "Update" pour appliquer les modifications effectuées sur les informations du compte</li>
+<li>1 bouton "Change password" en jaune pour modifier le mot de passe </li>
+<li>1 bouton "Change logo" pour importer une photo de profil.</li>
+</ul>
+<p>Il a également accès à des statistiques sur les données des entrainements qu'il a effectués cette semaine (en rouge) et la liste des bilans généraux et de session que l'utilisateur a postés (en vert). Il a la possibilité d'ajouter un nouveau bilan général en cliquant sur le bouton au-dessus.</p>
+<h5 id="page-ajout-review">Page ajout review</h5>
+<figure>
+<img alt="Page d'ajout de review'" src="../mockups/Interface_mockups/client_coach_report.jpg"/>
+<figcaption>Fig 11 : Maquette de l'interface utilisateur - Page d'ajout de review coaching</figcaption>
+</figure>
+<p>La page "Ajout Bilan" permet au client de noter, soit la qualité du suivi effectué par le coach, soit une session effectuée. </p>
+<p>Dans la zone rouge, l'élément qui est évalué (un coach ou une session).</p>
+<p>Dans la zone bleue, les différents éléments à noter ainsi qu'une zone pour ajouter un commentaire.</p>
+<h5 id="page-bilan">Page Bilan</h5>
+<figure>
+<img alt="Page d'affichage de review" src="../mockups/Interface_mockups/general_report.jpg"/>
+<figcaption>Fig 12 : Maquette de l'interface utilisateur - Page d'affichage de review</figcaption>
+</figure>
+<p>La page "Review" permet de voir la review ajoutée, soit une review sur le suivi de manière générale, soit une review sur une session effectuée.</p>
+<p>Dans la zone rouge, on peut voir de quel type de review il s'agit (Review général sur le coaching ou review d'une session). </p>
+<p>Dans la zone verte, on retrouve le client et la date à laquelle la review a été postée.</p>
+<p>Dans la zone bleue, on retrouve les éléments qui ont été noté par le client.</p>
+<h5 id="page-liste-entrainements">Page liste entrainements</h5>
+<figure>
+<img alt="Page d'entrainements" src="../mockups/Interface_mockups/workouts_list.jpg"/>
+<figcaption>Fig 13 : Maquette de l'interface utilisateur - Page d'affichage des entrainements effectués</figcaption>
+</figure>
+<p>Cette page affiche la liste de tous les entrainements effectués par le client. L'utilisateur peut cliquer sur chaque élément de la liste pour avoir les détails de l'entrainement.</p>
+<h5 id="page-details-entrainement">Page détails entrainement</h5>
+<figure>
+<img alt="Page détail d'entrainement" src="../mockups/Interface_mockups/workout_details.jpg"/>
+<figcaption>Fig 14 : Maquette de l'interface utilisateur - Page de détails d'un entrainement</figcaption>
+</figure>
+<p>Cette page affiche les détails d'un entrainement avec les données récupérées à l'aide de la smartwatch. On peut retrouver des informations comme : </p>
+<ul>
+<li>Le nombre de calories brûlées</li>
+<li>Les pulsations cardiaques par minute avec un graphique montrant l'évolution durant l'entrainement</li>
+<li>La durée de l'entrainement </li>
+<li>Le type d'entrainement</li>
+</ul>
+<p>Le client peut ajouter un bilan en cliquant sur le bouton (encadré en rouge) pour donner son ressenti sur la séance.</p>
+<h5 id="page-prochaine-session">Page prochaine session</h5>
+<figure>
+<img alt="Page prochaine session" src="../mockups/Interface_mockups/client_next_session.jpg"/>
+<figcaption>Fig 15 : Maquette de l'interface utilisateur - Page prochaine session</figcaption>
+</figure>
+<p>Cette page affiche les prochaines sessions d'entrainements avec un coach du client </p>
+<h4 id="en-tant-que-coach">En tant que coach</h4>
+<p>Le coach peut se créer un compte et se connecter à l'application, une fois connecté, il a accès à toute l'application.</p>
+<h5 id="page-denregistrement">Page d'enregistrement</h5>
+<figure>
+<img alt="Page d'inscription" src="../mockups/Interface_mockups/sign_up.jpg"/>
+<figcaption>Fig 16 : Maquette de l'interface utilisateur - Page d'inscription</figcaption>
+</figure>
+<p>La page d'enregistrement permet aux coachs de s'enregistrer, une fois enregistré il peut se connecter avec la <a href="#page-de-connexion">page de connexion</a></p>
+<h5 id="barre-de-navigation_1">Barre de navigation</h5>
+<figure>
+<img alt="Barre de navigation coach" src="../mockups/Interface_mockups/navbar_coach.jpg"/>
+<figcaption>Fig 17 : Maquette de l'interface utilisateur - Barre de navigation coach</figcaption>
+</figure>
+<p>La barre de navigation disponible en tant que client verticalement à gauche de l'écran. 1 bouton supplémentaire est disponible :</p>
+<ul>
+<li><a href="#page-tableau-de-bord">Dashboard</a></li>
+</ul>
+<h5 id="page-tableau-de-bord">Page tableau de bord</h5>
+<figure>
+<img alt="Page tableau de bord coach" src="../mockups/Interface_mockups/coach_dashboard.jpg"/>
+<figcaption>Fig 18 : Maquette de l'interface utilisateur - Page tableau de bord coach</figcaption>
+</figure>
+<p>La page tableau de bord permet au coach de voir la liste des clients (en rouge) dont il effectue le suivi. Le coach peut cliquer sur le nom d'un de ses clients pour afficher le profil du client concerné. </p>
+<p>Il a également accès à un bouton pour ajouter un nouveau client (en bleu).</p>
+<p>Les informations de la prochaine session avec un client sont disponibles au-dessus de la liste des clients (en vert). </p>
+<h5 id="page-ajout-de-client">Page Ajout de client</h5>
+<figure>
+<img alt="Page d'ajout de client" src="../mockups/Interface_mockups/add_client.jpg"/>
+<figcaption>Fig 19 : Maquette de l'interface utilisateur - Page d'ajout de client</figcaption>
+</figure>
+<p>La page ajout de client permet au coach d'effectuer la prise en charge d'un nouveau client. Si le client possède déjà un compte, le coach peut sélectionner un compte déjà existant (en vert) ou créer un nouveau compte client. </p>
+<p>Si le coach sélectionne un compte déjà existant, les champs se remplissent automatiquement. Il faudra uniquement sélectionner le type d'abonnement souhaité (en rouge)</p>
+<h5 id="page-profil-client">Page profil client</h5>
+<figure>
+<img alt="Page affichage compte" src="../mockups/Interface_mockups/profile_with_coach_option.jpg"/>
+<figcaption>Fig 20 : Maquette de l'interface utilisateur - Page d'affichage d'un compte client</figcaption>
+</figure>
+<p>La page profil client permet au coach de visionner le profil de ses clients (en bleu). Plusieurs boutons sont disponibles :</p>
+<ul>
+<li>1 bouton pour le changement de la carte de membre (Bouton bleu)</li>
+<li>1 bouton pour le renouvellement de l'abonnement (Bouton vert)</li>
+<li>1 bouton pour l'annulation de l'abonnement (Bouton rouge)</li>
+</ul>
+<p>Il peut également voir les graphiques/statistiques disponibles sur le profil.</p>
+<p>Le coach peut ajouter les nouveaux programmes du client (en rouge) à l'aide des boutons d'importation (1 bouton pour le programme d'entrainement et 1 bouton pour le programme de nutrition). Les anciens programmes sont disponibles en cliquant sur les boutons du programme souhaité (bouton vert et orange), leurs dates d'importation sont affichées à côté.</p>
+<p>Dans la zone verte, on peut retrouver les différents bilans de satisfaction que le client a ajoutés. En haut de cette zone, un bouton d'ajout de bilan est disponible. Il va permettre d'effectuer le bilan du client et d'ajouter les nouvelles informations (Poids, Masse graisseuse, etc)</p>
+<h5 id="page-bilan-client">Page Bilan client</h5>
+<figure>
+<img alt="Page d'ajout de bilan" src="../mockups/Interface_mockups/coach_report.jpg"/>
+<figcaption>Fig 21 : Maquette de l'interface utilisateur - Page d'ajout de bilan</figcaption>
+</figure>
+<p>La page Bilan client permet au coach d'ajouter le bilan d'un client.</p>
+<p>Dans la zone rouge, on retrouve les infos qui changent le moins, voire jamais (Nom, taille ou encore l'âge).</p>
+<p>Dans la zone bleue, les informations importantes qui ont pu être récupérées suite à la pesée.</p>
+<p>Dans la zone verte, il est possible d'ajouter des photos du physique du client pour pouvoir éventuellement avoir des avants/après en guise de comparaison.</p>
+<h5 id="page-abonnement">Page Abonnement</h5>
+<figure>
+<img alt="Page de paiement" src="../mockups/Interface_mockups/payment.jpg"/>
+<figcaption>Fig 22 : Maquette de l'interface utilisateur - Page de renouvellement d'abonnement</figcaption>
+</figure>
+<p>La page abonnement permet de valider le paiement d'un client (Aucune transaction n'est effectué par l'application). Le coach peut sélectionner le type d'abonnement que le client souhaite prendre, la date d'échéance du nouvel abonnement sélectionné ainsi que son coût seront affichés.</p>
+<h5 id="page-calendrier">Page Calendrier</h5>
+<figure>
+<img alt="Page d'agenda" src="../mockups/Interface_mockups/coach_calendar.jpg"/>
+<figcaption>Fig 23 : Maquette de l'interface utilisateur - Page calendrier</figcaption>
+</figure>
+<p>La page calendrier permet au coach d'avoir accès à un calendrier et de visionner les rendez-vous enregistrés à la date sélectionnée. Les sessions enregistrées sont affichées dans la zone rouge, avec quelques détails sur la séance.</p>
+<p>Dans la zone verte, un bouton pour ajouter une nouvelle session avec un client est disponible. Le coach doit renseigner :</p>
+<ul>
+<li>Le nom du client (Liste déroulante parmi ses clients)</li>
+<li>L'heure de la session</li>
+<li>La durée</li>
+<li>Le type de session </li>
+</ul>
+<h2 id="analyse-organique">Analyse Organique</h2>
+<h3 id="mise-en-place-environnement">Mise en place / Environnement</h3>
+<h4 id="visual-studio-code">Visual Studio Code</h4>
+<p>J'ai choisi d'utiliser Visual Studio code pour éditer mon code, il est directement relié à mon repos sur Github. Je peux donc directement depuis Visual Studio Code commit tous les changements que j'effectue.</p>
+<h4 id="mkdocs">Mkdocs</h4>
+<p>Mkdocs permet de générer un site statique pour la documentation. Il prend en compte tous les fichiers Markdown (.md) dans le dossier <em>docs/</em>, et un fichier de configuration YAML qui se trouve à la racine du projet. Mkdocs me permet de visionner mes fichiers Markdown en direct et à l'aide de l'extension <em>with-pdf</em>, de générer un fichier PDF de me tous mes fichiers Markdown.</p>
+<h4 id="github">GitHub</h4>
+<figure style="float:right;" width="200">
+<img alt="Logo Github" src="../img/github.svg" width="200"/>
+<figcaption>Fig 24 : Logo Github</figcaption>
+</figure>
+<p>Pour pouvoir garder un suivi constant de mon projet, j'ai choisi d'utiliser GitHub comme outil de contrôle de version.</p>
+<p>Voici comment est structuré le github :</p>
+<figure>
+<img alt="Github arborescence" src="../img/github_arborescence.PNG"/>
+<figcaption>Fig 25 : Arborescence du repos Github</figcaption>
+</figure>
+<ul>
+<li>Le dossier docs/ contient les fichiers de documentation et de journal de bord</li>
+<li>Le dossier src/ contient tout le code source de l'application</li>
+</ul>
+<h4 id="trello">Trello</h4>
+<figure style="float:right;" width="200">
+<img align="right" alt="trello logo" src="../img/trello.png" width="200"/>
+<figcaption>Logo de l'application Trello</figcaption>
+</figure>
+<p>Trello est un outil de gestion de projet en ligne, inspiré par la méthode Kanban. Il repose sur une organisation des projets en planches listant des cartes, chacune représentant des tâches. </p>
+<p>Afin de créer une roadmap pour mon projet, j'ai utilisé Trello pour lister les différentes étapes de mon projet. J'ai ensuite pu définir les échéances pour chaque tâche/étapes avec mon planning prévisionnel.</p>
+<p>J'ai créé 5 colonnes :</p>
+<ul>
+<li>Backlog (Liste de toutes les tâches)</li>
+<li>To-Do (Les tâches qui ont été validées et qui sont à faire)</li>
+<li>Doing (Les tâches en cours)</li>
+<li>Testing (Les tâches en cours de test)</li>
+<li>Done (Les tâches terminées)</li>
+</ul>
+<h4 id="guide-dinstallation">Guide d'installation</h4>
+<p>FitJourney utilise la 3ᵉ version de Python (donc <code>python3</code>)</p>
+<h5 id="windows">Windows</h5>
+<p>Premièrement, cela serait intéressant de travailler sur un environnement WSL avec VSCode. Pour mettre en place WSL, j'ai suivi le guide disponible directement dans la documentation de VSCode : <a href="https://code.visualstudio.com/docs/remote/wsl">https://code.visualstudio.com/docs/remote/wsl</a></p>
+<div style="page-break-before:always"></div>
+<h5 id="mysql">MySQL</h5>
+<p>Une fois l'environnement de développement installé correctement, il faut installer MySQL (si cela n'est pas déjà fait) à l'aide de la commande :</p>
+<p><code>sudo apt install mysql-server</code></p>
+<p>Puis lancer le service MySQL:</p>
+<p><code>sudo service mysql start</code></p>
+<p>et </p>
+<p><code>sudo mysql_secure_installation</code></p>
+<p>Pour se connecter à la base de données, utiliser un DBMS comme <em>DBeaver</em> ou <em>MySQLWorkbench</em>.</p>
+<h5 id="pip3"><code>pip3</code></h5>
+<p>Il faut s'assurer que pip3 a bien été installé afin de télécharger tous les paquets/librairies pour faire fonctionner l'application comme il faut.</p>
+<p><code>sudo apt install python3-pip</code></p>
+<p>Si une erreur survient, utiliser la commande :</p>
+<p><code>sudo apt update &amp;&amp; sudo apt upgrade</code></p>
+<p>Sinon, vous pouvez vérifier que pip3 a bien été installé en utilisant : </p>
+<p><code>pip3 --version</code></p>
+<h5 id="pyscard">Pyscard</h5>
+<p>Pour pouvoir installer la librairie <code>pyscard</code> sur Windows, il faut au préalable installer <a href="#swig">SWIG</a> depuis le lien suivant : <a href="https://www.swig.org/download.html">https://www.swig.org/download.html</a></p>
+<p>Il faut ensuite l'ajouter directement au PATH en modifiant les variables d'environnement dans les propriétés système.</p>
+<figure>
+<img alt="Propriétés système" src="../img/param_system.PNG"/>
+<figcaption>Fig 26 : Copie d'écran - Propriétés système</figcaption>
+</figure>
+<p>On peut ensuite ajouter simplement le chemin vers le dossier <code>swig</code> que l'on a téléchargé :</p>
+<figure>
+<img alt="Swig Path" src="../img/swig_path.PNG"/>
+<figcaption>Fig 27 : Copie d'écran - Ajout de swig dans le PATH</figcaption>
+</figure>
+<p>Une fois ajouté, il faut ensuite installer Visual C++ version 14.0 ou plus récente (directement installable depuis le Visual Studio Installer) (<a href="https://visualstudio.microsoft.com/fr/downloads/">https://visualstudio.microsoft.com/fr/downloads/</a>)</p>
+<h5 id="requirements">Requirements</h5>
+<p>Une fois que <code>swig</code> a été ajouté au PATH et que <code>pip3</code> a été installé, il faut installer tous les paquets nécessaires pour l'application. Un fichier <code>requirements.txt</code> contenant toutes les librairies nécessaires est disponible dans le dossier <em>src/</em></p>
+<p><code>pip3 install -r requirements.txt</code></p>
+<p>/!\ Ne pas toucher ce fichier.</p>
+<div style="page-break-before:always"></div>
+<h5 id="api">API</h5>
+<p>L'API utilisée est l'API Accesslink v3.144.0 de Polar <a href="https://www.polar.com/accesslink-api/#polar-accesslink-api">https://www.polar.com/accesslink-api/#polar-accesslink-api</a>.</p>
+<p>Pour pouvoir utiliser l'API, il faut disposer au préalable d'un compte Polar Flow <a href="https://flow.polar.com/">https://flow.polar.com/</a>.</p>
+<h6 id="creation-dun-nouveau-client-pour-lapi">Création d'un nouveau client pour l'API</h6>
+<p>Aller sur <a href="https://admin.polaraccesslink.com/">https://admin.polaraccesslink.com/</a>. Il faut se connecter avec votre compte Polar Flow et ajouter un nouveau client. Il faut utiliser <code>http://localhost:5000/oauth2_callback</code> pour la callback d'autorisation.</p>
+<h6 id="configuration-des-identifiants">Configuration des identifiants</h6>
+<p>Ajouter l'<code>id</code> et le <code>secret</code> client dans le fichier <code>src/cardsChecker/config.yml</code> comme ceci : </p>
+<div class="highlight"><pre><span></span><code>client_id: 57a715f8-b7e8-11e7-abc4-cec278b6b50a
+
+client_secret: 62c54f4a-b7e8-11e7-abc4-cec278b6b50a
+</code></pre></div>
+<h6 id="authentification">Authentification</h6>
+<p>Le compte utilisateur doit être relié au client créé avant de pouvoir accéder aux données. Pour le relier, il faut lancer le script <code>src/cardsChecker/authorization.py</code></p>
+<div class="highlight"><pre><span></span><code>python3 authorization.py
+</code></pre></div>
+<p>puis aller sur la page '<a href="https://flow.polar.com/oauth2/authorization?response_type=code&amp;client_id=CLIENT_ID">https://flow.polar.com/oauth2/authorization?response_type=code&amp;client_id=CLIENT_ID</a>' pour relier votre compte utilisateur. ('<em>CLIENT_ID</em>' doit être remplacé par votre id client)</p>
+<p>Une fois ces étapes effectuées, votre compte aura accès aux données Polar.</p>
+<h5 id="base-de-donnees">Base de données</h5>
+<p>Pour la base de données, il suffit de créer une base nommée <code>fitjourney</code>, (respecter le nom sinon l'application ne fonctionnera pas). Vous pouvez ensuite exécuter le script sql disponible à <code>src/apps/db.sql</code>.</p>
+<h3 id="organisation-gestion-du-temps">Organisation / Gestion du temps</h3>
+<h4 id="convention-en-tetes">Convention : en-têtes</h4>
+<p>Tous les fichiers développés par moi-même possèdent l'entête ci-dessous :</p>
+<figure>
+<img alt="En-tête" src="../img/header.png"/>
+<figcaption>Fig 28 : En-tête de fichier</figcaption>
+</figure>
+<h4 id="backlog">Backlog</h4>
+<p>Les backlogs ont été identifiés au lancement du projet (certains l'ont été au fur et à mesure que le projet avançait). Ils ont été ajoutés au <a href="#trello">Trello</a> qui est l'outil qui a été choisi pour gérer le projet. Avec les cartes Trello, j'ai défini la difficulté et la priorité des tâches. Il était donc plus simple pour moi de visualiser quelles tâches devaient être réalisé en priorités.</p>
+<div style="page-break-before:always"></div>
+<h5 id="difficulte">Difficulté</h5>
+<p>La difficulté est définie par une étiquette de couleur selon la charte que j'ai définie : </p>
+<figure>
+<img alt="Difficulté Trello" src="../img/trello_difficulty.PNG"/>
+<figcaption>Fig 29 : Difficulté Trello</figcaption>
+</figure>
+<h5 id="priorite">Priorité</h5>
+<p>La priorité est définie également par une étiquette qui provient de l'extension "CardsPriority" sur Trello. Les priorités assignées suivent la charte : </p>
+<figure>
+<img alt="Priorité Trello" src="../img/trello_priority.PNG"/>
+<figcaption>Fig 30 : Priorité Trello</figcaption>
+</figure>
+<div style="page-break-before:always"></div>
+<h4 id="planning">Planning</h4>
+<p>Un planning prévisionnel a été réalisé au début du projet afin de lister les tâches et d'estimer leurs durées. En regardant les graphiques, on peut directement apercevoir que les deux n'ont aucun point en commun.</p>
+<h5 id="planning-previsionnel">Planning prévisionnel</h5>
+<figure>
+<img alt="Planning prévisionnel" src="../img/planning_previsionnel.PNG"/>
+<figcaption>Fig 31 : Planning prévisionnel</figcaption>
+</figure>
+<h5 id="planning-effectif">Planning effectif</h5>
+<figure>
+<img alt="Planning effectif" src="../img/planning_effectif.PNG"/>
+<figcaption>Fig 32 : Planning effectif</figcaption>
+</figure>
+<p>Lors de la réalisation du projet, beaucoup de tâches sont venues s'ajoutées. Toute la mise en place de la structure de l'application avec Python Flask m'a prise beaucoup plus de temps que prévu. Les besoins de la base de données qui ont été revu à maintes reprises.</p>
+<p>Le planning initial n'a vraiment pas pu être respecté à cause des différentes tâches qui ont été identifiées uniquement après avoir commencé le projet.</p>
+<div style="page-break-before:always"></div>
+<h3 id="technologies-utilisees">Technologies utilisées</h3>
+<h4 id="nfc-reader-acr122u">NFC Reader ACR122U</h4>
+<p>Le lecteur NFC ACR122U est un appareil permettant de lire et d'écrire sur des cartes sans contact. Il est basé sur la technologie Mifare 13,56 MHz (RFID) et suit les standards de la norme ISO 18092. L'ACR122U est développé et vendu par ACS ltd.</p>
+<p>Pour pouvoir utiliser ce lecteur, j'ai utilisé la librairie <em>pyscard</em> qui me permet de récupérer les infos des cartes à puces que le lecteur lit</p>
+<figure>
+<img alt="Lecteur RFID" src="../img/acr122u.png" width="300"/>
+<figcaption>Fig 33 : Lecteur RFID ACR122U</figcaption>
+</figure>
+<h5 id="rfid">RFID</h5>
+<p><strong>Qu'est-ce que la technologie RFID ??</strong></p>
+<p>RFID (Radio Frequency Identification), est une technologie qui permet d'enregistrer des données sur un support et de les récupérer à distance. Elle est apparue dans les années 1940 et était utilisée uniquement par l'armée pour l'identification des avions de guerre qui entrait dans l'espace aérien du Royaume-Uni. Elle s'est ensuite répandue dans différents secteurs industriels à partir des années 1980.</p>
+<p><strong>Comment fonctionne la RFID ?</strong></p>
+<p>Les étiquettes RFID sont composées d'une puce RFID et d'une antenne et sont collées sur un produit. Elles enregistrent les données et avec un lecteur électromagnétique on peut ensuite lire les ondes radio présentes sur la puce RFID grâce à l'antenne.</p>
+<p><strong>Pourquoi utiliser RFID</strong></p>
+<p>RFID est un système de traçabilité. À l'aide d'une seule puce, il est possible de tracer les produits pendant tout le processus de production, de transport et de distribution, voire jusqu'à leur fin de vie.</p>
+<p>Dans le cadre de mon projet, RFID est une solution adéquate pour gérer les entrées/sorties des clients dans la salle d'entrainement.</p>
+<p><strong>Différences entre RFID et NFC</strong></p>
+<figure>
+<img alt="RFID vs NFC" src="../img/rfid_vs_nfc.jpg" width="500"/>
+<figcaption>Fig 34 : RFID vs NFC</figcaption>
+</figure>
+<p>Dans le cadre de mon projet, j'utilise parfois le terme NFC. La technologie NFC (Near Field Communication) est un dérivé de la RFID qui a commencé à être utilisé dès 2011. Le NFC repose sur le même concept que la RFID. C'est une technologie qui fonctionne avec une puce permettant d'échanger des données entre un lecteur et n'importe quel terminal avec un simple rapprochement ou contact entre les deux objets.</p>
+<p>La communication sans fil ne fonctionne qu'à courte portée et haute fréquence, une distance d'environ 10 cm. La technologie NFC se retrouve dans la plupart des smartphones, consoles de jeux ou cartes bancaires. Le lecteur de carte que j'utilise fonctionne à l'aide de cette technologie également.</p>
+<p>Les principales différences entre RFID et NFC résident dans la portée plus courte et sécurisée pour NFC (10 cm) contre jusqu'à 10 m pour RFID. La technologie NFC peut transmettre toute sorte de données contre RFID qui ne transmet que l'ID. La lecture fait, quant à elle, défaut à la technologie NFC qui ne peut lire qu'une puce à la fois, ce qui peut limiter ses cas d'utilisation.</p>
+<div style="page-break-before:always"></div>
+<h4 id="pyscard-librairie-python-smart-card">Pyscard - Librairie Python Smart card</h4>
+<p>Pyscard est un module python qui permet d'utiliser les cartes à puce (PC/SC) avec python. Il donne accès à plusieurs classes et fonctions donnant accès aux cartes et aux lecteurs. </p>
+<figure>
+<img alt="Architecture pyscard" src="../img/pyscard.jpg" width="250"/>
+<figcaption>Fig 35 : Architecture de la librairie pyscard (Source : <a href="https://pyscard.sourceforge.io/">https://pyscard.sourceforge.io/</a>)</figcaption>
+</figure>
+<p>Architecture pyscard :</p>
+<ul>
+<li>smartcard.scard est un module d'extension enveloppant l'API WinSCard (Les composants de base smartcard) aussi connue sous le nom PC/SC (Personal computer / Smart Card)</li>
+<li>smartcard est un framework Python construit à partir de l'API PC/SC</li>
+</ul>
+<h4 id="swig">SWIG</h4>
+<figure>
+<img alt="Swig" src="../img/swig.png"/>
+<figcaption>Fig 35 : Logo Swig</figcaption>
+</figure>
+<p>SWIG est un outil logiciel open source qui permet de connecter des logiciels ou librairies écrites en C/C++ avec des langages de scripts tels que : <em>Perl</em>, <em>Python</em>, <em>Ruby</em>, <em>PHP</em> ou d'autres langages de programmation comme <em>Java</em> ou <em>C#</em>.</p>
+<h4 id="polar-accesslink-api">Polar Accesslink API</h4>
+<figure>
+<img alt="Logo Polar" src="../img/polar.png"/>
+<figcaption>Fig 36 : Logo Polar</figcaption>
+</figure>
+<p>Accesslink est une API qui donne accès aux données d'entrainement et d'activité journalière enregistrés par les appareils Polar. Pour pouvoir l'utiliser, il est nécessaire de posséder un compte Polar Flow afin de créer un client sur <a href="admin.polaraccesslink.com">admin.polaraccesslink.com</a> qui nous donnera accès à l'API. </p>
+<p>Accesslink utilise <a href="https://oauth.net/">OAuth2</a> comme protocole d'authentification. Les utilisateurs enregistrés ont besoin de s'authentifier pour pouvoir avoir accès aux données.</p>
+<p>Fonctionnalités de base d'Accesslink :</p>
+<table>
+<thead>
+<tr>
+<th>Fonctionnalité</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Utilisateurs</td>
+<td>Permets d'enregistrer, supprimer et récupérer les informations de base de l'utilisateur</td>
+</tr>
+<tr>
+<td>Pull Notification</td>
+<td>Permets de vérifier si l'utilisateur à des données disponibles à récupérer</td>
+</tr>
+<tr>
+<td>Donnée d'entrainement</td>
+<td>Permets d'accéder aux données d'entrainements de l'utilisateur</td>
+</tr>
+<tr>
+<td>Activité journalière</td>
+<td>Permets d'accéder aux données de l'activité journalière de l'utilisateur</td>
+</tr>
+<tr>
+<td>Info physique</td>
+<td>Permets d'accéder aux informations physiques de l'utilisateur (Ex : Taille/Poids)</td>
+</tr>
+<tr>
+<td>Modèle de données</td>
+<td>Décrit tous les objets qui transportent les données entre le serveur et le client</td>
+</tr>
+<tr>
+<td>Annexes</td>
+<td>Contient des exemples et des détails sur l'interface de l'application</td>
+</tr>
+</tbody>
+</table>
+<h5 id="choix-dans-le-projet-fitjourney">Choix dans le projet - FitJourney</h5>
+<p>Je souhaitais utiliser les données d'entrainements en provenance de montre connectée et j'avais déjà en ma possession une montre Polar. Mon choix s'est donc naturellement orienté vers Polar, lorsque j'ai pris connaissance de l'API développée en Python qu'ils mettaient à disposition. </p>
+<h4 id="python">Python</h4>
+<figure style="float:right;">
+<img alt="Python Logo" src="../img/python.png" width="200"/>
+<figcaption>Fig 37 : Python Logo</figcaption>
+</figure>
+<p>Python est un langage très flexible qui propose une approche modulaire et orienté objet de la programmation. Il est placé sous une licence libre et fonctionne sur la plupart des plates-formes informatiques. Il est conçu pour optimiser la productivité des programmeurs en offrant des outils de haut niveau et une syntaxe simple à utiliser.</p>
+<h5 id="choix-dans-le-projet-fitjourney_1">Choix dans le projet - FitJourney</h5>
+<p>Durant ma dernière année en tant que Technicien ES, j'ai beaucoup utilisé python dans mes projets. En trouvant de plus en plus d'outils comme la librairie <em>pyscard</em> ou encore l'API Polar en Python, je me suis très vite décidé sur le langage que j'allais utiliser pour ce projet.</p>
+<h4 id="python-flask-backend">Python Flask (backend)</h4>
+<p>Flask est un micro-framework Python qui permet la création d'applications web évolutives. Flask dépend de la boite à outils WSGI (Web Server Gateway Interface) de <a href="https://werkzeug.palletsprojects.com/en/2.0.x/">Werkzeug</a> et du moteur de templates <a href="https://jinja.palletsprojects.com/en/3.0.x/">Jinja</a>. Le dossier <em>app/</em> représente une application Flask, elle est entre-autre homogène à une fonction WGSI.</p>
+<figure>
+<img alt="Flask logo" src="../img/flask.png"/>
+<figcaption>Fig 38 : Logo du framework Flask</figcaption>
+</figure>
+<h5 id="utilisation-flask">Utilisation Flask</h5>
+<p>Pour lancer une application Flask, il faut utiliser la méthode de l'objet Flask : </p>
+<div class="highlight"><pre><span></span><code>.run()
+</code></pre></div>
+<p>ou lancer directement l'application à l'aide de la commande : </p>
+<div class="highlight"><pre><span></span><code>Flask run
+</code></pre></div>
+<h5 id="micro-framework">Micro framework</h5>
+<p>Un micro framework est un framework qui tente de fournir uniquement les composants absolument nécessaires à un développeur pour la création d'une application. Par exemple, dans le cas d'une application Web, un micro framework peut être spécifiquement conçu pour la construction d'API pour un autre service/application.</p>
+<p>Le terme <em>micro</em> dans le micro framework signifie que Flask vise à garder le code de base simple, mais extensible. Flask ne prendra pas beaucoup de décisions, par exemple quelle base de données utiliser. Les décisions qu'il prend, telles que le moteur de templates à utiliser, sont faciles à modifier. Tout le reste est libre, de sorte que Flask puisse répondre à tous nos besoins et à tous ce que vous ne voulez pas en même temps.</p>
+<p>En définissant uniquement le moteur de templates et un système de routes, Flask laisse le choix de personnaliser (en ajoutant des packages) pour la gestion des formulaires par exemple.</p>
+<h5 id="choix-dans-le-projet-fitjourney_2">Choix dans le projet FitJourney</h5>
+<p>Dans le cadre de ce projet, j'ai préféré utiliser Flask comme framework à la place d'un autre, car j'utilise l'API Polar Accesslink qui est fait en Python. Je souhaitais garder le même langage pour éviter de partir dans tous les sens.</p>
+<h5 id="architecture-blueprint">Architecture (Blueprint)</h5>
+<p>Afin de bien structurer mon projet, j'ai décidé d'utiliser les Flask Blueprint. Chaque Flask Blueprint est un objet et fonctionne de manière très similaire à une application Flask. Ils peuvent tous les deux avoir des ressources, comme des fichiers statiques, des templates et des vues qui sont associées aux routes.</p>
+<p>Malgré tout, un Flask Blueprint n'est pas exactement comme une application Flask car il a besoin d'être enregistré dans l'application pour être lancé. Lorsqu'on enregistre un Blueprint à l'application, on étend l'application avec le contenu du Blueprint. Les Blueprints enregistrent toutes les opérations à exécuter et ne les exécutent qu'une fois enregistré dans l'application</p>
+<p>Les Blueprints m'ont permis de découper l'application principale en plusieurs parties et de structurer mon projet.</p>
+<h4 id="argon-design-system">Argon Design System</h4>
+<figure style="float:right;">
+<img alt="Logo Argon" src="../img/argon.png" width="200"/>
+<figcaption>Fig 39 : Logo du design system Argon</figcaption>
+</figure>
+<p>Argon est un "design system" open source basé sur le framework CSS Bootstrap 4. Il propose plus de 100 composants individuels ce qui permet une certaine liberté. </p>
+<p>Argon m'a permis de ne pas perdre trop de temps sur le côté "design" de l'application</p>
+<h4 id="chartjs">Chart.JS</h4>
+<figure style="float:right;">
+<img alt="Logo chartjs" src="../img/chartjs.svg" width="200"/>
+<figcaption>Fig 40 : Logo de la librairie chartjs</figcaption>
+</figure>
+<p>Chart.js est une librairie open source, elle permet la visualisation de données en utilisant JavaScript. Elle est similaire à <em>Chartist</em> ou <em>Google Chart</em>. Chart.js supporte 8 différents types de graphique et sont tous responsive. Pour pouvoir utiliser Chart.js il faut :</p>
+<ul>
+<li>Définir ou dessiner le graphique sur notre page</li>
+<li>Définir quel type de graphique afficher</li>
+<li>Définir les données, labels et toutes les autres options</li>
+</ul>
+<p>Voici un exemple de graphique que peut générer chart.js : </p>
+<figure>
+<img alt="Graphique chartjs" src="../img/graphique.png"/>
+<figcaption>Fig 41 : Exemple de graphique avec la librairie chartjs</figcaption>
+</figure>
+<div style="page-break-before:always"></div>
+<h4 id="fullcalendario">FullCalendar.io</h4>
+<figure style="float:right;">
+<img alt="Logo Fullcalendar" src="../img/FullCallendar_logo.png" width="200"/>
+<figcaption>Fig 42 : Logo de la librairie FullCalendar</figcaption>
+</figure>
+<p>FullCalendar est une librairie JavaScript qui s'intègre facilement avec des frameworks JavaScript populaires tels que Vue, React et Angular. Elle permet d'implémenter un calendrier avec des événements. Cette librairie est très utile pour gérer l'agenda du coach.</p>
+<figure>
+<img alt="Demo FullCalendar" src="../img/fullcalendar_demo.png"/>
+<figcaption>Fig 43 : Exemple FullCalendar</figcaption>
+</figure>
+<div style="page-break-before:always"></div>
+<h3 id="architecture-du-projet">Architecture du projet</h3>
+<p>Voici l'architecture du projet Fitjourney : </p>
+<figure>
+<img alt="Diagramme de l'application" src="../img/application_diagram.PNG"/>
+<figcaption>Fig 44 : Diagramme de l'architecture du projet</figcaption>
+</figure>
+<div style="page-break-before:always"></div>
+<h4 id="arborescence-application-principale">Arborescence application principale</h4>
+<div class="highlight"><pre><span></span><code>run.py
+|
+apps/
+|
+|── __init__.py
+├── config.py
+|
+├── authentication/
+| ├── __init__.py
+| ├── forms.py
+| ├── models.py
+| ├── routes.py
+| └── util.py
+|
+├── client/
+| ├── __init__.py
+| ├── forms.py
+| ├── routes.py
+| └── util.py
+|
+├── coach/
+| ├── __init__.py
+| ├── forms.py
+| ├── routes.py
+| └── util.py
+|
+├── static/assets/
+| ├── css/
+| ├── fonts/
+| ├── img/
+| ├── js/
+| └── vendor/.py
+|
+└── templates/
+├── accounts/
+├── client/
+├── coach/
+├── includes/
+└── layout/
+</code></pre></div>
+<h5 id="fichier-runpy">Fichier "run.py"</h5>
+<p>Le fichier run.py est le seul fichier qui est en dehors du dossier principal de l'application. Il permet de créer et de lancer l'application Flask. On peut lancer directement l'application en exécutant ce script.</p>
+<div class="highlight"><pre><span></span><code>python3 ./run.py
+</code></pre></div>
+<h5 id="dossier-apps">Dossier "Apps"</h5>
+<p>Le dossier <em>Apps</em> est le dossier principal de l'application. Il comprend l'ensemble du code source du projet excepté le fichier "run.py". Il comprend lui-même plusieurs sous-dossiers expliqués dans les chapitres suivants.</p>
+<h6 id="dossier-authentication">Dossier "authentication"</h6>
+<p>Le dossier <em>authentication</em> représente le Blueprint <em>authentication_blueprint</em>. On retrouve tous les fichiers utilisés pour l'implémentation des fonctionnalités d'authentification. Avec Flask, j'implémente un ORM nommé SQL Alchemy qui implémente le design pattern <em>Data Mapper</em> pour lire les données de la base de données. Chacune des tables est représentée par un modèle qui est utilisé pour interagir avec la table en question.</p>
+<p>Sachant que l'application <em>FitJourney</em> n'a pas de fonctionnalités disponibles avant que l'utilisateur ne s'authentifie, le fichier "models.py" se trouve dans ce dossier, on y retrouve notamment tous les modèles.</p>
+<h6 id="fichier-authenticationroutespy">Fichier "authentication/routes.py"</h6>
+<p>Le fichier <em>routes</em> contient des fonctions python représentant les <em>vues</em> de la partie authentification de l'application. Chaque fonction permet de générer une vue à partir des templates Jinja2, à l'aide de la fonction Flask <em>render_template</em> qui provient du package <em>Flask.templating</em>.</p>
+<h6 id="dossier-client">Dossier "client"</h6>
+<p>Le dossier <em>client</em> représente le Blueprint <em>client_blueprint</em>. On retrouve tous les fichiers utilisés pour l'implémentation des fonctionnalités client. </p>
+<p>Il contient un fichier de routes, avec toutes les routes disponibles en tant que client sur l'application et un fichier "forms.py" qui contient tous les formulaires qui peuvent être disponible en tant que client.</p>
+<h6 id="dossier-coach">Dossier "coach"</h6>
+<p>Le dossier <em>coach</em> représente le Blueprint <em>coach_blueprint</em>. On retrouve tous les fichiers utilisés pour l'implémentation des fonctionnalités coach. Comme le dossier "client" il contient également un fichier de routes et un fichier "forms" pour les formulaires.</p>
+<h6 id="dossier-staticassetscss">Dossier "static/assets/css"</h6>
+<p>Le dossier "css" contient tous les fichiers CSS de l'application. Il contient également un dossier "bootstrap" contenant des fichiers de style de l'ensemble Bootstrap</p>
+<h6 id="dossier-staticassetsfonts">Dossier "static/assets/fonts"</h6>
+<p>Le dossier "fonts" contient les fichiers de police d'écriture utilisés dans l'application</p>
+<h6 id="dossier-staticassetsimg">Dossier "static/assets/img"</h6>
+<p>Le dossier "img" contient toutes les images de l'application, dont notamment les photos de profil des utilisateurs.</p>
+<h6 id="dossier-staticassetsjs">Dossier "static/assets/js"</h6>
+<p>Le dossier "js" contient tous les fichiers JavaScript nécessaire pour l'application.</p>
+<h6 id="dossier-staticassetsvendor">Dossier "static/assets/vendor"</h6>
+<p>Le dossier "vendor" contient toutes les bibliothèques tierces qui sont nécessaires au projet (ressources externes). C'est généralement dans ce dossier où sont stockées les dépendances à télécharger avec un packet manager.</p>
+<h6 id="dossier-templates">Dossier "templates"</h6>
+<p>Le dossier templates est structuré en plusieurs parties. Il contient les fichiers .html de l'application. Chaque Blueprint de l'application possède son dossier ici qui contient les templates nécessaire pour les vues. En plus des dossiers représentant les Blueprints, un dossier includes est disponible. Il contient les parties à inclure sur les différentes pages de l'application comme la barre de navigation ou encore les importations de fichiers CSS ou JavaScript. Il y a également un dossier layout qui contient un fichier de base .html qui contient la structure HTML de l'application.</p>
+<h5 id="fichier-__initpy">Fichier "__init.py"</h5>
+<p>Le fichier "init" est un fichier python contenant les méthodes d'initialisation de l'application. C'est notamment ici que les blueprints sont enregistrés dans l'application.</p>
+<h5 id="fichier-configpy">Fichier "config.py"</h5>
+<p>Le fichier "config" est un fichier python contenant la configuration de l'application. Il contient toutes les constantes nécessaires au fonctionnement de l'application</p>
+<div style="page-break-before:always"></div>
+<h4 id="arborescence-lecture-de-carte">Arborescence lecture de carte</h4>
+<div class="highlight"><pre><span></span><code>cardsChecker/
+|
+|── accesslink/
+|
+├── accesslink_polar.py
+| 
+├── authorization.py
+|
+├── config.py
+|
+├── config.yml
+|
+├── db.py
+|
+├── main.py
+|
+└── utils.py
+</code></pre></div>
+<h5 id="dossier-accesslink">Dossier "accesslink/"</h5>
+<p>Le dossier "accesslink" contient tous les scripts python permettant l'authentification, l'exécution des différentes transactions et récupérer des données avec l'API Polar Accesslink. La plupart des fichiers présents dans ce dossier sont fournis par Polar.</p>
+<h5 id="fichier-accesslink_polarpy">Fichier "accesslink_polar.py"</h5>
+<p>Le fichier "accesslink_polar" contient un objet Python qui enveloppe toutes les fonctionnalités de l'API Polar à l'aide des objets et méthode disponible dans le dossier "accesslink/"</p>
+<h5 id="fichier-authorizationpy">Fichier "authorization.py"</h5>
+<p>Le fichier "authorization" est un script python qui permet d'authentifier un compte Polar pour avoir accès à l'API</p>
+<h5 id="fichier-configpy_1">Fichier "config.py"</h5>
+<p>Le fichier "config.py" contient toutes les constantes nécessaires pour le bon fonctionnement de la lecture des cartes de membre. On y retrouve notamment la configuration pour se connecter à la base de données.</p>
+<div style="page-break-before:always"></div>
+<h5 id="fichier-configyml">Fichier "config.yml"</h5>
+<p>Le fichier "config.yml" contient la configuration du client pour avoir accès aux données avec l'API Polar. Il Contient :</p>
+<ul>
+<li>L'id de l'utilisateur </li>
+<li>L'id du client (Pour l'accès)</li>
+<li>Le secret du client </li>
+<li>Le token d'accès (Il est généré avec le fichier <em>authorization.py</em>)</li>
+</ul>
+<h5 id="fichier-dbpy">Fichier "db.py"</h5>
+<p>Le fichier "db.py" est utilisé pour se connecter à la base de données, on y retrouve également les fonctions effectuant des actions avec cette dernière.</p>
+<h5 id="fichier-mainpy">Fichier "main.py"</h5>
+<p>Le fichier "main.py" contient le script python principal qui permet la lecture des cartes et la récupération des données avec l'API Polar. C'est ce script qu'il faut exécuter pour lancer le programme.</p>
+<h3 id="base-de-donnees_1">Base de données</h3>
+<p>Pour permettre le stockage des données, j'ai créé une base de données nommée "fitjourney". Cette base de données me permet d'enregistrer et stocker toutes les données requises pour le bon fonctionnement de l'application. </p>
+<div style="page-break-before:always"></div>
+<h4 id="mcd">MCD</h4>
+<p>Au lieu de créer la base de données directement, j'ai commencé par créer un MCD pour définir tous les besoins de l'application au niveau de la base de données. Pour faire mon MCD, je suis allé sur LucidChart qui est une plateforme de collaboration en ligne permettant la création de diagrammes et la visualisation de données et autres schémas conceptuels.</p>
+<figure>
+<img alt="MCD" src="../img/MCD_6.0.png"/>
+<figcaption>Fig 45 : MCD de l'application </figcaption>
+</figure>
+<div style="page-break-before:always"></div>
+<h4 id="modele-physique">Modèle physique</h4>
+<p>Une fois les besoins identifiés à l'aide du MCD, j'ai pu utiliser SQL Alchemy pour créer ma base de données directement. </p>
+<figure>
+<img alt="MLD" src="../img/MLD_2.PNG"/>
+<figcaption>Fig 46 : MLD de l'application </figcaption>
+</figure>
+<div style="page-break-before:always"></div>
+<h4 id="sqlalchemy">SQLAlchemy</h4>
+<p>SQL Alchemy est un ORM (mapping objet-relationnel) écrit en Python, il utilise le pattern <a href="#data-mapper">Data Mapper</a> et me permet de créer directement mes tables.</p>
+<p>Exemple d'initialisation d'une table avec SQL Alchemy : </p>
+<figure>
+<img alt="SQL Alchemy" src="../img/table_sqlalchemy.png"/>
+<figcaption>Fig 46 : Exemple d'initialisation d'une table avec SQL Alchemy </figcaption>
+</figure>
+<h4 id="data-mapper">Data Mapper</h4>
+<p>Data Mapper est un pattern qui sépare les objets en mémoire de la base de données. Il consiste à transférer les données entre les deux et à les isoler l'une de l'autre. Avec le pattern <em>Data Mapper</em>, les objets en mémoire ne doivent même pas savoir qu'une base de données est présente, ils n'ont pas besoin de code d'interface SQL, et certainement pas de connaissance du schéma de la base de données. (Le schéma de la base de données ignore toujours les objets qui l'utilisent). </p>
+<figure>
+<img alt="DataMapper" src="../img/DataMapper.PNG"/>
+<figcaption>Fig 47 : Diagramme du pattern DataMapper </figcaption>
+</figure>
+<h4 id="tables">Tables</h4>
+<h5 id="table-user">Table <em>USER</em></h5>
+<p>La table <em>USER</em> contient tous les utilisateurs de l'application, les coachs ainsi que les clients. les champs <em>email</em> et <em>card_id</em> sont uniques. Le champ <em>card_id</em> représente l'ID de la carte de membre (RFID) qui est attribuée à l'utilisateur.</p>
+<h5 id="table-physical_info">Table <em>PHYSICAL_INFO</em></h5>
+<p>La table <em>PHYSICAL_INFO</em> contient toutes les informations physiques récupérées par le coach lors d'un bilan ou d'une prise en charge. La date permet de garder un historique pour visualiser la progression du client. La plupart des données insérées dans cette table peuvent être récupérées à l'aide d'une balance connectée.</p>
+<h5 id="table-coachedby">Table <em>COACHEDBY</em></h5>
+<p>Cette table permet de différencier un coach d'un client et permet de retrouver tous les clients d'un coach. Les dates de début et de fin permettent de retrouver des anciens coachs/clients si plusieurs coachs travaillent dans la salle de sport.</p>
+<h5 id="table-program">Table <em>PROGRAM</em></h5>
+<p>La table <em>PROGRAM</em> contient les programmes d'entrainement et de nutrition ajouté par un coach.</p>
+<h5 id="table-role">Table <em>ROLE</em></h5>
+<p>La table <em>ROLE</em> contient tous les rôles de l'application. Elle permet de définir les accès que possèdent les utilisateurs.</p>
+<h5 id="table-purchase">Table <em>PURCHASE</em></h5>
+<p>La table <em>PURCHASE</em> contient l'historique de toutes les transactions effectuées. Elle permet de retrouver le type d'abonnement que chaque client a souscrit.</p>
+<h5 id="table-subscription">Table <em>SUBSCRIPTION</em></h5>
+<p>La table <em>SUBSCRIPTION</em> contient tous les différents types d'abonnement disponible. Elle permet de connaître la durée et le coût des abonnements achetés par les clients.</p>
+<h5 id="table-session">Table <em>SESSION</em></h5>
+<p>La table <em>SESSION</em> contient l'historique de toutes les sessions effectuées par les coachs avec la date et l'heure de la session ainsi que sa durée. Pour rappel, une session représente un rendez-vous avec un coach. Cela peut être pour un entrainement ou encore un bilan.</p>
+<h5 id="table-workout_type">Table <em>WORKOUT_TYPE</em></h5>
+<p>Cette table contient les différents types d'entrainement. Elle permet d'identifier les entraînements effectués par les clients.</p>
+<h5 id="table-workout">Table <em>WORKOUT</em></h5>
+<p>La table <em>WORKOUT</em> contient toutes les données d'entraînements des séances effectuées. La majorité des données sont obtenues à l'aide des capteurs sur les montres connectées. Les données contenues dans cette table permettent de vérifier l'efficacité et l'intensité de la séance et peuvent être utilisés pour des comparaisons.</p>
+<h5 id="table-review">Table <em>REVIEW</em></h5>
+<p>La table <em>REVIEW</em> est la table "mère" des 2 tables : <em>COACHING_REVIEW</em> et <em>SESSION_REVIEW</em>. Elle permet de relier les reviews aux clients.</p>
+<h5 id="table-coaching_review">Table <em>COACHING_REVIEW</em></h5>
+<p>Cette table contient tous les retours client sur le coaching effectué par le coach. Les champs disponibles ont la satisfaction, le support le coach lui apporte, la disponibilité du coach en cas de besoin et si le client souhaite continuer son suivi.</p>
+<h5 id="table-session_review">Table <em>SESSION_REVIEW</em></h5>
+<p>Cette table contient tous les retours client sur les sessions qu'il effectue avec un coach. Les champs disponibles sont la difficulté, le ressenti de la séance, le niveau de fatigue à la fin de la séance et l'énergie que le client avait en arrivant.</p>
+<h3 id="fitjourney-application">FitJourney application</h3>
+<h4 id="developpement-avec-python-flask">Développement avec Python Flask</h4>
+<p>L'application web FitJourney est développé avec Python flask qui utilise Jinja2 pour le templating et Werkzeug pour faire la communication entre serveur web et application web.</p>
+<h5 id="templating-jinja2">Templating Jinja2</h5>
+<p>Le templating permet de créer des pages dynamiques en fonction des données fournies à la page. Dans le cas de l'application, cela permet d'afficher les données de l'utilisateur connecté ainsi qu'afficher certaines parties en fonction du niveau d'accès de l'utilisateur.</p>
+<h5 id="template-de-base">Template de base</h5>
+<p>Le concept très utile qui est la possibilité de créer une template parent. Pour illustrer cela, j'ai un fichier <em>add_program.html</em> qui va utiliser tout le contenu du fichier <em>base.html</em>, mais qui va ajouter certaines parties en plus, selon les instructions.</p>
+<p>Voici un aperçu du fichier <em>base.html</em> et on peut y retrouver plusieurs instructions comme :</p>
+<div class="highlight"><pre><span></span><code>{% block content %}{% endblock content%}
+</code></pre></div>
+<p>Ces instructions permettent d'insérer du contenu depuis un fichier enfant.</p>
+<figure>
+<img alt="base HTML" src="../img/base_html.png"/>
+<figcaption>Fig 48 : Fichier parent pour les templates HTML </figcaption>
+</figure>
+<div style="page-break-before:always"></div>
+<p>Pour créer un fichier enfant, il suffit d'ajouter l'instruction : </p>
+<div class="highlight"><pre><span></span><code>{% extends 'base.html' %}
+</code></pre></div>
+<p>pour étendre le fichier de parent. Voici un exemple de fichier enfant avec le fichier <em>add_program.html</em> :</p>
+<figure>
+<img alt="Add program" src="../img/add_program_html.png"/>
+<figcaption>Fig 49 : Exemple de fichier enfant pour les templates HTML </figcaption>
+</figure>
+<div style="page-break-before:always"></div>
+<p>La vue de cette page : </p>
+<figure>
+<img alt="Add" src="../img/add_program_view.PNG"/>
+<figcaption>Fig 50 : Vue de la page ajout de programme </figcaption>
+</figure>
+<h5 id="routes">Routes</h5>
+<p>Les routes avec Python Flask sont reliées directement à des méthodes. Ces méthodes doivent forcément retourner quelque chose. L'instruction :</p>
+<div class="highlight"><pre><span></span><code>@blueprint.route('/dashboard')
+</code></pre></div>
+<p>permet de dire que la méthode qui suit l'instruction sera liée au blueprint et la route "/dashboard". (Il est possible de relier plusieurs routes à la même méthode)</p>
+<figure>
+<img alt="Dashboard route" src="../img/dashboard_route.PNG"/>
+<figcaption>Fig 51 : Exemple de code pour la route du tableau de bord </figcaption>
+</figure>
+<p>Comme préciser ci-dessus, il est obligatoire de retourner quelque chose. Pour utiliser du templating Jinja2, Flask propose une méthode nommée <em>render_template()</em>. Le premier paramètre de cette méthode est le fichier de template que l'on veut utiliser, puis les paramètres suivants sont des données que l'on veut transmettre à la vue. Dans le cas de la route <em>/dashboard</em>, je donne le prochain client qui a rendez-vous avec le coach, la date du dernier entrainement qu'il a effectué ainsi que la liste de tous les autres clients dont il a la charge.</p>
+<p>Comme on peut le voir sur l'image ci-dessus, il est possible d'ajouter l'instruction </p>
+<div class="highlight"><pre><span></span><code>@login_required
+</code></pre></div>
+<p>avant la méthode pour préciser que cette route n'est accessible que si un utilisateur est connecté. Cette instruction est utilisable à l'aide la librairie <em>Flask-Login</em>.</p>
+<div style="page-break-before:always"></div>
+<h5 id="les-routes-de-lapplication">Les routes de l'application</h5>
+<p>Comme mentionné plus haut dans l'<a href="#architecture-blueprint">architecture blueprint</a>, dans mon application, chaque route est reliée au blueprint correspondant. Voici les différentes routes qui ont été créé pour l'application <em>FitJourney</em>.</p>
+<p>Endpoint public - Visiteur</p>
+<table>
+<thead>
+<tr>
+<th>Méthodes</th>
+<th>Endpoint</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td>/login</td>
+<td>Permet de connecter un utilisateur</td>
+</tr>
+<tr>
+<td>---</td>
+<td>---</td>
+<td>---</td>
+</tr>
+</tbody>
+</table>
+<p>Endpoint privé - Client</p>
+<table>
+<thead>
+<tr>
+<th>Méthodes</th>
+<th>Endpoint</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td>/index</td>
+<td>Récupère les prochaines sessions que le client a planifiées</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/profile</td>
+<td>Récupère toutes les données du client, permets de modifier les informations personnelles du client</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/review</td>
+<td>Récupère les détails d'une review</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/add_review</td>
+<td>Permet d'ajouter une review</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/workouts</td>
+<td>Récupère tous les entrainements effectués par un client</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/workout</td>
+<td>Récupère les détails d'un entrainement</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/checkup</td>
+<td>Récupère les détails d'un bilan</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/change_password</td>
+<td>Permet de modifier le mot de passe de l'utilisateur</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/program</td>
+<td>Permet de télécharger le fichier pdf du programme</td>
+</tr>
+<tr>
+<td>---</td>
+<td>---</td>
+<td>---</td>
+</tr>
+</tbody>
+</table>
+<p>Endpoint privé - Coach</p>
+<table>
+<thead>
+<tr>
+<th>Méthodes</th>
+<th>Endpoint</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td>/register</td>
+<td>Permet d'inscrire un nouvel utilisateur <strong>coach</strong></td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/dashboard</td>
+<td>Récupère les informations de la prochaine session du coach et la liste de tous ses clients</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/calendar</td>
+<td>Récupère toutes les sessions d'un coach et permet d'ajouter une nouvelle session avec un client</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/client</td>
+<td>Récupère toutes les données d'un client</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/review</td>
+<td>Récupère les détails d'une review</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/add_client</td>
+<td>Permet de créer un nouvel utilisateur client</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/add_program</td>
+<td>Permet d'ajouter un programme à un client</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/program</td>
+<td>Permet de télécharger le fichier pdf du programme</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/checkup</td>
+<td>Récupère les détails d'un bilan</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/check_up</td>
+<td>Permet d'ajouter un bilan</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/new_subscription</td>
+<td>Permet de renouveler un abonnement</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/new_card</td>
+<td>Permet de mettre à jour la carte membre d'un client</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/cancel_subscription</td>
+<td>Permet d'annuler l'abonnement d'un client</td>
+</tr>
+<tr>
+<td>---</td>
+<td>---</td>
+<td>---</td>
+</tr>
+</tbody>
+</table>
+<div style="page-break-before:always"></div>
+<h5 id="blueprints">Blueprints</h5>
+<p>Avec l'utilisation des "<a href="#architecture-blueprint">Flask Blueprints</a>", lors de l'initialisation de l'application, les modules sont ajoutés à l'application à l'aide de la méthode <code>register_blueprints</code>. Dans le but de mettre en production l'application plus tard, cela va être très utile, car pour enlever toute la partie coach de l'application par exemple, il suffit de retirer le dossier 'coach' de la boucle <code>for</code> qui parcourt les modules.</p>
+<figure>
+<img alt="register blueprint" src="../img/register_blueprint.png"/>
+<figcaption>Fig 52 : Code pour ajouter les blueprints à l'application </figcaption>
+</figure>
+<h5 id="client_1">Client</h5>
+<h6 id="prochaines-sessions">Prochaines sessions</h6>
+<p>La page "prochaines session" de l'application a pour but d'afficher toutes les sessions à venir pour le client. Cela permet au client d'avoir une vue d'ensemble sur les différentes sessions qu'il a prévues avec son coach. Pour récupérer toutes les prochaines sessions, j'utilise la méthode </p>
+<div class="highlight"><pre><span></span><code>get_next_session(userid)
+</code></pre></div>
+<p>Elle se trouve, avec toutes les autres méthodes utilisées pour les routes client, dans le fichier <em>client/utils.py</em>. Je n'ai besoin que de l'id du client dont on veut récupérer les sessions.</p>
+<figure>
+<img alt="Prochaines sessions" src="../img/get_next_sessions.png"/>
+<figcaption>Fig 52 : Fonction pour récupérer les prochaines sessions </figcaption>
+</figure>
+<p>Le tableau retourné contenant toutes les sessions est ensuite envoyé à la vue à l'aide de la méthode <em>render_template()</em></p>
+<h6 id="profil">Profil</h6>
+<p>La page "profil" est une page qui est utilisé pour les 2 types d'utilisateurs, seulement plus d'informations sont affichées lorsque c'est un client qui est connecté. Cette page sert essentiellement à modifier ses informations personnelles à l'aide d'un formulaire. Beaucoup de données sont récupérées pour tout afficher sur cette page. La modification des données de l'utilisateur se fait à l'aide du model <em>SQLAlchemy</em> <em>User</em>. Ce qui rend la tâche beaucoup plus simple, en modifiant les propriétés correspondant aux champs modifiés on peut mettre à jour toutes les valeurs. Il suffit d'effectuer un commit à la fin pour valider les changements. Si l'utilisateur importe une nouvelle photo de profil, l'image est sauvegardée localement avec un nom unique et ce nom est enregistré dans la base de données. </p>
+<figure>
+<img alt="Update" src="../img/profile_update.png"/>
+<figcaption>Fig 53 : Update du profil </figcaption>
+</figure>
+<p>On peut voir ici que j'essaye de commit les changements effectués, je sauvegarde l'image importée et si cela fonctionne le fichier "profile.html" est retourné avec la méthode <em>render_template()</em>. Avec la méthode <em>flash()</em>, je peux afficher un message pour confirmer à l'utilisateur que la mise à jour a fonctionné ou pas.</p>
+<h6 id="changement-de-mot-de-passe">Changement de mot de passe</h6>
+<p>La page "changement de mot de passe" est également accessible par les 2 types d'utilisateurs, elle est directement reliée à la page profil. En précisant l'instruction suivante dans le lien de référence d'un bouton ou d'un lien, on peut arriver directement sur cette page : </p>
+<div class="highlight"><pre><span></span><code>{{ url_for('client_blueprint.change_password') }}`
+</code></pre></div>
+<p>la méthode <em>url_for()</em> permet d'obtenir l'URL qui redirige vers une route ou un blueprint en l'occurrence. </p>
+<p>Le changement de mot de passe s'effectue en précisant son ancien mot de passe, le nouveau ainsi qu'une confirmation pour éviter les fautes de frappe. L'ancien mot de passe est ensuite vérifié à l'aide de la méthode <em>verify_pass()</em> qui permet de comparer le mot de passe saisit avec celui hashé en base de données.</p>
+<figure>
+<img alt="Verify func" src="../img/verify_password_function.PNG"/>
+<figcaption>Fig 54 : Fonction pour vérifier le mot de passe</figcaption>
+</figure>
+<p>Pour effectuer la vérification, je prends les 64 premiers caractères qui correspondent aux salt. Je hash ensuite le mot de passe saisit avec le même salt puis je compare avec celui enregistré en base.</p>
+<p>Si l'ancien mot de passe est correctement renseigné, alors la propriété <em>password</em> du model User est modifiée en hashant le mot de passe à l'aide de la méthode <em>hash_pass()</em>. Pour hashé le mot de passe, j'utilise l'algorithme "SHA-512" sur le mot de passe ainsi que le salt qui est généré.</p>
+<figure>
+<img alt="Hash funct" src="../img/hash_pass_function.PNG"/>
+<figcaption>Fig 55 : Fonction pour hasher le mot de passe</figcaption>
+</figure>
+<p>Un message est ensuite affiché en fonction de la réussite de l'opération à l'aide de la méthode <em>flash()</em></p>
+<h6 id="entrainements">Entrainements</h6>
+<p>La page entrainements est la page qui permet au client de visionner l'ensemble des entrainements qu'il a effectués depuis son inscription.</p>
+<figure>
+<img alt="workouts route" src="../img/route_workouts.PNG"/>
+<figcaption>Fig 56 : Route de la page entrainements </figcaption>
+</figure>
+<p>J'utilise la méthode <em>get_workouts()</em> qui permet de récupérer tous les entrainements d'un client et je les passe ensuite à la vue avec la méthode <em>render_template()</em></p>
+<figure>
+<img alt="Get workout func" src="../img/get_workouts_function.PNG"/>
+<figcaption>Fig 57 : Fonction pour récupérer un entrainement</figcaption>
+</figure>
+<p>Les entrainements sont récupérés dans l'ordre par date décroissante (le plus récent en premier).</p>
+<h6 id="entrainement">Entrainement</h6>
+<p>La page "entrainement" est utilisé uniquement pour afficher les détails d'un entrainement depuis la page "entrainements" d'un client. Les liens disponibles sur la page "entrainements" qui permettent la redirection sur la page "entrainement" affichant les détails de ce dernier sont générés avec l'instruction : </p>
+<div class="highlight"><pre><span></span><code>{{ url_for('client_blueprint.workout', Id=workout.id) }}
+</code></pre></div>
+<p>En passant, un paramètre supplémentaire à la méthode <em>url_for</em> je peux passer des valeurs en paramètre. Je fais donc passer l'id de l'entrainement que je récupère ensuite sur cette page entrainement pour aller chercher les données correspondantes. J'utilise la méthode <em>get_workout_details()</em> qui me permet d'aller chercher toutes les informations nécessaires pour afficher les détails de l'entrainement en question.</p>
+<figure>
+<img alt="Get details func" src="../img/get_workout_details_function.PNG"/>
+<figcaption>Fig 58 : Fonction pour récupérer les détails d'un entrainement </figcaption>
+</figure>
+<p>Les données des entrainements sont récupérées avec l'<a href="#polar-accesslink-api">API Polar Accesslink</a> qui donne accès aux enregistrements des montres connectés Polar.</p>
+<h6 id="ajout-de-review">Ajout de review</h6>
+<p>La page "Ajout de review" est un simple formulaire qui permet d'ajouter une review sur le coaching de manière générale ou sur un entrainement effectué. Le type de review ajouté est défini en fonction d'où le client va cliquer sur l'application. Les boutons redirigeant sur cette page possèdent un paramètre <em>type</em> qui permet d'identifier les champs à afficher ainsi que le type de review qui va être ajouté. Il y a également un paramètre target qui est ensuite inséré dans un input <em>hidden</em> représentant l'id de la "cible" de cette review.</p>
+<p>Les reviews sur le coaching peuvent être ajouté n'importe quand, par contre, un entrainement ne peut posséder qu'une seule review. Pour ajouter une review, j'utilise le model SQL Alchemy <em>WorkoutReview</em> pour les reviews d'entrainements et <em>CoachingReview</em> pour les reviews de coaching. Il suffit de renseigner les propriétés avec les champs renseigner, et d'effectuer un commit pour valider l'insertion. </p>
+<p>Exemple avec une review d'entrainement :</p>
+<figure>
+<img alt="Add review" src="../img/add_review_code.PNG"/>
+<figcaption>Fig 59 : Exemple de code pour l'ajout d'une review </figcaption>
+</figure>
+<h6 id="review">Review</h6>
+<p>La page "Review" permet l'affichage d'une review que le client a ajouté. Les reviews ajoutés par le client sont listés sur son profil, il peut donc accéder aux détails de ces dernières en cliquant dessus. À nouveau, à l'aide de la méthode <em>url_for</em> je fais passer en paramètre l'id et le type de la review sélectionné. Cela permet la récupération des infos une fois sur cette page. Les détails sont récupérés à l'aide de la méthode <em>get_review_details()</em> et sont ensuite passés en paramètre à la méthode <em>render_template()</em>.</p>
+<h6 id="bilan">Bilan</h6>
+<p>La page "Bilan" ressemble aux pages "Review" et "Entrainement" car elle ne sert qu'à afficher les valeurs qui ont été renseigné lors d'un Bilan avec le coach. L'id du bilan est passé en paramètre GET comme pour les deux autres pages (Review et Entrainement). Une fois récupéré, j'utilise la méthode <em>get_check_up()</em> en donnant l'id du bilan en paramètre pour avoir toutes les données et les passer ensuite en paramètre à la méthode <em>render_template()</em> qui les fera passer à la vue</p>
+<div style="page-break-before:always"></div>
+<h5 id="coach_1">Coach</h5>
+<h6 id="tableau-de-bord">Tableau de bord</h6>
+<p>La page "Tableau de bord" permet d'afficher la prochaine session du coach ainsi que la liste de tous ses clients. Une vérification est effectuée au début de la route pour éviter qu'un client se retrouve sur cette page.</p>
+<figure>
+<img alt="Dashboard route" src="../img/dashboard_route.PNG"/>
+<figcaption>Fig 60 : Exemple de code pour la route du tableau de bord </figcaption>
+</figure>
+<p>La vérification est effectuée avec la méthode <em>is_coach()</em> de l'objet <em>User</em> qui permet de vérifier si l'utilisateur connecté possède le role de coach. Si l'utilisateur est un coach, alors les infos du prochain client, la date de son dernier entrainement ainsi que la liste de tous les clients dont le coach a la charge sont récupérés et donnés en paramètres à la vue.</p>
+<h6 id="calendrier">Calendrier</h6>
+<p>La page "Calendrier" permet d'afficher un agenda affichant toutes les sessions que le coach a enregistrées. Il peut également en ajouter une avec le formulaire qui est disponible juste à côté. Le calendrier est affiché à l'aide de la librairie JavaScript <em>FullCalendar.io</em>, il est initialisé en JavaScript. Les événements à inscrire dans le calendrier doivent être assigné à la propriété <em>events:</em> de l'objet JavaScript <em>FullCalendar.Calendar()</em>. La méthode <em>get_session()</em> est donc utilisé pour récupérer toutes les sessions enregistrées pour le coach connecté dans le bon format pour que les sessions soient interprétés comme un événement pour le calendrier.</p>
+<figure>
+<img alt="Get event func" src="../img/get_event_function.PNG"/>
+<figcaption>Fig 61 : Fonction pour récupérer les sessions prévues </figcaption>
+</figure>
+<p>La méthode récupère toutes les sessions à venir et les ajoutent dans un tableau sous la forme d'objets avec 3 propriétés</p>
+<div class="highlight"><pre><span></span><code>{
+'title':
+'start':
+'end':
+}
+</code></pre></div>
+<p>Si le coach ajoute une session à l'aide du formulaire, les valeurs des champs sont récupérés et utilisés pour avoir le format désiré. Si le coach n'a pas de client à charge, il ne sera pas en mesure de sélectionner un client pour la session qu'il souhaite ajouter. S'il essaye, une erreur sera affichée à l'aide de la méthode <em>flash()</em>. Le <em>DateTime</em> de fin est généré automatiquement à l'aide de la date et l'heure de début sélectionné ainsi que la durée. Pour enregistrer sous le format <em>DateTime</em>, l'heure de la session est ajouté à la date. La session est ajoutée à l'aide du model SQLAlchemy <em>Session</em>, l'ajout est validé avec un commit.</p>
+<p>Une fois la session ajoutée, un mail est envoyé au client avec les informations de la session.</p>
+<h6 id="ajout-client">Ajout client</h6>
+<p>La page "Ajout client" permet de créer un nouveau compte client et d'assigner son suivi au coach qui créer son compte. Cette page contient également une vérification avec la méthode <em>is_coach()</em> pour vérifier que l'utilisateur sur cette page est bien un coach. L'input de type <em>select</em> pour sélectionner le type d'abonnement souhaité est généré automatiquement, les différents abonnements sont récupérés depuis la base de données avec la méthode <em>get_all_subscription()</em>. Pour ajouter le client dans la base de données, j'utilise à nouveau les modèles <em>SQLAlchemy</em>, cette fois-ci plusieurs sont nécessaires (<em>User</em>, <em>CoachedBy</em> et <em>Purchase</em>). Pour pouvoir effectuer l'insertion comme il faut, je commence par l'utilisateur puis j'utilise l'instruction : </p>
+<div class="highlight"><pre><span></span><code>db.session.flush()
+</code></pre></div>
+<p>qui me permet d'obtenir l'id de l'utilisateur qui va être inséré (utilisé pour l'insertion avec les 2 autres modèles). Une fois les 3 modèles remplis et ajouté, j'effectue un commit pour valider les insertions.</p>
+<figure>
+<img alt="add client func" src="../img/add_client_code.PNG"/>
+<figcaption>Fig 62 : Exemple de code pour l'ajout d'un client' </figcaption>
+</figure>
+<p>Une fois le commit effectué, un mail est envoyé au client pour l'informer de ses identifiants de connexion à l'application. Le mot de passe est généré automatiquement.</p>
+<h6 id="client_2">Client</h6>
+<p>La page "Client" permet aux coachs de visionner le profil d'un de leurs clients. Toutes les données nécessaires sont récupérés depuis la base de données et envoyer à la vue. On y retrouve énormément de données comme sur la page profil du client.</p>
+<figure>
+<img alt="client render" src="../img/client_render_code.PNG"/>
+<figcaption>Fig 63 : Exemple de code pour la page profil client </figcaption>
+</figure>
+<p>Sur la template Jinja2, on retrouve énormément de condition comme par exemple pour les programmes d'entrainements qui peuvent ne pas avoir été importé par le coach :</p>
+<div class="highlight"><pre><span></span><code>{% if workoutProgram != None %}
+</code></pre></div>
+<p>Cela permet d'afficher quand même quelque chose même s'il n'y a pas encore de valeurs qui a été ajouté en base.</p>
+<h6 id="ajout-programme">Ajout programme</h6>
+<p>La page "Ajout programme" est également soumise à une vérification, pour éviter qu'un client arrive sur cette page. Pour ajouter un programme, il suffit de sélectionner le type et d'ajouter le pdf que l'on souhaite importer. Le pdf est lu avec la méthode python <em>read()</em> qui permet de retourner les bytes du fichier. Ils sont ensuite enregistrés dans la base de données dans un champ <em>LONGBLOB</em>. Une fois le programme enregistré, un mail est envoyé au client pour le notifier que son nouveau programme est disponible. </p>
+<p>Pour télécharger le programme, j'utilise la route "/program" et je passe en paramètre GET l'id du programme. La route retourne la méthode python <em>send_file()</em> qui permet de télécharger un fichier. J'utilise également l'objet <em>BytesIO</em> qui permet d'écrire le fichier à partir des bytes qui ont été enregistré en base.</p>
+<figure>
+<img alt="dl program" src="../img/dl_program_code.PNG"/>
+<figcaption>Fig 64 : Exemple de code pour le téléchargement des programmes </figcaption>
+</figure>
+<p>L'ajout de programme devait se faire par import de fichier Excel sous format uniformisé à la base. Après plusieurs réflexions, j'ai décidé de changer cela en acceptant uniquement les pdf. Cela permet plus de liberté aux coachs et évitera de "casser" leurs habitudes s'ils utilisent l'application. Les coachs peuvent garder leurs méthodes de rendu pour leurs programmes et simplement importer les pdfs sur l'application.</p>
+<h6 id="ajout-bilan">Ajout Bilan</h6>
+<p>La page "Ajout bilan" ne contient qu'un formulaire pour ajouter les valeurs du bilan. Les valeurs demandées sont toutes récupérables à l'aide d'une balance connectée. L'id, le nom, prénom et l'âge du client sont récupérés et insérés automatiquement et sont statiques, le coach ne peut pas modifier ses informations. L'âge du client est calculé en fonction de sa date de naissance et la date d'aujourd'hui.</p>
+<figure>
+<img alt="checkup static" src="../img/checkup_static.PNG"/>
+<figcaption>Fig 65 : Informations statiques du formulaire </figcaption>
+</figure>
+<div style="page-break-before:always"></div>
+<h6 id="modification-de-carte">Modification de carte</h6>
+<p>La modification de carte de membre s'effectue depuis la <a href="#client-2">page client</a>. Une fois le bouton cliqué, la méthode <em>get_card_id()</em> est appelée. Elle va lire à l'aide du <a href="#nfc-reader-acr122u">Lecteur NFC</a> une carte que le coach va scanner. Un timeout de 30 secondes est défini pour éviter d'attendre trop longtemps, si les 30 secondes sont écoulées et que le coach n'a pas présenté de carte alors une erreur <em>flash()</em> est affichée. La méthode <em>get_card_id()</em> utilise la librairie python <a href="#pyscard---librairie-python-smart-card">smartcard</a> qui permet d'utiliser le lecteur. Si le lecteur détecte une carte, alors une connexion est établie. À l'aide de la transmission, je peux récupérer l'UID de la carte sous le format : </p>
+<div class="highlight"><pre><span></span><code>[12, 123, 89, 09]
+</code></pre></div>
+<p>Je n'ai plus qu'à modifier ce format en string pour pouvoir l'insérer en base plus tard.</p>
+<figure>
+<img alt="get crad funct" src="../img/get_card_function.PNG"/>
+<figcaption>Fig 66 : Fonction pour récupérer l'id de la carte </figcaption>
+</figure>
+<h3 id="fitjourney-cards-checker">FitJourney cards checker</h3>
+<h4 id="authentification-a-lapi">Authentification à l'API</h4>
+<p>Comme expliqué plus haut dans la section <a href="#entrainement">Entrainement</a>, les entrainements sont récupérés à l'aide de l'API Polar. Pour s'authentifier envers l'API, j'utilise l'objet <em>Accesslink</em> qui utilise l'objet <em>OAuth2Client</em> qui est fourni par Polar afin de s'authentifier en utilisant le protocole OAuth2. Les identifiants sont quant à eux récupérés du fichier <em>config.yml</em>. Si les identifiants ne sont pas dans ce fichier, il faut alors exécuter le script <em>authorization.py</em> qui va se charger de générer et d'écrire les identifiants et le token d'accès dans le fichier <em>config.yml</em>.</p>
+<figure>
+<img alt="accesslink obj" src="../img/accesslinkObj.png"/>
+<figcaption>Fig 67 : Objet Accesslink </figcaption>
+</figure>
+<h4 id="utilisation-de-lapi">Utilisation de l'API</h4>
+<p>Dans le dossier <em>endpoints/</em> on retrouve les objets python qui permettent d'effectuer les requêtes à l'API. La principale requête que j'utilise est celle des "training data". C'est cette requête qui permet de récupérer les informations de l'entrainement enregistré avec les montres connectées. Les données sont récupérés en format JSON, voici un exemple de retour de cette requête : </p>
+<figure>
+<img alt="json" src="../img/trainingdata_json.png"/>
+<figcaption>Fig 68 : Exemple de données retournées par l'API </figcaption>
+</figure>
+<p>Les données récupérées sont pour la plupart dans le bon format, la durée de l'entrainement est malheureusement dans un format très spécial. La durée est représentée par un <em>string</em> commençant par "PT" et est suivie par les valeurs (heures, minutes, secondes). Chaque valeur est suivie d'une lettre pour les séparer :</p>
+<ul>
+<li>La valeur pour les heures est suivie du caractère 'H'</li>
+<li>La valeur pour les minutes est suivie du caractère 'M'</li>
+<li>La valeur pour les secondes est suivie du caractère 'S'</li>
+</ul>
+<p>Mais s'il n'y a pas de valeur pour les heures par exemple, alors le caractère 'H' ne figurera pas dans le string.</p>
+<p>J'ai donc effectué 3 conditions pour pouvoir bien formater dans chaque cas le string avec la méthode <em>strptime</em> de la librairie <em>datetime</em> </p>
+<figure>
+<img alt="duration" src="../img/duration_condition.png"/>
+<figcaption>Fig 69 : Condition pour le format de la durée </figcaption>
+</figure>
+<p>J'insère ensuite les données voulues dans la base avec la librairie <em>mysql.connector</em>.</p>
+<div style="page-break-before:always"></div>
+<h2 id="tests">Tests</h2>
+<h3 id="tests-unitaires">Tests unitaires</h3>
+<p>Aucun test unitaire n'a été réalisé pour l'application. Cependant, toutes les fonctionnalités de l'application ont été testées "manuellement" avec une partie de débogage. Les 2 parties de mon projet étant développé majoritairement en Python, il serait intéressant d'ajouter des tests unitaires à l'aide du framework <a href="https://docs.pytest.org/en/7.1.x/"><em>Pytest</em></a> par exemple. Cela serait très utile d'avoir des tests unitaires dans le but de mettre en production l'application.</p>
+<h3 id="tests-utilisateurs">Tests utilisateurs</h3>
+<h4 id="fitjourney-web-application">FitJourney Web application</h4>
+<h5 id="en-tant-que-coach_1">En tant que coach :</h5>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Valeur(s)</th>
+<th>Attente(s)</th>
+<th>Résultat</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Création d'un compte avec 2 mots de passes différents</td>
+<td><ul><li> Name : "Thomas";</li> <li>Surname : "Fujise" ;</li><li>Email : "thomas.fjs@eduge.ch";</li> <li>Birthdate : 15.09.2000;</li><li> Password : "Super2012";</li><li> Confirm Password : "Super";</li></ul></td>
+<td>Un message d'erreur "Passwords Must Match!" s'affiche.</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>Création d'un compte coach</td>
+<td><ul><li> Name : "Thomas";</li> <li>Surname : "Fujise" ;</li><li>Email : "thomas.fjs@eduge.ch";</li> <li>Birthdate : 15.09.2000;</li><li> Password : "Super2012";</li><li> Confirm Password : "Super2012";</li></ul></td>
+<td>Redirection sur la page "login" et un message apparait pour confirmer la création</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>Création d'un compte avec un email existant</td>
+<td><ul><li> Name : "Thomas";</li> <li>Surname : "Fujise" ;</li><li>Email : "thomas.fjs@eduge.ch";</li> <li>Birthdate : 15.09.2000;</li><li> Password : "Super2012";</li><li> Confirm Password : "Super2012";</li></ul></td>
+<td>Message d'erreur "Email already registered"</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>Connexion avec le compte et un mot de passe erroné</td>
+<td><ul><li>Email : "thomas.fjs@eduge.ch";</li> <li> Password : "Super";</li></ul></td>
+<td>Un message d'erreur apparait</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>Connexion avec le compte</td>
+<td><ul><li>Email : "thomas.fjs@eduge.ch";</li> <li> Password : "Super2012";</li></ul></td>
+<td>Redirection sur la page tableau de bord</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>Clique sur le bouton "Add new client"</td>
+<td>/</td>
+<td>Redirection sur le formulaire d'ajout d'un nouveau client</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>Ajout d'un nouveau client</td>
+<td><ul><li> Name : "John";</li> <li>Surname : "Doe" ;</li><li>Email : "thomasfjs@gmail.com";</li> <li>Birthdate : 12.10.2001;</li><li> Height : 178;</li><li> Starting date : 08.06.2022</li> <li>Subscription type : "1 Month"</li></ul></td>
+<td>Un message de confirmation est affiché, le client est ajouté à la liste des clients et un email est envoyé à l'email renseigné contenant les identifiants du compte client</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>Clique sur le nom d'un client dans la liste</td>
+<td>/</td>
+<td>Redirection sur la page profil du client séléctionné</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>Ajout d'une carte de membre</td>
+<td><ul><li>Carte utilisé : 832141011 </li></ul></td>
+<td>Une fois la carte scanné, un message de confirmation est affiché et le numéro <strong>832141011</strong> figure dans le champ "Card ID"</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>Pas de carte scannée pendant &gt;30s</td>
+<td>/</td>
+<td>Un message d'erreur "No card detected" apparait</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>Clique sur le bouton "Upload new program"</td>
+<td>/</td>
+<td>Redirection vers le formulaire d'ajout de programme</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>Ajout d'un programme</td>
+<td><ul><li>Type : "Workout"</li><li>File : "workout.pdf</li></ul></td>
+<td>Un message de confirmation apparait, on peut voir un bouton "Workout" dans la section "Programs" apparaitre et un mail est envoyé à l'email du client pour le notifier.</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>Clique sur le bouton "Check up"</td>
+<td>/</td>
+<td>Redirection vers la page d'ajout d'un nouveau bilan</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>Ajout d'un bilan</td>
+<td><ul><li>Weight : 80.2</li><li>Height : 178</li><li>Water : 41.6</li><li>Protein : 10</li><li>Muscle Mass % : 55</li><li>Body Fat % : 41.7</li><li>Bone mass % : 3.3</li><li>BMR : 1336.0</li><li>Muscle Mass (kg) : 45.9</li><li>Body fat (kg) : 34.8</li><li>Visceral fat (kg) : 10</li><li>Bone mass (kg) : 2.8</li><li>Lean body mass (kg) : 48.7</li><li>Body age : 43</li><li>BMI : 31.4</li></ul></td>
+<td>Un message confirmation est affiché, on peut voir le bilan s'ajouter sur la droite dans la section "Check up"</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>Clique sur le bouton "Details" à côté d'un bilan</td>
+<td>/</td>
+<td>Redirection sur la page de détails du bilan</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>Renouvellement d'abonnement</td>
+<td><ul><li>Starting date : 10.06.2022</li><li>Subscription type : "3 Months"</li></ul></td>
+<td>Un message de confirmation est affiché, la date de fin d'abonnement a été modifier dans le champ "Subscription Until"</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>Annulation d'un abonnement</td>
+<td>/</td>
+<td>Le dernier abonnement souscrit est supprimé, la date de fin d'abonnement redevient celle du précédent abonnement</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>Clique sur le bouton "Profile" dans la barre de navigation</td>
+<td>/</td>
+<td>Redirection sur la page profil du coach</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>Modification profil coach</td>
+<td><ul><li>Last name : "Fuji"</li><li>Address : "Chemin des curiades 35"</li><li>City : "Bernex"</li><li>Country : "Switzerland"</li><li>Postal code : "1233"</li></ul></td>
+<td>Les modifications sont effectuées et un message de confirmation apparait.</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>Clique sur le bouton "Calendar" dans la barre de navigation</td>
+<td>/</td>
+<td>Redirection vers l'agenda du coach ainsi que le formulaire d'ajout d'une nouvelle session</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>Inscription d'une session avec un client</td>
+<td><ul><li>Client : "John Doe"</li><li>Date : 10.06.2022</li><li>Time for the session : 10:00</li><li>Type : "Weightlifting"</li><li>Duration (h) : 1</li></ul></td>
+<td>Un message de confirmation apparait, la session a été ajoutée au calendrier</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>/</td>
+<td>/</td>
+<td>La prochaine session est visible sur le tableau de bord avec les détails de la session</td>
+<td>OK</td>
+</tr>
+</tbody>
+</table>
+<h5 id="en-tant-que-client_1">En tant que client</h5>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Valeur(s)</th>
+<th>Attente(s)</th>
+<th>Résultat</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Connexion avec les identifiants fournit par mail</td>
+<td><ul><li>Email : "thomas.fjs@eduge.ch";</li> <li> Password : "John123";</li></ul></td>
+<td>Redirection sur la page d'accueil client</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>/</td>
+<td>/</td>
+<td>Les prochaines sessions sont affichées sur la page d'accueil client</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>Clique sur le bouton "Profile" dans la barre de navigation</td>
+<td>/</td>
+<td>Redirection sur la page profil</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>Modification du profil</td>
+<td><ul><li>Birthdate : 13.10.2001</li><li>Profile picture : "logo.jpg"</li><li>Country : Switzerland</li></ul></td>
+<td>Un message de confirmation apparait, la photo de profil et les informations sont modifiés</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>Clique sur le bouton "change password"</td>
+<td>/</td>
+<td>Redirection vers le formulaire de changement de mot de passe</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>Changement de mot de passe avec 2 mots de passe différents</td>
+<td><ul><li>Old password : "John123"</li><li>New password : "Super"</li><li>Confirm new password : "Super2012"</li></ul></td>
+<td>Un message d'erreur "Passwords must match" apparait</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>Changement de mot de passe</td>
+<td><ul><li>Old password : "John123"</li><li>New password : "Super2012"</li><li>Confirm new password : "Super2012"</li></ul></td>
+<td>Redirection sur la page profil et message de confirmation apparait</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>Téléchargement du programme</td>
+<td>/</td>
+<td>En cliquant sur le bouton "Workout program" le pdf est téléchargé</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>Clique sur le bouton "Add new review"</td>
+<td>/</td>
+<td>Redirection vers le formulaire d'ajout de review sur le coaching</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>Ajout d'une review coaching</td>
+<td><ul><li>Satisfaction : 8</li><li>Support : 8</li><li>Disponibility : 10</li><li>Advice : 9</li><li>Comment : "This coach is super !"</li></ul></td>
+<td>Redirection vers la page profil, un message de confirmation d'ajout apparait et on peut voir la review dans la section "Reports" en bas à droite</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>Clique sur le bouton "Details" à côté d'une review</td>
+<td>/</td>
+<td>Redirection sur la page de détails de la review</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>Clique sur le bouton "Workouts" dans la barre de navigation</td>
+<td>/</td>
+<td>Redirection sur la page affichant tous les entrainements effectués</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>Clique sur le bouton "Details" à côté d'un entrainement</td>
+<td>/</td>
+<td>Redirection sur la page de détail de l'entrainement</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>Clique sur le bouton "Add review" sur la page de l'entrainement</td>
+<td>/</td>
+<td>Redirection sur la page pour ajouter une review sur l'entrainement</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>Ajout d'une review d'entrainement</td>
+<td><ul><li>Difficulty : 7</li><li>Feel : 8</li><li>Fatigue : 6</li> <li>Energy: 8</li><li>Comment : "This was a great workout"</li></ul></td>
+<td>Redirection sur la page listant tous les entrainements effectués</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>Rajout d'une review sur le même entrainement</td>
+<td><ul><li>Difficulty : 7</li><li>Feel : 8</li><li>Fatigue : 6</li> <li>Energy: 8</li><li>Comment : "This was a great workout"</li></ul></td>
+<td>Redirection sur la page listant tous les entrainements avec un message d'erreur "Workout already reviewed"</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>Clique sur le bouton "Logout" dans la barre de navigation</td>
+<td>/</td>
+<td>L'utilisateur est déconnecté et redirigé vers la page de connexion</td>
+<td>OK</td>
+</tr>
+</tbody>
+</table>
+<div style="page-break-before:always"></div>
+<h4 id="fitjourney-card-checker">FitJourney card checker</h4>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Valeur(s)</th>
+<th>Attente(s)</th>
+<th>Résultat</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Scan d'une carte inconnue</td>
+<td><ul><li>Carte utilisée : 5874146165</li></ul></td>
+<td>Message s'affiche dans la console : "Unrecognized card"</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>Scan d'une carte de membre assignée en arrivant</td>
+<td><ul><li> Carte utilisée : 832141011</li></ul></td>
+<td>La carte est reconnue et un message de bienvenue avec le nom du client est affiché dans la console : "Welcome John Doe"</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>Scan de la même carte de membre pour la sortie</td>
+<td><ul><li> Carte utilisée : 832141011</li></ul></td>
+<td>La carte est reconnue et un message est affiché en console : "Goodbye John Doe"</td>
+<td>OK</td>
+</tr>
+</tbody>
+</table>
+<h2 id="conclusion">Conclusion</h2>
+<h3 id="points-positifs">Points positifs</h3>
+<p>Globalement, j'ai pu tirer pas mal de points positifs concernant ce travail de diplôme. Premièrement, le fait de travailler sur un projet de cette ampleur. Lors de ma formation en tant que Technicien ES, j'ai que très rarement eu l'occasion de travailler sur des projets similaires. L'expérience acquise lors d'un projet comme ceci ne peut être que positif pour le futur.</p>
+<p>Deuxièmement, le fait d'apprendre et d'améliorer ses connaissances sur des nouvelles technologies est un point très positif. Je suis beaucoup plus à l'aise avec Python Flask par exemple, ce qui n'était pas forcément le cas au début du projet.</p>
+<p>Pour terminer, je ressors beaucoup de positif des étapes suivies tout le long du projet. J'ai très rarement suivi toutes les étapes dans l'ordre comme je l'ai fait pour ce projet, par exemple le fait de commencer par effectuer des maquettes d'interfaces ou encore faire un MCD au préalable. Ce sont tous des longs points a effectué au début, mais s'ils sont bien faits, cela permet un gain de temps conséquent. Il y a également le fait de poser mes réflexions dans le journal de bord, cela m'a permis d'identifier des problèmes avant de tomber dessus.</p>
+<h3 id="problemes-rencontres">Problèmes rencontrés</h3>
+<h4 id="mise-en-place-de-la-structure-du-projet">Mise en place de la structure du projet</h4>
+<p>La mise en place de la structure du projet n'était pas réellement un gros problème, mais j'ai vraiment pris beaucoup de temps pour l'effectuer comme il faut. N'étant pas parfaitement à l'aise avec Python Flask, je souhaitais vraiment avoir une très bonne structure de projet. J'ai découvert les <a href="#architecture-blueprint">"Flask Blueprint"</a> qui m'ont beaucoup aidé à effectuer une structure propre et découpée.</p>
+<h4 id="oublie-de-certains-points-tres-importants">Oublie de certains points très importants</h4>
+<p>Un des gros problèmes que j'ai pu rencontrer est que je suis malheureusement passé à côté de plusieurs parties très importantes dans le métier de coach sportif. Cela a engendré de longues réflexions pour l'implémentation ainsi que l'ajout de nombreuses tâches "nécessaires" ainsi que de nombreux ajustements de la base de données. C'est pour cela que dans le <a href="#planning-effectif">planning effectif</a>, on peut retrouver beaucoup plus de tâches que dans le <a href="#planning-prévisionnel">planning prévisionnel</a>.</p>
+<h4 id="compte-google">Compte Google</h4>
+<p>Un autre problème que j'ai rencontré sur la fin de ce travail de diplôme est que Google ne prend plus en charge les applications "moins sécurisées" depuis le 30 mai. Cette décision a été prise pour améliorer leurs normes de sécurité. Le problème est que j'utilisais cette fonctionnalité pour utiliser le compte Google fitjourney pour envoyer les mails. Désormais, pour utiliser un compte Google pour envoyer des mails, il faut utiliser leurs API pour récupérer une clé qui permet l'accès. Je n'avais malheureusement pas le temps d'implémenter cette solution avec le temps qu'il me restait. C'est pour cela que j'ai utilisé <code>MailTrap</code> un service 'sandbox' pour email comme solution temporaire.</p>
+<div style="page-break-before:always"></div>
+<h3 id="ameliorations-possibles">Améliorations possibles</h3>
+<p>J'ai retenu plusieurs points au niveau des améliorations possibles et envisageables pour la suite du projet. Premièrement, cela serait utile d'ajouter la possibilité de transférer la prise en charge d'un client à un autre coach. Cette fonctionnalité peut être nécessaire dans plusieurs cas, comme par exemple si plusieurs coachs travaillent dans la même salle et qu'un coach est débordé, il pourrait assigner des clients à son collègue. Dans le cas où un client change d'objectif et qu'un autre coach est plus adapté à ses besoins aussi. </p>
+<p>Un deuxième point qui me parait très intéressant serait d'ajouter la possibilité de modifier ou supprimer une session. En cas d'imprévu, le coach ne peut pas supprimer ou modifier la date d'une session qu'il a enregistré avec un client.</p>
+<p>Un autre point qu'il faudrait rajouter serait l'ajout des photos du client lors de bilan. Les champs sont déjà prévus dans la base de données, il ne manque que les inputs dans le formulaire de bilan. </p>
+<p>Il y a également les données d'entrainements qui sont actuellement récupérées avec l'API Polar, cela serait intéressant d'ajouter d'autre montre connectée (Apple Watch, FitBit, Garmin, etc.). Même si Polar est une marque très utilisée dans le milieu, cela reste limitant pour les utilisateurs qui ne possèdent pas d'appareils Polar.</p>
+<p>Dans le but de mettre en production l'application, cela serait très intéressant de l'adapter pour téléphone mobile. Il faudrait également séparer les 2 versions de l'application (Coach/Client) qui n'en font qu'une pour l'instant. Comme mentionné plus haut, les <a href="#blueprints">blueprints</a> Flask permettent d'effectuer cela sans trop de soucis.</p>
+<p>La dernière amélioration serait de pouvoir sélectionner les valeurs utilisées dans les graphiques montrant l'évolution du poids sur la page profil du client. Cela serait très utile pour le coach et même pour le client d'avoir accès à une courbe montrant l'évolution d'autres données comme la masse graisseuse ou musculaire.</p>
+<h3 id="bilan-personnel">Bilan personnel</h3>
+<p>Globalement, je suis très satisfait du travail rendu au bout de ces 9 semaines. Ce projet me tenait particulièrement à cœur et je suis content de l'avancement de ce dernier. En travaillant pendant 9 semaines le projet a bien évolué, beaucoup de fonctionnalités sont venus renforcer l'idée de départ et rendre cette application de plus en plus complète. J'ai pu prendre en main de nouvelles technologies comme Python Flask que j'ai vraiment apprécié. J'ai également appris à utiliser les lecteurs RFID ce que j'ai trouvé très intéressant, malgré une documentation très archaïque de la librairie <code>pyscard</code> qui me permet d'utiliser les lecteurs en Python.</p>
+<div style="page-break-before:always"></div>
+<h2 id="sources">Sources</h2>
+<ul>
+<li><strong>Polar Flow</strong> : <a href="https://flow.polar.com/">https://flow.polar.com/</a></li>
+<li><strong>Polar API</strong> : <a href="https://www.polar.com/accesslink-api/">https://www.polar.com/accesslink-api/</a></li>
+<li><strong>Python Flask</strong> : <a href="https://flask.palletsprojects.com/en/2.1.x/">https://flask.palletsprojects.com/en/2.1.x/</a></li>
+<li><strong>FullCalendar</strong> : <a href="https://fullcalendar.io/">https://fullcalendar.io/</a></li>
+<li><strong>Flask-Mail</strong> : <a href="https://pythonhosted.org/Flask-Mail/">https://pythonhosted.org/Flask-Mail/</a></li>
+<li><strong>Flask-Login</strong> : <a href="https://flask-login.readthedocs.io/en/latest/">https://flask-login.readthedocs.io/en/latest/</a></li>
+<li><strong>SQLAlchemy</strong> : <a href="https://www.sqlalchemy.org/">https://www.sqlalchemy.org/</a></li>
+<li><strong>Chart.js</strong> : <a href="https://www.chartjs.org/">https://www.chartjs.org/</a></li>
+<li><strong>LucidCharts</strong>: <a href="https://www.lucidchart.com/">https://www.lucidchart.com/</a></li>
+<li><strong>Figma</strong> : <a href="https://www.figma.com/">https://www.figma.com/</a></li>
+<li><strong>Pyscard</strong> : <a href="https://pyscard.sourceforge.io/">https://pyscard.sourceforge.io/</a></li>
+<li><strong>Argon Design System</strong> : <a href="https://demos.creative-tim.com/argon-design-system/docs/getting-started/overview.html">https://demos.creative-tim.com/argon-design-system/docs/getting-started/overview.html</a></li>
+<li><strong>Python</strong> : <a href="https://www.python.org/">https://www.python.org/</a></li>
+<li><strong>MailTrap</strong> : <a href="https://mailtrap.io/">https://mailtrap.io/</a></li>
+<li><strong>Ray.so</strong> : <a href="https://ray.so/">https://ray.so/</a></li>
+</ul>
+</article>
+</div>
+</div>
+</main>
+<footer class="md-footer">
+<nav aria-label="Footer" class="md-footer__inner md-grid">
+<a aria-label="Next: Client guide" class="md-footer__link md-footer__link--next" href="../2client_guide/" rel="next">
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                Next
+              </span>
+              Client guide
+            </div>
+</div>
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"></path></svg>
+</div>
+</a>
+</nav>
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-footer-copyright">
+        
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+            Material for MkDocs
+          </a>
+ ... <a class="link--pdf-download" download href="../pdf/document.pdf" title="PDF">download PDF</a></div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
+<script src="../assets/javascripts/bundle.b1047164.min.js"></script>
+<script src="https://unpkg.com/mermaid@8.5.1/dist/mermaid.min.js"></script>
+</body>
+</html>

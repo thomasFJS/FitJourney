@@ -1,5 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
+@page {
+    font-size: 50% !important;
+    @bottom-left {
+      content: "10 Juin 2022" !important;
+    }
+    @top-left {
+      content: "Thomas Fujise" !important;
+    }
+    @top-center {
+        content: "FitJourney" !important;
+    }
+  }
+
 html,
 body {
     font-family: 'Roboto', sans-serif !important;
@@ -86,4 +99,8 @@ article p {
 
 li ul {
     margin-left: 20px;
+}
+
+figcaption {
+    font-size : 75%;
 }
