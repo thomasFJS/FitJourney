@@ -33,7 +33,7 @@ class Config(object):
         config('DB_PASS', default='Super2012$'),
         config('DB_HOST', default='localhost'),
         config('DB_PORT', default='3306'),
-        config('DB_NAME', default='fitjourney')
+        config('DB_NAME', default='fitjourney2')
     )
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 

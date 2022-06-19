@@ -75,16 +75,14 @@ class PolarAccessLink(object):
             print("No new data available.")
             return false
 
-        print("Available data:")
-        pretty_print_json(available_data)
+        #print("Available data:")
+        #pretty_print_json(available_data)
 
         for item in available_data["available-user-data"]:
             if item["data-type"] == "EXERCISE":
-                self.get_exercises()
-            elif item["data-type"] == "ACTIVITY_SUMMARY":
-                self.get_daily_activity()
-            elif item["data-type"] == "PHYSICAL_INFORMATION":
-                self.get_physical_info()
+                return True
+            else:
+                return False
 
     def revoke_access_token(self):
         self.accesslink.users.delete(user_id=self.config["user_id"],
@@ -129,8 +127,8 @@ class PolarAccessLink(object):
         for url in resource_urls:
             exercise_summary = transaction.get_exercise_summary(url)
 
-            print("Exercise summary:")
-            pretty_print_json(exercise_summary)
+            #print("Exercise summary:")
+            #pretty_print_json(exercise_summary)
             if WORKOUT_TYPE[exercise_summary['detailed-sport-info']] is not None:
                 workout_type = WORKOUT_TYPE[exercise_summary['detailed-sport-info']]
 
@@ -155,10 +153,11 @@ class PolarAccessLink(object):
             
             values = (workout_type, client_id, date, duration, heart_rate_max, heart_rate_avg, calories, distance)
 
-        print(values)
+        #print(values)
         cursor.execute(insertWorkoutQuery, values)
         db.commit()
-        print(cursor.rowcount, "was inserted.")
+        #print(cursor.rowcount, "was inserted.")
+        print("Your workout has been saved, thanks for coming !")
         transaction.commit()
 
     def get_daily_activity(self):

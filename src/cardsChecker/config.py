@@ -12,7 +12,7 @@ Brief   :        Config constants
 DB_HOST = "localhost"
 DB_USER = "fitjourney_dba"
 DB_PASSWORD = "Super2012$"
-DB = "fitjourney"
+DB = "fitjourney2"
 
 #WORKOUT TYPE
 WORKOUT_TYPE = {
